@@ -1,12 +1,18 @@
 package game.controller;
 
+import static java.util.stream.Collectors.toMap;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -236,7 +242,7 @@ public class ClientGamePageController implements Initializable {
 	@FXML
 	private Button stopButton;
 
-	int numOfPlayer; // how many player
+	static int numOfPlayer; // how many player
 
 	Button[][] setOfButton = new Button[6][6];
 	Pane[] setOfPlayer = new Pane[10]; // limit player :10
@@ -388,52 +394,64 @@ public class ClientGamePageController implements Initializable {
 
 	}
 
-	// to keep track of score for the score board next page
-	Hashtable<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
-
-	private int player = 0;
-
-	// playing
-	@FXML
-	void play(MouseEvent event) throws InterruptedException {
-		// set previous player color back to original
-		setOfPlayer[player].setStyle("-fx-background-color: white");
-		// timer
-		startTimer();
-		Button y = (Button) event.getTarget();
-
-		if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
-			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-			((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
-			((Button) event.getTarget()).setDisable(true);
-			player++;
-			// set next player color
-			setOfPlayer[player].setStyle("-fx-background-color: grey");
+	//to keep track of score for the score board next page
+		private static Map<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
+		
+		private int player = 0;
+		private int playerplaying = 1;
+		
+		
+		void colorChange() {
+			if (playerplaying < numOfPlayer ) {
+				setOfPlayer[--playerplaying].setStyle("-fx-background-color: white");
+				setOfPlayer[++playerplaying].setStyle("-fx-background-color: grey");
+				playerplaying++;
+			}
+			else if (playerplaying == numOfPlayer) {
+				setOfPlayer[numOfPlayer-1].setStyle("-fx-background-color: white");
+				setOfPlayer[0].setStyle("-fx-background-color: grey");
+				playerplaying = 1;
+			} else {playerplaying = 1;}
 
 		}
 
-		if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-			((Button) event.getTarget()).setText("bomb");
-			((Button) event.getTarget()).setDisable(true);
-			numBombLeft--;
-			bombLeft.setText(numBombLeft + "");
-			scoreOfPlayer[player]++;
-			int score = scoreOfPlayer[player];
-			setOfScore[player].setText(score + "");
-			keeptrack.put(player, score);
-			player++;
-			// set next player color
-			setOfPlayer[player].setStyle("-fx-background-color: grey");
+		//playing
+		@FXML
+		void play(MouseEvent event) throws InterruptedException {
+			//set color of player to know whose turn is next
+			colorChange();
+			//timer
+			startTimer();
+			Button y = (Button) event.getTarget();
+			
+			if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
+				((Button) event.getTarget()).setStyle("-fx-font-size: 10");
+				((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
+				((Button) event.getTarget()).setDisable(true);
+				player++;
 
+			}
+
+			if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+				((Button) event.getTarget()).setStyle("-fx-font-size: 10");
+				((Button) event.getTarget()).setText("bomb");
+				((Button) event.getTarget()).setDisable(true);
+				numBombLeft--;
+				bombLeft.setText(numBombLeft+"");
+				scoreOfPlayer[player]++;
+				int score = scoreOfPlayer[player];
+				setOfScore[player].setText(score + "");
+				keeptrack.put(player, score);
+				player++;
+			
+			}
+			
+			if (player == numOfPlayer) {
+				player = 0;
+			}
+			
 		}
 
-		if (player == numOfPlayer) {
-			player = 0;
-			setOfPlayer[player].setStyle("-fx-background-color: grey");
-		}
-
-	}
 
 	// to display count down from 10 to 0
 	void startTimer() {
@@ -487,18 +505,36 @@ public class ClientGamePageController implements Initializable {
 		thread.start();
 	}
 
-	public Hashtable<Integer, Integer> getHash() {
-		return keeptrack;
-	}
-
+	Integer[] nameOfPlayer = new Integer[10];
+	private static Map<Integer, Integer> sorted = new Hashtable<Integer,Integer>();
+	
 	@FXML
 	void stop(ActionEvent event) throws IOException {
-		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("/game/view/Scoreboard.fxml"));
+		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("Scoreboard.fxml"));
 		Scene scene = new Scene(gamePage);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(scene);
 		stage.show();
+	}
 
+	public static Map<Integer, Integer> getSorted(){
+		sorted = sort(keeptrack);
+		//System.out.print(sorted);
+		return sorted;
+	}
+	
+	private static Map<Integer, Integer> sort(Map<Integer, Integer> map){
+		Map<Integer, Integer> sorted = map .entrySet() .stream() .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())) .collect( toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		Iterator<Integer> iterators = sorted.keySet().iterator();
+	       while(iterators.hasNext()) {
+	           int key = iterators.next();
+	           if(key >= numOfPlayer) {
+	               iterators.remove();
+	           }
+	       }
+		//System.out.print(sorted);
+		return sorted;
+		
 	}
 	
 	
