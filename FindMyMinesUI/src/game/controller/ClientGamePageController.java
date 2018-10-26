@@ -249,9 +249,8 @@ public class ClientGamePageController implements Initializable {
 
 	@FXML
 	private ListView<String> listUsersConnected;
-	
-	private ObservableList<String> users;
 
+	private ObservableList<String> users;
 
 	// Server Configuration
 	private boolean connected;
@@ -263,10 +262,10 @@ public class ClientGamePageController implements Initializable {
 	private ObjectInputStream sInput; // to read from the socket
 	private ObjectOutputStream sOutput; // to write on the socket
 	private Socket socket;
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 		txtArea.setEditable(false);
 		display("Hello, " + username + "\n");
 		startConnection();
@@ -350,6 +349,9 @@ public class ClientGamePageController implements Initializable {
 		setOfButton[5][4] = b55;
 		setOfButton[5][5] = b65;
 
+
+		int bombplacement[][]; 
+		
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				int result = StartPageController.getValueOfSpace(i, j);
@@ -500,56 +502,58 @@ public class ClientGamePageController implements Initializable {
 		stage.show();
 
 	}
-	
-	
-	//Login
-	
+
+	// Login
+
 	public void login() {
 		// test if we can start the connection to the Server
 		// if it failed nothing we can do
-		if(!startConnection())
+		if (!startConnection())
 			return;
 		connected = true;
 	}
-	
+
 	private void disconnect() {
-		try { 
-			if(sInput != null) sInput.close();
-		}
-		catch(Exception e) {} // not much else I can do
 		try {
-			if(sOutput != null) sOutput.close();
-		}
-		catch(Exception e) {} // not much else I can do
-		try{
-			if(socket != null) socket.close();
-		}
-		catch(Exception e) {} // not much else I can do
+			if (sInput != null)
+				sInput.close();
+		} catch (Exception e) {
+		} // not much else I can do
+		try {
+			if (sOutput != null)
+				sOutput.close();
+		} catch (Exception e) {
+		} // not much else I can do
+		try {
+			if (socket != null)
+				socket.close();
+		} catch (Exception e) {
+		} // not much else I can do
 
 		// inform the GUI
 		connectionFailed();
 
 	}
-	
+
 	public void connectionFailed() {
 		// don't react to a <CR> after the username
 		connected = false;
 	}
-	
+
 	/*
 	 * To send a message to the GUI
 	 */
 	private void display(String msg) {
-		txtArea.appendText(msg + "\n"); 
+		txtArea.appendText(msg + "\n");
 	}
 
 	public boolean startConnection() {
 		// try to connect to the server
 		try {
 			socket = new Socket(server, port);
-		} 
+		}
 		// if it failed
-		catch(Exception ec) {
+		catch (Exception ec) {
 			display("Error connecting to server:" + ec);
 			return false;
 		}
@@ -558,25 +562,21 @@ public class ClientGamePageController implements Initializable {
 		display(msg);
 
 		/* Creating both Data Stream */
-		try
-		{
-			sInput  = new ObjectInputStream(socket.getInputStream());
+		try {
+			sInput = new ObjectInputStream(socket.getInputStream());
 			sOutput = new ObjectOutputStream(socket.getOutputStream());
-		}
-		catch (IOException eIO) {
+		} catch (IOException eIO) {
 			display("Exception creating new Input/output Streams: " + eIO);
 			return false;
 		}
 
-		// creates the Thread to listen from the server 
+		// creates the Thread to listen from the server
 		new ListenFromServer().start();
 		// Send our username to the server this is the only message that we
 		// will send as a String. All other messages will be ChatMessage objects
-		try
-		{
+		try {
 			sOutput.writeObject(username);
-		}
-		catch (IOException eIO) {
+		} catch (IOException eIO) {
 			display("Exception doing login : " + eIO);
 			disconnect();
 			return false;
@@ -584,29 +584,30 @@ public class ClientGamePageController implements Initializable {
 		// success we inform the caller that it worked
 		return true;
 	}
-	
+
 	class ListenFromServer extends Thread {
 
 		public void run() {
-			users =	FXCollections.observableArrayList();
+			users = FXCollections.observableArrayList();
 			listUsersConnected.setItems(users);
-			while(true) {
+			while (true) {
 				try {
 					String msg = (String) sInput.readObject();
-//					String[] split = msg.split(":");
-//					if (split[1].equals("WHOISIN")) {
-//						Platform.runLater(() -> {
-//							users.add(split[0]);
-//						});;
-//					} else if (split[1].equals("REMOVE")) {
-//						Platform.runLater(() -> {
-//							users.remove(split[0]);
-//						});
-//					} else{
-//						txtArea.appendText(msg);
-//					}
-				}
-				catch(IOException e) {
+					display(msg);
+					String[] split = msg.split(":");
+					if (split[1].equals("WHOISIN")) {
+						Platform.runLater(() -> {
+							users.add(split[0]);
+						});
+						;
+					} else if (split[1].equals("REMOVE")) {
+						Platform.runLater(() -> {
+							users.remove(split[0]);
+						});
+					} else {
+						txtArea.appendText(msg);
+					}
+				} catch (IOException e) {
 					display("Server has close the connection");
 					connectionFailed();
 					Platform.runLater(() -> {
@@ -615,7 +616,7 @@ public class ClientGamePageController implements Initializable {
 					break;
 				}
 				// can't happen with a String object but need the catch anyhow
-				catch(ClassNotFoundException e2) {
+				catch (ClassNotFoundException e2) {
 
 				}
 			}

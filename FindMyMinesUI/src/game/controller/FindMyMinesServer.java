@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javafx.scene.control.Button;
+
 //import game.model.ChatMessage;
 
 public class FindMyMinesServer {
@@ -56,6 +58,11 @@ public class FindMyMinesServer {
 				display("Server waiting for Clients on port " + port + "." + "\n");
 
 				Socket socket = serverSocket.accept();  // accept connection
+				
+				//Send bombs slot to clients
+				
+				int[][] valueOfSpace = StartPageController.valueOfSpace;
+				
 				// if I was asked to stop
 				if(!keepGoing)
 					break;
@@ -112,7 +119,6 @@ public class FindMyMinesServer {
 	 *  to broadcast a message to all Clients
 	 */
 	private synchronized void broadcast(String message) {
-		// add HH:mm:ss and \n to the message
 		String messageLf;
 		if (message.contains("WHOISIN") || message.contains("REMOVE")){
 			messageLf = message;
@@ -134,7 +140,7 @@ public class FindMyMinesServer {
 		}
 	}
 
-	// for a client who logoff using the LOGOUT message
+	// for a client who logoff 
 	synchronized void remove(int id) {
 		// scan the array list until we found the Id
 		for(int i = 0; i < clientsConnected.size(); ++i) {
@@ -161,10 +167,9 @@ public class FindMyMinesServer {
 		String username;
 		// the only type of message a will receive
 //		ChatMessage cm;
-		// the date I connect
-//		String date;
+	
 
-		// Constructore
+		// Constructor
 		ClientThread(Socket socket) {
 			// a unique id
 			id = ++uniqueId;

@@ -270,7 +270,7 @@ public class ServerGamePageController implements Initializable {
 		public void run() {
 			server.start(); // should execute until if fails
 			// the server failed
-			appendEvent("Server Stopped\n");
+			appendEvent("Server Stopped \n");
 			server = null;
 			users = null;
 		}
