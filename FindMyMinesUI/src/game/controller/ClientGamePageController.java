@@ -517,12 +517,14 @@ public class ClientGamePageController implements Initializable {
 		stage.show();
 	}
 
+	//sort score
 	public static Map<Integer, Integer> getSorted(){
 		sorted = sort(keeptrack);
 		//System.out.print(sorted);
 		return sorted;
 	}
 	
+	//remove non=playing players
 	private static Map<Integer, Integer> sort(Map<Integer, Integer> map){
 		Map<Integer, Integer> sorted = map .entrySet() .stream() .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())) .collect( toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 		Iterator<Integer> iterators = sorted.keySet().iterator();
