@@ -257,7 +257,7 @@ public class ClientGamePageController implements Initializable {
 	private boolean connected;
 	private String server = ClientStartPageController.server;
 	private String username = ClientStartPageController.userName;
-	private int port;
+	private int port = 1500;
 
 	// for I/O
 	private ObjectInputStream sInput; // to read from the socket
@@ -505,7 +505,7 @@ public class ClientGamePageController implements Initializable {
 	//Login
 	
 	public void login() {
-		port = 1500;
+//		port = 1500;
 //		server = "localhost";
 //		username = ClientStartPageController.userName;
 //		username = txtUsername.getText();
@@ -550,8 +550,7 @@ public class ClientGamePageController implements Initializable {
 	public boolean startConnection() {
 		// try to connect to the server
 		try {
-//			socket = new Socket(server, port);
-			socket = new Socket("localhost", port);
+			socket = new Socket(server, port);
 		} 
 		// if it failed
 		catch(Exception ec) {
