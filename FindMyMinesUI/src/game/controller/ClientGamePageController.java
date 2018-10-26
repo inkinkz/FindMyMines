@@ -593,7 +593,7 @@ public class ClientGamePageController implements Initializable {
 			while (true) {
 				try {
 					String msg = (String) sInput.readObject();
-					display(msg);
+//					display(msg);
 					String[] split = msg.split(":");
 					if (split[1].equals("WHOISIN")) {
 						Platform.runLater(() -> {
