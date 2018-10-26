@@ -263,7 +263,7 @@ public class ClientGamePageController implements Initializable {
 	private boolean connected;
 	private String server = ClientStartPageController.server;
 	private String username = ClientStartPageController.userName;
-	private int port;
+	private int port = 1500;
 
 	// for I/O
 	private ObjectInputStream sInput; // to read from the socket
@@ -543,10 +543,6 @@ public class ClientGamePageController implements Initializable {
 	//Login
 	
 	public void login() {
-		port = 1500;
-//		server = "localhost";
-//		username = ClientStartPageController.userName;
-//		username = txtUsername.getText();
 		// test if we can start the connection to the Server
 		// if it failed nothing we can do
 		if(!startConnection())
@@ -588,8 +584,7 @@ public class ClientGamePageController implements Initializable {
 	public boolean startConnection() {
 		// try to connect to the server
 		try {
-//			socket = new Socket(server, port);
-			socket = new Socket("localhost", port);
+			socket = new Socket(server, port);
 		} 
 		// if it failed
 		catch(Exception ec) {
@@ -636,18 +631,18 @@ public class ClientGamePageController implements Initializable {
 			while(true) {
 				try {
 					String msg = (String) sInput.readObject();
-					String[] split = msg.split(":");
-					if (split[1].equals("WHOISIN")) {
-						Platform.runLater(() -> {
-							users.add(split[0]);
-						});;
-					} else if (split[1].equals("REMOVE")) {
-						Platform.runLater(() -> {
-							users.remove(split[0]);
-						});
-					} else{
-						txtArea.appendText(msg);
-					}
+//					String[] split = msg.split(":");
+//					if (split[1].equals("WHOISIN")) {
+//						Platform.runLater(() -> {
+//							users.add(split[0]);
+//						});;
+//					} else if (split[1].equals("REMOVE")) {
+//						Platform.runLater(() -> {
+//							users.remove(split[0]);
+//						});
+//					} else{
+//						txtArea.appendText(msg);
+//					}
 				}
 				catch(IOException e) {
 					display("Server has close the connection");

@@ -34,7 +34,9 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </Label>
-      <TextField fx:id="txtUser" layoutX="267.0" layoutY="220.0" />
-      <Label layoutX="301.0" layoutY="185.0" text="Enter Username" />
+      <TextField fx:id="txtUser" layoutX="267.0" layoutY="293.0" />
+      <Label layoutX="301.0" layoutY="266.0" text="Enter Username" />
+      <Label layoutX="301.0" layoutY="151.0" prefHeight="17.0" prefWidth="99.0" text="Server Address" />
+      <TextField fx:id="txtServer" layoutX="267.0" layoutY="180.0" text="localhost"/>
    </children>
 </AnchorPane>
