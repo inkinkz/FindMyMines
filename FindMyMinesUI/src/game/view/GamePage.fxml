@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="listUsersConnected" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="869.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.ServerGamePageController">
+<AnchorPane id="listUsersConnected" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="997.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.ServerGamePageController">
    <children>
       <Button fx:id="b1" layoutX="44.0" layoutY="97.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
       <Button fx:id="b2" layoutX="109.0" layoutY="97.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
@@ -110,7 +110,7 @@
       <Label layoutX="55.0" layoutY="45.0" prefHeight="17.0" prefWidth="153.0" text="Number of Bomb Left :" />
       <Label fx:id="bombLeft" layoutX="208.0" layoutY="46.0" text="11" />
       <Button fx:id="stopButton" layoutX="501.0" layoutY="40.0" mnemonicParsing="false" onAction="#stop" text="Stop" />
-      <TextArea fx:id="textArea" layoutX="671.0" layoutY="23.0" prefHeight="149.0" prefWidth="287.0" />
+      <TextArea fx:id="textArea" layoutX="561.0" layoutY="23.0" prefHeight="149.0" prefWidth="399.0" />
       <ListView fx:id="listUsersConnected" layoutX="671.0" layoutY="182.0" prefHeight="288.0" prefWidth="287.0" />
    </children>
 </AnchorPane>

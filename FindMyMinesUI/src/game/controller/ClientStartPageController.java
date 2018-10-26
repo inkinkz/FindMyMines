@@ -34,6 +34,10 @@ public class ClientStartPageController {
 	@FXML
 	private TextField txtUser;
 	
+	@FXML
+	private TextField txtServer;
+	
+	
 	static String userName;
 	static String server;
 
@@ -144,12 +148,12 @@ public class ClientStartPageController {
 				}
 			}
 		}
-		server = "localhost";
+		server = txtServer.getText();
 		userName = txtUser.getText();
 		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("/game/view/ClientGamePage.fxml"));
 		Scene scene = new Scene(gamePage);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setMinWidth(970);
+		stage.setMinWidth(1000);
         stage.setMinHeight(520);
 		stage.setScene(scene);
 		stage.show();
