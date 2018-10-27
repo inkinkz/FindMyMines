@@ -527,7 +527,12 @@ public class ServerGamePageController implements Initializable {
 		task.setOnSucceeded(e -> {
 			showTime.textProperty().unbind();
 			showTime.setText("0");
-			player++;
+			//skip this player when timeout
+	        player++;
+	        if (player == numOfPlayer) {
+				player = 0;
+			} 
+	        colorChange();
 		});
 
 		Thread thread = new Thread(task);
