@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -250,6 +251,99 @@ public class ServerGamePageController implements Initializable {
 
 	@FXML
 	private TextArea textArea;
+	
+	 @FXML
+	    private DialogPane scoreBoard;
+
+	    @FXML
+	    private Pane player1Pane1;
+
+	    @FXML
+	    private Label player11;
+
+	    @FXML
+	    private Label score11;
+
+	    @FXML
+	    private Pane player2Pane1;
+
+	    @FXML
+	    private Label player21;
+
+	    @FXML
+	    private Label score21;
+
+	    @FXML
+	    private Pane player3Pane1;
+
+	    @FXML
+	    private Label player31;
+
+	    @FXML
+	    private Label score31;
+
+	    @FXML
+	    private Pane player4Pane1;
+
+	    @FXML
+	    private Label player41;
+
+	    @FXML
+	    private Label score41;
+
+	    @FXML
+	    private Pane player5Pane1;
+
+	    @FXML
+	    private Label player51;
+
+	    @FXML
+	    private Label score51;
+
+	    @FXML
+	    private Pane player6Pane1;
+
+	    @FXML
+	    private Label player61;
+
+	    @FXML
+	    private Label score61;
+
+	    @FXML
+	    private Pane player7Pane1;
+
+	    @FXML
+	    private Label player71;
+
+	    @FXML
+	    private Label score71;
+
+	    @FXML
+	    private Pane player8Pane1;
+
+	    @FXML
+	    private Label player81;
+
+	    @FXML
+	    private Label score81;
+
+	    @FXML
+	    private Pane player9Pane1;
+
+	    @FXML
+	    private Label player91;
+
+	    @FXML
+	    private Label score91;
+
+	    @FXML
+	    private Pane player10Pane1;
+
+	    @FXML
+	    private Label player101;
+
+	    @FXML
+	    private Label score101;
 
 	@FXML
 	private ListView<String> listUsersConnected;
@@ -260,6 +354,8 @@ public class ServerGamePageController implements Initializable {
 	Pane[] setOfPlayer = new Pane[10]; // limit player :10
 	int[] scoreOfPlayer = new int[10];
 	Label[] setOfScore = new Label[10];
+	Label[] setOfNameBoard = new Label[10];
+	Label[] setOfScoreBoard = new Label[10];
 	int numBombLeft = 11;
 
 	// SERVER
@@ -440,6 +536,28 @@ public class ServerGamePageController implements Initializable {
 		setOfButton[5][3] = b45;
 		setOfButton[5][4] = b55;
 		setOfButton[5][5] = b65;
+		
+		setOfNameBoard[0] = player11;
+		setOfNameBoard[1] = player21;
+		setOfNameBoard[2] = player31;
+		setOfNameBoard[3] = player41;
+		setOfNameBoard[4] = player51;
+		setOfNameBoard[5] = player61;
+		setOfNameBoard[6] = player71;
+		setOfNameBoard[7] = player81;
+		setOfNameBoard[8] = player91;
+		setOfNameBoard[9] = player101;
+		
+		setOfScoreBoard[0] = score11;
+		setOfScoreBoard[1] = score21;
+		setOfScoreBoard[2] = score31;
+		setOfScoreBoard[3] = score41;
+		setOfScoreBoard[4] = score51;
+		setOfScoreBoard[5] = score61;
+		setOfScoreBoard[6] = score71;
+		setOfScoreBoard[7] = score81;
+		setOfScoreBoard[8] = score91;
+		setOfScoreBoard[9] = score101;
 	}
 	
 	//starting of implementation from former StartPageController	
@@ -671,14 +789,37 @@ public class ServerGamePageController implements Initializable {
 		    }
 
 	//go to scoreboard
-	@FXML
-	void stop(ActionEvent event) throws IOException {
-		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("Scoreboard.fxml"));
-		Scene scene = new Scene(gamePage);
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setScene(scene);
-		stage.show();
-	}
+		@FXML
+		void stop(ActionEvent event) throws IOException {
+			//setText for score board
+			sorted = getSorted();
+					int i = 0;
+					for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) {
+					    //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+					    if(i<numOfPlayer) {
+					    		int v = entry.getKey();
+					    		v++;
+					    		setOfNameBoard[i].setText("Player "+ v);
+					    		setOfScoreBoard[i].setText(entry.getValue() +"");
+					    		i++;
+					    }   
+					}
+					scoreBoard.setVisible(true);
+		}
+		
+		@FXML
+	    private Button buttonDone;
+
+	    @FXML
+	    void goBack(ActionEvent event) throws IOException {
+	    	AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("/FindMyMinesUI/src/game/view/StartPage.fxml"));
+			Scene scene = new Scene(gamePage);
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setMinWidth(1000);
+			stage.setMinHeight(520);
+			stage.setScene(scene);
+			stage.show();
+	    }
 
 	//getter of sorted for other class to use
 	public static Map<Integer, Integer> getSorted(){
