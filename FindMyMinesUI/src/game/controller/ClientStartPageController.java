@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ClientStartPageController {
@@ -40,6 +41,12 @@ public class ClientStartPageController {
 	
 	static String userName;
 	static String server;
+	
+	@FXML
+	private Label warnIP;
+
+	@FXML
+	private Label warnName;
 
 	@FXML
 	void start(ActionEvent event) throws IOException {
@@ -150,6 +157,22 @@ public class ClientStartPageController {
 		}
 		server = txtServer.getText();
 		userName = txtUser.getText();
+		if (server.isEmpty()==true &&userName.isEmpty()==true) {
+			warnIP.setVisible(true);
+			warnName.setVisible(true);
+			return;
+		}
+		if (server.isEmpty()==true) {
+			warnIP.setVisible(true);
+			warnName.setVisible(false);
+			return;
+		}
+		if (userName.isEmpty()==true) {
+			warnName.setVisible(true);
+			warnIP.setVisible(false);
+			return;
+		}
+		
 		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("/game/view/ClientGamePage.fxml"));
 		Scene scene = new Scene(gamePage);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
