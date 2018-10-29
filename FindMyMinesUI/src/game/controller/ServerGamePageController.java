@@ -489,7 +489,8 @@ public class ServerGamePageController implements Initializable {
 			
 			
 		}
-
+		
+		//default condition
 		boolean condition = false;
 		//to display count down from 10 to 0
 		void startTimer() {
