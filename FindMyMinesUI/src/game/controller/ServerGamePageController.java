@@ -312,11 +312,58 @@ public class ServerGamePageController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		assignBomb();
 		textArea.setEditable(false);
 		startServer();
 		startTimer();
 		numOfPlayer = 4; // get from how many client that ready
+		setupPane();
+		setUpBomb();
+		setHash();
+		// color change for the starting player
+		setOfPlayer[player].setStyle("-fx-background-color: grey");
 
+	}
+
+	private void setHash() {
+		keeptrack.put(0, 0);
+		keeptrack.put(1, 0);
+		keeptrack.put(2, 0);
+		keeptrack.put(3, 0);
+		keeptrack.put(4, 0);
+		keeptrack.put(5, 0);
+		keeptrack.put(6, 0);
+		keeptrack.put(7, 0);
+		keeptrack.put(8, 0);
+		keeptrack.put(9, 0);
+		keeptrack.put(10, 0);
+	}
+
+	private void setUpBomb() {
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+				int result = getValueOfSpace(i, j);
+				Button y = setOfButton[i][j];
+				if (result == 0) {
+					y.setStyle("-fx-font-size: 0.3"); // blank
+				}
+				if (result == 1) {
+					y.setStyle("-fx-font-size: 0.1"); // bomb
+				}
+
+			}
+		}
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+				int numOfBombAround = getNumBombAround(i, j);
+				if (numOfBombAround > 0) {
+					setOfButton[i][j].setText("" + numOfBombAround);
+				}
+			}
+		}
+	}
+
+	private void setupPane() {
 		// put each pane into setOfPlayer
 		setOfPlayer[0] = player1Pane;
 		setOfPlayer[1] = player2Pane;
@@ -393,45 +440,135 @@ public class ServerGamePageController implements Initializable {
 		setOfButton[5][3] = b45;
 		setOfButton[5][4] = b55;
 		setOfButton[5][5] = b65;
-
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
-				int result = StartPageController.getValueOfSpace(i, j);
-				Button y = setOfButton[i][j];
-				if (result == 0) {
-					y.setStyle("-fx-font-size: 0.3"); // blank
-				}
-				if (result == 1) {
-					y.setStyle("-fx-font-size: 0.1"); // bomb
-				}
-
-			}
-		}
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
-				int numOfBombAround = StartPageController.getNumBombAround(i, j);
-				if (numOfBombAround > 0) {
-					setOfButton[i][j].setText("" + numOfBombAround);
-				}
-			}
-		}
-		keeptrack.put(0, 0);
-		keeptrack.put(1, 0);
-		keeptrack.put(2, 0);
-		keeptrack.put(3, 0);
-		keeptrack.put(4, 0);
-		keeptrack.put(5, 0);
-		keeptrack.put(6, 0);
-		keeptrack.put(7, 0);
-		keeptrack.put(8, 0);
-		keeptrack.put(9, 0);
-		keeptrack.put(10, 0);
-
-		// color change for the starting player
-		setOfPlayer[player].setStyle("-fx-background-color: grey");
-
 	}
+	
+	//starting of implementation from former StartPageController	
+	//this will be assign to each button in the GamePage 0=free 1=bomb
+		public static int[][] valueOfSpace = new int[6][6];
+		
+		// create array to keep number of surrounding bomb
+		public static int[][] bombAround = new int[6][6];
+		int numBomb = 0;
 
+		private void assignBomb() {
+			// assign bomb to the slot
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
+					
+					float result = (float) Math.random();
+					if (result < 0.5) {
+						result = 0;
+					}
+					if (result >= 0.5) {
+						result = 1;
+					}
+					if (numBomb >= 11) {
+						result = 0;
+					}
+					if (result == 0) {
+						valueOfSpace[i][j] = 0;//free space
+					}
+					if (result == 1) {
+						valueOfSpace[i][j] = 1;//bomb
+						numBomb++;
+					}
+
+				}
+			}
+			
+			// fix number of bomb to 11
+			while (numBomb != 11) {
+				for (int i = 0; i < 6; i++) {
+					for (int j = 0; j < 6; j++) {
+
+						if (valueOfSpace[i][j] == 0) {
+							int result = (int) Math.random();
+							if (result < 0.5) {
+								result = 0;
+							}
+							if (result >= 0.5) {
+								result = 1;
+							}
+							if (result == 0) {
+								valueOfSpace[i][j] = 0;//free space
+							}
+							if (result == 1) {
+								valueOfSpace[i][j] = 1;//bomb
+								numBomb++;
+							}
+						}
+					}
+
+				}
+			}
+
+			// set number in free slot
+
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
+
+					int countBombAround = 0;
+					if (valueOfSpace[i][j] == 0) { // if this is free slot
+						if (i - 1 >= 0 && j - 1 >= 0) { // if there is a slot
+							if (valueOfSpace[i - 1][j - 1] == 1) { // if the upperleft is bomb
+								countBombAround++;
+							}
+						}
+						if (i >= 0 && j - 1 >= 0) {
+							if (valueOfSpace[i][j - 1] == 1) {
+								countBombAround++;
+							}
+						}
+						if (i + 1 <= 5 && j - 1 >= 0) {
+							if (valueOfSpace[i + 1][j - 1] == 1) {
+								countBombAround++;
+							}
+						}
+						if (i - 1 >= 0 && j >= 0) {
+							if (valueOfSpace[i - 1][j] == 1) {
+								countBombAround++;
+							}
+						}
+						if (i + 1 <= 5 && j >= 0) {
+							if (valueOfSpace[i + 1][j] == 1) {
+								countBombAround++;
+							}
+						}
+						if (i - 1 >= 0 && j + 1 <= 5) {
+							if (valueOfSpace[i - 1][j + 1] == 1) {
+								countBombAround++;
+							}
+						}
+						if (i >= 0 && j + 1 <= 5) {
+							if (valueOfSpace[i][j + 1] == 1) {
+								countBombAround++;
+							}
+						}
+						if (i + 1 <= 5 && j + 1 <= 5) {
+							if (valueOfSpace[i + 1][j + 1] == 1) {
+								countBombAround++;
+							}
+						}
+						bombAround[i][j] = countBombAround;
+
+						
+
+					}
+				}
+			}
+
+		}
+		public static int getValueOfSpace(int i,int j) {
+			int valueofspace = valueOfSpace[i][j];
+			return valueofspace ;
+			
+		}
+		public static int getNumBombAround(int i,int j) {
+			int numbombaround = bombAround[i][j];
+			return numbombaround;
+		}
+	//end of implementation from former StartPageController	
+		
 	//to keep track of score for the score board next page
 		private static Map<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
 		
@@ -490,7 +627,7 @@ public class ServerGamePageController implements Initializable {
 			
 		}
 		
-		//default condition
+		//default condition for timer
 		boolean condition = false;
 		//to display count down from 10 to 0
 		void startTimer() {
@@ -533,9 +670,7 @@ public class ServerGamePageController implements Initializable {
 		      thread.start();
 		    }
 
-	Integer[] nameOfPlayer = new Integer[10];
-	private static Map<Integer, Integer> sorted = new Hashtable<Integer,Integer>();
-	
+	//go to scoreboard
 	@FXML
 	void stop(ActionEvent event) throws IOException {
 		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("Scoreboard.fxml"));
@@ -545,12 +680,15 @@ public class ServerGamePageController implements Initializable {
 		stage.show();
 	}
 
+	//getter of sorted for other class to use
 	public static Map<Integer, Integer> getSorted(){
 		sorted = sort(keeptrack);
 		//System.out.print(sorted);
 		return sorted;
 	}
 	
+	//sort player score from highest to lowest
+	private static Map<Integer, Integer> sorted = new Hashtable<Integer,Integer>();
 	private static Map<Integer, Integer> sort(Map<Integer, Integer> map){
 		Map<Integer, Integer> sorted = map .entrySet() .stream() .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())) .collect( toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 		Iterator<Integer> iterators = sorted.keySet().iterator();
