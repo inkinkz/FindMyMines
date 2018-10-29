@@ -20,7 +20,7 @@ public class ServerMain extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("view/StartPage.fxml"));
-			Scene scene = new Scene(root, 400, 400);
+			Scene scene = new Scene(root, 1000, 650);
 			scene.getStylesheets().add(getClass().getResource("view/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.sizeToScene();

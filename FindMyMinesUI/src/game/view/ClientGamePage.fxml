@@ -6,111 +6,374 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="1015.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.ClientGamePageController">
+<AnchorPane id="listUsersConnected" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.ServerGamePageController">
    <children>
-      <Button fx:id="b1" layoutX="44.0" layoutY="97.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b2" layoutX="109.0" layoutY="97.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b3" layoutX="174.0" layoutY="97.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b4" layoutX="239.0" layoutY="97.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b5" layoutX="304.0" layoutY="97.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b6" layoutX="369.0" layoutY="97.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b11" layoutX="44.0" layoutY="162.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b21" layoutX="109.0" layoutY="162.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b31" layoutX="174.0" layoutY="162.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b41" layoutX="239.0" layoutY="162.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b51" layoutX="304.0" layoutY="162.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b61" layoutX="369.0" layoutY="162.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b12" layoutX="44.0" layoutY="227.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b22" layoutX="109.0" layoutY="227.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b32" layoutX="174.0" layoutY="227.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b42" layoutX="239.0" layoutY="227.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b52" layoutX="304.0" layoutY="227.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b62" layoutX="369.0" layoutY="227.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b13" layoutX="44.0" layoutY="292.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b23" layoutX="109.0" layoutY="292.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b33" layoutX="174.0" layoutY="292.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b43" layoutX="239.0" layoutY="292.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b53" layoutX="304.0" layoutY="292.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b63" layoutX="369.0" layoutY="292.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b14" layoutX="44.0" layoutY="357.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b24" layoutX="109.0" layoutY="357.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b34" layoutX="174.0" layoutY="357.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b44" layoutX="239.0" layoutY="357.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b54" layoutX="304.0" layoutY="357.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b64" layoutX="369.0" layoutY="357.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b15" layoutX="44.0" layoutY="422.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b25" layoutX="109.0" layoutY="422.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b35" layoutX="174.0" layoutY="422.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b45" layoutX="239.0" layoutY="422.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b55" layoutX="304.0" layoutY="422.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Button fx:id="b65" layoutX="369.0" layoutY="422.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Label layoutX="350.0" layoutY="35.0" prefHeight="38.0" prefWidth="43.0" text="Timer :" />
-      <Label fx:id="showTime" layoutX="415.0" layoutY="45.0" prefWidth="95.0" text="10" />
-      <Pane fx:id="player1Pane" layoutX="448.0" layoutY="97.0" prefHeight="38.0" prefWidth="223.0">
+      <AnchorPane layoutY="165.0" prefHeight="500.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="150.0">
          <children>
-            <Label fx:id="player1" layoutX="14.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 1" />
-            <Label fx:id="score1" layoutX="98.0" layoutY="11.0" text="0" />
-         </children>
-      </Pane>
-      <Pane fx:id="player2Pane" layoutX="448.0" layoutY="135.0" prefHeight="38.0" prefWidth="223.0">
+            <Button fx:id="b1" layoutX="54.0" layoutY="70.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" AnchorPane.leftAnchor="54.0">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b2" layoutX="119.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b3" layoutX="184.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b4" layoutX="249.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b5" layoutX="314.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b6" layoutX="379.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b11" layoutX="54.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b21" layoutX="119.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b31" layoutX="184.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b41" layoutX="249.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b51" layoutX="314.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b61" layoutX="379.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b12" layoutX="54.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b22" layoutX="119.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b32" layoutX="184.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b42" layoutX="249.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b52" layoutX="314.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b62" layoutX="379.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b13" layoutX="54.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b23" layoutX="119.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b33" layoutX="184.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b43" layoutX="249.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b53" layoutX="314.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b63" layoutX="379.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b14" layoutX="54.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b24" layoutX="119.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b34" layoutX="184.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b44" layoutX="249.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b54" layoutX="314.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b64" layoutX="379.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b15" layoutX="54.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b25" layoutX="119.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b35" layoutX="184.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b45" layoutX="249.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b55" layoutX="314.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b65" layoutX="379.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="360.0" layoutY="30.0" prefHeight="19.0" prefWidth="43.0" text="Timer :" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="showTime" layoutX="416.0" layoutY="30.0" prefHeight="20.0" prefWidth="22.0" text="10" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Label>
+            <Pane fx:id="player1Pane" layoutX="458.0" layoutY="56.0" prefHeight="38.0" prefWidth="150.0">
+               <children>
+                  <Label fx:id="player1" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 1">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="score1" layoutX="125.0" layoutY="11.0" text="0">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="player2Pane" layoutX="458.0" layoutY="96.0" prefHeight="38.0" prefWidth="150.0">
+               <children>
+                  <Label fx:id="player2" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 2">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="score2" layoutX="125.0" layoutY="11.0" text="0">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="player3Pane" layoutX="458.0" layoutY="136.0" prefHeight="38.0" prefWidth="150.0">
+               <children>
+                  <Label fx:id="player3" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 3">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="score3" layoutX="125.0" layoutY="11.0" text="0">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="player4Pane" layoutX="458.0" layoutY="176.0" prefHeight="38.0" prefWidth="150.0">
+               <children>
+                  <Label fx:id="player4" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 4">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="score4" layoutX="125.0" layoutY="11.0" text="0">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="player5Pane" layoutX="458.0" layoutY="216.0" prefHeight="38.0" prefWidth="150.0">
+               <children>
+                  <Label fx:id="player5" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 5">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="score5" layoutX="125.0" layoutY="11.0" text="0">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="player6Pane" layoutX="458.0" layoutY="256.0" prefHeight="38.0" prefWidth="150.0">
+               <children>
+                  <Label fx:id="player6" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 6">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="score6" layoutX="125.0" layoutY="11.0" text="0">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="player7Pane" layoutX="458.0" layoutY="296.0" prefHeight="38.0" prefWidth="150.0">
+               <children>
+                  <Label fx:id="player7" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 7">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="score7" layoutX="125.0" layoutY="11.0" text="0">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="player8Pane" layoutX="458.0" layoutY="336.0" prefHeight="38.0" prefWidth="150.0">
+               <children>
+                  <Label fx:id="player8" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 8">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="score8" layoutX="125.0" layoutY="11.0" text="0">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="player9Pane" layoutX="458.0" layoutY="376.0" prefHeight="38.0" prefWidth="150.0">
+               <children>
+                  <Label fx:id="player9" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 9">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="score9" layoutX="125.0" layoutY="11.0" text="0">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="player10Pane" layoutX="458.0" layoutY="416.0" prefHeight="38.0" prefWidth="150.0">
+               <children>
+                  <Label fx:id="player10" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 10">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="score10" layoutX="125.0" layoutY="11.0" text="0">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="65.0" layoutY="30.0" prefHeight="16.0" prefWidth="153.0" text="Remaining Bombs :" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="bombLeft" layoutX="198.0" layoutY="30.0" text="11" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane layoutX="587.0" prefHeight="261.0" prefWidth="410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="650.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
-            <Label fx:id="player2" layoutX="14.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 2" />
-            <Label fx:id="score2" layoutX="98.0" layoutY="11.0" text="0" />
+            <TextArea fx:id="textArea" layoutY="90.0" prefHeight="118.0" prefWidth="295.0" AnchorPane.bottomAnchor="292.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="90.0">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font></TextArea>
+            <Button fx:id="stopButton" layoutY="28.0" mnemonicParsing="false" onAction="#stop" text="Ready" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="25.0">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font></Button>
+            <ListView fx:id="listUsersConnected" layoutY="225.0" prefHeight="225.0" prefWidth="295.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="225.0" />
          </children>
-      </Pane>
-      <Pane fx:id="player3Pane" layoutX="448.0" layoutY="173.0" prefHeight="38.0" prefWidth="223.0">
+      </AnchorPane>
+      <AnchorPane layoutY="-2.0" prefHeight="118.0" prefWidth="990.0" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="player3" layoutX="14.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 3" />
-            <Label fx:id="score3" layoutX="98.0" layoutY="11.0" text="0" />
+            <Label alignment="CENTER" layoutX="273.0" layoutY="45.0" prefHeight="92.0" prefWidth="451.0" text="Find My Mines" textAlignment="CENTER" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="45.0">
+               <font>
+                  <Font name="Avenir Book" size="67.0" />
+               </font>
+            </Label>
          </children>
-      </Pane>
-      <Pane fx:id="player4Pane" layoutX="448.0" layoutY="212.0" prefHeight="38.0" prefWidth="223.0">
-         <children>
-            <Label fx:id="player4" layoutX="14.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 4" />
-            <Label fx:id="score4" layoutX="98.0" layoutY="11.0" text="0" />
-         </children>
-      </Pane>
-      <Pane fx:id="player5Pane" layoutX="448.0" layoutY="250.0" prefHeight="38.0" prefWidth="223.0">
-         <children>
-            <Label fx:id="player5" layoutX="14.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 5" />
-            <Label fx:id="score5" layoutX="98.0" layoutY="11.0" text="0" />
-         </children>
-      </Pane>
-      <Pane fx:id="player6Pane" layoutX="448.0" layoutY="288.0" prefHeight="38.0" prefWidth="223.0">
-         <children>
-            <Label fx:id="player6" layoutX="14.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 6" />
-            <Label fx:id="score6" layoutX="98.0" layoutY="11.0" text="0" />
-         </children>
-      </Pane>
-      <Pane fx:id="player7Pane" layoutX="448.0" layoutY="326.0" prefHeight="38.0" prefWidth="223.0">
-         <children>
-            <Label fx:id="player7" layoutX="14.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 7" />
-            <Label fx:id="score7" layoutX="98.0" layoutY="11.0" text="0" />
-         </children>
-      </Pane>
-      <Pane fx:id="player8Pane" layoutX="448.0" layoutY="365.0" prefHeight="38.0" prefWidth="223.0">
-         <children>
-            <Label fx:id="player8" layoutX="14.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 8" />
-            <Label fx:id="score8" layoutX="98.0" layoutY="11.0" text="0" />
-         </children>
-      </Pane>
-      <Pane fx:id="player9Pane" layoutX="448.0" layoutY="403.0" prefHeight="38.0" prefWidth="223.0">
-         <children>
-            <Label fx:id="player9" layoutX="14.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 9" />
-            <Label fx:id="score9" layoutX="98.0" layoutY="11.0" text="0" />
-         </children>
-      </Pane>
-      <Pane fx:id="player10Pane" layoutX="448.0" layoutY="442.0" prefHeight="38.0" prefWidth="223.0">
-         <children>
-            <Label fx:id="player10" layoutX="14.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 10" />
-            <Label fx:id="score10" layoutX="98.0" layoutY="11.0" text="0" />
-         </children>
-      </Pane>
-      <Label layoutX="55.0" layoutY="45.0" prefHeight="17.0" prefWidth="153.0" text="Number of Bomb Left :" />
-      <Label fx:id="bombLeft" layoutX="208.0" layoutY="46.0" text="11" />
-      <Button fx:id="stopButton" layoutX="501.0" layoutY="40.0" mnemonicParsing="false" onAction="#stop" text="Stop" />
-      <TextArea fx:id="txtArea" layoutX="560.0" layoutY="13.0" prefHeight="127.0" prefWidth="398.0" />
-      <ListView fx:id="listUsersConnected" layoutX="671.0" layoutY="151.0" prefHeight="330.0" prefWidth="236.0" />
+      </AnchorPane>
    </children>
 </AnchorPane>
