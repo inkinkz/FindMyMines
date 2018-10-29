@@ -453,16 +453,16 @@ public class ClientGamePageController implements Initializable {
 				keeptrack.put(player, score);
 				player++;
 			}
+			
 			if (player == numOfPlayer) {
 				player = 0;
 			}
-			
-			
 		}
 
 		boolean condition = false;
 		//to display count down from 10 to 0
 		void startTimer() {
+			//timer run
 			Task <Void> task = new Task<Void>() {
 		        @Override public Void call() throws InterruptedException {
 		        		for (int i = 10; i>=0; i--) {
@@ -476,7 +476,7 @@ public class ClientGamePageController implements Initializable {
 		          return null;
 		        }
 		      };
-		    //exit startTimer();
+		      //exit startTimer();
 		      if(condition == true) {
 		    	  	condition = false;
 		    	  	return;
