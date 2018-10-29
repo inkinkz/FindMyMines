@@ -24,6 +24,7 @@ public class ClientStartPageController {
 
     @FXML
     private Label clientNamebox;
+<<<<<<< HEAD
  
  //this will be assign to each button in the GamePage 0=free 1=bomb
  public static int[][] valueOfSpace = new int[6][6];
@@ -44,6 +45,31 @@ public class ClientStartPageController {
  
  @FXML
  private Label warnIP;
+=======
+	
+	//this will be assign to each button in the GamePage 0=free 1=bomb
+	public static int[][] valueOfSpace = new int[6][6];
+	
+	// create array to keep number of surrounding bomb
+	public static int[][] bombAround = new int[6][6];
+	int numBomb = 0;
+	
+	@FXML
+	private TextField txtUser;
+	
+	@FXML
+	private TextField txtServer;
+	
+	
+	static String userName;
+	static String server;
+	
+	@FXML
+	private Label warnIP;
+
+	@FXML
+	private Label warnName;
+>>>>>>> branch 'master' of https://github.com/inkinkz/FindMyMines.git
 
  @FXML
  private Label warnName;
@@ -150,6 +176,7 @@ public class ClientStartPageController {
      }
      bombAround[i][j] = countBombAround;
 
+<<<<<<< HEAD
      
 
     }
@@ -177,6 +204,33 @@ public class ClientStartPageController {
   Scene scene = new Scene(gamePage);
   Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
   stage.setMinWidth(1000);
+=======
+				}
+			}
+		}
+		server = txtServer.getText();
+		userName = txtUser.getText();
+		if (server.isEmpty()==true &&userName.isEmpty()==true) {
+			warnIP.setVisible(true);
+			warnName.setVisible(true);
+			return;
+		}
+		if (server.isEmpty()==true) {
+			warnIP.setVisible(true);
+			warnName.setVisible(false);
+			return;
+		}
+		if (userName.isEmpty()==true) {
+			warnName.setVisible(true);
+			warnIP.setVisible(false);
+			return;
+		}
+		
+		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("/game/view/ClientGamePage.fxml"));
+		Scene scene = new Scene(gamePage);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setMinWidth(1000);
+>>>>>>> branch 'master' of https://github.com/inkinkz/FindMyMines.git
         stage.setMinHeight(520);
   stage.setScene(scene);
   stage.show();
