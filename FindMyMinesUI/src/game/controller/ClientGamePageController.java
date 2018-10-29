@@ -257,6 +257,11 @@ public class ClientGamePageController implements Initializable {
 	private ListView<String> listUsersConnected;
 
 	private ObservableList<String> users;
+	
+	int[][] bombplacement = new int[6][6]; 
+	int[][] bombaround = new int[6][6];
+
+
 
 	// Server Configuration
 	private boolean connected;
@@ -356,11 +361,11 @@ public class ClientGamePageController implements Initializable {
 		setOfButton[5][5] = b65;
 
 
-		int bombplacement[][]; 
 		
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
-				int result = StartPageController.getValueOfSpace(i, j);
+//				int result = StartPageController.getValueOfSpace(i, j);
+				int result = bombplacement[i][j];
 				Button y = setOfButton[i][j];
 				if (result == 0) {
 					y.setStyle("-fx-font-size: 0.3"); // blank
@@ -373,7 +378,8 @@ public class ClientGamePageController implements Initializable {
 		}
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
-				int numOfBombAround = StartPageController.getNumBombAround(i, j);
+//				int numOfBombAround = StartPageController.getNumBombAround(i, j);
+				int numOfBombAround = bombaround[i][j];
 				if (numOfBombAround > 0) {
 					setOfButton[i][j].setText("" + numOfBombAround);
 				}
@@ -597,8 +603,19 @@ public class ClientGamePageController implements Initializable {
 			return false;
 		}
 
+//		try {
+//			bombplacement = (int[][])sInput.readObject();
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
 		// creates the Thread to listen from the server
 		new ListenFromServer().start();
+		
 		// Send our username to the server this is the only message that we
 		// will send as a String. All other messages will be ChatMessage objects
 		try {
@@ -617,6 +634,37 @@ public class ClientGamePageController implements Initializable {
 		public void run() {
 			users = FXCollections.observableArrayList();
 			listUsersConnected.setItems(users);
+			try {
+				bombplacement = (int[][])sInput.readObject();
+//				sInput.close();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				sInput = new ObjectInputStream(socket.getInputStream());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				bombaround = (int[][]) sInput.readObject();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				sInput = new ObjectInputStream(socket.getInputStream());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			while (true) {
 				try {
 					String msg = (String) sInput.readObject();
