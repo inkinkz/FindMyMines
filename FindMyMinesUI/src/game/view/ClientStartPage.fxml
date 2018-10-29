@@ -9,26 +9,14 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.ClientStartPageController">
-=======
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="700.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.ClientStartPageController">
->>>>>>> branch 'master' of https://github.com/inkinkz/FindMyMines.git
    <children>
-<<<<<<< HEAD
       <Button fx:id="start" layoutX="433.0" layoutY="484.0" mnemonicParsing="false" onAction="#start" prefHeight="44.0" prefWidth="162.0" style="-fx-alignment: center;" text="CONNECT" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="420.0">
-=======
-      <Button fx:id="start" layoutX="232.0" layoutY="380.0" mnemonicParsing="false" onAction="#start" prefHeight="78.0" prefWidth="254.0" style="-fx-alignment: center;" text="CONNECT" AnchorPane.leftAnchor="223.0">
->>>>>>> branch 'master' of https://github.com/inkinkz/FindMyMines.git
          <font>
             <Font name="Avenir Book" size="18.0" />
          </font>
       </Button>
-<<<<<<< HEAD
       <Label fx:id="Title" alignment="CENTER" layoutX="294.0" layoutY="104.0" prefHeight="80.0" prefWidth="480.0" style="-fx-text-alignment: center;" text="Find My Mines" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="100.0">
-=======
-      <Label fx:id="Title" alignment="CENTER" layoutX="111.0" layoutY="35.0" prefHeight="80.0" prefWidth="479.0" style="-fx-text-alignment: center;" text="Find My Mines">
->>>>>>> branch 'master' of https://github.com/inkinkz/FindMyMines.git
          <font>
             <Font name="Avenir Book" size="70.0" />
          </font>
@@ -42,16 +30,11 @@
             </LinearGradient>
          </textFill>
       </Label>
-<<<<<<< HEAD
       <Label fx:id="clientNamebox" alignment="TOP_LEFT" layoutX="252.0" layoutY="236.0" opacity="0.7" prefHeight="235.0" prefWidth="537.0" style="-fx-border-color: #e0e0e0;" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="240.0">
-=======
-      <Label fx:id="clientNamebox" alignment="TOP_LEFT" layoutX="83.0" layoutY="132.0" opacity="0.7" prefHeight="235.0" prefWidth="537.0" style="-fx-border-color: #e0e0e0;" AnchorPane.leftAnchor="81.5">
->>>>>>> branch 'master' of https://github.com/inkinkz/FindMyMines.git
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </Label>
-<<<<<<< HEAD
       <TextField fx:id="txtUser" layoutX="384.0" layoutY="401.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
          <font>
             <Font name="Avenir Book" size="24.0" />
@@ -68,18 +51,6 @@
          <font>
             <Font name="Avenir Book" size="24.0" />
          </font></TextField>
-=======
-      <TextField fx:id="txtUser" layoutX="275.0" layoutY="287.0" />
-      <Label layoutX="250.0" layoutY="255.0" prefHeight="35.0" prefWidth="198.0" style="-fx-alignment: center;" text="Enter Username" textFill="#191919" AnchorPane.leftAnchor="251.0">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
-      <Label layoutX="249.0" layoutY="176.0" prefHeight="35.0" prefWidth="198.0" style="-fx-alignment: center;" text="Enter IP Address" textAlignment="CENTER" textFill="#191919" AnchorPane.leftAnchor="251.0">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
-      <TextField fx:id="txtServer" layoutX="274.0" layoutY="211.0" />
->>>>>>> branch 'master' of https://github.com/inkinkz/FindMyMines.git
       <Label fx:id="warnName" disable="true" layoutX="440.0" layoutY="290.0" text="Please enter your nickname" textFill="#191919" visible="false">
          <font>
             <Font size="14.0" />
