@@ -275,6 +275,7 @@ public class ServerGamePageController implements Initializable {
 	class ServerRunning extends Thread {
 		public void run() {
 			server.start(); // should execute until if fails
+			
 			// the server failed
 			appendEvent("Server Stopped \n");
 			server = null;
@@ -294,7 +295,6 @@ public class ServerGamePageController implements Initializable {
 
 	public void appendRoom(String messageLf) {
 		textArea.appendText(messageLf);
-//		txtAreaChatMsg.appendText(messageLf);
 	}
 
 	public void remove(String username) {

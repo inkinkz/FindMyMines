@@ -24,6 +24,9 @@ public class FindMyMinesServer {
 	private int port;
 	// the boolean that will be turned of to stop the server
 	private boolean keepGoing;
+	
+	static int[][] bombplacement = StartPageController.valueOfSpace;
+	int[][] bombaround = StartPageController.bombAround;
 
 
 	/*
@@ -58,11 +61,7 @@ public class FindMyMinesServer {
 				display("Server waiting for Clients on port " + port + "." + "\n");
 
 				Socket socket = serverSocket.accept();  // accept connection
-				
-				//Send bombs slot to clients
-				
-				int[][] valueOfSpace = StartPageController.valueOfSpace;
-				
+								
 				// if I was asked to stop
 				if(!keepGoing)
 					break;
@@ -167,8 +166,8 @@ public class FindMyMinesServer {
 		String username;
 		// the only type of message a will receive
 //		ChatMessage cm;
-	
-
+		
+		
 		// Constructor
 		ClientThread(Socket socket) {
 			// a unique id
@@ -181,7 +180,11 @@ public class FindMyMinesServer {
 				// create output first
 				sOutput = new ObjectOutputStream(socket.getOutputStream());
 				sInput  = new ObjectInputStream(socket.getInputStream());
-				// read the username
+				// read the username		
+				sOutput.writeObject(bombplacement);
+				sOutput = new ObjectOutputStream(socket.getOutputStream());
+				sOutput.writeObject(bombaround);
+				sOutput = new ObjectOutputStream(socket.getOutputStream());
 				username = (String) sInput.readObject();
 				serverController.addUser(username);
 				broadcast(username + ":WHOISIN"); //Broadcast user who logged in
@@ -207,6 +210,8 @@ public class FindMyMinesServer {
 			// to loop until LOGOUT
 			boolean keepGoing = true;
 			while(keepGoing) {
+				
+				
 				// read a String (which is an object)
 //				try {
 //					cm = (ChatMessage) sInput.readObject();
