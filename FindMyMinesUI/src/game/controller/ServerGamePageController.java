@@ -34,6 +34,13 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ServerGamePageController implements Initializable {
+	
+	@FXML
+	private AnchorPane parentPane;
+	
+	@FXML
+	private AnchorPane leftPane;
+	
 	@FXML
 	private Button b1;
 
