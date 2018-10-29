@@ -603,15 +603,6 @@ public class ClientGamePageController implements Initializable {
 			return false;
 		}
 
-//		try {
-//			bombplacement = (int[][])sInput.readObject();
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 
 		// creates the Thread to listen from the server
 		new ListenFromServer().start();
@@ -636,7 +627,6 @@ public class ClientGamePageController implements Initializable {
 			listUsersConnected.setItems(users);
 			try {
 				bombplacement = (int[][])sInput.readObject();
-//				sInput.close();
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -652,6 +642,7 @@ public class ClientGamePageController implements Initializable {
 			}
 			try {
 				bombaround = (int[][]) sInput.readObject();
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

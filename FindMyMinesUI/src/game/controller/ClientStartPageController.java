@@ -177,7 +177,7 @@ public class ClientStartPageController {
   Scene scene = new Scene(gamePage);
   Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
   stage.setMinWidth(1000);
-        stage.setMinHeight(520);
+  stage.setMinHeight(520);
   stage.setScene(scene);
   stage.show();
 

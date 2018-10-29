@@ -34,13 +34,13 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ServerGamePageController implements Initializable {
-	
+
 	@FXML
 	private AnchorPane parentPane;
-	
+
 	@FXML
 	private AnchorPane leftPane;
-	
+
 	@FXML
 	private Button b1;
 
@@ -282,7 +282,7 @@ public class ServerGamePageController implements Initializable {
 	class ServerRunning extends Thread {
 		public void run() {
 			server.start(); // should execute until if fails
-			
+
 			// the server failed
 			appendEvent("Server Stopped \n");
 			server = null;
@@ -441,236 +441,237 @@ public class ServerGamePageController implements Initializable {
 		setOfButton[5][4] = b55;
 		setOfButton[5][5] = b65;
 	}
-	
-	//starting of implementation from former StartPageController	
-	//this will be assign to each button in the GamePage 0=free 1=bomb
-		public static int[][] valueOfSpace = new int[6][6];
-		
-		// create array to keep number of surrounding bomb
-		public static int[][] bombAround = new int[6][6];
-		int numBomb = 0;
 
-		private void assignBomb() {
-			// assign bomb to the slot
-			for (int i = 0; i < 6; i++) {
-				for (int j = 0; j < 6; j++) {
-					
-					float result = (float) Math.random();
-					if (result < 0.5) {
-						result = 0;
-					}
-					if (result >= 0.5) {
-						result = 1;
-					}
-					if (numBomb >= 11) {
-						result = 0;
-					}
-					if (result == 0) {
-						valueOfSpace[i][j] = 0;//free space
-					}
-					if (result == 1) {
-						valueOfSpace[i][j] = 1;//bomb
-						numBomb++;
-					}
+	// starting of implementation from former StartPageController
+	// this will be assign to each button in the GamePage 0=free 1=bomb
+	public static int[][] valueOfSpace = new int[6][6];
 
+	// create array to keep number of surrounding bomb
+	public static int[][] bombAround = new int[6][6];
+	int numBomb = 0;
+
+	private void assignBomb() {
+		// assign bomb to the slot
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+
+				float result = (float) Math.random();
+				if (result < 0.5) {
+					result = 0;
 				}
-			}
-			
-			// fix number of bomb to 11
-			while (numBomb != 11) {
-				for (int i = 0; i < 6; i++) {
-					for (int j = 0; j < 6; j++) {
-
-						if (valueOfSpace[i][j] == 0) {
-							int result = (int) Math.random();
-							if (result < 0.5) {
-								result = 0;
-							}
-							if (result >= 0.5) {
-								result = 1;
-							}
-							if (result == 0) {
-								valueOfSpace[i][j] = 0;//free space
-							}
-							if (result == 1) {
-								valueOfSpace[i][j] = 1;//bomb
-								numBomb++;
-							}
-						}
-					}
-
+				if (result >= 0.5) {
+					result = 1;
 				}
+				if (numBomb >= 11) {
+					result = 0;
+				}
+				if (result == 0) {
+					valueOfSpace[i][j] = 0;// free space
+				}
+				if (result == 1) {
+					valueOfSpace[i][j] = 1;// bomb
+					numBomb++;
+				}
+
 			}
+		}
 
-			// set number in free slot
-
+		// fix number of bomb to 11
+		while (numBomb != 11) {
 			for (int i = 0; i < 6; i++) {
 				for (int j = 0; j < 6; j++) {
 
-					int countBombAround = 0;
-					if (valueOfSpace[i][j] == 0) { // if this is free slot
-						if (i - 1 >= 0 && j - 1 >= 0) { // if there is a slot
-							if (valueOfSpace[i - 1][j - 1] == 1) { // if the upperleft is bomb
-								countBombAround++;
-							}
+					if (valueOfSpace[i][j] == 0) {
+						int result = (int) Math.random();
+						if (result < 0.5) {
+							result = 0;
 						}
-						if (i >= 0 && j - 1 >= 0) {
-							if (valueOfSpace[i][j - 1] == 1) {
-								countBombAround++;
-							}
+						if (result >= 0.5) {
+							result = 1;
 						}
-						if (i + 1 <= 5 && j - 1 >= 0) {
-							if (valueOfSpace[i + 1][j - 1] == 1) {
-								countBombAround++;
-							}
+						if (result == 0) {
+							valueOfSpace[i][j] = 0;// free space
 						}
-						if (i - 1 >= 0 && j >= 0) {
-							if (valueOfSpace[i - 1][j] == 1) {
-								countBombAround++;
-							}
+						if (result == 1) {
+							valueOfSpace[i][j] = 1;// bomb
+							numBomb++;
 						}
-						if (i + 1 <= 5 && j >= 0) {
-							if (valueOfSpace[i + 1][j] == 1) {
-								countBombAround++;
-							}
-						}
-						if (i - 1 >= 0 && j + 1 <= 5) {
-							if (valueOfSpace[i - 1][j + 1] == 1) {
-								countBombAround++;
-							}
-						}
-						if (i >= 0 && j + 1 <= 5) {
-							if (valueOfSpace[i][j + 1] == 1) {
-								countBombAround++;
-							}
-						}
-						if (i + 1 <= 5 && j + 1 <= 5) {
-							if (valueOfSpace[i + 1][j + 1] == 1) {
-								countBombAround++;
-							}
-						}
-						bombAround[i][j] = countBombAround;
-
-						
-
 					}
 				}
-			}
 
-		}
-		public static int getValueOfSpace(int i,int j) {
-			int valueofspace = valueOfSpace[i][j];
-			return valueofspace ;
-			
-		}
-		public static int getNumBombAround(int i,int j) {
-			int numbombaround = bombAround[i][j];
-			return numbombaround;
-		}
-	//end of implementation from former StartPageController	
-		
-	//to keep track of score for the score board next page
-		private static Map<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
-		
-		private int player = 0;
-		private int playerplaying = 1;
-		
-		
-		void colorChange() {
-			if (playerplaying < numOfPlayer ) {
-				setOfPlayer[--playerplaying].setStyle("-fx-background-color: white");
-				setOfPlayer[++playerplaying].setStyle("-fx-background-color: grey");
-				playerplaying++;
 			}
-			else if (playerplaying == numOfPlayer) {
-				setOfPlayer[numOfPlayer-1].setStyle("-fx-background-color: white");
-				setOfPlayer[0].setStyle("-fx-background-color: grey");
-				playerplaying = 1;
-			} else {playerplaying = 1;}
-
 		}
 
-		//playing
-		@FXML
-		void play(MouseEvent event) throws InterruptedException {
-			//set exit startTimer();
-			condition = true;
-			//set color of player to know whose turn is next
-			colorChange();
-			//timer
-			startTimer();
-			Button y = (Button) event.getTarget();
-			
-			if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
-				((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-				((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
-				((Button) event.getTarget()).setDisable(true);
-				player++;
-			}
+		// set number in free slot
 
-			if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-				((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-				((Button) event.getTarget()).setText("bomb");
-				((Button) event.getTarget()).setDisable(true);
-				numBombLeft--;
-				bombLeft.setText(numBombLeft+"");
-				scoreOfPlayer[player]++;
-				int score = scoreOfPlayer[player];
-				setOfScore[player].setText(score + "");
-				keeptrack.put(player, score);
-				player++;
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+
+				int countBombAround = 0;
+				if (valueOfSpace[i][j] == 0) { // if this is free slot
+					if (i - 1 >= 0 && j - 1 >= 0) { // if there is a slot
+						if (valueOfSpace[i - 1][j - 1] == 1) { // if the upperleft is bomb
+							countBombAround++;
+						}
+					}
+					if (i >= 0 && j - 1 >= 0) {
+						if (valueOfSpace[i][j - 1] == 1) {
+							countBombAround++;
+						}
+					}
+					if (i + 1 <= 5 && j - 1 >= 0) {
+						if (valueOfSpace[i + 1][j - 1] == 1) {
+							countBombAround++;
+						}
+					}
+					if (i - 1 >= 0 && j >= 0) {
+						if (valueOfSpace[i - 1][j] == 1) {
+							countBombAround++;
+						}
+					}
+					if (i + 1 <= 5 && j >= 0) {
+						if (valueOfSpace[i + 1][j] == 1) {
+							countBombAround++;
+						}
+					}
+					if (i - 1 >= 0 && j + 1 <= 5) {
+						if (valueOfSpace[i - 1][j + 1] == 1) {
+							countBombAround++;
+						}
+					}
+					if (i >= 0 && j + 1 <= 5) {
+						if (valueOfSpace[i][j + 1] == 1) {
+							countBombAround++;
+						}
+					}
+					if (i + 1 <= 5 && j + 1 <= 5) {
+						if (valueOfSpace[i + 1][j + 1] == 1) {
+							countBombAround++;
+						}
+					}
+					bombAround[i][j] = countBombAround;
+
+				}
 			}
+		}
+
+	}
+
+	public static int getValueOfSpace(int i, int j) {
+		int valueofspace = valueOfSpace[i][j];
+		return valueofspace;
+
+	}
+
+	public static int getNumBombAround(int i, int j) {
+		int numbombaround = bombAround[i][j];
+		return numbombaround;
+	}
+	// end of implementation from former StartPageController
+
+	// to keep track of score for the score board next page
+	private static Map<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
+
+	private int player = 0;
+	private int playerplaying = 1;
+
+	void colorChange() {
+		if (playerplaying < numOfPlayer) {
+			setOfPlayer[--playerplaying].setStyle("-fx-background-color: white");
+			setOfPlayer[++playerplaying].setStyle("-fx-background-color: grey");
+			playerplaying++;
+		} else if (playerplaying == numOfPlayer) {
+			setOfPlayer[numOfPlayer - 1].setStyle("-fx-background-color: white");
+			setOfPlayer[0].setStyle("-fx-background-color: grey");
+			playerplaying = 1;
+		} else {
+			playerplaying = 1;
+		}
+
+	}
+
+	// playing
+	@FXML
+	void play(MouseEvent event) throws InterruptedException {
+		// set exit startTimer();
+		condition = true;
+		// set color of player to know whose turn is next
+		colorChange();
+		// timer
+		startTimer();
+		Button y = (Button) event.getTarget();
+
+		if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
+			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
+			((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
+			((Button) event.getTarget()).setDisable(true);
+			player++;
+		}
+
+		if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
+			((Button) event.getTarget()).setText("bomb");
+			((Button) event.getTarget()).setDisable(true);
+			numBombLeft--;
+			bombLeft.setText(numBombLeft + "");
+			scoreOfPlayer[player]++;
+			int score = scoreOfPlayer[player];
+			setOfScore[player].setText(score + "");
+			keeptrack.put(player, score);
+			player++;
+		}
+		if (player == numOfPlayer) {
+			player = 0;
+		}
+
+	}
+
+	// default condition for timer
+	boolean condition = false;
+
+	// to display count down from 10 to 0
+	void startTimer() {
+		Task<Void> task = new Task<Void>() {
+			@Override
+			public Void call() throws InterruptedException {
+				for (int i = 10; i >= 0; i--) {
+					// exit startTimer();
+					if (condition == true) {
+						return null;
+					}
+					updateMessage(i + "");
+					Thread.sleep(1000);
+				}
+				return null;
+			}
+		};
+		// exit startTimer();
+		if (condition == true) {
+			condition = false;
+			return;
+		}
+		showTime.textProperty().bind(task.messageProperty());
+		task.setOnSucceeded(e -> {
+			showTime.textProperty().unbind();
+			showTime.setText("0");
+			// skip this player when timeout
+			player++;
 			if (player == numOfPlayer) {
 				player = 0;
 			}
-			
-			
-		}
-		
-		//default condition for timer
-		boolean condition = false;
-		//to display count down from 10 to 0
-		void startTimer() {
-			Task <Void> task = new Task<Void>() {
-		        @Override public Void call() throws InterruptedException {
-		        		for (int i = 10; i>=0; i--) {
-		        			//exit startTimer();
-		        			if (condition == true) {
-		        				return null;
-		                }
-		        			updateMessage(i+"");
-		        			Thread.sleep(1000);
-		        		}
-		          return null;
-		        }
-		      };
-		    //exit startTimer();
-		      if(condition == true) {
-		    	  	condition = false;
-		    	  	return;
-		      }
-		      showTime.textProperty().bind(task.messageProperty());
-		      task.setOnSucceeded(e -> {
-		    	  	showTime.textProperty().unbind();
-		        showTime.setText("0");
-		        //skip this player when timeout
-		        player++;
-		        if (player == numOfPlayer) {
-					player = 0;
-				} 
-		        colorChange();
-		      	//set condition back to default
-		        condition = false;
-		        //startTimer after timeout
-		        startTimer();
-		      });
-		   
-		      Thread thread = new Thread(task);
-		      thread.setDaemon(true);
-		      thread.start();
-		    }
+			colorChange();
+			// set condition back to default
+			condition = false;
+			// startTimer after timeout
+			startTimer();
+		});
 
-	//go to scoreboard
+		Thread thread = new Thread(task);
+		thread.setDaemon(true);
+		thread.start();
+	}
+
+	// go to scoreboard
 	@FXML
 	void stop(ActionEvent event) throws IOException {
 		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("Scoreboard.fxml"));
@@ -680,28 +681,30 @@ public class ServerGamePageController implements Initializable {
 		stage.show();
 	}
 
-	//getter of sorted for other class to use
-	public static Map<Integer, Integer> getSorted(){
+	// getter of sorted for other class to use
+	public static Map<Integer, Integer> getSorted() {
 		sorted = sort(keeptrack);
-		//System.out.print(sorted);
+		// System.out.print(sorted);
 		return sorted;
 	}
-	
-	//sort player score from highest to lowest
-	private static Map<Integer, Integer> sorted = new Hashtable<Integer,Integer>();
-	private static Map<Integer, Integer> sort(Map<Integer, Integer> map){
-		Map<Integer, Integer> sorted = map .entrySet() .stream() .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())) .collect( toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+
+	// sort player score from highest to lowest
+	private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
+
+	private static Map<Integer, Integer> sort(Map<Integer, Integer> map) {
+		Map<Integer, Integer> sorted = map.entrySet().stream()
+				.sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 		Iterator<Integer> iterators = sorted.keySet().iterator();
-	       while(iterators.hasNext()) {
-	           int key = iterators.next();
-	           if(key >= numOfPlayer) {
-	               iterators.remove();
-	           }
-	       }
-		//System.out.print(sorted);
+		while (iterators.hasNext()) {
+			int key = iterators.next();
+			if (key >= numOfPlayer) {
+				iterators.remove();
+			}
+		}
+		// System.out.print(sorted);
 		return sorted;
-		
+
 	}
-		     
-	
+
 }
