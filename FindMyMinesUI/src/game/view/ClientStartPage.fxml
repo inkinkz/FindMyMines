@@ -30,7 +30,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </Label>
-      <TextField fx:id="txtServer" layoutX="391.0" layoutY="303.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
+      <TextField fx:id="txtServer" layoutX="391.0" layoutY="303.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" text="localhost">
          <font>
             <Font name="Avenir Book" size="24.0" />
          </font></TextField>

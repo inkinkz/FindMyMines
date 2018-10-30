@@ -15,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import game.model.ButtonClick;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -522,6 +523,7 @@ public class ClientGamePageController implements Initializable {
 	@FXML
 	void play(MouseEvent event) throws InterruptedException {
 		// set exit startTimer();
+		sendClick(event);
 		condition = true;
 		// set color of player to know whose turn is next
 		colorChange();
@@ -693,6 +695,23 @@ public class ClientGamePageController implements Initializable {
 		connected = false;
 	}
 
+	public void sendClick(MouseEvent event) {
+
+		Platform.runLater(() -> {
+			// Update UI here.
+			if (connected) {
+				ButtonClick bc = new ButtonClick(event);
+				try {
+					sOutput.writeObject(bc);
+					// txtUserMsg.setText("");
+				} catch (IOException e) {
+					display("Exception writing to server: " + e);
+				}
+			}
+		});
+
+	}
+
 	/*
 	 * To send a message to the GUI
 	 */
@@ -745,7 +764,7 @@ public class ClientGamePageController implements Initializable {
 			users = FXCollections.observableArrayList();
 			listUsersConnected.setItems(users);
 			try {
-				bombplacement = (int[][])sInput.readObject();
+				bombplacement = (int[][]) sInput.readObject();
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -775,9 +794,16 @@ public class ClientGamePageController implements Initializable {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+
 			
-			setUpBomb();
-			
+			Platform.runLater(
+					  () -> {
+					    // Update UI here.
+							setUpBomb();
+
+					  }
+					);
+
 			while (true) {
 				try {
 					String msg = (String) sInput.readObject();
@@ -810,7 +836,7 @@ public class ClientGamePageController implements Initializable {
 			}
 		}
 	}
-	
+
 	private void setUpBomb() {
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
