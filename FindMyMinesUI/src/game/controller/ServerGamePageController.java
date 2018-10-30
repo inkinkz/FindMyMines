@@ -807,19 +807,15 @@ public class ServerGamePageController implements Initializable {
 					scoreBoard.setVisible(true);
 		}
 		
-		@FXML
-	    private Button buttonDone;
+	@FXML
+	private Button buttonDone;
 
-	    @FXML
-	    void goBack(ActionEvent event) throws IOException {
-	    	AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("/FindMyMinesUI/src/game/view/StartPage.fxml"));
-			Scene scene = new Scene(gamePage);
-			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			stage.setMinWidth(1000);
-			stage.setMinHeight(520);
-			stage.setScene(scene);
-			stage.show();
-	    }
+	
+	//delete all the value assign & disble the dialogpane
+	@FXML
+	void goBack(ActionEvent event) throws IOException {
+
+	}
 
 	//getter of sorted for other class to use
 	public static Map<Integer, Integer> getSorted(){

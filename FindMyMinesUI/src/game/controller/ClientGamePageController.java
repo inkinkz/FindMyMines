@@ -241,7 +241,7 @@ public class ClientGamePageController implements Initializable {
 	private Label bombLeft;
 
 	@FXML
-	private Button stopButton;
+	private Button readyButton;
 	
 //for score board
     @FXML
@@ -640,26 +640,8 @@ public class ClientGamePageController implements Initializable {
 	
     //need to change to ready - disable when pressed
 	@FXML
-	void stop(ActionEvent event) throws IOException {
-		//setText for score board
-		sorted = getSorted();
-				int i = 0;
-				for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) {
-				    //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-				    if(i<numOfPlayer) {
-				    		int v = entry.getKey();
-				    		v++;
-				    		setOfNameBoard[i].setText("Player "+ v);
-				    		setOfScoreBoard[i].setText(entry.getValue() +"");
-				    		i++;
-				    }   
-				}
-				scoreBoard.setVisible(true);
-		/*AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("Scoreboard.fxml"));
-		Scene scene = new Scene(gamePage);
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setScene(scene);
-		stage.show();*/
+	void ready(ActionEvent event) throws IOException {
+		
 	}
 
 	//sort score
