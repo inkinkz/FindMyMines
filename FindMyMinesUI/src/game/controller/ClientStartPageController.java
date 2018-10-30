@@ -33,7 +33,7 @@ public class ClientStartPageController {
 	int numBomb = 0;
 
 	@FXML
-	private TextField txtUser;
+	private static TextField txtUser;
 
 	@FXML
 	private TextField txtServer;
@@ -189,5 +189,9 @@ public class ClientStartPageController {
 	public static int getNumBombAround(int i, int j) {
 		int numbombaround = bombAround[i][j];
 		return numbombaround;
+	}
+	public static String getName() {
+		return txtUser.getText();
+		
 	}
 }
