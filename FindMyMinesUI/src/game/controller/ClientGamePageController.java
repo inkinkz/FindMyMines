@@ -795,14 +795,11 @@ public class ClientGamePageController implements Initializable {
 				e1.printStackTrace();
 			}
 
-			
-			Platform.runLater(
-					  () -> {
-					    // Update UI here.
-							setUpBomb();
+			Platform.runLater(() -> {
+				// Update UI here.
+				setUpBomb();
 
-					  }
-					);
+			});
 
 			while (true) {
 				try {
