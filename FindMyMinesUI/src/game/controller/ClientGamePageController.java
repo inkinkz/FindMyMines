@@ -522,9 +522,7 @@ public class ClientGamePageController implements Initializable {
 	// playing
 	@FXML
 	void play(MouseEvent event) throws InterruptedException {
-		// set exit startTimer();
 		sendClick(event);
-		condition = true;
 		// set color of player to know whose turn is next
 		colorChange();
 		// timer
@@ -556,19 +554,14 @@ public class ClientGamePageController implements Initializable {
 		}
 	}
 
-	boolean condition = false;
 
-	// to display count down from 10 to 0
+	// to display count down game timer
 	void startTimer() {
 		// timer run
 		Task<Void> task = new Task<Void>() {
 			@Override
 			public Void call() throws InterruptedException {
 				for (int i = 10; i >= 0; i--) {
-					// exit startTimer();
-					if (condition == true) {
-						return null;
-					}
 					updateMessage(i + "");
 					Thread.sleep(1000);
 				}
@@ -576,10 +569,7 @@ public class ClientGamePageController implements Initializable {
 			}
 		};
 		// exit startTimer();
-		if (condition == true) {
-			condition = false;
-			return;
-		}
+
 		showTime.textProperty().bind(task.messageProperty());
 		task.setOnSucceeded(e -> {
 			showTime.textProperty().unbind();
@@ -591,7 +581,7 @@ public class ClientGamePageController implements Initializable {
 			}
 			colorChange();
 			// set condition back to default
-			condition = false;
+			
 			// startTimer after timeout
 			startTimer();
 		});
