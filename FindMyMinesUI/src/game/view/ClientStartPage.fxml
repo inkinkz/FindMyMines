@@ -11,12 +11,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.ClientStartPageController">
    <children>
-      <Button fx:id="start" layoutX="433.0" layoutY="484.0" mnemonicParsing="false" onAction="#start" prefHeight="44.0" prefWidth="162.0" style="-fx-alignment: center;" text="CONNECT" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="420.0">
+      <Button fx:id="start" layoutX="433.0" layoutY="484.0" mnemonicParsing="false" onAction="#start" prefHeight="44.0" prefWidth="162.0" style="-fx-alignment: center;" text="CONNECT" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="420.0">
          <font>
             <Font name="Avenir Book" size="18.0" />
          </font>
       </Button>
-      <Label fx:id="Title" alignment="CENTER" layoutX="294.0" layoutY="104.0" prefHeight="80.0" prefWidth="480.0" style="-fx-text-alignment: center;" text="Find My Mines" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="100.0">
+      <Label fx:id="Title" alignment="CENTER" layoutX="294.0" layoutY="104.0" prefHeight="80.0" prefWidth="480.0" style="-fx-text-alignment: center;" text="Find My Mines" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="50.0">
          <font>
             <Font name="Avenir Book" size="70.0" />
          </font>
@@ -30,33 +30,33 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Label fx:id="clientNamebox" alignment="TOP_LEFT" layoutX="252.0" layoutY="236.0" opacity="0.7" prefHeight="235.0" prefWidth="537.0" style="-fx-border-color: #e0e0e0;" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="240.0">
+      <Label fx:id="clientNamebox" alignment="TOP_LEFT" layoutX="252.0" layoutY="236.0" opacity="0.7" prefHeight="235.0" prefWidth="537.0" style="-fx-border-color: #e0e0e0;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="180.0">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </Label>
-      <TextField fx:id="txtUser" layoutX="384.0" layoutY="401.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
+      <TextField fx:id="txtUser" layoutX="384.0" layoutY="401.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
          <font>
             <Font name="Avenir Book" size="24.0" />
          </font></TextField>
-      <Label layoutX="421.0" layoutY="359.0" prefHeight="35.0" prefWidth="198.0" style="-fx-alignment: center;" text="Enter Username" textFill="#191919" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0">
+      <Label layoutX="421.0" layoutY="359.0" prefHeight="26.0" prefWidth="200.0" style="-fx-alignment: center;" text="Enter Username" textFill="#191919" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0">
          <font>
             <Font name="Avenir Book" size="24.0" />
          </font></Label>
-      <Label layoutX="426.0" layoutY="261.0" prefHeight="35.0" prefWidth="198.0" style="-fx-alignment: center;" text="Enter IP Address" textAlignment="CENTER" textFill="#191919" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0">
+      <Label layoutX="426.0" layoutY="261.0" prefHeight="35.0" prefWidth="198.0" style="-fx-alignment: center;" text="Enter Server IP Address" textAlignment="CENTER" textFill="#191919" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
          <font>
             <Font name="Avenir Book" size="24.0" />
          </font></Label>
-      <TextField fx:id="txtServer" layoutX="391.0" layoutY="303.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
+      <TextField fx:id="txtServer" layoutX="391.0" layoutY="303.0" prefHeight="35.0" prefWidth="266.0" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
          <font>
             <Font name="Avenir Book" size="24.0" />
          </font></TextField>
-      <Label fx:id="warnName" disable="true" layoutX="440.0" layoutY="290.0" text="Please enter your nickname" textFill="#191919" visible="false">
+      <Label fx:id="warnName" disable="true" layoutX="440.0" layoutY="290.0" text="Please enter your nickname" textFill="#191919" visible="false" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="warnIP" disable="true" layoutX="440.0" layoutY="214.0" text="Please enter an IP" textFill="#191919" visible="false">
+      <Label fx:id="warnIP" disable="true" layoutX="440.0" layoutY="214.0" text="Please enter an IP" textFill="#191919" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
          <font>
             <Font size="14.0" />
          </font>
