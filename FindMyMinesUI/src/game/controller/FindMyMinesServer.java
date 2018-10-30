@@ -26,8 +26,8 @@ public class FindMyMinesServer {
 	// the boolean that will be turned of to stop the server
 	private boolean keepGoing;
 
-	static int[][] bombplacement = ServerGamePageController.valueOfSpace;
-	int[][] bombaround = ServerGamePageController.bombAround;
+	 int[][] bombplacement = ServerGamePageController.valueOfSpace;
+	static int[][] bombaround = ServerGamePageController.bombAround;
 
 	/*
 	 * server constructor that receive the port to listen to for connection as
@@ -189,11 +189,12 @@ public class FindMyMinesServer {
 				// create output first
 				sOutput = new ObjectOutputStream(socket.getOutputStream());
 				sInput = new ObjectInputStream(socket.getInputStream());
-				// read the username
 				sOutput.writeObject(bombplacement);
 				sOutput = new ObjectOutputStream(socket.getOutputStream());
 				sOutput.writeObject(bombaround);
 				sOutput = new ObjectOutputStream(socket.getOutputStream());
+				
+				// read the username
 				username = (String) sInput.readObject();
 				serverController.addUser(username);
 				broadcast(username + ":WHOISIN"); // Broadcast user who logged in

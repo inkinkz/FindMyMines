@@ -742,7 +742,6 @@ public class ServerGamePageController implements Initializable {
 				player = 0;
 			}
 			
-			
 		}
 		
 		//default condition for timer
