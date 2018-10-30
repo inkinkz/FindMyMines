@@ -9,8 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
-
+import game.model.ButtonClick;
 //import game.model.ChatMessage;
 
 public class FindMyMinesServer {
@@ -24,13 +25,13 @@ public class FindMyMinesServer {
 	private int port;
 	// the boolean that will be turned of to stop the server
 	private boolean keepGoing;
-	
+
 	static int[][] bombplacement = ServerGamePageController.valueOfSpace;
 	int[][] bombaround = ServerGamePageController.bombAround;
 
-
 	/*
-	 *  server constructor that receive the port to listen to for connection as parameter
+	 * server constructor that receive the port to listen to for connection as
+	 * parameter
 	 */
 	public FindMyMinesServer(int port) {
 		this(port, null);
@@ -49,42 +50,38 @@ public class FindMyMinesServer {
 	public void start() {
 		keepGoing = true;
 		/* create socket server and wait for connection requests */
-		try 
-		{
+		try {
 			// the socket used by the server
 			ServerSocket serverSocket = new ServerSocket(port);
 
 			// infinite loop to wait for connections
-			while(keepGoing) 
-			{
+			while (keepGoing) {
 				// format message saying we are waiting
 				display("Server waiting for Clients on port " + port + "." + "\n");
 
-				Socket socket = serverSocket.accept();  // accept connection
-								
+				Socket socket = serverSocket.accept(); // accept connection
+
 				// if I was asked to stop
-				if(!keepGoing)
+				if (!keepGoing)
 					break;
-				ClientThread t = new ClientThread(socket);  // make a thread of it
+				ClientThread t = new ClientThread(socket); // make a thread of it
 				clientsConnected.add(t); // save it in the ArrayList
 				t.start();
 			}
 			// I was asked to stop
 			try {
 				serverSocket.close();
-				for(int i = 0; i < clientsConnected.size(); ++i) {
+				for (int i = 0; i < clientsConnected.size(); ++i) {
 					ClientThread tc = clientsConnected.get(i);
 					try {
 						tc.sInput.close();
 						tc.sOutput.close();
 						tc.socket.close();
-					}
-					catch(IOException ioE) {
+					} catch (IOException ioE) {
 						// not much I can do
 					}
 				}
-			}
-			catch(Exception e) {
+			} catch (Exception e) {
 				display("Exception closing the server and clients: " + e);
 			}
 		}
@@ -92,34 +89,35 @@ public class FindMyMinesServer {
 		catch (IOException e) {
 			display(" Exception on new ServerSocket: " + e + "\n");
 		}
-	}		
+	}
+
 	/*
 	 * For the GUI to stop the server
 	 */
 	public void stop() {
 		keepGoing = false;
-		// connect to myself as Client to exit statement 
+		// connect to myself as Client to exit statement
 		// Socket socket = serverSocket.accept();
 		try {
 			new Socket("localhost", port);
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			// nothing I can really do
 		}
 	}
+
 	/*
 	 * Display an event (not a message) to the GUI
 	 */
 	private void display(String msg) {
 		serverController.appendEvent(msg + "\n");
 	}
-	
+
 	/*
-	 *  to broadcast a message to all Clients
+	 * to broadcast a message to all Clients
 	 */
 	private synchronized void broadcast(String message) {
 		String messageLf;
-		if (message.contains("WHOISIN") || message.contains("REMOVE")){
+		if (message.contains("WHOISIN") || message.contains("REMOVE")) {
 			messageLf = message;
 		} else {
 			messageLf = " " + message + "\n";
@@ -128,10 +126,22 @@ public class FindMyMinesServer {
 
 //		 we loop in reverse order in case we would have to remove a Client
 //		 because it has disconnected
-		for(int i = clientsConnected.size(); --i >= 0;) {
+		for (int i = clientsConnected.size(); --i >= 0;) {
 			ClientThread ct = clientsConnected.get(i);
 			// try to write to the Client if it fails remove it from the list
-			if(!ct.writeMsg(messageLf)) {
+			if (!ct.writeMsg(messageLf)) {
+				clientsConnected.remove(i);
+				serverController.remove(ct.username);
+				display("Disconnected Client " + ct.username + " removed from list.");
+			}
+		}
+	}
+	
+	private synchronized void sendClick(MouseEvent event) {
+		for (int i = clientsConnected.size(); --i >= 0;) {
+			ClientThread ct = clientsConnected.get(i);
+			// try to write to the Client if it fails remove it from the list
+			if (!ct.clickAction(event)) {
 				clientsConnected.remove(i);
 				serverController.remove(ct.username);
 				display("Disconnected Client " + ct.username + " removed from list.");
@@ -139,13 +149,13 @@ public class FindMyMinesServer {
 		}
 	}
 
-	// for a client who logoff 
+	// for a client who logoff
 	synchronized void remove(int id) {
 		// scan the array list until we found the Id
-		for(int i = 0; i < clientsConnected.size(); ++i) {
+		for (int i = 0; i < clientsConnected.size(); ++i) {
 			ClientThread ct = clientsConnected.get(i);
 			// found it
-			if(ct.id == id) {
+			if (ct.id == id) {
 				serverController.remove(ct.username);
 				ct.writeMsg(ct.username + ":REMOVE");
 				clientsConnected.remove(i);
@@ -166,8 +176,8 @@ public class FindMyMinesServer {
 		String username;
 		// the only type of message a will receive
 //		ChatMessage cm;
-		
-		
+		ButtonClick bc;
+
 		// Constructor
 		ClientThread(Socket socket) {
 			// a unique id
@@ -175,26 +185,24 @@ public class FindMyMinesServer {
 			this.socket = socket;
 			/* Creating both Data Stream */
 			System.out.println("Thread trying to create Object Input/Output Streams");
-			try
-			{
+			try {
 				// create output first
 				sOutput = new ObjectOutputStream(socket.getOutputStream());
-				sInput  = new ObjectInputStream(socket.getInputStream());
-				// read the username		
+				sInput = new ObjectInputStream(socket.getInputStream());
+				// read the username
 				sOutput.writeObject(bombplacement);
 				sOutput = new ObjectOutputStream(socket.getOutputStream());
 				sOutput.writeObject(bombaround);
 				sOutput = new ObjectOutputStream(socket.getOutputStream());
 				username = (String) sInput.readObject();
 				serverController.addUser(username);
-				broadcast(username + ":WHOISIN"); //Broadcast user who logged in
+				broadcast(username + ":WHOISIN"); // Broadcast user who logged in
 				writeMsg(username + ":WHOISIN");
-				for(ClientThread client : clientsConnected) {
+				for (ClientThread client : clientsConnected) {
 					writeMsg(client.username + ":WHOISIN");
 				}
 				display(username + " just connected.");
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				display("Exception creating new Input/output Streams: " + e);
 				return;
 			}
@@ -209,9 +217,21 @@ public class FindMyMinesServer {
 		public void run() {
 			// to loop until LOGOUT
 			boolean keepGoing = true;
-			while(keepGoing) {
-				
-				
+			while (keepGoing) {
+
+				try {
+					bc = (ButtonClick) sInput.readObject();
+				} catch (IOException e) {
+					display(username + " Exception reading Streams: " + e);
+					break;
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					break;
+				}
+
+				sendClick(bc.getEvent());
+				break;
 				// read a String (which is an object)
 //				try {
 //					cm = (ChatMessage) sInput.readObject();
@@ -249,17 +269,21 @@ public class FindMyMinesServer {
 		private void close() {
 			// try to close the connection
 			try {
-				if(sOutput != null) sOutput.close();
+				if (sOutput != null)
+					sOutput.close();
+			} catch (Exception e) {
 			}
-			catch(Exception e) {}
 			try {
-				if(sInput != null) sInput.close();
+				if (sInput != null)
+					sInput.close();
+			} catch (Exception e) {
 			}
-			catch(Exception e) {};
+			;
 			try {
-				if(socket != null) socket.close();
+				if (socket != null)
+					socket.close();
+			} catch (Exception e) {
 			}
-			catch (Exception e) {}
 		}
 
 		/*
@@ -267,7 +291,7 @@ public class FindMyMinesServer {
 		 */
 		private boolean writeMsg(String msg) {
 			// if Client is still connected send the message to it
-			if(!socket.isConnected()) {
+			if (!socket.isConnected()) {
 				close();
 				return false;
 			}
@@ -276,14 +300,28 @@ public class FindMyMinesServer {
 				sOutput.writeObject(msg);
 			}
 			// if an error occurs, do not abort just inform the user
-			catch(IOException e) {
+			catch (IOException e) {
 				display("Error sending message to " + username);
 				display(e.toString());
 			}
 			return true;
 		}
+		
+		private boolean clickAction(MouseEvent event) {
+			// if Client is still connected send the message to it
+			if (!socket.isConnected()) {
+				close();
+				return false;
+			}
+			// write to the stream
+			try {
+				sOutput.writeObject(event);
+			}
+			// if an error occurs, do not abort just inform the user
+			catch (IOException e) {
+//				display(e.toString());
+			}
+			return true;
+		}
 	}
 }
-
-
-
