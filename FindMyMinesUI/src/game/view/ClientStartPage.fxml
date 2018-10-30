@@ -51,14 +51,14 @@
          <font>
             <Font name="Avenir Book" size="24.0" />
          </font></TextField>
-      <Label fx:id="warnName" disable="true" layoutX="440.0" layoutY="290.0" text="Please enter your nickname" textFill="#191919" visible="false" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
+      <Label fx:id="warnName" alignment="CENTER" disable="true" layoutX="440.0" layoutY="290.0" text="Please enter your nickname" textFill="RED" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
          <font>
-            <Font size="14.0" />
+            <Font name="Avenir Book" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="warnIP" disable="true" layoutX="440.0" layoutY="214.0" text="Please enter an IP" textFill="#191919" visible="false" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
+      <Label fx:id="warnIP" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="440.0" layoutY="214.0" text="Please enter an IP" textAlignment="CENTER" textFill="RED" visible="false" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
          <font>
-            <Font size="14.0" />
+            <Font name="Avenir Book" size="14.0" />
          </font>
       </Label>
    </children>
