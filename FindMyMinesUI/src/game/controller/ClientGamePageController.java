@@ -387,7 +387,19 @@ public class ClientGamePageController implements Initializable {
 		startConnection();
 		leftPane.setDisable(true);
 		numOfPlayer = 4; // get from how many client that ready
-
+		setUpPane();
+		setHash();
+		// color change for the starting player
+		setOfPlayer[player].setStyle("-fx-background-color: grey");
+	}
+	
+	private void setHash() {
+		for (int i=0; i<10; i++) {
+			keeptrack.put(i, 0);
+		}
+	}
+	
+	private void setUpPane() {
 		// put each pane into setOfPlayer
 		setOfPlayer[0] = player1Pane;
 		setOfPlayer[1] = player2Pane;
@@ -486,22 +498,6 @@ public class ClientGamePageController implements Initializable {
 		setOfScoreBoard[7] = score81;
 		setOfScoreBoard[8] = score91;
 		setOfScoreBoard[9] = score101;
-
-		keeptrack.put(0, 0);
-		keeptrack.put(1, 0);
-		keeptrack.put(2, 0);
-		keeptrack.put(3, 0);
-		keeptrack.put(4, 0);
-		keeptrack.put(5, 0);
-		keeptrack.put(6, 0);
-		keeptrack.put(7, 0);
-		keeptrack.put(8, 0);
-		keeptrack.put(9, 0);
-		keeptrack.put(10, 0);
-
-		// color change for the starting player
-		setOfPlayer[player].setStyle("-fx-background-color: grey");
-
 	}
 
 	// to keep track of score for the score board next page

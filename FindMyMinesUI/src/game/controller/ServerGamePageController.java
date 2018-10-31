@@ -416,7 +416,7 @@ public class ServerGamePageController implements Initializable {
 		leftPane.setDisable(true);
 		textArea.setEditable(false);
 		startServer();
-		numOfPlayer = 4; // get from how many client that ready
+		numOfPlayer = users.size(); // get from how many client that ready
 		setupPane();
 		setUpBomb();
 		setHash();
@@ -426,17 +426,9 @@ public class ServerGamePageController implements Initializable {
 	}
 
 	private void setHash() {
-		keeptrack.put(0, 0);
-		keeptrack.put(1, 0);
-		keeptrack.put(2, 0);
-		keeptrack.put(3, 0);
-		keeptrack.put(4, 0);
-		keeptrack.put(5, 0);
-		keeptrack.put(6, 0);
-		keeptrack.put(7, 0);
-		keeptrack.put(8, 0);
-		keeptrack.put(9, 0);
-		keeptrack.put(10, 0);
+		for (int i=0; i<10; i++) {
+			keeptrack.put(i, 0);
+		}
 	}
 
 	private void setUpBomb() {
@@ -480,17 +472,11 @@ public class ServerGamePageController implements Initializable {
 		for (int i = numOfPlayer; i < 10; i++) {
 			setOfPlayer[i].setVisible(false);
 		}
-
-		scoreOfPlayer[0] = 0;
-		scoreOfPlayer[1] = 0;
-		scoreOfPlayer[2] = 0;
-		scoreOfPlayer[3] = 0;
-		scoreOfPlayer[4] = 0;
-		scoreOfPlayer[5] = 0;
-		scoreOfPlayer[6] = 0;
-		scoreOfPlayer[7] = 0;
-		scoreOfPlayer[8] = 0;
-		scoreOfPlayer[9] = 0;
+		
+		// set all player score to 0
+		for(int i = 0; i<10; i++) {
+			scoreOfPlayer[i] = 0;
+		}
 
 		setOfScore[0] = score1;
 		setOfScore[1] = score2;
@@ -791,13 +777,10 @@ public class ServerGamePageController implements Initializable {
 		      thread.start();
 		    }
 
-		@FXML
-		void stop(ActionEvent event) throws IOException {
-			
-		}
-		
 	@FXML
-	private Button buttonDone;
+	void stop(ActionEvent event) throws IOException {
+			
+	}
 
 	//reset
 	public void reset() {
