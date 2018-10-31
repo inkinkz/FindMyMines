@@ -14,6 +14,10 @@ import java.util.ResourceBundle;
 
 import game.controller.ServerGamePageController.ServerRunning;
 import javafx.application.Platform;
+import javafx.beans.binding.Binding;
+import javafx.beans.binding.IntegerBinding;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -352,11 +356,13 @@ public class ServerGamePageController implements Initializable {
 	@FXML
 	private ListView<String> listUsersConnected;
 
+	// game
+	
 	static int numOfPlayer; // how many player
-
 	Button[][] setOfButton = new Button[6][6];
 	Pane[] setOfPlayer = new Pane[10]; // limit player :10
 	private static ObservableMap<Integer,Integer> scoreOfPlayer;
+	private ObservableValue<Integer> playerReady; // number of player ready
 	Label[] setOfScore = new Label[10];
 	Label[] setOfNameBoard = new Label[10];
 	Label[] setOfScoreBoard = new Label[10];
@@ -369,11 +375,14 @@ public class ServerGamePageController implements Initializable {
 	private ObservableList<String> users;
 
 	public void startServer() {
+		// game initialize
+		scoreOfPlayer = FXCollections.observableHashMap();
+		playerReady = new SimpleIntegerProperty(0).asObject();
 		// create a new Server
 		server = new FindMyMinesServer(1500, this);
 		users = FXCollections.observableArrayList();
 		listUsersConnected.setItems(users);
-		scoreOfPlayer = FXCollections.observableHashMap();
+		
 		new ServerRunning().start();
 	}
 
@@ -418,7 +427,6 @@ public class ServerGamePageController implements Initializable {
 		leftPane.setDisable(true);
 		textArea.setEditable(false);
 		startServer();
-		numOfPlayer = users.size(); // get from how many client that ready
 		setupPane();
 		setUpBomb();
 		setScore();
@@ -697,8 +705,6 @@ public class ServerGamePageController implements Initializable {
 		//playing
 		@FXML
 		void play(MouseEvent event) throws InterruptedException {
-			//set exit startTimer();
-			condition = true;
 			//set color of player to know whose turn is next
 			colorChange();
 			//timer
@@ -731,27 +737,24 @@ public class ServerGamePageController implements Initializable {
 			
 		}
 		
-		//default condition for timer
-		boolean condition = false;
 		//to display count down from 10 to 0
 		void startTimer() {
 			Task <Void> task = new Task<Void>() {
 		        @Override public Void call() throws InterruptedException {
 		        		for (int i = 10; i>=0; i--) {
-		        			//exit startTimer();
-		        			if (condition == true) {
+		        			if(false) {
+		        				// to stop timer
 		        				return null;
-		                }
+		        			}
 		        			updateMessage(i+"");
 		        			Thread.sleep(1000);
 		        		}
 		          return null;
 		        }
 		      };
-		    //exit startTimer();
-		      if(condition == true) {
-		    	  	condition = false;
-		    	  	return;
+		      if(false) {
+		    	  // to stop timer
+		    	  return;
 		      }
 		      showTime.textProperty().bind(task.messageProperty());
 		      task.setOnSucceeded(e -> {
@@ -763,8 +766,6 @@ public class ServerGamePageController implements Initializable {
 					player = 0;
 				} 
 		        colorChange();
-		      	//set condition back to default
-		        condition = false;
 		        //startTimer after timeout
 		        startTimer();
 		      });
@@ -775,10 +776,17 @@ public class ServerGamePageController implements Initializable {
 		    }
 
 	@FXML
-	void stop(ActionEvent event) throws IOException {
+	void start(ActionEvent event) throws IOException {
+		numOfPlayer = users.size(); // get from how many client
+		if (playerReady.getValue() == users.size()) {
+			//start game = first player leftPane enabled + startTimer
 			
+			
+		}
+		
 	}
 
+	
 	//reset
 	public void reset() {
 		new ServerGamePageController();
