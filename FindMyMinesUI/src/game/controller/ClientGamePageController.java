@@ -521,7 +521,8 @@ public class ClientGamePageController implements Initializable {
 
 	// playing
 	@FXML
-	void play(MouseEvent event) throws InterruptedException {
+//	void play(MouseEvent event) throws InterruptedException {
+	void play(MouseEvent event){
 		sendClick(event);
 		// set color of player to know whose turn is next
 		colorChange();
@@ -554,7 +555,6 @@ public class ClientGamePageController implements Initializable {
 		}
 	}
 
-
 	// to display count down game timer
 	void startTimer() {
 		// timer run
@@ -581,7 +581,7 @@ public class ClientGamePageController implements Initializable {
 			}
 			colorChange();
 			// set condition back to default
-			
+
 			// startTimer after timeout
 			startTimer();
 		});
@@ -687,18 +687,14 @@ public class ClientGamePageController implements Initializable {
 
 	public void sendClick(MouseEvent event) {
 
-		Platform.runLater(() -> {
-			// Update UI here.
-			if (connected) {
-				ButtonClick bc = new ButtonClick(event);
-				try {
-					sOutput.writeObject(bc);
-					// txtUserMsg.setText("");
-				} catch (IOException e) {
-					display("Exception writing to server: " + e);
-				}
+		if (connected) {
+			ButtonClick bc = new ButtonClick(event);
+			try {
+				sOutput.writeObject(bc);
+			} catch (IOException e) {
+				display("Exception writing to server: " + e);
 			}
-		});
+		}
 
 	}
 
@@ -792,34 +788,43 @@ public class ClientGamePageController implements Initializable {
 			});
 
 			while (true) {
+				
 				try {
-					String msg = (String) sInput.readObject();
-//					display(msg);
-					String[] split = msg.split(":");
-					if (split[1].equals("WHOISIN")) {
-						Platform.runLater(() -> {
-							users.add(split[0]);
-						});
-						;
-					} else if (split[1].equals("REMOVE")) {
-						Platform.runLater(() -> {
-							users.remove(split[0]);
-						});
-					} else {
-						txtArea.appendText(msg);
-					}
-				} catch (IOException e) {
-					display("Server has close the connection");
-					connectionFailed();
-					Platform.runLater(() -> {
-						listUsersConnected.setItems(null);
-					});
-					break;
+					ButtonClick bc = (ButtonClick) sInput.readObject();
+					MouseEvent event = bc.getEvent();
+					play(event);
+				} catch (ClassNotFoundException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				// can't happen with a String object but need the catch anyhow
-				catch (ClassNotFoundException e2) {
-
-				}
+//				try {
+//					String msg = (String) sInput.readObject();
+////					display(msg);
+//					String[] split = msg.split(":");
+//					if (split[1].equals("WHOISIN")) {
+//						Platform.runLater(() -> {
+//							users.add(split[0]);
+//						});
+//						;
+//					} else if (split[1].equals("REMOVE")) {
+//						Platform.runLater(() -> {
+//							users.remove(split[0]);
+//						});
+//					} else {
+//						txtArea.appendText(msg);
+//					}
+//				} catch (IOException e) {
+//					display("Server has close the connection");
+//					connectionFailed();
+//					Platform.runLater(() -> {
+//						listUsersConnected.setItems(null);
+//					});
+//					break;
+//				}
+//				// can't happen with a String object but need the catch anyhow
+//				catch (ClassNotFoundException e2) {
+//
+//				}
 			}
 		}
 	}

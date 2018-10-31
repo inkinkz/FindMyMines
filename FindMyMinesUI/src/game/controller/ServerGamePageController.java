@@ -400,6 +400,7 @@ public class ServerGamePageController implements Initializable {
 		textArea.appendText(messageLf);
 	}
 
+	//remove user
 	public void remove(String username) {
 		Platform.runLater(() -> {
 			users.remove(username);
