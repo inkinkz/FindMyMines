@@ -1,7 +1,12 @@
 package game.controller;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
 
+import game.controller.ClientGamePageController.ListenFromServer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,6 +45,12 @@ public class ClientStartPageController {
 
 	static String userName;
 	static String server;
+	static int port = 1500;
+	static Socket socket;
+	public static boolean connected;
+	
+	public static ObjectInputStream sInput; // to read from the socket
+	public static ObjectOutputStream sOutput; // to write on the socket
 
 	@FXML
 	private Label warnIP;
@@ -67,7 +78,12 @@ public class ClientStartPageController {
 			warnName.setVisible(true);
 			warnIP.setVisible(false);
 			return;
-		}		
+		}
+
+		else if (!startConnection()) {
+			System.out.println("No server to connect!");
+			return;
+		}
 
 		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("/game/view/ClientGamePage.fxml"));
 		Scene scene = new Scene(gamePage);
@@ -78,5 +94,70 @@ public class ClientStartPageController {
 		stage.show();
 
 	}
+	
+	public boolean startConnection() {
+		// try to connect to the server
+		try {
+			socket = new Socket(server, port);
+		}
+		// if it failed
+		catch (Exception ec) {
+			System.out.println("Error connecting to server:" + ec);
+			return false;
+		}
 
+		String msg = "Connection accepted " + socket.getInetAddress() + ":" + socket.getPort();
+		System.out.println(msg);
+
+		/* Creating both Data Stream */
+		try {
+			sInput = new ObjectInputStream(socket.getInputStream());
+			sOutput = new ObjectOutputStream(socket.getOutputStream());
+		} catch (IOException eIO) {
+			System.out.println("Exception creating new Input/output Streams: " + eIO);
+			return false;
+		}
+
+		// creates the Thread to listen from the server
+		//new ListenFromServer().start();
+
+		// Send our username to the server this is the only message that we
+		// will send as a String. All other messages will be ChatMessage objects
+		try {
+			sOutput.writeObject(userName);
+		} catch (IOException eIO) {
+			System.out.println(eIO);
+			disconnect();
+			return false;
+		}
+		// success we inform the caller that it worked
+		return true;
+	}
+	
+	private void disconnect() {
+		try {
+			if (sInput != null)
+				sInput.close();
+		} catch (Exception e) {
+		} // not much else I can do
+		try {
+			if (sOutput != null)
+				sOutput.close();
+		} catch (Exception e) {
+		} // not much else I can do
+		try {
+			if (socket != null)
+				socket.close();
+		} catch (Exception e) {
+		} // not much else I can do
+
+		// inform the GUI
+		connectionFailed();
+
+	}
+
+	public void connectionFailed() {
+		// don't react to a <CR> after the username
+		connected = false;
+	}
 }
