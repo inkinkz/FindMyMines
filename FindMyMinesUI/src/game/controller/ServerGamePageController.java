@@ -791,42 +791,13 @@ public class ServerGamePageController implements Initializable {
 		      thread.start();
 		    }
 
-	//go to scoreboard
 		@FXML
 		void stop(ActionEvent event) throws IOException {
-			//setText for score board
-			sorted = getSorted();
-					int i = 0;
-					for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) {
-					    //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-					    if(i<numOfPlayer) {
-					    		int v = entry.getKey();
-					    		v++;
-					    		setOfNameBoard[i].setText("Player "+ v);
-					    		setOfScoreBoard[i].setText(entry.getValue() +"");
-					    		i++;
-					    }   
-					}
-					scoreBoard.setVisible(true);
+			
 		}
 		
 	@FXML
 	private Button buttonDone;
-
-	
-	//delete all the value assign & disble the dialogpane
-	@FXML
-	void goBack(ActionEvent event) throws IOException {
-		AnchorPane gamePage = (AnchorPane) FXMLLoader
-				.load(getClass().getResource("/FindMyMinesUI/src/game/view/GamePage.fxml"));
-		Scene scene = new Scene(gamePage);
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setMinWidth(1000);
-		stage.setMinHeight(520);
-		stage.setScene(scene);
-		stage.show();
-		reset();
-	}
 
 	//reset
 	public void reset() {
