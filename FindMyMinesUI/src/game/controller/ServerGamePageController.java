@@ -416,7 +416,6 @@ public class ServerGamePageController implements Initializable {
 		leftPane.setDisable(true);
 		textArea.setEditable(false);
 		startServer();
-		startTimer();
 		numOfPlayer = 4; // get from how many client that ready
 		setupPane();
 		setUpBomb();

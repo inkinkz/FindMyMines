@@ -385,7 +385,6 @@ public class ClientGamePageController implements Initializable {
 		txtArea.setEditable(false);
 		display("Hello, " + username + "\n");
 		startConnection();
-		startTimer();
 		leftPane.setDisable(true);
 		numOfPlayer = 4; // get from how many client that ready
 
@@ -533,7 +532,7 @@ public class ClientGamePageController implements Initializable {
 		sendClick(event);
 		// set color of player to know whose turn is next
 		colorChange();
-		// timer
+		// timer of next player
 		startTimer();
 		Button y = (Button) event.getTarget();
 
@@ -562,6 +561,7 @@ public class ClientGamePageController implements Initializable {
 		}
 	}
 
+	
 	// to display count down game timer
 	void startTimer() {
 		// timer run
@@ -619,7 +619,7 @@ public class ClientGamePageController implements Initializable {
 	// need to change to ready - disable when pressed
 	@FXML
 	void ready(ActionEvent event) throws IOException {
-
+		
 	}
 
 	// sort score
