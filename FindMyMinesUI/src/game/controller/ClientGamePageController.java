@@ -334,6 +334,12 @@ public class ClientGamePageController implements Initializable {
 
 	@FXML
 	private Label score101;
+	
+	@FXML
+    private AnchorPane leftPane;
+	
+	@FXML
+    private AnchorPane rightPane;
 
 	/*
 	 * @FXML private Button button_done;
@@ -380,6 +386,7 @@ public class ClientGamePageController implements Initializable {
 		display("Hello, " + username + "\n");
 		startConnection();
 		startTimer();
+		leftPane.setDisable(true);
 		numOfPlayer = 4; // get from how many client that ready
 
 		// put each pane into setOfPlayer

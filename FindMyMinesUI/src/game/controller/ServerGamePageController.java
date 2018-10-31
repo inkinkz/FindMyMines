@@ -43,6 +43,9 @@ public class ServerGamePageController implements Initializable {
 	private AnchorPane leftPane;
 	
 	@FXML
+    private AnchorPane rightPane;
+	
+	@FXML
 	private Button b1;
 
 	@FXML
@@ -410,6 +413,7 @@ public class ServerGamePageController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		assignBomb();
+		leftPane.setDisable(true);
 		textArea.setEditable(false);
 		startServer();
 		startTimer();
