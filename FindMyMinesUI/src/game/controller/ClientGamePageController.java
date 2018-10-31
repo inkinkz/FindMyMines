@@ -342,9 +342,10 @@ public class ClientGamePageController implements Initializable {
 	@FXML
     private AnchorPane rightPane;
 
-	/*
-	 * @FXML private Button button_done;
-	 */
+	
+	@FXML
+	private Button button_done;
+	
 	@FXML
 	private DialogPane scoreBoard;
 
@@ -370,23 +371,24 @@ public class ClientGamePageController implements Initializable {
 	int[][] bombaround = new int[6][6];
 
 	// Server Configuration
-	private boolean connected;
+	private boolean connected = ClientStartPageController.connected;
 	private String server = ClientStartPageController.server;
 	private String username = ClientStartPageController.userName;
-	private int port = 1500;
+	private int port = ClientStartPageController.port;
 
 	// for I/O
-	private ObjectInputStream sInput; // to read from the socket
-	private ObjectOutputStream sOutput; // to write on the socket
-	private Socket socket;
+	private ObjectInputStream sInput = ClientStartPageController.sInput; // to read from the socket
+	private ObjectOutputStream sOutput = ClientStartPageController.sOutput; // to write on the socket
+	private Socket socket = ClientStartPageController.socket;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		
+		new ListenFromServer().start();
 		txtArea.setEditable(false);
-		display("Hello, " + username + "\n");
-		startConnection();
 		leftPane.setDisable(true);
+		display("Hello, " + username + ".\n");
+		display("When you are ready to play, press Ready button");
 		numOfPlayer = 4; // get from how many client that ready
 		setUpPane();
 		setScore();
@@ -641,14 +643,14 @@ public class ClientGamePageController implements Initializable {
 
 	// Login
 
-	public void login() {
+/*	public void login() {
 		// test if we can start the connection to the Server
 		// if it failed nothing we can do
 		if (!startConnection())
 			return;
 		connected = true;
 	}
-
+*/
 	private void disconnect() {
 		try {
 			if (sInput != null)
@@ -696,7 +698,9 @@ public class ClientGamePageController implements Initializable {
 		txtArea.appendText(msg + "\n");
 	}
 
-	public boolean startConnection() {
+//this start connection method is moved to client's start page to be triggered by "connect" button
+	
+/*	public boolean startConnection() {
 		// try to connect to the server
 		try {
 			socket = new Socket(server, port);
@@ -710,7 +714,7 @@ public class ClientGamePageController implements Initializable {
 		String msg = "Connection accepted " + socket.getInetAddress() + ":" + socket.getPort();
 		display(msg);
 
-		/* Creating both Data Stream */
+		 Creating both Data Stream 
 		try {
 			sInput = new ObjectInputStream(socket.getInputStream());
 			sOutput = new ObjectOutputStream(socket.getOutputStream());
@@ -733,7 +737,7 @@ public class ClientGamePageController implements Initializable {
 		}
 		// success we inform the caller that it worked
 		return true;
-	}
+	}*/
 
 	class ListenFromServer extends Thread {
 

@@ -35,8 +35,6 @@ public class ServerMain extends Application {
 
 	}
 
-	int numBomb = 0;
-
 	public static void main(String[] args) {
 
 		launch(args);
