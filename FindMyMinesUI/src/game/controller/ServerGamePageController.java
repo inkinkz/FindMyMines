@@ -16,6 +16,7 @@ import game.controller.ServerGamePageController.ServerRunning;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -355,7 +356,7 @@ public class ServerGamePageController implements Initializable {
 
 	Button[][] setOfButton = new Button[6][6];
 	Pane[] setOfPlayer = new Pane[10]; // limit player :10
-	int[] scoreOfPlayer = new int[10];
+	private static ObservableMap<Integer,Integer> scoreOfPlayer;
 	Label[] setOfScore = new Label[10];
 	Label[] setOfNameBoard = new Label[10];
 	Label[] setOfScoreBoard = new Label[10];
@@ -372,6 +373,7 @@ public class ServerGamePageController implements Initializable {
 		server = new FindMyMinesServer(1500, this);
 		users = FXCollections.observableArrayList();
 		listUsersConnected.setItems(users);
+		scoreOfPlayer = FXCollections.observableHashMap();
 		new ServerRunning().start();
 	}
 
@@ -419,15 +421,15 @@ public class ServerGamePageController implements Initializable {
 		numOfPlayer = users.size(); // get from how many client that ready
 		setupPane();
 		setUpBomb();
-		setHash();
+		setScore();
 		// color change for the starting player
 		setOfPlayer[player].setStyle("-fx-background-color: grey");
 
 	}
 
-	private void setHash() {
+	private void setScore() {
 		for (int i=0; i<10; i++) {
-			keeptrack.put(i, 0);
+			scoreOfPlayer.put(i, 0);
 		}
 	}
 
@@ -471,11 +473,6 @@ public class ServerGamePageController implements Initializable {
 		// to hide who does not play
 		for (int i = numOfPlayer; i < 10; i++) {
 			setOfPlayer[i].setVisible(false);
-		}
-		
-		// set all player score to 0
-		for(int i = 0; i<10; i++) {
-			scoreOfPlayer[i] = 0;
 		}
 
 		setOfScore[0] = score1;
@@ -678,7 +675,6 @@ public class ServerGamePageController implements Initializable {
 	//end of implementation from former StartPageController	
 		
 	//to keep track of score for the score board next page
-		private static Map<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
 		
 		private int player = 0;
 		private int playerplaying = 1;
@@ -722,10 +718,11 @@ public class ServerGamePageController implements Initializable {
 				((Button) event.getTarget()).setDisable(true);
 				numBombLeft--;
 				bombLeft.setText(numBombLeft+"");
-				scoreOfPlayer[player]++;
-				int score = scoreOfPlayer[player];
+
+				int score = scoreOfPlayer.get(player);
+				scoreOfPlayer.put(player, score++);
+				
 				setOfScore[player].setText(score + "");
-				keeptrack.put(player, score);
 				player++;
 			}
 			if (player == numOfPlayer) {
@@ -789,8 +786,8 @@ public class ServerGamePageController implements Initializable {
 	
 	//getter of sorted for other class to use
 	public static Map<Integer, Integer> getSorted(){
-		sorted = sort(keeptrack);
-		//System.out.print(sorted);
+		sorted = sort(scoreOfPlayer);
+		System.out.print(sorted);
 		return sorted;
 	}
 	

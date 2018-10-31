@@ -134,7 +134,7 @@ public class ScoreboardController implements Initializable {
 	Pane[] setOfPlayer = new Pane[10];
 	Label[] setOfName = new Label[10];
 	Label[] setOfScore = new Label[10];
-	Map<Integer, Integer> sorted = ServerGamePageController.getSorted();
+	Map<Integer, Integer> sorted = ClientGamePageController.getSorted();
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

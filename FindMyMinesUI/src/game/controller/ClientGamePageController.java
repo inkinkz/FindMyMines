@@ -19,6 +19,7 @@ import game.model.ButtonClick;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -351,7 +352,7 @@ public class ClientGamePageController implements Initializable {
 
 	Button[][] setOfButton = new Button[6][6];
 	Pane[] setOfPlayer = new Pane[10]; // limit player :10
-	int[] scoreOfPlayer = new int[10];
+	private static ObservableMap<Integer,Integer> scoreOfPlayer;
 	Label[] setOfScore = new Label[10];
 	Label[] setOfNameBoard = new Label[10];
 	Label[] setOfScoreBoard = new Label[10];
@@ -388,14 +389,14 @@ public class ClientGamePageController implements Initializable {
 		leftPane.setDisable(true);
 		numOfPlayer = 4; // get from how many client that ready
 		setUpPane();
-		setHash();
+		setScore();
 		// color change for the starting player
 		setOfPlayer[player].setStyle("-fx-background-color: grey");
 	}
 	
-	private void setHash() {
+	private void setScore() {
 		for (int i=0; i<10; i++) {
-			keeptrack.put(i, 0);
+			scoreOfPlayer.put(i, 0);
 		}
 	}
 	
@@ -416,17 +417,6 @@ public class ClientGamePageController implements Initializable {
 		for (int i = numOfPlayer; i < 10; i++) {
 			setOfPlayer[i].setVisible(false);
 		}
-
-		scoreOfPlayer[0] = 0;
-		scoreOfPlayer[1] = 0;
-		scoreOfPlayer[2] = 0;
-		scoreOfPlayer[3] = 0;
-		scoreOfPlayer[4] = 0;
-		scoreOfPlayer[5] = 0;
-		scoreOfPlayer[6] = 0;
-		scoreOfPlayer[7] = 0;
-		scoreOfPlayer[8] = 0;
-		scoreOfPlayer[9] = 0;
 
 		setOfScore[0] = score1;
 		setOfScore[1] = score2;
@@ -500,9 +490,6 @@ public class ClientGamePageController implements Initializable {
 		setOfScoreBoard[9] = score101;
 	}
 
-	// to keep track of score for the score board next page
-	private static Map<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
-
 	private int player = 0;
 	private int playerplaying = 1;
 
@@ -545,10 +532,11 @@ public class ClientGamePageController implements Initializable {
 			((Button) event.getTarget()).setDisable(true);
 			numBombLeft--;
 			bombLeft.setText(numBombLeft + "");
-			scoreOfPlayer[player]++;
-			int score = scoreOfPlayer[player];
+
+			int score = scoreOfPlayer.get(player);
+			scoreOfPlayer.put(player, score++);
+			
 			setOfScore[player].setText(score + "");
-			keeptrack.put(player, score);
 			player++;
 		}
 
@@ -619,11 +607,11 @@ public class ClientGamePageController implements Initializable {
 	}
 
 	// sort score
-	public static Map<Integer, Integer> getSorted() {
-		sorted = sort(keeptrack);
-		// System.out.print(sorted);
-		return sorted;
-	}
+		public static Map<Integer, Integer> getSorted(){
+			sorted = sort(scoreOfPlayer);
+			System.out.print(sorted);
+			return sorted;
+		}
 
 	// remove non=playing players
 	private static Map<Integer, Integer> sort(Map<Integer, Integer> map) {
@@ -750,6 +738,7 @@ public class ClientGamePageController implements Initializable {
 	class ListenFromServer extends Thread {
 
 		public void run() {
+			scoreOfPlayer = FXCollections.observableHashMap();
 			users = FXCollections.observableArrayList();
 			listUsersConnected.setItems(users);
 			try {
