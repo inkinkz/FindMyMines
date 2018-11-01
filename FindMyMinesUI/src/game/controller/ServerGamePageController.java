@@ -255,7 +255,13 @@ public class ServerGamePageController implements Initializable {
 	private Label bombLeft;
 
 	@FXML
+	private Button startButton;
+	
+	@FXML
 	private Button stopButton;
+	
+	@FXML
+	private Button resetButton;
 
 	@FXML
 	private TextArea textArea;
@@ -353,8 +359,13 @@ public class ServerGamePageController implements Initializable {
 	    @FXML
 	    private Label score101;
 
+	    @FXML
+	    private AnchorPane paneOfBomb;
+
 	@FXML
 	private ListView<String> listUsersConnected;
+	
+	
 
 	// game
 	
@@ -367,6 +378,7 @@ public class ServerGamePageController implements Initializable {
 	Label[] setOfNameBoard = new Label[10];
 	Label[] setOfScoreBoard = new Label[10];
 	int numBombLeft = 11;
+	String GAME_STATE; // default = waiting for player
 
 	// SERVER
 
@@ -423,12 +435,11 @@ public class ServerGamePageController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		assignBomb();
-		leftPane.setDisable(true);
+
 		textArea.setEditable(false);
 		startServer();
 		setupPane();
-		setUpBomb();
+		
 		setScore();
 		// color change for the starting player
 		setOfPlayer[player].setStyle("-fx-background-color: grey");
@@ -702,40 +713,34 @@ public class ServerGamePageController implements Initializable {
 
 		}
 
-		//playing
-		@FXML
-		void play(MouseEvent event) throws InterruptedException {
-			//set color of player to know whose turn is next
-			colorChange();
-			//timer
-			startTimer();
-			Button y = (Button) event.getTarget();
-			
-			if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
-				((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-				((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
-				((Button) event.getTarget()).setDisable(true);
-				player++;
-			}
 
-			if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-				((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-				((Button) event.getTarget()).setText("bomb");
-				((Button) event.getTarget()).setDisable(true);
-				numBombLeft--;
-				bombLeft.setText(numBombLeft+"");
+	// playing
+	@FXML
+	void showBomb() throws InterruptedException {
+		// set exit startTimer();
+		// condition = true;
+		// set color of player to know whose turn is next
+		// colorChange();
+		// timer
+		// startTimer();
 
-				int score = scoreOfPlayer.get(player);
-				scoreOfPlayer.put(player, score++);
-				
-				setOfScore[player].setText(score + "");
-				player++;
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+				Button y = setOfButton[i][j];
+				if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
+					y.setStyle("-fx-font-size: 10");
+					y.setStyle("-fx-background-color:#cccccc");
+				}
+
+				if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+					y.setStyle("-fx-font-size: 10");
+					y.setText("bomb");
+
+				}
+
 			}
-			if (player == numOfPlayer) {
-				player = 0;
-			}
-			
 		}
+	}
 		
 		//to display count down from 10 to 0
 		void startTimer() {
@@ -775,15 +780,83 @@ public class ServerGamePageController implements Initializable {
 		      thread.start();
 		    }
 
+
+	
 	@FXML
-	void start(ActionEvent event) throws IOException {
-		numOfPlayer = users.size(); // get from how many client
-		if (playerReady.getValue() == users.size()) {
-			//start game = first player leftPane enabled + startTimer
-			
-			
-		}
+	void start(ActionEvent event) {
+	/*numOfPlayer = users.size(); // get from how many client
+	if (playerReady.getValue() == users.size()) {
+		//start game = first player leftPane enabled + startTimer
 		
+		
+	}*/
+
+		//if (GAME_STATE == "WAITING") {
+			assignBomb();
+			setUpBomb();
+			try {
+				showBomb();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
+					Button y = setOfButton[i][j];
+					y.setDisable(true);
+				}
+			}
+			startButton.setVisible(false);
+			startButton.setDisable(true);
+			stopButton.setVisible(true);
+			stopButton.setDisable(false);
+			/*GAME_STATE = "ONGOING";
+			System.out.println(GAME_STATE);*/
+
+		//}
+	}
+			
+	@FXML
+	void stop(ActionEvent event) {
+	//	if (GAME_STATE == "ONGOING") {
+			// setText for score board -- for stop button
+			sorted = getSorted();
+			int i = 0;
+			for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) {
+				// System.out.println("Key = " + entry.getKey() + ", Value = " +
+				// entry.getValue());
+				if (i < numOfPlayer) {
+					int v = entry.getKey();
+					v++;
+					setOfNameBoard[i].setText("Player " + v);
+					setOfScoreBoard[i].setText(entry.getValue() + "");
+					i++;
+				}
+			}
+			stopButton.setVisible(false);
+			stopButton.setDisable(true);
+			resetButton.setVisible(true);
+			resetButton.setDisable(false);
+			scoreBoard.setVisible(true);
+			GAME_STATE = "WAITING";
+	//	}
+
+	}
+	@FXML
+	void resetState(ActionEvent event) {
+		new ServerGamePageController();
+	}
+
+	@FXML
+	private Button buttonDone;
+
+	
+	//delete all the value assign & disble the dialogpane
+	@FXML
+	void goBack(ActionEvent event) throws IOException {
+		
+		new ServerGamePageController();
+
 	}
 
 	
