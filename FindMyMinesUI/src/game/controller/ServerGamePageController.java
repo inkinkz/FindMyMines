@@ -439,17 +439,8 @@ public class ServerGamePageController implements Initializable {
 		
 		textArea.setEditable(false);
 		startServer();
-		setupPane();
 		
-		setScore();
-		// color change for the starting player
-		setOfPlayer[player].setStyle("-fx-background-color: grey");
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
-				Button y = setOfButton[i][j];
-				y.setDisable(true);
-			}
-		}
+		
 	}
 
 	private void setScore() {
@@ -478,6 +469,12 @@ public class ServerGamePageController implements Initializable {
 				if (numOfBombAround > 0) {
 					setOfButton[i][j].setText("" + numOfBombAround);
 				}
+			}
+		}
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+				Button y = setOfButton[i][j];
+				y.setDisable(true);
 			}
 		}
 	}
@@ -790,8 +787,15 @@ public class ServerGamePageController implements Initializable {
 	
 	@FXML
 	void start(ActionEvent event) {
-	/*numOfPlayer = users.size(); // get from how many client
-	if (playerReady.getValue() == users.size()) {
+	
+	// complete game template
+	numOfPlayer = users.size(); // get from how many client
+	setupPane();
+	setScore();
+	// color change for the starting player
+	setOfPlayer[player].setStyle("-fx-background-color: grey");
+	
+	/*if (playerReady.getValue() == numOfPlayer) {
 		//start game = first player leftPane enabled + startTimer
 		
 		
@@ -844,7 +848,6 @@ public class ServerGamePageController implements Initializable {
 	@FXML
 	private Button buttonDone;
 
-	
 	//delete all the value assign & disble the dialogpane
 	@FXML
 	void goBack(ActionEvent event) throws IOException {
@@ -852,8 +855,6 @@ public class ServerGamePageController implements Initializable {
 		//new ServerGamePageController();
 	}
 
-
-	
 	//getter of sorted for other class to use
 	public static Map<Integer, Integer> getSorted(){
 		sorted = sort(scoreOfPlayer);

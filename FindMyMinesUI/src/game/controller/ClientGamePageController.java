@@ -392,11 +392,11 @@ public class ClientGamePageController implements Initializable {
 		leftPane.setDisable(true);
 		display("Hello, " + username + ".\n");
 		display("When you are ready to play, press Ready button");
-		numOfPlayer = users.size(); // get from how many client that ready
-		setUpPane();
-		setScore();
+		// trigger this when server press start
+		//setUpPane();
+		//setScore();
 		// color change for the starting player
-		setOfPlayer[player].setStyle("-fx-background-color: grey");
+		//setOfPlayer[player].setStyle("-fx-background-color: grey");
 	}
 	
 	private void setScore() {
@@ -800,7 +800,7 @@ public class ClientGamePageController implements Initializable {
 
 			Platform.runLater(() -> {
 				// Update UI here.
-				setUpBomb();
+				//setUpBomb();
 
 			});
 
@@ -847,6 +847,8 @@ public class ClientGamePageController implements Initializable {
 	}
 
 	private void setUpBomb() {
+		numOfPlayer = users.size(); // how many clients are there
+		
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				int result = bombplacement[i][j];
