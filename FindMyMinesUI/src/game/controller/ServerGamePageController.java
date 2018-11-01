@@ -415,6 +415,7 @@ public class ServerGamePageController implements Initializable {
 	public void addUser(String user) {
 		Platform.runLater(() -> {
 			users.add(user);
+			numOfPlayer++;
 		});
 	}
 
@@ -435,7 +436,7 @@ public class ServerGamePageController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		
 		textArea.setEditable(false);
 		startServer();
 		setupPane();
@@ -443,7 +444,12 @@ public class ServerGamePageController implements Initializable {
 		setScore();
 		// color change for the starting player
 		setOfPlayer[player].setStyle("-fx-background-color: grey");
-
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+				Button y = setOfButton[i][j];
+				y.setDisable(true);
+			}
+		}
 	}
 
 	private void setScore() {
@@ -800,12 +806,7 @@ public class ServerGamePageController implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			for (int i = 0; i < 6; i++) {
-				for (int j = 0; j < 6; j++) {
-					Button y = setOfButton[i][j];
-					y.setDisable(true);
-				}
-			}
+			
 			startButton.setVisible(false);
 			startButton.setDisable(true);
 			stopButton.setVisible(true);
@@ -820,30 +821,23 @@ public class ServerGamePageController implements Initializable {
 	void stop(ActionEvent event) {
 	//	if (GAME_STATE == "ONGOING") {
 			// setText for score board -- for stop button
-			sorted = getSorted();
-			int i = 0;
-			for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) {
-				// System.out.println("Key = " + entry.getKey() + ", Value = " +
-				// entry.getValue());
-				if (i < numOfPlayer) {
-					int v = entry.getKey();
-					v++;
-					setOfNameBoard[i].setText("Player " + v);
-					setOfScoreBoard[i].setText(entry.getValue() + "");
-					i++;
-				}
-			}
 			stopButton.setVisible(false);
 			stopButton.setDisable(true);
 			resetButton.setVisible(true);
 			resetButton.setDisable(false);
-			scoreBoard.setVisible(true);
-			GAME_STATE = "WAITING";
+			
 	//	}
-
 	}
+	
+
+	
 	@FXML
 	void resetState(ActionEvent event) {
+		resetButton.setVisible(false);
+		resetButton.setDisable(true);
+		startButton.setVisible(true);
+		startButton.setDisable(false);
+		
 		new ServerGamePageController();
 	}
 
@@ -854,16 +848,11 @@ public class ServerGamePageController implements Initializable {
 	//delete all the value assign & disble the dialogpane
 	@FXML
 	void goBack(ActionEvent event) throws IOException {
-		
-		new ServerGamePageController();
-
+		scoreBoard.setVisible(false);
+		//new ServerGamePageController();
 	}
 
-	
-	//reset
-	public void reset() {
-		new ServerGamePageController();
-	}
+
 	
 	//getter of sorted for other class to use
 	public static Map<Integer, Integer> getSorted(){
