@@ -17,6 +17,8 @@ import java.util.ResourceBundle;
 
 import game.model.ButtonClick;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -349,11 +351,12 @@ public class ClientGamePageController implements Initializable {
 	@FXML
 	private DialogPane scoreBoard;
 
+	//game
 	static int numOfPlayer; // how many player
-
 	Button[][] setOfButton = new Button[6][6];
 	Pane[] setOfPlayer = new Pane[10]; // limit player :10
 	private static ObservableMap<Integer,Integer> scoreOfPlayer;
+	private ObservableValue<Integer> playerReady; // number of player ready
 	Label[] setOfScore = new Label[10];
 	Label[] setOfNameBoard = new Label[10];
 	Label[] setOfScoreBoard = new Label[10];
@@ -389,7 +392,7 @@ public class ClientGamePageController implements Initializable {
 		leftPane.setDisable(true);
 		display("Hello, " + username + ".\n");
 		display("When you are ready to play, press Ready button");
-		numOfPlayer = 4; // get from how many client that ready
+		numOfPlayer = users.size(); // get from how many client that ready
 		setUpPane();
 		setScore();
 		// color change for the starting player
@@ -555,14 +558,22 @@ public class ClientGamePageController implements Initializable {
 			@Override
 			public Void call() throws InterruptedException {
 				for (int i = 10; i >= 0; i--) {
+					// exit timer
+					if(false) {
+        				// to stop timer
+        				return null;
+        			}
 					updateMessage(i + "");
 					Thread.sleep(1000);
 				}
 				return null;
 			}
 		};
-		// exit startTimer();
-
+		// exit timer();
+		if(false) {
+	    	  // to stop timer
+	    	  return;
+	      }
 		showTime.textProperty().bind(task.messageProperty());
 		task.setOnSucceeded(e -> {
 			showTime.textProperty().unbind();
@@ -605,6 +616,12 @@ public class ClientGamePageController implements Initializable {
 	// need to change to ready - disable when pressed
 	@FXML
 	void ready(ActionEvent event) throws IOException {
+		// number of ready player increase every time a client click ready
+		int ready = playerReady.getValue();
+		playerReady = new SimpleIntegerProperty(ready++).asObject();
+		
+		// set ready button to disable after being pressed
+		readyButton.setDisable(true);
 		
 	}
 
@@ -742,7 +759,11 @@ public class ClientGamePageController implements Initializable {
 	class ListenFromServer extends Thread {
 
 		public void run() {
+			// game initialize
 			scoreOfPlayer = FXCollections.observableHashMap();
+			playerReady = new SimpleIntegerProperty(0).asObject();
+			
+			//server
 			users = FXCollections.observableArrayList();
 			listUsersConnected.setItems(users);
 			try {
