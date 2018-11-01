@@ -10,6 +10,10 @@
           <option name="url" value="https://github.com/TSkrebe/multiplayer-game.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/DomHeal/JavaFX-Chat.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\Queenievatcha\IdeaProjects" />
