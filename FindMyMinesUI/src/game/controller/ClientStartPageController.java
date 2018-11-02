@@ -3,11 +3,10 @@ package game.controller;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.Socket;
 
-import game.controller.ClientGamePageController.ListenFromServer;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,8 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class ClientStartPageController {
 
@@ -91,6 +90,15 @@ public class ClientStartPageController {
 		stage.setMinWidth(1000);
 		stage.setMinHeight(520);
 		stage.setScene(scene);
+		//when user closed the window
+		stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.out.println("Disconnected from the server.");
+                disconnect();
+                System.exit(0);
+            }
+        });
 		stage.show();
 
 	}
@@ -99,6 +107,7 @@ public class ClientStartPageController {
 		// try to connect to the server
 		try {
 			socket = new Socket(server, port);
+			connected = true;
 		}
 		// if it failed
 		catch (Exception ec) {
@@ -117,9 +126,6 @@ public class ClientStartPageController {
 			System.out.println("Exception creating new Input/output Streams: " + eIO);
 			return false;
 		}
-
-		// creates the Thread to listen from the server
-		//new ListenFromServer().start();
 
 		// Send our username to the server this is the only message that we
 		// will send as a String. All other messages will be ChatMessage objects
