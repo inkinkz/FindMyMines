@@ -455,10 +455,19 @@ public class ServerGamePageController implements Initializable {
 				int result = getValueOfSpace(i, j);
 				Button y = setOfButton[i][j];
 				if (result == 0) {
-					y.setStyle("-fx-font-size: 0.3"); // blank
+					y.setStyle("-fx-font-size: 0.0"); // blank
 				}
 				if (result == 1) {
 					y.setStyle("-fx-font-size: 0.1"); // bomb
+				}
+				if (result == 2) {
+					y.setStyle("-fx-font-size: 0.2"); // bomb
+				}
+				if (result == 3) {
+					y.setStyle("-fx-font-size: 0.3"); // bomb
+				}
+				if (result == 4) {
+					y.setStyle("-fx-font-size: 0.4"); // bomb
 				}
 
 			}
@@ -577,25 +586,26 @@ public class ServerGamePageController implements Initializable {
 		public static int[][] bombAround = new int[6][6];
 		int numBomb = 0;
 
-		private void assignBomb() {
+		private void assignBombDefault() {
 			// assign bomb to the slot
 			for (int i = 0; i < 6; i++) {
 				for (int j = 0; j < 6; j++) {
 					
-					float result = (float) Math.random();
-					if (result < 0.5) {
+					int result = (int) Math.ceil(Math.random()*2); //
+					//float result = (float) Math.random();
+					/*if (result < 0.5) {
 						result = 0;
 					}
 					if (result >= 0.5) {
 						result = 1;
-					}
+					}*/
 					if (numBomb >= 11) {
-						result = 0;
-					}
-					if (result == 0) {
-						valueOfSpace[i][j] = 0;//free space
+						result = 1;
 					}
 					if (result == 1) {
+						valueOfSpace[i][j] = 0;//free space
+					}
+					if (result == 2) {
 						valueOfSpace[i][j] = 1;//bomb
 						numBomb++;
 					}
@@ -609,17 +619,18 @@ public class ServerGamePageController implements Initializable {
 					for (int j = 0; j < 6; j++) {
 
 						if (valueOfSpace[i][j] == 0) {
-							int result = (int) Math.random();
-							if (result < 0.5) {
+							int result = (int) Math.ceil(Math.random()*2);
+							//float result = (float) Math.random();
+							/*if (result < 0.5) {
 								result = 0;
 							}
 							if (result >= 0.5) {
 								result = 1;
-							}
-							if (result == 0) {
+							}*/
+							if (result == 1) {
 								valueOfSpace[i][j] = 0;//free space
 							}
-							if (result == 1) {
+							if (result == 2) {
 								valueOfSpace[i][j] = 1;//bomb
 								numBomb++;
 							}
@@ -685,6 +696,240 @@ public class ServerGamePageController implements Initializable {
 			}
 
 		}
+		
+		
+		private void assignBombMultipleScore() {
+			// assign bomb to the slot
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
+					
+					int result = (int) Math.ceil(Math.random()*9); //
+					//float result = (float) Math.random();
+				
+					/*if (result < 0.5) {
+						result = 0;
+					}
+					if (result >= 0.5) {
+						result = 1;
+					}*/
+					if (numBomb >= 11) {
+						result = 1;
+					}
+					if (result == 1) {
+						valueOfSpace[i][j] = 0;//free space
+					}
+					if (result == 6) {
+						valueOfSpace[i][j] = 0;//free space
+					}
+					if (result == 7) {
+						valueOfSpace[i][j] = 0;//free space
+					}
+					if (result == 8) {
+						valueOfSpace[i][j] = 0;//free space
+					}
+					
+					if (result == 2) {
+						valueOfSpace[i][j] = 1;//bomb
+						numBomb++;
+					}
+					if (result == 3) {
+						valueOfSpace[i][j] = 2;//bomb
+						numBomb++;
+					}
+					if (result == 4) {
+						valueOfSpace[i][j] = 3;//bomb
+						numBomb++;
+					}
+					if (result == 5) {
+						valueOfSpace[i][j] = 4;//bomb
+						numBomb++;
+					}
+
+				}
+			}
+			
+			// fix number of bomb to 11
+			while (numBomb != 11) {
+				for (int i = 0; i < 6; i++) {
+					for (int j = 0; j < 6; j++) {
+
+						if (valueOfSpace[i][j] == 0) {
+							int result = (int) Math.ceil(Math.random()*6);
+							//float result = (float) Math.random();
+							/*if (result < 0.5) {
+								result = 0;
+							}
+							if (result >= 0.5) {
+								result = 1;
+							}*/
+							if (result == 1) {
+								valueOfSpace[i][j] = 0;//free space
+							}
+							
+							if (result == 6) {
+								valueOfSpace[i][j] = 0;//free space
+							}
+							if (result == 7) {
+								valueOfSpace[i][j] = 0;//free space
+							}
+							if (result == 8) {
+								valueOfSpace[i][j] = 0;//free space
+							}
+							
+							
+							if (result == 2) {
+								valueOfSpace[i][j] = 1;//bomb
+								numBomb++;
+							}
+							if (result == 3) {
+								valueOfSpace[i][j] = 2;//bomb
+								numBomb++;
+							}
+							if (result == 4) {
+								valueOfSpace[i][j] = 3;//bomb
+								numBomb++;
+							}
+							if (result == 5) {
+								valueOfSpace[i][j] = 4;//bomb
+								numBomb++;
+							}
+						}
+					}
+
+				}
+			}
+
+			// set number in free slot
+
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
+
+					int countBombAround = 0;
+					if (valueOfSpace[i][j] == 0) { // if this is free slot
+						if (i - 1 >= 0 && j - 1 >= 0) { // if there is a slot
+							if (valueOfSpace[i - 1][j - 1] == 1) { // if the upperleft is bomb
+								countBombAround++;
+							}
+							if (valueOfSpace[i - 1][j - 1] == 2) { // if the upperleft is bomb
+								countBombAround++;
+							}
+							if (valueOfSpace[i - 1][j - 1] == 3) { // if the upperleft is bomb
+								countBombAround++;
+							}
+							if (valueOfSpace[i - 1][j - 1] == 4) { // if the upperleft is bomb
+								countBombAround++;
+							}
+						}
+						if (i >= 0 && j - 1 >= 0) {
+							if (valueOfSpace[i][j - 1] == 1) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i][j - 1] == 2) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i][j - 1] == 3) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i][j - 1] == 4) {
+								countBombAround++;
+							}
+						}
+						if (i + 1 <= 5 && j - 1 >= 0) {
+							if (valueOfSpace[i + 1][j - 1] == 1) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i + 1][j - 1] == 2) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i + 1][j - 1] == 3) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i + 1][j - 1] == 4) {
+								countBombAround++;
+							}
+						}
+						if (i - 1 >= 0 && j >= 0) {
+							if (valueOfSpace[i - 1][j] == 1) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i - 1][j] == 2) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i - 1][j] == 3) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i - 1][j] == 4) {
+								countBombAround++;
+							}
+						}
+						if (i + 1 <= 5 && j >= 0) {
+							if (valueOfSpace[i + 1][j] == 1) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i + 1][j] == 2) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i + 1][j] == 3) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i + 1][j] == 4) {
+								countBombAround++;
+							}
+						}
+						if (i - 1 >= 0 && j + 1 <= 5) {
+							if (valueOfSpace[i - 1][j + 1] == 1) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i - 1][j + 1] == 2) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i - 1][j + 1] == 3) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i - 1][j + 1] == 4) {
+								countBombAround++;
+							}
+						}
+						if (i >= 0 && j + 1 <= 5) {
+							if (valueOfSpace[i][j + 1] == 1) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i][j + 1] == 2) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i][j + 1] == 3) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i][j + 1] == 4) {
+								countBombAround++;
+							}
+						}
+						if (i + 1 <= 5 && j + 1 <= 5) {
+							if (valueOfSpace[i + 1][j + 1] == 1) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i + 1][j + 1] == 2) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i + 1][j + 1] == 3) {
+								countBombAround++;
+							}
+							if (valueOfSpace[i + 1][j + 1] == 4) {
+								countBombAround++;
+							}
+						}
+						bombAround[i][j] = countBombAround;
+
+						
+
+					}
+				}
+			}
+
+		}
+		
+		
+		
 		public static int getValueOfSpace(int i,int j) {
 			int valueofspace = valueOfSpace[i][j];
 			return valueofspace ;
@@ -730,15 +975,29 @@ public class ServerGamePageController implements Initializable {
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				Button y = setOfButton[i][j];
-				if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
+				if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
 					y.setStyle("-fx-font-size: 10");
 					y.setStyle("-fx-background-color:#cccccc");
 				}
 
 				if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
 					y.setStyle("-fx-font-size: 10");
-					y.setText("bomb");
-
+					y.setText("BOMB");
+				}
+				
+				if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
+					y.setStyle("-fx-font-size: 10");
+					y.setText("BOMB \n x2");
+				}
+				
+				if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
+					y.setStyle("-fx-font-size: 10");
+					y.setText("BOMB \n x3");
+				}
+				
+				if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
+					y.setStyle("-fx-font-size: 10");
+					y.setText("BOMB \n x4");
 				}
 
 			}
@@ -805,7 +1064,7 @@ public class ServerGamePageController implements Initializable {
 			// color change for the starting player
 			setOfPlayer[player].setStyle("-fx-background-color: grey");
 
-			assignBomb();
+			assignBombMultipleScore();
 			setUpBomb();
 			try {
 				showBomb();
