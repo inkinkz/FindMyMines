@@ -30,7 +30,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </Label>
-            <TextField fx:id="txtServer" layoutX="391.0" layoutY="303.0" prefHeight="35.0" prefWidth="266.0" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" text="localhost">
+            <TextField fx:id="txtServer" layoutX="391.0" layoutY="303.0" prefHeight="35.0" prefWidth="266.0" text="localhost" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0">
          <font>
             <Font name="Avenir Book" size="24.0" />
          </font></TextField>
@@ -47,7 +47,7 @@
             <Font name="Avenir Book" size="24.0" />
          </font></Label>
 
-            <Button fx:id="start" layoutX="433.0" layoutY="484.0" mnemonicParsing="false" onAction="#start" prefHeight="44.0" prefWidth="162.0" style="-fx-alignment: center;" text="CONNECT" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="420.0">
+            <Button fx:id="connectButton" layoutX="433.0" layoutY="484.0" mnemonicParsing="false" onAction="#connect" prefHeight="44.0" prefWidth="162.0" style="-fx-alignment: center;" text="CONNECT" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="420.0">
          <font>
             <Font name="Avenir Book" size="18.0" />
          </font>

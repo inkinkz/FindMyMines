@@ -12,6 +12,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import javax.swing.event.ChangeListener;
+
 import game.controller.ServerGamePageController.ServerRunning;
 import javafx.application.Platform;
 import javafx.beans.binding.Binding;
@@ -29,10 +31,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.ListView;
@@ -265,6 +269,12 @@ public class ServerGamePageController implements Initializable {
 
 	@FXML
 	private TextArea textArea;
+	
+	@FXML
+    private ChoiceBox<String> modebox;
+	
+	@FXML
+    private Label warnReady;
 
 	@FXML
 	private ListView<String> listUsersConnected;
@@ -342,6 +352,14 @@ public class ServerGamePageController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		leftPane.setDisable(true);
 		textArea.setEditable(false);
+
+		warnReady.setVisible(false);
+		
+		// set up mode selection
+		ObservableList<String> availableChoices = FXCollections.observableArrayList( "Default Mode" ,"Quick Game", "Multipoints Bomb"); 
+		modebox.setItems(availableChoices);
+		modebox.setValue("Default Mode");
+		
 		startServer();
 		
 		
@@ -627,12 +645,12 @@ public class ServerGamePageController implements Initializable {
 			}
 		}
 	}
-		
+		int time = 10;
 		//to display count down from 10 to 0
 		void startTimer() {
 			Task <Void> task = new Task<Void>() {
 		        @Override public Void call() throws InterruptedException {
-		        		for (int i = 10; i>=0; i--) {
+		        		for (int i = time; i>=0; i--) {
 		        			if(false) {
 		        				// to stop timer
 		        				return null;
@@ -667,20 +685,27 @@ public class ServerGamePageController implements Initializable {
 		    }
 
 
-	
-	String GAME_STATE = "WAITING" ; // default = waiting for player
-	//boolean firstTime =true;
-	// GAME_STATE = "WAITING";
+	//check all the player already click ready
+	boolean readyAll = true;
 	@FXML
 	void start(ActionEvent event) {
-		
-		//error
-		/*if (playerReady.getValue() == numOfPlayer) {
-			//start game = first player leftPane enabled + startTimer
-			
-			
-		}*/
-		
+		warnReady.setVisible(false);
+		setMode();
+		if (readyAll == false) {
+			warnReady.setVisible(true);
+		}
+		// if all players are ready 
+		if(readyAll == true) {
+			stateCheck();
+		}
+	}
+	
+	
+	String GAME_STATE = "WAITING" ; // default = waiting for player
+		//boolean firstTime =true;
+		// GAME_STATE = "WAITING";
+	
+	private void stateCheck() {
 		if (GAME_STATE == "WAITING") {
 			// complete game template
 			numOfPlayer = 4;
@@ -688,7 +713,7 @@ public class ServerGamePageController implements Initializable {
 			setupPane();
 			setScore();
 			// color change for the starting player
-			setOfPlayer[player].setStyle("-fx-background-color: grey");
+			setOfPlayerPane[player].setStyle("-fx-background-color: grey");
 
 			assignBomb();
 			setUpBomb();
@@ -749,6 +774,20 @@ public class ServerGamePageController implements Initializable {
 		//System.out.print(sorted);
 		return sorted;
 		
+	}
+	
+	private void setMode() {
+		String selectedChoice = modebox.getValue().toString();
+		if (selectedChoice.equals("Default Mode")) {
+		}
+		else if (selectedChoice.equals("Quick Game")) {
+			time = 5;
+		}
+		else if (selectedChoice.equals("Multipoints Bomb")) {
+			
+		}
+		
+
 	}
 		     
 	

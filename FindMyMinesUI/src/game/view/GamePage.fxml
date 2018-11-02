@@ -360,12 +360,22 @@
                <font>
                   <Font name="Avenir Book" size="13.0" />
                </font></TextArea>
-            <Button fx:id="startButton" layoutX="-22.0" layoutY="5.0" mnemonicParsing="false" onAction="#start" text="Start" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="10.0">
+            <Button fx:id="startButton" layoutY="15.0" mnemonicParsing="false" onAction="#start" text="Start" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="15.0">
                <font>
                   <Font name="Avenir Book" size="13.0" />
                </font></Button>
-            <ChoiceBox layoutX="11.0" layoutY="56.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0" />
+            <ChoiceBox fx:id="modebox" layoutX="131.0" layoutY="31.0" prefWidth="150.0" AnchorPane.leftAnchor="131.0" AnchorPane.topAnchor="31.0" />
             <ListView fx:id="listUsersConnected" layoutY="225.0" prefHeight="225.0" prefWidth="295.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="225.0" />
+            <Label layoutX="131.0" layoutY="6.0" text="Mode Selection" AnchorPane.topAnchor="6.0">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="warnReady" layoutY="65.0" text="Please Wait until All Players are Ready" textFill="RED" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="65.0">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="-2.0" prefHeight="118.0" prefWidth="990.0" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

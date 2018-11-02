@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 public class ClientStartPageController {
 
 	@FXML
-	private Button start;
+	private Button connect;
 
 	@FXML
 	private Label Title;
@@ -59,7 +59,7 @@ public class ClientStartPageController {
 	private Label warnName;
 
 	@FXML
-	void start(ActionEvent event) throws IOException {
+	void connect(ActionEvent event) throws IOException {
 		
 		server = txtServer.getText().trim();
 		userName = txtUser.getText().trim();
