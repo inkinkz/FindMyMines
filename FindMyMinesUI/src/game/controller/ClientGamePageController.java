@@ -344,7 +344,6 @@ public class ClientGamePageController implements Initializable {
     @FXML
     private AnchorPane rightPane;
 
-
     @FXML
     private Button button_done;
 
@@ -436,40 +435,40 @@ public class ClientGamePageController implements Initializable {
 
         // TODO Auto-generated method stub
         setOfButton[0][0] = b1;
-        setOfButton[0][1] = b2;
-        setOfButton[0][2] = b3;
-        setOfButton[0][3] = b4;
-        setOfButton[0][4] = b5;
-        setOfButton[0][5] = b6;
-        setOfButton[1][0] = b11;
+        setOfButton[1][0] = b2;
+        setOfButton[2][0] = b3;
+        setOfButton[3][0] = b4;
+        setOfButton[4][0] = b5;
+        setOfButton[5][0] = b6;
+        setOfButton[0][1] = b11;
         setOfButton[1][1] = b21;
-        setOfButton[1][2] = b31;
-        setOfButton[1][3] = b41;
-        setOfButton[1][4] = b51;
-        setOfButton[1][5] = b61;
-        setOfButton[2][0] = b12;
-        setOfButton[2][1] = b22;
+        setOfButton[2][1] = b31;
+        setOfButton[3][1] = b41;
+        setOfButton[4][1] = b51;
+        setOfButton[5][1] = b61;
+        setOfButton[0][2] = b12;
+        setOfButton[1][2] = b22;
         setOfButton[2][2] = b32;
-        setOfButton[2][3] = b42;
-        setOfButton[2][4] = b52;
-        setOfButton[2][5] = b62;
-        setOfButton[3][0] = b13;
-        setOfButton[3][1] = b23;
-        setOfButton[3][2] = b33;
+        setOfButton[3][2] = b42;
+        setOfButton[4][2] = b52;
+        setOfButton[5][2] = b62;
+        setOfButton[0][3] = b13;
+        setOfButton[1][3] = b23;
+        setOfButton[2][3] = b33;
         setOfButton[3][3] = b43;
-        setOfButton[3][4] = b53;
-        setOfButton[3][5] = b63;
-        setOfButton[4][0] = b14;
-        setOfButton[4][1] = b24;
-        setOfButton[4][2] = b34;
-        setOfButton[4][3] = b44;
+        setOfButton[4][3] = b53;
+        setOfButton[5][3] = b63;
+        setOfButton[0][4] = b14;
+        setOfButton[1][4] = b24;
+        setOfButton[2][4] = b34;
+        setOfButton[3][4] = b44;
         setOfButton[4][4] = b54;
-        setOfButton[4][5] = b64;
-        setOfButton[5][0] = b15;
-        setOfButton[5][1] = b25;
-        setOfButton[5][2] = b35;
-        setOfButton[5][3] = b45;
-        setOfButton[5][4] = b55;
+        setOfButton[5][4] = b64;
+        setOfButton[0][5] = b15;
+        setOfButton[1][5] = b25;
+        setOfButton[2][5] = b35;
+        setOfButton[3][5] = b45;
+        setOfButton[4][5] = b55;
         setOfButton[5][5] = b65;
 
         setOfNameBoard[0] = player11;
@@ -513,11 +512,14 @@ public class ClientGamePageController implements Initializable {
 
     }
 
-    // playing
+    // playing (Button Clicked)
     @FXML
-//	void play(MouseEvent event) throws InterruptedException {
     void play(MouseEvent event) {
-        sendClick(event);
+
+        //send buttion position to server
+        sendButtonPosition(event.toString().substring(32, 34).trim());
+
+
         // set color of player to know whose turn is next
         colorChange();
         // timer of next player
@@ -537,11 +539,11 @@ public class ClientGamePageController implements Initializable {
             ((Button) event.getTarget()).setDisable(true);
             numBombLeft--;
             bombLeft.setText(numBombLeft + "");
-
-            int score = scoreOfPlayer.get(player);
-            scoreOfPlayer.put(player, score++);
-
-            setOfScore[player].setText(score + "");
+//
+//            int score = scoreOfPlayer.get(player);
+//            scoreOfPlayer.put(player, score++);
+//
+//            setOfScore[player].setText(score + "");
             player++;
         }
 
@@ -550,40 +552,32 @@ public class ClientGamePageController implements Initializable {
         }
     }
 
-    void playFromOthers(MouseEvent event) {
-        sendClick(event);
-        // set color of player to know whose turn is next
-        colorChange();
-        // timer of next player
-        startTimer();
-        Button y = (Button) event.getTarget();
+    // receive button position clicked from other clients
+    void playFromOthers(String cl) {
+
+        String s = cl.trim();
+        int j = 0;
+        int i = (Integer.parseInt(s.charAt(0)+"")) - 1;
+        if(s.length() >= 2) {
+            if (!(s.substring(1).equals(","))) {
+                j = Integer.parseInt(s.charAt(1) + "");
+            }
+        }
+
+        // To check button position
+//        display("i = " + i + " j = " + j);
+        Button y = setOfButton[i][j];
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
-            ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-            ((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
-            ((Button) event.getTarget()).setDisable(true);
-            player++;
+            y.setStyle("-fx-font-size: 10");
+            y.setStyle("-fx-background-color:#cccccc");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-            ((Button) event.getTarget()).setText("bomb");
-            ((Button) event.getTarget()).setDisable(true);
-            numBombLeft--;
-            bombLeft.setText(numBombLeft + "");
-
-            int score = scoreOfPlayer.get(player);
-            scoreOfPlayer.put(player, score++);
-
-            setOfScore[player].setText(score + "");
-            player++;
-        }
-
-        if (player == numOfPlayer) {
-            player = 0;
+            y.setStyle("-fx-font-size: 10");
+            y.setText("bomb");
         }
     }
-
 
     // to display count down game timer
     void startTimer() {
@@ -702,6 +696,7 @@ public class ClientGamePageController implements Initializable {
             connected = true;
         }
     */
+
     private void disconnect() {
         try {
             if (sInput != null)
@@ -727,18 +722,7 @@ public class ClientGamePageController implements Initializable {
     public void connectionFailed() {
         // don't react to a <CR> after the username
         connected = false;
-    }
-
-    public void sendClick(MouseEvent event) {
-        if (connected) {
-            ButtonClick bc = new ButtonClick(event);
-            try {
-                sOutput.writeObject(bc);
-            } catch (IOException e) {
-                display("Exception writing to server: " + e);
-            }
-        }
-
+        display("Disconnected.");
     }
 
     /*
@@ -747,47 +731,6 @@ public class ClientGamePageController implements Initializable {
     private void display(String msg) {
         txtArea.appendText(msg + "\n");
     }
-
-//this start connection method is moved to client's start page to be triggered by "connect" button
-	
-/*	public boolean startConnection() {
-		// try to connect to the server
-		try {
-			socket = new Socket(server, port);
-		}
-		// if it failed
-		catch (Exception ec) {
-			display("Error connecting to server:" + ec);
-			return false;
-		}
-
-		String msg = "Connection accepted " + socket.getInetAddress() + ":" + socket.getPort();
-		display(msg);
-
-		 Creating both Data Stream 
-		try {
-			sInput = new ObjectInputStream(socket.getInputStream());
-			sOutput = new ObjectOutputStream(socket.getOutputStream());
-		} catch (IOException eIO) {
-			display("Exception creating new Input/output Streams: " + eIO);
-			return false;
-		}
-
-		// creates the Thread to listen from the server
-		new ListenFromServer().start();
-
-		// Send our username to the server this is the only message that we
-		// will send as a String. All other messages will be ChatMessage objects
-		try {
-			sOutput.writeObject(username);
-		} catch (IOException eIO) {
-			display("Exception doing login : " + eIO);
-			disconnect();
-			return false;
-		}
-		// success we inform the caller that it worked
-		return true;
-	}*/
 
     class ListenFromServer extends Thread {
 
@@ -836,22 +779,23 @@ public class ClientGamePageController implements Initializable {
             });
 
             while (true) {
-
                 try {
                     String msg = (String) sInput.readObject();
-//					display(msg);
-                    String[] split = msg.split(":");
-                    if (split[1].equals("WHOISIN")) {
-                        Platform.runLater(() -> {
-                            users.add(split[0]);
-                        });
-                        ;
-                    } else if (split[1].equals("REMOVE")) {
-                        Platform.runLater(() -> {
-                            users.remove(split[0]);
-                        });
+                    if (msg.length() > 5) {
+                        String[] split = msg.split(":");
+                        if (split[1].equals("WHOISIN")) {
+                            Platform.runLater(() -> {
+                                users.add(split[0]);
+                            });
+                        } else if (split[1].equals("REMOVE")) {
+                            Platform.runLater(() -> {
+                                users.remove(split[0]);
+                            });
+                        }
                     } else {
-                        txtArea.appendText(msg);
+                        Platform.runLater(() -> {
+                            playFromOthers(msg);
+                        });
                     }
                 } catch (IOException e) {
                     display("Server has close the connection");
@@ -864,20 +808,7 @@ public class ClientGamePageController implements Initializable {
                 // can't happen with a String object but need the catch anyhow
                 catch (ClassNotFoundException e) {
                     e.printStackTrace();
-//                } ClassNotFoundException e2) {
-//
                 }
-
-//                try {
-////					ButtonClick bc = (ButtonClick) sInput.readObject();
-//                    MouseEvent event = (MouseEvent) sInput.readObject();
-//                    playFromOthers(event);
-//                } catch (ClassNotFoundException | IOException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-
-
             }
         }
     }
@@ -906,4 +837,16 @@ public class ClientGamePageController implements Initializable {
             }
         }
     }
+
+    public void sendButtonPosition(String pos) {
+        if (connected) {
+            ButtonClick msg = new ButtonClick(ButtonClick.CLICK, pos);
+            try {
+                sOutput.writeObject(msg);
+            } catch (IOException e) {
+                display("Exception writing to server: " + e);
+            }
+        }
+    }
+
 }

@@ -2,19 +2,24 @@ package game.model;
 
 import java.io.Serializable;
 
-import javafx.scene.input.MouseEvent;
-
 public class ButtonClick implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private MouseEvent event;
+    protected static final long serialVersionUID = 10L;
+    public static final int WHOISIN = 0, CLICK = 1, LOGOUT = 2;
+    private int type;
+    private String message;
 
-	public ButtonClick(MouseEvent event) {
-		this.event = event;
-	}
-	
-	public MouseEvent getEvent() {
-		return event;
-	}
+    public ButtonClick(int type, String message) {
+        this.type = type;
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public int getType() {
+        return type;
+    }
 
 }

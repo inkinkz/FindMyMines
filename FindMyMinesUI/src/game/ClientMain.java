@@ -1,17 +1,10 @@
 
 package game;
 
-import javafx.*;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
 import javafx.fxml.FXMLLoader;
 
 public class ClientMain extends Application {
@@ -32,7 +25,6 @@ public class ClientMain extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void main(String[] args) {

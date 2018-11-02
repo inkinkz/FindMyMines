@@ -366,7 +366,6 @@ public class ServerGamePageController implements Initializable {
     private ListView<String> listUsersConnected;
 
 
-
     // game
 
     static int numOfPlayer; // how many player
@@ -513,40 +512,40 @@ public class ServerGamePageController implements Initializable {
 
         // TODO Auto-generated method stub
         setOfButton[0][0] = b1;
-        setOfButton[0][1] = b2;
-        setOfButton[0][2] = b3;
-        setOfButton[0][3] = b4;
-        setOfButton[0][4] = b5;
-        setOfButton[0][5] = b6;
-        setOfButton[1][0] = b11;
+        setOfButton[1][0] = b2;
+        setOfButton[2][0] = b3;
+        setOfButton[3][0] = b4;
+        setOfButton[4][0] = b5;
+        setOfButton[5][0] = b6;
+        setOfButton[0][1] = b11;
         setOfButton[1][1] = b21;
-        setOfButton[1][2] = b31;
-        setOfButton[1][3] = b41;
-        setOfButton[1][4] = b51;
-        setOfButton[1][5] = b61;
-        setOfButton[2][0] = b12;
-        setOfButton[2][1] = b22;
+        setOfButton[2][1] = b31;
+        setOfButton[3][1] = b41;
+        setOfButton[4][1] = b51;
+        setOfButton[5][1] = b61;
+        setOfButton[0][2] = b12;
+        setOfButton[1][2] = b22;
         setOfButton[2][2] = b32;
-        setOfButton[2][3] = b42;
-        setOfButton[2][4] = b52;
-        setOfButton[2][5] = b62;
-        setOfButton[3][0] = b13;
-        setOfButton[3][1] = b23;
-        setOfButton[3][2] = b33;
+        setOfButton[3][2] = b42;
+        setOfButton[4][2] = b52;
+        setOfButton[5][2] = b62;
+        setOfButton[0][3] = b13;
+        setOfButton[1][3] = b23;
+        setOfButton[2][3] = b33;
         setOfButton[3][3] = b43;
-        setOfButton[3][4] = b53;
-        setOfButton[3][5] = b63;
-        setOfButton[4][0] = b14;
-        setOfButton[4][1] = b24;
-        setOfButton[4][2] = b34;
-        setOfButton[4][3] = b44;
+        setOfButton[4][3] = b53;
+        setOfButton[5][3] = b63;
+        setOfButton[0][4] = b14;
+        setOfButton[1][4] = b24;
+        setOfButton[2][4] = b34;
+        setOfButton[3][4] = b44;
         setOfButton[4][4] = b54;
-        setOfButton[4][5] = b64;
-        setOfButton[5][0] = b15;
-        setOfButton[5][1] = b25;
-        setOfButton[5][2] = b35;
-        setOfButton[5][3] = b45;
-        setOfButton[5][4] = b55;
+        setOfButton[5][4] = b64;
+        setOfButton[0][5] = b15;
+        setOfButton[1][5] = b25;
+        setOfButton[2][5] = b35;
+        setOfButton[3][5] = b45;
+        setOfButton[4][5] = b55;
         setOfButton[5][5] = b65;
 
         setOfNameBoard[0] = player11;
@@ -800,8 +799,6 @@ public class ServerGamePageController implements Initializable {
 
 	/*if (playerReady.getValue() == numOfPlayer) {
 		//start game = first player leftPane enabled + startTimer
-
-
 	}*/
 
         //if (GAME_STATE == "WAITING") {
