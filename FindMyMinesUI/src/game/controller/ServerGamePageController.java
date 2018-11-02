@@ -283,7 +283,6 @@ public class ServerGamePageController implements Initializable {
 	Label[] setOfNameBoard = new Label[10];
 	Label[] setOfScoreBoard = new Label[10];
 	int numBombLeft = 11;
-	String GAME_STATE; // default = waiting for player
 
 	// SERVER
 
@@ -669,24 +668,28 @@ public class ServerGamePageController implements Initializable {
 
 
 	
+	String GAME_STATE = "WAITING" ; // default = waiting for player
+	//boolean firstTime =true;
+	// GAME_STATE = "WAITING";
 	@FXML
 	void start(ActionEvent event) {
-	
-	// complete game template
-	numOfPlayer = 4;
-	//numOfPlayer = users.size(); // get from how many client
-	setupPane();
-	setScore();
-	// color change for the starting player
-	setOfPlayerPane[player].setStyle("-fx-background-color: grey");
-	
-	/*if (playerReady.getValue() == numOfPlayer) {
-		//start game = first player leftPane enabled + startTimer
 		
+		//error
+		/*if (playerReady.getValue() == numOfPlayer) {
+			//start game = first player leftPane enabled + startTimer
+			
+			
+		}*/
 		
-	}*/
+		if (GAME_STATE == "WAITING") {
+			// complete game template
+			numOfPlayer = 4;
+			// numOfPlayer = users.size(); // get from how many client
+			setupPane();
+			setScore();
+			// color change for the starting player
+			setOfPlayer[player].setStyle("-fx-background-color: grey");
 
-		//if (GAME_STATE == "WAITING") {
 			assignBomb();
 			setUpBomb();
 			try {
@@ -695,40 +698,26 @@ public class ServerGamePageController implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			startButton.setVisible(false);
-			startButton.setDisable(true);
-			stopButton.setVisible(true);
-			stopButton.setDisable(false);
-			/*GAME_STATE = "ONGOING";
-			System.out.println(GAME_STATE);*/
-
-		//}
-	}
-			
-	@FXML
-	void stop(ActionEvent event) {
-	//	if (GAME_STATE == "ONGOING") {
-			// setText for score board -- for stop button
-			stopButton.setVisible(false);
-			stopButton.setDisable(true);
-			resetButton.setVisible(true);
-			resetButton.setDisable(false);
-			
-	//	}
+			GAME_STATE = "ONGOING";
+			startButton.setText("Stop");
+			System.out.println("done if 1");
+			return;
+		}
+		if (GAME_STATE == "ONGOING") {
+			startButton.setText("Reset");
+			GAME_STATE = "ENDED";
+			System.out.println("done if 2");
+			return;
+		}
+		if (GAME_STATE == "ENDED") {
+			startButton.setText("Start");
+			GAME_STATE = "ONGOING";
+			System.out.println("done if 3");
+			//firstTime =true;
+			return;
+		}
 	}
 	
-
-	
-	@FXML
-	void resetState(ActionEvent event) {
-		resetButton.setVisible(false);
-		resetButton.setDisable(true);
-		startButton.setVisible(true);
-		startButton.setDisable(false);
-		
-		new ServerGamePageController();
-	}
 
 	@FXML
 	private Button buttonDone;
