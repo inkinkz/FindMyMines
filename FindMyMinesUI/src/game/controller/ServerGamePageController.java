@@ -378,7 +378,7 @@ public class ServerGamePageController implements Initializable {
 	Label[] setOfNameBoard = new Label[10];
 	Label[] setOfScoreBoard = new Label[10];
 	int numBombLeft = 11;
-	String GAME_STATE; // default = waiting for player
+	
 
 	// SERVER
 
@@ -783,9 +783,57 @@ public class ServerGamePageController implements Initializable {
 		      thread.start();
 		    }
 
-
-	
+	String GAME_STATE = "WAITING" ; // default = waiting for player
+	//boolean firstTime =true;
+	// GAME_STATE = "WAITING";
 	@FXML
+	void start(ActionEvent event) {
+		
+		//error
+		/*if (playerReady.getValue() == numOfPlayer) {
+			//start game = first player leftPane enabled + startTimer
+			
+			
+		}*/
+		
+		if (GAME_STATE == "WAITING") {
+			// complete game template
+			numOfPlayer = 4;
+			// numOfPlayer = users.size(); // get from how many client
+			setupPane();
+			setScore();
+			// color change for the starting player
+			setOfPlayer[player].setStyle("-fx-background-color: grey");
+
+			assignBomb();
+			setUpBomb();
+			try {
+				showBomb();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			GAME_STATE = "ONGOING";
+			startButton.setText("Stop");
+			System.out.println("done if 1");
+			return;
+		}
+		if (GAME_STATE == "ONGOING") {
+			startButton.setText("Reset");
+			GAME_STATE = "ENDED";
+			System.out.println("done if 2");
+			return;
+		}
+		if (GAME_STATE == "ENDED") {
+			startButton.setText("Start");
+			GAME_STATE = "ONGOING";
+			System.out.println("done if 3");
+			//firstTime =true;
+			return;
+		}
+	}
+	
+	/*@FXML
 	void start(ActionEvent event) {
 	
 	// complete game template
@@ -795,12 +843,12 @@ public class ServerGamePageController implements Initializable {
 	setScore();
 	// color change for the starting player
 	setOfPlayer[player].setStyle("-fx-background-color: grey");
-	
-	/*if (playerReady.getValue() == numOfPlayer) {
+	//error
+	if (playerReady.getValue() == numOfPlayer) {
 		//start game = first player leftPane enabled + startTimer
 		
 		
-	}*/
+	}
 
 		//if (GAME_STATE == "WAITING") {
 			assignBomb();
@@ -816,15 +864,15 @@ public class ServerGamePageController implements Initializable {
 			startButton.setDisable(true);
 			stopButton.setVisible(true);
 			stopButton.setDisable(false);
-			/*GAME_STATE = "ONGOING";
-			System.out.println(GAME_STATE);*/
+			GAME_STATE = "ONGOING";
+			System.out.println(GAME_STATE);
 
 		//}
-	}
+	}*/
 			
 	@FXML
 	void stop(ActionEvent event) {
-	//	if (GAME_STATE == "ONGOING") {
+	/*//	if (GAME_STATE == "ONGOING") {
 			// setText for score board -- for stop button
 			stopButton.setVisible(false);
 			stopButton.setDisable(true);
@@ -832,18 +880,18 @@ public class ServerGamePageController implements Initializable {
 			resetButton.setDisable(false);
 			
 	//	}
-	}
+*/	}
 	
 
 	
 	@FXML
 	void resetState(ActionEvent event) {
-		resetButton.setVisible(false);
+		/*resetButton.setVisible(false);
 		resetButton.setDisable(true);
 		startButton.setVisible(true);
 		startButton.setDisable(false);
 		
-		new ServerGamePageController();
+		new ServerGamePageController();*/
 	}
 
 	@FXML
