@@ -613,16 +613,24 @@ public class ClientGamePageController implements Initializable {
 		stage.show();
 	}
 
+	boolean alreadyReady =false;
 	// need to change to ready - disable when pressed
 	@FXML
 	void ready(ActionEvent event) throws IOException {
-		// number of ready player increase every time a client click ready
-		int ready = playerReady.getValue();
-		playerReady = new SimpleIntegerProperty(ready++).asObject();
-		
-		// set ready button to disable after being pressed
-		readyButton.setDisable(true);
-		
+	
+		if (! alreadyReady) {
+			// number of ready player increase every time a client click ready
+			int ready = playerReady.getValue();
+			playerReady = new SimpleIntegerProperty(ready++).asObject();
+			// set ready button to disable after being pressed
+			readyButton.setText("Not Ready");
+
+		}else {
+		/*if (alreadyReady) {*/
+			// set ready button to disable after being pressed
+			readyButton.setText("Ready");
+		}
+		alreadyReady = !alreadyReady;
 	}
 
 	// sort score
