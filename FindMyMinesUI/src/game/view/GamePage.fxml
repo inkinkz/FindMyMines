@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="listUsersConnected" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.ServerGamePageController">
+<AnchorPane id="listUsersConnected" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.ServerGamePageController">
    <children>
-      <AnchorPane fx:id="paneOfBomb" layoutY="165.0" prefHeight="500.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="150.0">
+      <AnchorPane fx:id="leftPane" layoutY="165.0" prefHeight="500.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="150.0">
          <children>
             <Button fx:id="b1" layoutX="54.0" layoutY="70.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" AnchorPane.leftAnchor="54.0">
                <font>
@@ -354,7 +354,7 @@
                </font>
             </Label>
          </children></AnchorPane>
-      <AnchorPane layoutX="587.0" prefHeight="261.0" prefWidth="410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="650.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+      <AnchorPane fx:id="rightPane" layoutX="587.0" prefHeight="261.0" prefWidth="410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="650.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
             <TextArea fx:id="textArea" layoutY="90.0" prefHeight="118.0" prefWidth="295.0" AnchorPane.bottomAnchor="292.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="90.0">
                <font>

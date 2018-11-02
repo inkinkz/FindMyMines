@@ -436,7 +436,7 @@ public class ServerGamePageController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		leftPane.setDisable(true);
 		textArea.setEditable(false);
 		startServer();
 		
@@ -789,7 +789,8 @@ public class ServerGamePageController implements Initializable {
 	void start(ActionEvent event) {
 	
 	// complete game template
-	numOfPlayer = users.size(); // get from how many client
+	numOfPlayer = 4;
+	//numOfPlayer = users.size(); // get from how many client
 	setupPane();
 	setScore();
 	// color change for the starting player
