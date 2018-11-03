@@ -1,5 +1,6 @@
 package game.controller;
 
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 
 import java.awt.Font;
@@ -81,8 +82,8 @@ public class ClientStartPageController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-    		Image image = new Image(getClass().getResourceAsStream("/bomb.png"));
-        backImage.setImage(image);
+		Image image = new Image(getClass().getResourceAsStream("/bomb.png"));
+		backImage.setImage(image);
 
     }
     
@@ -92,24 +93,24 @@ public class ClientStartPageController implements Initializable {
 		server = txtServer.getText().trim();
 		userName = txtUser.getText().trim();
 		
-		if (server.isEmpty() == true && userName.isEmpty() == true) {
+		if (server.isEmpty() && userName.isEmpty()) {
 			warnIP.setVisible(true);
 			warnName.setVisible(true);
 			return;
 		}
-		else if (server.isEmpty() == true) {
+		else if (server.isEmpty()) {
 			warnIP.setVisible(true);
 			warnName.setVisible(false);
 			return;
 		}
-		else if (userName.isEmpty() == true) {
+		else if (userName.isEmpty()) {
 			warnName.setVisible(true);
 			warnIP.setVisible(false);
 			return;
 		}
 
 		else if (!startConnection()) {
-			System.out.println("No server to connect!");
+			showErrorPopup();
 			return;
 		}
 
@@ -198,11 +199,21 @@ public class ClientStartPageController implements Initializable {
 	
     @FXML
     void clickedButton(MouseEvent event) {
-    //	connectButton.setStyle("-fx-background-color: #8D99AE");
+    	//connectButton.setStyle("-fx-background-color: #8D99AE");
     }
     
     @FXML
     void releasedButton(MouseEvent event) {
     //	connectButton.setStyle("-fx-background-color: #EDF2F4");
     }
+
+	private void showErrorPopup() {
+		String content = "Cannot connect to server. Please make sure the IP address is correct and the server is online.";
+		Alert alert = new Alert(Alert.AlertType.ERROR, content, ButtonType.OK);
+		alert.setHeaderText("Connection Error");
+		alert.showAndWait();
+		if(alert.getResult() == ButtonType.OK){
+			alert.close();
+		}
+	}
 }
