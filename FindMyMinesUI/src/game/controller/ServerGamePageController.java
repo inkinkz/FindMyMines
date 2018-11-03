@@ -35,289 +35,287 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 
 public class ServerGamePageController implements Initializable {
-	
-	@FXML
-	private AnchorPane parentPane;
-	
-	@FXML
-	private AnchorPane leftPane;
-	
-	@FXML
+
+    @FXML
+    private AnchorPane parentPane;
+
+    @FXML
+    private AnchorPane leftPane;
+
+    @FXML
     private AnchorPane rightPane;
-	
-	@FXML
-	private Button b1;
 
-	@FXML
-	private Button b2;
+    @FXML
+    private Button b1;
 
-	@FXML
-	private Button b3;
+    @FXML
+    private Button b2;
 
-	@FXML
-	private Button b4;
+    @FXML
+    private Button b3;
 
-	@FXML
-	private Button b5;
+    @FXML
+    private Button b4;
 
-	@FXML
-	private Button b6;
+    @FXML
+    private Button b5;
 
-	@FXML
-	private Button b11;
+    @FXML
+    private Button b6;
 
-	@FXML
-	private Button b21;
+    @FXML
+    private Button b11;
 
-	@FXML
-	private Button b31;
+    @FXML
+    private Button b21;
 
-	@FXML
-	private Button b41;
+    @FXML
+    private Button b31;
 
-	@FXML
-	private Button b51;
+    @FXML
+    private Button b41;
 
-	@FXML
-	private Button b61;
+    @FXML
+    private Button b51;
 
-	@FXML
-	private Button b12;
+    @FXML
+    private Button b61;
 
-	@FXML
-	private Button b22;
+    @FXML
+    private Button b12;
 
-	@FXML
-	private Button b32;
+    @FXML
+    private Button b22;
 
-	@FXML
-	private Button b42;
+    @FXML
+    private Button b32;
 
-	@FXML
-	private Button b52;
+    @FXML
+    private Button b42;
 
-	@FXML
-	private Button b62;
+    @FXML
+    private Button b52;
 
-	@FXML
-	private Button b13;
+    @FXML
+    private Button b62;
 
-	@FXML
-	private Button b23;
+    @FXML
+    private Button b13;
 
-	@FXML
-	private Button b33;
+    @FXML
+    private Button b23;
 
-	@FXML
-	private Button b43;
+    @FXML
+    private Button b33;
 
-	@FXML
-	private Button b53;
+    @FXML
+    private Button b43;
 
-	@FXML
-	private Button b63;
+    @FXML
+    private Button b53;
 
-	@FXML
-	private Button b14;
+    @FXML
+    private Button b63;
 
-	@FXML
-	private Button b24;
+    @FXML
+    private Button b14;
 
-	@FXML
-	private Button b34;
+    @FXML
+    private Button b24;
 
-	@FXML
-	private Button b44;
+    @FXML
+    private Button b34;
 
-	@FXML
-	private Button b54;
+    @FXML
+    private Button b44;
 
-	@FXML
-	private Button b64;
+    @FXML
+    private Button b54;
 
-	@FXML
-	private Button b15;
+    @FXML
+    private Button b64;
 
-	@FXML
-	private Button b25;
+    @FXML
+    private Button b15;
 
-	@FXML
-	private Button b35;
+    @FXML
+    private Button b25;
 
-	@FXML
-	private Button b45;
+    @FXML
+    private Button b35;
 
-	@FXML
-	private Button b55;
+    @FXML
+    private Button b45;
 
-	@FXML
-	private Button b65;
+    @FXML
+    private Button b55;
 
-	@FXML
-	private Label showTime;
+    @FXML
+    private Button b65;
 
-	@FXML
-	private Pane player1Pane;
+    @FXML
+    private Label showTime;
 
-	@FXML
-	private Label player1;
+    @FXML
+    private Pane player1Pane;
 
-	@FXML
-	private Label score1;
+    @FXML
+    private Label player1;
 
-	@FXML
-	private Pane player2Pane;
+    @FXML
+    private Label score1;
 
-	@FXML
-	private Label player2;
+    @FXML
+    private Pane player2Pane;
 
-	@FXML
-	private Label score2;
+    @FXML
+    private Label player2;
 
-	@FXML
-	private Pane player3Pane;
+    @FXML
+    private Label score2;
 
-	@FXML
-	private Label player3;
+    @FXML
+    private Pane player3Pane;
 
-	@FXML
-	private Label score3;
+    @FXML
+    private Label player3;
 
-	@FXML
-	private Pane player4Pane;
+    @FXML
+    private Label score3;
 
-	@FXML
-	private Label player4;
+    @FXML
+    private Pane player4Pane;
 
-	@FXML
-	private Label score4;
+    @FXML
+    private Label player4;
 
-	@FXML
-	private Pane player5Pane;
+    @FXML
+    private Label score4;
 
-	@FXML
-	private Label player5;
+    @FXML
+    private Pane player5Pane;
 
-	@FXML
-	private Label score5;
+    @FXML
+    private Label player5;
 
-	@FXML
-	private Pane player6Pane;
+    @FXML
+    private Label score5;
 
-	@FXML
-	private Label player6;
+    @FXML
+    private Pane player6Pane;
 
-	@FXML
-	private Label score6;
+    @FXML
+    private Label player6;
 
-	@FXML
-	private Pane player7Pane;
+    @FXML
+    private Label score6;
 
-	@FXML
-	private Label player7;
+    @FXML
+    private Pane player7Pane;
 
-	@FXML
-	private Label score7;
+    @FXML
+    private Label player7;
 
-	@FXML
-	private Pane player8Pane;
+    @FXML
+    private Label score7;
 
-	@FXML
-	private Label player8;
+    @FXML
+    private Pane player8Pane;
 
-	@FXML
-	private Label score8;
+    @FXML
+    private Label player8;
 
-	@FXML
-	private Pane player9Pane;
+    @FXML
+    private Label score8;
 
-	@FXML
-	private Label player9;
+    @FXML
+    private Pane player9Pane;
 
-	@FXML
-	private Label score9;
+    @FXML
+    private Label player9;
 
-	@FXML
-	private Pane player10Pane;
+    @FXML
+    private Label score9;
 
-	@FXML
-	private Label player10;
+    @FXML
+    private Pane player10Pane;
 
-	@FXML
-	private Label score10;
+    @FXML
+    private Label player10;
 
-	@FXML
-	private Label bombLeft;
+    @FXML
+    private Label score10;
 
-	@FXML
-	private Button startButton;
-	
-	@FXML
-	private Button stopButton;
-	
-	@FXML
-	private Button resetButton;
+    @FXML
+    private Label bombLeft;
 
-	@FXML
-	private TextArea textArea;
+    @FXML
+    private Button startButton;
 
-	@FXML
-	private ListView<String> listUsersConnected;
-	
-	@FXML
+    @FXML
+    private Button stopButton;
+
+    @FXML
+    private Button resetButton;
+
+    @FXML
+    private TextArea textArea;
+
+    @FXML
+    private ListView<String> listUsersConnected;
+
+    @FXML
     private ChoiceBox<String> modebox;
 
-	@FXML
+    @FXML
     private Label warnReady;
-	
-	
-
-	// game
-
-	static int numOfPlayer; // how many player
-	Button[][] setOfButton = new Button[6][6];
-	Pane[] setOfPlayerPane = new Pane[10]; // limit player :10
-	private static ObservableMap<Integer,Integer> scoreOfPlayer;
-	private ObservableValue<Integer> playerReady; // number of player ready
-	Label[] setOfScore = new Label[10];
-	Label[] setOfPlayer = new Label[10];
-	Label[] setOfNameBoard = new Label[10];
-	Label[] setOfScoreBoard = new Label[10];
-	int numBombLeft = 11;
 
 
+    // game
 
-	// SERVER
+    static int numOfPlayer; // how many player
+    static Button[][] setOfButton = new Button[6][6];
+    Pane[] setOfPlayerPane = new Pane[10]; // limit player :10
+    private static ObservableMap<Integer, Integer> scoreOfPlayer;
+    private ObservableValue<Integer> playerReady; // number of player ready
+    Label[] setOfScore = new Label[10];
+    Label[] setOfPlayer = new Label[10];
+    Label[] setOfNameBoard = new Label[10];
+    Label[] setOfScoreBoard = new Label[10];
+    int numBombLeft = 11;
 
-	public FindMyMinesServer server;
 
-	private ObservableList<String> users;
+    // SERVER
 
-	public void startServer() {
-		// game initialize
-		scoreOfPlayer = FXCollections.observableHashMap();
-		playerReady = new SimpleIntegerProperty(0).asObject();
-		// create a new Server
-		server = new FindMyMinesServer(1500, this);
-		users = FXCollections.observableArrayList();
-		listUsersConnected.setItems(users);
-		assignBombDefault();
-		new ServerRunning().start();
-	}
+    public FindMyMinesServer server;
 
-	/*
-	 * A thread to run the Server
-	 */
-	class ServerRunning extends Thread {
-		public void run() {
-			server.start(); // should execute until if fails
-			
-			// the server failed
-			appendEvent("Server Stopped \n");
-			server = null;
-			users = null;
-		}
-	}
+    private ObservableList<String> users;
+
+    public void startServer() {
+        // game initialize
+        scoreOfPlayer = FXCollections.observableHashMap();
+        playerReady = new SimpleIntegerProperty(0).asObject();
+        // create a new Server
+        server = new FindMyMinesServer(1500, this);
+        users = FXCollections.observableArrayList();
+        listUsersConnected.setItems(users);
+        assignBombDefault();
+        new ServerRunning().start();
+    }
+
+    /*
+     * A thread to run the Server
+     */
+    class ServerRunning extends Thread {
+        public void run() {
+            server.start(); // should execute until if fails
+
+            // the server failed
+            appendEvent("Server Stopped \n");
+            server = null;
+            users = null;
+        }
+    }
 
     public void addUser(String user) {
         Platform.runLater(() -> {
@@ -342,25 +340,25 @@ public class ServerGamePageController implements Initializable {
     }
 
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		leftPane.setDisable(true);
-		textArea.setEditable(false);
+    public void initialize(URL arg0, ResourceBundle arg1) {
+//        leftPane.setDisable(true);
+        textArea.setEditable(false);
 
-		warnReady.setVisible(false);
-		
-		// set up mode selection
-		ObservableList<String> availableChoices = FXCollections.observableArrayList( "Default Mode" ,"Quick Game", "Multipoints Bomb"); 
-		modebox.setItems(availableChoices);
-		modebox.setValue("Default Mode");
-		
-		
-		startServer();
-		
-		
-}
+        warnReady.setVisible(false);
+
+        // set up mode selection
+        ObservableList<String> availableChoices = FXCollections.observableArrayList("Default Mode", "Quick Game", "Multipoints Bomb");
+        modebox.setItems(availableChoices);
+        modebox.setValue("Default Mode");
+
+
+        startServer();
+
+
+    }
 
     private void setScore() {
-        for (int i=0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             scoreOfPlayer.put(i, 0);
         }
     }
@@ -368,23 +366,23 @@ public class ServerGamePageController implements Initializable {
     private void setUpBomb() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
-            	int result = getValueOfSpace(i, j);
-				Button y = setOfButton[i][j];
-				if (result == 0) {
-					y.setStyle("-fx-font-size: 0.0"); // blank
-				}
-				if (result == 1) {
-					y.setStyle("-fx-font-size: 0.1"); // bomb
-				}
-				if (result == 2) {
-					y.setStyle("-fx-font-size: 0.2"); // bomb
-				}
-				if (result == 3) {
-					y.setStyle("-fx-font-size: 0.3"); // bomb
-				}
-				if (result == 4) {
-					y.setStyle("-fx-font-size: 0.4"); // bomb
-				}
+                int result = getValueOfSpace(i, j);
+                Button y = setOfButton[i][j];
+                if (result == 0) {
+                    y.setStyle("-fx-font-size: 0.0"); // blank
+                }
+                if (result == 1) {
+                    y.setStyle("-fx-font-size: 0.1"); // bomb
+                }
+                if (result == 2) {
+                    y.setStyle("-fx-font-size: 0.2"); // bomb
+                }
+                if (result == 3) {
+                    y.setStyle("-fx-font-size: 0.3"); // bomb
+                }
+                if (result == 4) {
+                    y.setStyle("-fx-font-size: 0.4"); // bomb
+                }
 
             }
         }
@@ -404,23 +402,23 @@ public class ServerGamePageController implements Initializable {
         }
     }
 
-	private void setupPane() {
-		// put each pane into setOfPlayer
-		setOfPlayerPane[0] = player1Pane;
-		setOfPlayerPane[1] = player2Pane;
-		setOfPlayerPane[2] = player3Pane;
-		setOfPlayerPane[3] = player4Pane;
-		setOfPlayerPane[4] = player5Pane;
-		setOfPlayerPane[5] = player6Pane;
-		setOfPlayerPane[6] = player7Pane;
-		setOfPlayerPane[7] = player8Pane;
-		setOfPlayerPane[8] = player9Pane;
-		setOfPlayerPane[9] = player10Pane;
+    private void setupPane() {
+        // put each pane into setOfPlayer
+        setOfPlayerPane[0] = player1Pane;
+        setOfPlayerPane[1] = player2Pane;
+        setOfPlayerPane[2] = player3Pane;
+        setOfPlayerPane[3] = player4Pane;
+        setOfPlayerPane[4] = player5Pane;
+        setOfPlayerPane[5] = player6Pane;
+        setOfPlayerPane[6] = player7Pane;
+        setOfPlayerPane[7] = player8Pane;
+        setOfPlayerPane[8] = player9Pane;
+        setOfPlayerPane[9] = player10Pane;
 
-		// to hide who does not play
-		for (int i = numOfPlayer; i < 10; i++) {
-			setOfPlayerPane[i].setVisible(false);
-		}
+        // to hide who does not play
+        for (int i = numOfPlayer; i < 10; i++) {
+            setOfPlayerPane[i].setVisible(false);
+        }
 
         setOfScore[0] = score1;
         setOfScore[1] = score2;
@@ -482,356 +480,359 @@ public class ServerGamePageController implements Initializable {
     int numBomb = 0;
 
     private void assignBombDefault() {
-		// assign bomb to the slot
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
+        // assign bomb to the slot
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
 
-				int result = (int) Math.ceil(Math.random() * 2); //
-				// float result = (float) Math.random();
-				/*
-				 * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
-				 */
-				if (numBomb >= 11) {
-					result = 1;
-				}
-				if (result == 1) {
-					valueOfSpace[i][j] = 0;// free space
-				}
-				if (result == 2) {
-					valueOfSpace[i][j] = 1;// bomb
-					numBomb++;
-				}
+                int result = (int) Math.ceil(Math.random() * 2); //
+                // float result = (float) Math.random();
+                /*
+                 * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
+                 */
+                if (numBomb >= 11) {
+                    result = 1;
+                }
+                if (result == 1) {
+                    valueOfSpace[i][j] = 0;// free space
+                }
+                if (result == 2) {
+                    valueOfSpace[i][j] = 1;// bomb
+                    numBomb++;
+                }
 
-			}
-		}
+            }
+        }
 
-		// fix number of bomb to 11
-		while (numBomb != 11) {
-			for (int i = 0; i < 6; i++) {
-				for (int j = 0; j < 6; j++) {
+        // fix number of bomb to 11
+        while (numBomb != 11) {
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 6; j++) {
 
-					if (valueOfSpace[i][j] == 0) {
-						int result = (int) Math.ceil(Math.random() * 2);
-						// float result = (float) Math.random();
-						/*
-						 * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
-						 */
-						if (result == 1) {
-							valueOfSpace[i][j] = 0;// free space
-						}
-						if (result == 2) {
-							valueOfSpace[i][j] = 1;// bomb
-							numBomb++;
-						}
-					}
-				}
+                    if (valueOfSpace[i][j] == 0) {
+                        int result = (int) Math.ceil(Math.random() * 2);
+                        // float result = (float) Math.random();
+                        /*
+                         * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
+                         */
+                        if (result == 1) {
+                            valueOfSpace[i][j] = 0;// free space
+                        }
+                        if (result == 2) {
+                            valueOfSpace[i][j] = 1;// bomb
+                            numBomb++;
+                        }
+                    }
+                }
 
-			}
-		}
+            }
+        }
 
-		// set number in free slot
+        // set number in free slot
 
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
 
-				int countBombAround = 0;
-				if (valueOfSpace[i][j] == 0) { // if this is free slot
-					if (i - 1 >= 0 && j - 1 >= 0) { // if there is a slot
-						if (valueOfSpace[i - 1][j - 1] == 1) { // if the upperleft is bomb
-							countBombAround++;
-						}
-					}
-					if (i >= 0 && j - 1 >= 0) {
-						if (valueOfSpace[i][j - 1] == 1) {
-							countBombAround++;
-						}
-					}
-					if (i + 1 <= 5 && j - 1 >= 0) {
-						if (valueOfSpace[i + 1][j - 1] == 1) {
-							countBombAround++;
-						}
-					}
-					if (i - 1 >= 0 && j >= 0) {
-						if (valueOfSpace[i - 1][j] == 1) {
-							countBombAround++;
-						}
-					}
-					if (i + 1 <= 5 && j >= 0) {
-						if (valueOfSpace[i + 1][j] == 1) {
-							countBombAround++;
-						}
-					}
-					if (i - 1 >= 0 && j + 1 <= 5) {
-						if (valueOfSpace[i - 1][j + 1] == 1) {
-							countBombAround++;
-						}
-					}
-					if (i >= 0 && j + 1 <= 5) {
-						if (valueOfSpace[i][j + 1] == 1) {
-							countBombAround++;
-						}
-					}
-					if (i + 1 <= 5 && j + 1 <= 5) {
-						if (valueOfSpace[i + 1][j + 1] == 1) {
-							countBombAround++;
-						}
-					}
-					bombAround[i][j] = countBombAround;
+                int countBombAround = 0;
+                if (valueOfSpace[i][j] == 0) { // if this is free slot
+                    if (i - 1 >= 0 && j - 1 >= 0) { // if there is a slot
+                        if (valueOfSpace[i - 1][j - 1] == 1) { // if the upperleft is bomb
+                            countBombAround++;
+                        }
+                    }
+                    if (i >= 0 && j - 1 >= 0) {
+                        if (valueOfSpace[i][j - 1] == 1) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i + 1 <= 5 && j - 1 >= 0) {
+                        if (valueOfSpace[i + 1][j - 1] == 1) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i - 1 >= 0 && j >= 0) {
+                        if (valueOfSpace[i - 1][j] == 1) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i + 1 <= 5 && j >= 0) {
+                        if (valueOfSpace[i + 1][j] == 1) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i - 1 >= 0 && j + 1 <= 5) {
+                        if (valueOfSpace[i - 1][j + 1] == 1) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i >= 0 && j + 1 <= 5) {
+                        if (valueOfSpace[i][j + 1] == 1) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i + 1 <= 5 && j + 1 <= 5) {
+                        if (valueOfSpace[i + 1][j + 1] == 1) {
+                            countBombAround++;
+                        }
+                    }
+                    bombAround[i][j] = countBombAround;
 
-				}
-			}
-		}
+                }
+            }
+        }
 
-	}
+    }
 
-	private void assignBombMultipleScore() {
-		// assign bomb to the slot
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
+    private void assignBombMultipleScore() {
+        // assign bomb to the slot
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
 
-				int result = (int) Math.ceil(Math.random() * 9); //
-				// float result = (float) Math.random();
+                int result = (int) Math.ceil(Math.random() * 9); //
+                // float result = (float) Math.random();
 
-				/*
-				 * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
-				 */
-				if (numBomb >= 11) {
-					result = 1;
-				}
-				if (result == 1) {
-					valueOfSpace[i][j] = 0;// free space
-				}
-				if (result == 6) {
-					valueOfSpace[i][j] = 0;// free space
-				}
-				if (result == 7) {
-					valueOfSpace[i][j] = 0;// free space
-				}
-				if (result == 8) {
-					valueOfSpace[i][j] = 0;// free space
-				}
+                /*
+                 * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
+                 */
+                if (numBomb >= 11) {
+                    result = 1;
+                }
+                if (result == 1) {
+                    valueOfSpace[i][j] = 0;// free space
+                }
+                if (result == 6) {
+                    valueOfSpace[i][j] = 0;// free space
+                }
+                if (result == 7) {
+                    valueOfSpace[i][j] = 0;// free space
+                }
+                if (result == 8) {
+                    valueOfSpace[i][j] = 0;// free space
+                }
 
-				if (result == 2) {
-					valueOfSpace[i][j] = 1;// bomb
-					numBomb++;
-				}
-				if (result == 3) {
-					valueOfSpace[i][j] = 2;// bomb
-					numBomb++;
-				}
-				if (result == 4) {
-					valueOfSpace[i][j] = 3;// bomb
-					numBomb++;
-				}
-				if (result == 5) {
-					valueOfSpace[i][j] = 4;// bomb
-					numBomb++;
-				}
+                if (result == 2) {
+                    valueOfSpace[i][j] = 1;// bomb
+                    numBomb++;
+                }
+                if (result == 3) {
+                    valueOfSpace[i][j] = 2;// bomb
+                    numBomb++;
+                }
+                if (result == 4) {
+                    valueOfSpace[i][j] = 3;// bomb
+                    numBomb++;
+                }
+                if (result == 5) {
+                    valueOfSpace[i][j] = 4;// bomb
+                    numBomb++;
+                }
 
-			}
-		}
+            }
+        }
 
-		// fix number of bomb to 11
-		while (numBomb != 11) {
-			for (int i = 0; i < 6; i++) {
-				for (int j = 0; j < 6; j++) {
+        // fix number of bomb to 11
+        while (numBomb != 11) {
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 6; j++) {
 
-					if (valueOfSpace[i][j] == 0) {
-						int result = (int) Math.ceil(Math.random() * 6);
-						// float result = (float) Math.random();
-						/*
-						 * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
-						 */
-						if (result == 1) {
-							valueOfSpace[i][j] = 0;// free space
-						}
+                    if (valueOfSpace[i][j] == 0) {
+                        int result = (int) Math.ceil(Math.random() * 6);
+                        // float result = (float) Math.random();
+                        /*
+                         * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
+                         */
+                        if (result == 1) {
+                            valueOfSpace[i][j] = 0;// free space
+                        }
 
-						if (result == 6) {
-							valueOfSpace[i][j] = 0;// free space
-						}
-						if (result == 7) {
-							valueOfSpace[i][j] = 0;// free space
-						}
-						if (result == 8) {
-							valueOfSpace[i][j] = 0;// free space
-						}
+                        if (result == 6) {
+                            valueOfSpace[i][j] = 0;// free space
+                        }
+                        if (result == 7) {
+                            valueOfSpace[i][j] = 0;// free space
+                        }
+                        if (result == 8) {
+                            valueOfSpace[i][j] = 0;// free space
+                        }
 
-						if (result == 2) {
-							valueOfSpace[i][j] = 1;// bomb
-							numBomb++;
-						}
-						if (result == 3) {
-							valueOfSpace[i][j] = 2;// bomb
-							numBomb++;
-						}
-						if (result == 4) {
-							valueOfSpace[i][j] = 3;// bomb
-							numBomb++;
-						}
-						if (result == 5) {
-							valueOfSpace[i][j] = 4;// bomb
-							numBomb++;
-						}
-					}
-				}
+                        if (result == 2) {
+                            valueOfSpace[i][j] = 1;// bomb
+                            numBomb++;
+                        }
+                        if (result == 3) {
+                            valueOfSpace[i][j] = 2;// bomb
+                            numBomb++;
+                        }
+                        if (result == 4) {
+                            valueOfSpace[i][j] = 3;// bomb
+                            numBomb++;
+                        }
+                        if (result == 5) {
+                            valueOfSpace[i][j] = 4;// bomb
+                            numBomb++;
+                        }
+                    }
+                }
 
-			}
-		}
+            }
+        }
 
-		// set number in free slot
+        // set number in free slot
 
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
 
-				int countBombAround = 0;
-				if (valueOfSpace[i][j] == 0) { // if this is free slot
-					if (i - 1 >= 0 && j - 1 >= 0) { // if there is a slot
-						if (valueOfSpace[i - 1][j - 1] == 1) { // if the upperleft is bomb
-							countBombAround++;
-						}
-						if (valueOfSpace[i - 1][j - 1] == 2) { // if the upperleft is bomb
-							countBombAround++;
-						}
-						if (valueOfSpace[i - 1][j - 1] == 3) { // if the upperleft is bomb
-							countBombAround++;
-						}
-						if (valueOfSpace[i - 1][j - 1] == 4) { // if the upperleft is bomb
-							countBombAround++;
-						}
-					}
-					if (i >= 0 && j - 1 >= 0) {
-						if (valueOfSpace[i][j - 1] == 1) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i][j - 1] == 2) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i][j - 1] == 3) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i][j - 1] == 4) {
-							countBombAround++;
-						}
-					}
-					if (i + 1 <= 5 && j - 1 >= 0) {
-						if (valueOfSpace[i + 1][j - 1] == 1) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i + 1][j - 1] == 2) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i + 1][j - 1] == 3) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i + 1][j - 1] == 4) {
-							countBombAround++;
-						}
-					}
-					if (i - 1 >= 0 && j >= 0) {
-						if (valueOfSpace[i - 1][j] == 1) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i - 1][j] == 2) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i - 1][j] == 3) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i - 1][j] == 4) {
-							countBombAround++;
-						}
-					}
-					if (i + 1 <= 5 && j >= 0) {
-						if (valueOfSpace[i + 1][j] == 1) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i + 1][j] == 2) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i + 1][j] == 3) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i + 1][j] == 4) {
-							countBombAround++;
-						}
-					}
-					if (i - 1 >= 0 && j + 1 <= 5) {
-						if (valueOfSpace[i - 1][j + 1] == 1) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i - 1][j + 1] == 2) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i - 1][j + 1] == 3) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i - 1][j + 1] == 4) {
-							countBombAround++;
-						}
-					}
-					if (i >= 0 && j + 1 <= 5) {
-						if (valueOfSpace[i][j + 1] == 1) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i][j + 1] == 2) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i][j + 1] == 3) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i][j + 1] == 4) {
-							countBombAround++;
-						}
-					}
-					if (i + 1 <= 5 && j + 1 <= 5) {
-						if (valueOfSpace[i + 1][j + 1] == 1) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i + 1][j + 1] == 2) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i + 1][j + 1] == 3) {
-							countBombAround++;
-						}
-						if (valueOfSpace[i + 1][j + 1] == 4) {
-							countBombAround++;
-						}
-					}
-					bombAround[i][j] = countBombAround;
+                int countBombAround = 0;
+                if (valueOfSpace[i][j] == 0) { // if this is free slot
+                    if (i - 1 >= 0 && j - 1 >= 0) { // if there is a slot
+                        if (valueOfSpace[i - 1][j - 1] == 1) { // if the upperleft is bomb
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i - 1][j - 1] == 2) { // if the upperleft is bomb
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i - 1][j - 1] == 3) { // if the upperleft is bomb
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i - 1][j - 1] == 4) { // if the upperleft is bomb
+                            countBombAround++;
+                        }
+                    }
+                    if (i >= 0 && j - 1 >= 0) {
+                        if (valueOfSpace[i][j - 1] == 1) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i][j - 1] == 2) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i][j - 1] == 3) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i][j - 1] == 4) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i + 1 <= 5 && j - 1 >= 0) {
+                        if (valueOfSpace[i + 1][j - 1] == 1) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i + 1][j - 1] == 2) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i + 1][j - 1] == 3) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i + 1][j - 1] == 4) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i - 1 >= 0 && j >= 0) {
+                        if (valueOfSpace[i - 1][j] == 1) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i - 1][j] == 2) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i - 1][j] == 3) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i - 1][j] == 4) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i + 1 <= 5 && j >= 0) {
+                        if (valueOfSpace[i + 1][j] == 1) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i + 1][j] == 2) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i + 1][j] == 3) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i + 1][j] == 4) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i - 1 >= 0 && j + 1 <= 5) {
+                        if (valueOfSpace[i - 1][j + 1] == 1) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i - 1][j + 1] == 2) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i - 1][j + 1] == 3) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i - 1][j + 1] == 4) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i >= 0 && j + 1 <= 5) {
+                        if (valueOfSpace[i][j + 1] == 1) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i][j + 1] == 2) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i][j + 1] == 3) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i][j + 1] == 4) {
+                            countBombAround++;
+                        }
+                    }
+                    if (i + 1 <= 5 && j + 1 <= 5) {
+                        if (valueOfSpace[i + 1][j + 1] == 1) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i + 1][j + 1] == 2) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i + 1][j + 1] == 3) {
+                            countBombAround++;
+                        }
+                        if (valueOfSpace[i + 1][j + 1] == 4) {
+                            countBombAround++;
+                        }
+                    }
+                    bombAround[i][j] = countBombAround;
 
-				}
-			}
-		}
+                }
+            }
+        }
 
-	}
-		public static int getValueOfSpace(int i,int j) {
-			int valueofspace = valueOfSpace[i][j];
-			return valueofspace ;
-			
-		}
-		public static int getNumBombAround(int i,int j) {
-			int numbombaround = bombAround[i][j];
-			return numbombaround;
-		}
-	//end of implementation from former StartPageController	
-		
-	//to keep track of score for the score board next page
-		
-		private int player = 0;
-		private int playerplaying = 1;
-		
-		
-		void colorChange() {
-			if (playerplaying < numOfPlayer ) {
-				setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: white");
-				setOfPlayerPane[++playerplaying].setStyle("-fx-background-color: grey");
-				playerplaying++;
-			}
-			else if (playerplaying == numOfPlayer) {
-				setOfPlayerPane[numOfPlayer-1].setStyle("-fx-background-color: white");
-				setOfPlayerPane[0].setStyle("-fx-background-color: grey");
-				playerplaying = 1;
-			} else {playerplaying = 1;}
+    }
+
+    public static int getValueOfSpace(int i, int j) {
+        int valueofspace = valueOfSpace[i][j];
+        return valueofspace;
+
+    }
+
+    public static int getNumBombAround(int i, int j) {
+        int numbombaround = bombAround[i][j];
+        return numbombaround;
+    }
+    //end of implementation from former StartPageController
+
+    //to keep track of score for the score board next page
+
+    private int player = 0;
+    private int playerplaying = 1;
+
+
+    void colorChange() {
+        if (playerplaying < numOfPlayer) {
+            setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: white");
+            setOfPlayerPane[++playerplaying].setStyle("-fx-background-color: grey");
+            playerplaying++;
+        } else if (playerplaying == numOfPlayer) {
+            setOfPlayerPane[numOfPlayer - 1].setStyle("-fx-background-color: white");
+            setOfPlayerPane[0].setStyle("-fx-background-color: grey");
+            playerplaying = 1;
+        } else {
+            playerplaying = 1;
+        }
 
     }
 
@@ -846,205 +847,249 @@ public class ServerGamePageController implements Initializable {
         // timer
         // startTimer();
 
-    	for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
-				Button y = setOfButton[i][j];
-				if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-					y.setStyle("-fx-font-size: 10");
-					y.setStyle("-fx-background-color:#cccccc");
-				}
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                Button y = setOfButton[i][j];
+                if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
+                    y.setStyle("-fx-font-size: 10");
+                    y.setStyle("-fx-background-color:#cccccc");
+                }
 
-				if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-					y.setStyle("-fx-font-size: 10");
-					y.setText("BOMB");
-				}
-				
-				if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-					y.setStyle("-fx-font-size: 10");
-					y.setText("BOMB \n x2");
-				}
-				
-				if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-					y.setStyle("-fx-font-size: 10");
-					y.setText("BOMB \n x3");
-				}
-				
-				if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-					y.setStyle("-fx-font-size: 10");
-					y.setText("BOMB \n x4");
-				}
+                if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+                    y.setStyle("-fx-font-size: 10");
+                    y.setText("BOMB");
+                }
 
-			}
-		}
-	}
-		
+                if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
+                    y.setStyle("-fx-font-size: 10");
+                    y.setText("BOMB \n x2");
+                }
+
+                if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
+                    y.setStyle("-fx-font-size: 10");
+                    y.setText("BOMB \n x3");
+                }
+
+                if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
+                    y.setStyle("-fx-font-size: 10");
+                    y.setText("BOMB \n x4");
+                }
+
+            }
+        }
+    }
+
     int time = 10;
-		//to display count down from 10 to 0
-		void startTimer() {
-			Task <Void> task = new Task<Void>() {
-		        @Override public Void call() throws InterruptedException {
-		        		for (int i = time; i>=0; i--) {
-		        			if(false) {
-		        				// to stop timer
-		        				return null;
-		        			}
-		        			updateMessage(i+"");
-		        			Thread.sleep(1000);
-		        		}
-		          return null;
-		        }
-		      };
-		      if(false) {
-		    	  // to stop timer
-		    	  return;
-		      }
-		      showTime.textProperty().bind(task.messageProperty());
-		      task.setOnSucceeded(e -> {
-		    	  	showTime.textProperty().unbind();
-		        showTime.setText("0");
-		        //skip this player when timeout
-		        player++;
-		        if (player == numOfPlayer) {
-					player = 0;
-				} 
-		        colorChange();
-		        //startTimer after timeout
-		        startTimer();
-		      });
-		   
-		      Thread thread = new Thread(task);
-		      thread.setDaemon(true);
-		      thread.start();
-		    }
-	
-		//check all the player already click ready
-		//boolean readyAll = true;
-		@FXML
-		void start(ActionEvent event) {
-			warnReady.setVisible(false);
-			setMode();
-			//if (readyAll == false) {
-			//	warnReady.setVisible(true);
-			//}
-			// if all players are ready 
-			//if(readyAll == true) {
-			stateCheck();
-			//}
-		}
-		
-		
-		String GAME_STATE = "WAITING" ; // default = waiting for player
-			//boolean firstTime =true;
-			// GAME_STATE = "WAITING";
-		
-		private void stateCheck() {
-			if (GAME_STATE.equals("WAITING")) {
-				// complete game template
-				numOfPlayer = users.size(); // get from how many client
-				setupPane();
-				setScore();
-				// color change for the starting player
-				setOfPlayerPane[player].setStyle("-fx-background-color: grey");
 
-				assignBombDefault();
-				setUpBomb();
-				try {
-					showBomb();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				GAME_STATE = "ONGOING";
-				startButton.setText("Stop");
-				System.out.println("done if 1");
-				return;
-			}
-			if (GAME_STATE.equals("ONGOING")) {
-				startButton.setText("Reset");
-				GAME_STATE = "ENDED";
-				System.out.println("done if 2");
-				return;
-			}
-			if (GAME_STATE.equals("ENDED")) {
-				startButton.setText("Start");
-				GAME_STATE = "ONGOING";
-				System.out.println("done if 3");
-				//firstTime =true;
-				return;
-			}
-	}
-			
-	@FXML
-	void stop(ActionEvent event) {
-	//	if (GAME_STATE == "ONGOING") {
-			// setText for score board -- for stop button
-			stopButton.setVisible(false);
-			stopButton.setDisable(true);
-			resetButton.setVisible(true);
-			resetButton.setDisable(false);
-			
-	//	}
-	}
-	
+    //to display count down from 10 to 0
+    void startTimer() {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() throws InterruptedException {
+                for (int i = time; i >= 0; i--) {
+                    if (false) {
+                        // to stop timer
+                        return null;
+                    }
+                    updateMessage(i + "");
+                    Thread.sleep(1000);
+                }
+                return null;
+            }
+        };
+        if (false) {
+            // to stop timer
+            return;
+        }
+        showTime.textProperty().bind(task.messageProperty());
+        task.setOnSucceeded(e -> {
+            showTime.textProperty().unbind();
+            showTime.setText("0");
+            //skip this player when timeout
+            player++;
+            if (player == numOfPlayer) {
+                player = 0;
+            }
+            colorChange();
+            //startTimer after timeout
+            startTimer();
+        });
 
-	
-	@FXML
-	void resetState(ActionEvent event) {
-		resetButton.setVisible(false);
-		resetButton.setDisable(true);
-		startButton.setVisible(true);
-		startButton.setDisable(false);
-		
-		new ServerGamePageController();
-	}
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
+    }
 
-	@FXML
-	private Button buttonDone;
+    //check all the player already click ready
+    //boolean readyAll = true;
+    @FXML
+    void start(ActionEvent event) {
+        warnReady.setVisible(false);
+        setMode();
+        //if (readyAll == false) {
+        //	warnReady.setVisible(true);
+        //}
+        // if all players are ready
+        //if(readyAll == true) {
+        stateCheck();
+        //}
+    }
 
-	//delete all the value assign & disble the dialogpane
-	@FXML
-	void goBack(ActionEvent event) throws IOException {
-		//new ServerGamePageController();
-	}
 
-	//getter of sorted for other class to use
-	public static Map<Integer, Integer> getSorted(){
-		sorted = sort(scoreOfPlayer);
-		System.out.print(sorted);
-		return sorted;
-	}
-	
-	//sort player score from highest to lowest
-	private static Map<Integer, Integer> sorted = new Hashtable<Integer,Integer>();
-	private static Map<Integer, Integer> sort(Map<Integer, Integer> map){
-		Map<Integer, Integer> sorted = map .entrySet() .stream() .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())) .collect( toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
-		Iterator<Integer> iterators = sorted.keySet().iterator();
-	       while(iterators.hasNext()) {
-	           int key = iterators.next();
-	           if(key >= numOfPlayer) {
-	               iterators.remove();
-	           }
-	       }
-		//System.out.print(sorted);
-		return sorted;
-		
-	}
-	
-	private void setMode() {
-		String selectedChoice = modebox.getValue().toString();
-		if (selectedChoice.equals("Default Mode")) {
-			return;
-		}
-		if (selectedChoice.equals("Quick Game")) {
-			time = 5;
-			return;
-		}
-		if (selectedChoice.equals("Multipoints Bomb")) {
-			return;
-		}
-		
+    String GAME_STATE = "WAITING"; // default = waiting for player
+    //boolean firstTime =true;
+    // GAME_STATE = "WAITING";
 
-}
-		     
-	
+    private void stateCheck() {
+        if (GAME_STATE.equals("WAITING")) {
+            // complete game template
+            numOfPlayer = users.size(); // get from how many client
+            setupPane();
+            setScore();
+            // color change for the starting player
+            setOfPlayerPane[player].setStyle("-fx-background-color: grey");
+
+            assignBombDefault();
+            setUpBomb();
+            try {
+                showBomb();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            GAME_STATE = "ONGOING";
+            startButton.setText("Stop");
+            System.out.println("done if 1");
+            return;
+        }
+        if (GAME_STATE.equals("ONGOING")) {
+            startButton.setText("Reset");
+            GAME_STATE = "ENDED";
+            System.out.println("done if 2");
+            return;
+        }
+        if (GAME_STATE.equals("ENDED")) {
+            startButton.setText("Start");
+            GAME_STATE = "ONGOING";
+            System.out.println("done if 3");
+            //firstTime =true;
+            return;
+        }
+    }
+
+    @FXML
+    void stop(ActionEvent event) {
+        //	if (GAME_STATE == "ONGOING") {
+        // setText for score board -- for stop button
+        stopButton.setVisible(false);
+        stopButton.setDisable(true);
+        resetButton.setVisible(true);
+        resetButton.setDisable(false);
+
+        //	}
+    }
+
+
+    @FXML
+    void resetState(ActionEvent event) {
+        resetButton.setVisible(false);
+        resetButton.setDisable(true);
+        startButton.setVisible(true);
+        startButton.setDisable(false);
+
+        new ServerGamePageController();
+    }
+
+    @FXML
+    private Button buttonDone;
+
+    //delete all the value assign & disble the dialogpane
+    @FXML
+    void goBack(ActionEvent event) throws IOException {
+        //new ServerGamePageController();
+    }
+
+    //getter of sorted for other class to use
+    public static Map<Integer, Integer> getSorted() {
+        sorted = sort(scoreOfPlayer);
+        System.out.print(sorted);
+        return sorted;
+    }
+
+    //sort player score from highest to lowest
+    private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
+
+    private static Map<Integer, Integer> sort(Map<Integer, Integer> map) {
+        Map<Integer, Integer> sorted = map.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+        Iterator<Integer> iterators = sorted.keySet().iterator();
+        while (iterators.hasNext()) {
+            int key = iterators.next();
+            if (key >= numOfPlayer) {
+                iterators.remove();
+            }
+        }
+        //System.out.print(sorted);
+        return sorted;
+
+    }
+
+    private void setMode() {
+        String selectedChoice = modebox.getValue().toString();
+        if (selectedChoice.equals("Default Mode")) {
+            return;
+        }
+        if (selectedChoice.equals("Quick Game")) {
+            time = 5;
+            return;
+        }
+        if (selectedChoice.equals("Multipoints Bomb")) {
+            return;
+        }
+    }
+
+    // receive button position clicked from other clients
+    static void playFromOthers(String cl) {
+
+        String s = cl.trim();
+        int j = 0;
+        int i = (Integer.parseInt(s.charAt(0)+"")) - 1;
+        if(s.length() >= 2) {
+            if (!(s.substring(1).equals(","))) {
+                j = Integer.parseInt(s.charAt(1) + "");
+            }
+        }
+
+        // To check button position
+//        display("i = " + i + " j = " + j);
+        Button y = setOfButton[i][j];
+
+        if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
+            y.setStyle("-fx-font-size: 10");
+            y.setStyle("-fx-background-color:#2B2D42");
+        }
+
+        if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+            y.setStyle("-fx-font-size: 5");
+            y.setStyle("-fx-background-color:#D90429");
+            y.setText("BOMB");
+        }
+
+        if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
+            y.setStyle("-fx-font-size: 5");
+            y.setText("BOMB \n x2");
+        }
+
+        if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
+            y.setStyle("-fx-font-size: 5");
+            y.setText("BOMB \n x3");
+        }
+
+        if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
+            y.setStyle("-fx-font-size: 5");
+            y.setText("BOMB \n x4");
+        }
+    }
+
+
+
 }

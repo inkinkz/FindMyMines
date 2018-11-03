@@ -542,6 +542,7 @@ public class ClientGamePageController implements Initializable {
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
             ((Button) event.getTarget()).setStyle("-fx-font-size: 2");
 			((Button) event.getTarget()).setStyle("-fx-base: #ffffff");
+			// Bomb found by others
             ((Button) event.getTarget()).setStyle("-fx-background-color:#D90429");
             ((Button) event.getTarget()).setText("BOMB");
             ((Button) event.getTarget()).setDisable(true);
@@ -583,6 +584,7 @@ public class ClientGamePageController implements Initializable {
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
 			y.setStyle("-fx-font-size: 5");
+			y.setStyle("-fx-background-color:#D90429");
 			y.setText("BOMB");
 		}
 		
@@ -670,6 +672,7 @@ public class ClientGamePageController implements Initializable {
 	void ready(ActionEvent event) throws IOException {
 
 		if (!alreadyReady) {
+		    sendReady();
 			// number of ready player increase every time a client click ready
 			int ready = playerReady.getValue();
 			playerReady = new SimpleIntegerProperty(ready++).asObject();
@@ -679,8 +682,10 @@ public class ClientGamePageController implements Initializable {
 		} else {
 			/* if (alreadyReady) { */
 			// set ready button to disable after being pressed
+            sendNotReady();
 			readyButton.setText("Ready");
 		}
+
 		alreadyReady = !alreadyReady;
 
 	}
@@ -814,8 +819,9 @@ public class ClientGamePageController implements Initializable {
 
             while (true) {
                 try {
-                    String msg = (String) sInput.readObject();
-                    if (msg.length() > 5) {
+                    String msgt = (String) sInput.readObject();
+                    String msg = msgt.trim();
+                    if (msg.length() >= 5) {
                         String[] split = msg.split(":");
                         if (split[1].equals("WHOISIN")) {
                             Platform.runLater(() -> {
@@ -824,6 +830,16 @@ public class ClientGamePageController implements Initializable {
                         } else if (split[1].equals("REMOVE")) {
                             Platform.runLater(() -> {
                                 users.remove(split[0]);
+                            });
+                        } else if (split[1].equals("READY")) {
+                            Platform.runLater(() -> {
+                                users.remove(split[0]);
+                                users.add(split[0]+" (READY)");
+                            });
+                        } else if (split[1].equals("NOTREADY")) {
+                            Platform.runLater(() -> {
+                                users.remove(split[0] + " (READY)");
+                                users.add(split[0]);
                             });
                         }
                     } else {
@@ -885,6 +901,28 @@ public class ClientGamePageController implements Initializable {
     public void sendButtonPosition(String pos) {
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.CLICK, pos);
+            try {
+                sOutput.writeObject(msg);
+            } catch (IOException e) {
+                display("Exception writing to server: " + e);
+            }
+        }
+    }
+
+    public void sendReady(){
+        if (connected) {
+            ButtonClick msg = new ButtonClick(ButtonClick.READY, username);
+            try {
+                sOutput.writeObject(msg);
+            } catch (IOException e) {
+                display("Exception writing to server: " + e);
+            }
+        }
+    }
+
+    public void sendNotReady(){
+        if (connected) {
+            ButtonClick msg = new ButtonClick(ButtonClick.NOTREADY, username);
             try {
                 sOutput.writeObject(msg);
             } catch (IOException e) {

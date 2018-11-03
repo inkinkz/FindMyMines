@@ -223,7 +223,14 @@ public class FindMyMinesServer {
                         break;
                     case ButtonClick.CLICK:
                         broadcast(msg);
+                        playOnServer(msg);
 //                      display(message);
+                        break;
+                    case ButtonClick.READY:
+                        broadcast(username + ":READY");
+                        break;
+                    case ButtonClick.NOTREADY:
+                        broadcast(username + ":NOTREADY");
                         break;
                 }
 
@@ -232,6 +239,12 @@ public class FindMyMinesServer {
             }
             remove(id);
             close();
+        }
+
+        public  void playOnServer(String s){
+
+
+            ServerGamePageController.playFromOthers(s);
         }
 
         // try to close everything
