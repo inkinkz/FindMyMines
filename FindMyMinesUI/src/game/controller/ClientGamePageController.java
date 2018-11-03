@@ -541,6 +541,7 @@ public class ClientGamePageController implements Initializable {
         }
        
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+        		// might need to getStyle().removeAll() before do this to prevent bugs
 			((Button) event.getTarget()).setStyle("-fx-background-color: #D90429; -fx-text-fill: #ffffff ; -fx-font-size: 10;");
             ((Button) event.getTarget()).setText("BOMB");
             ((Button) event.getTarget()).setDisable(true);
