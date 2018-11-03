@@ -349,6 +349,8 @@ public class ServerGamePageController implements Initializable {
 		modebox.setItems(availableChoices);
 		modebox.setValue("Default Mode");
 		
+	
+		
 		startServer();
 		
 		
