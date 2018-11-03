@@ -829,7 +829,7 @@ public class ClientGamePageController implements Initializable {
                             Platform.runLater(() -> {
                                 users.remove(split[0]);
                             });
-                        } else if (split[1].equals("READY")) {
+                        } else if (split[1].equals("READDY")) {
                             Platform.runLater(() -> {
                                 users.remove(split[0]);
                                 users.add(split[0]+" (READY)");
@@ -911,7 +911,7 @@ public class ClientGamePageController implements Initializable {
 
     public void sendReady(){
         if (connected) {
-            ButtonClick msg = new ButtonClick(ButtonClick.READY, username);
+            ButtonClick msg = new ButtonClick(ButtonClick.READDY, username);
             try {
                 sOutput.writeObject(msg);
             } catch (IOException e) {

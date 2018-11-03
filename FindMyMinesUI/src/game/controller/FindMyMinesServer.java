@@ -112,11 +112,11 @@ public class FindMyMinesServer {
      */
     private synchronized void broadcast(String message) {
         String messageLf;
-        if (message.contains("WHOISIN") || message.contains("REMOVE")) {
+        if (message.contains("WHOISIN") || message.contains("REMOVE") || message.contains("READDY") || message.contains("NOTREADY") || message.contains("CLICK")) {
             messageLf = message;
         } else {
             messageLf = " " + message + "\n";
-            serverController.appendRoom(messageLf); // append in the room window
+            serverController.appendRoom(messageLf); // Show received message (in server)
         }
 
 //		 we loop in reverse order in case we would have to remove a Client
@@ -128,6 +128,23 @@ public class FindMyMinesServer {
                 clientsConnected.remove(i);
                 serverController.remove(ct.username);
                 display("Disconnected Client " + ct.username + " removed from list.");
+            }
+        }
+    }
+
+    private synchronized void broadcastServerOnly(String message) {
+//		 we loop in reverse order in case we would have to remove a Client
+//		 because it has disconnected
+        for (int i = clientsConnected.size(); --i >= 0; ) {
+            ClientThread ct = clientsConnected.get(i);
+            // try to write to the Client if it fails remove it from the list
+            if(message.contains("CLICK")) {
+                ct.writeMsgServer(message);
+            }else {
+                String cName = message.substring(0, message.indexOf(":"));
+                if (cName.equals(ct.username)) {
+                    ct.writeMsgServer(message);
+                }
             }
         }
     }
@@ -223,14 +240,16 @@ public class FindMyMinesServer {
                         break;
                     case ButtonClick.CLICK:
                         broadcast(msg);
-                        playOnServer(msg);
+                        broadcastServerOnly(msg+":CLICK");
 //                      display(message);
                         break;
-                    case ButtonClick.READY:
-                        broadcast(username + ":READY");
+                    case ButtonClick.READDY:
+                        broadcast(username + ":READDY");
+                        broadcastServerOnly(username + ":READDY");
                         break;
                     case ButtonClick.NOTREADY:
                         broadcast(username + ":NOTREADY");
+                        broadcastServerOnly(username + ":NOTREADY");
                         break;
                 }
 
@@ -239,12 +258,6 @@ public class FindMyMinesServer {
             }
             remove(id);
             close();
-        }
-
-        public  void playOnServer(String s){
-
-
-            ServerGamePageController.playFromOthers(s);
         }
 
         // try to close everything
@@ -271,6 +284,25 @@ public class FindMyMinesServer {
         /*
          * Write a String to the Client output stream
          */
+        private boolean writeMsgServer(String msg) {
+
+            if (msg.contains("REMOVE") || msg.contains("READDY") || msg.contains("NOTREADY") || msg.contains("CLICK")) {
+                if (msg.contains("READDY")) {
+                    serverController.remove(username);
+                    serverController.addUser(username + " (READY)");
+                } else if (msg.contains("NOTREADY")) {
+                    serverController.remove(username + " (READY)");
+                    serverController.addUser(username);
+                } else if (msg.contains("CLICK")) {
+                    String c = msg.split(":")[0];
+//                    display("playFromOthers " + c);
+                    serverController.playFromOthers(c);
+                }
+                return true;
+            }
+            return true;
+        }
+
         private boolean writeMsg(String msg) {
             // if Client is still connected send the message to it
             if (!socket.isConnected()) {
@@ -288,6 +320,5 @@ public class FindMyMinesServer {
             }
             return true;
         }
-
     }
 }

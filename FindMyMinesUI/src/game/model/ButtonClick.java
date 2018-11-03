@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class ButtonClick implements Serializable {
 
     protected static final long serialVersionUID = 10L;
-    public static final int WHOISIN = 0, CLICK = 1, LOGOUT = 2, READY = 4, NOTREADY = 5;
+    // Use READDY instead of READY to distinguish it from NOTREADY when using contains("NOTREADY")
+    public static final int WHOISIN = 0, CLICK = 1, LOGOUT = 2, READDY = 4, NOTREADY = 5;
     private int type;
     private String message;
 

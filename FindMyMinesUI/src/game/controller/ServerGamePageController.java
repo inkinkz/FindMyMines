@@ -1048,7 +1048,7 @@ public class ServerGamePageController implements Initializable {
     }
 
     // receive button position clicked from other clients
-    static void playFromOthers(String cl) {
+     void playFromOthers(String cl) {
 
         String s = cl.trim();
         int j = 0;
