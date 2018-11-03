@@ -475,6 +475,7 @@ public class ClientGamePageController implements Initializable {
         setOfButton[3][5] = b45;
         setOfButton[4][5] = b55;
         setOfButton[5][5] = b65;
+        
 
         setOfNameBoard[0] = player11;
         setOfNameBoard[1] = player21;
@@ -534,15 +535,13 @@ public class ClientGamePageController implements Initializable {
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
            // ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-            ((Button) event.getTarget()).setStyle("-fx-background-color:#2B2D42");
+        		((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42");
             ((Button) event.getTarget()).setDisable(true);
             player++;
         }
        
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            ((Button) event.getTarget()).setStyle("-fx-font-size: 2");
-			((Button) event.getTarget()).setStyle("-fx-base: #ffffff");
-            ((Button) event.getTarget()).setStyle("-fx-background-color:#D90429");
+			((Button) event.getTarget()).setStyle("-fx-background-color: #D90429; -fx-text-fill: #ffffff ; -fx-font-size: 10;");
             ((Button) event.getTarget()).setText("BOMB");
             ((Button) event.getTarget()).setDisable(true);
             numBombLeft--;
@@ -877,9 +876,11 @@ public class ClientGamePageController implements Initializable {
                 int numOfBombAround = bombaround[i][j];
                 if (numOfBombAround > 0) {
                     setOfButton[i][j].setText("" + numOfBombAround);
+                    
                 }
             }
         }
+        
     }
 
     public void sendButtonPosition(String pos) {
