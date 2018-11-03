@@ -534,16 +534,14 @@ public class ClientGamePageController implements Initializable {
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
            // ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-            ((Button) event.getTarget()).setStyle("-fx-background-color:#2B2D42");
+        		((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42");
             ((Button) event.getTarget()).setDisable(true);
             player++;
         }
        
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            ((Button) event.getTarget()).setStyle("-fx-font-size: 2");
-			((Button) event.getTarget()).setStyle("-fx-base: #ffffff");
-			// Bomb found by others
-            ((Button) event.getTarget()).setStyle("-fx-background-color:#D90429");
+        		// might need to getStyle().removeAll() before do this to prevent bugs
+			((Button) event.getTarget()).setStyle("-fx-background-color: #D90429; -fx-text-fill: #ffffff ; -fx-font-size: 10;");
             ((Button) event.getTarget()).setText("BOMB");
             ((Button) event.getTarget()).setDisable(true);
             numBombLeft--;
@@ -584,7 +582,6 @@ public class ClientGamePageController implements Initializable {
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
 			y.setStyle("-fx-font-size: 5");
-			y.setStyle("-fx-background-color:#D90429");
 			y.setText("BOMB");
 		}
 		
@@ -893,9 +890,11 @@ public class ClientGamePageController implements Initializable {
                 int numOfBombAround = bombaround[i][j];
                 if (numOfBombAround > 0) {
                     setOfButton[i][j].setText("" + numOfBombAround);
+
                 }
             }
         }
+
     }
 
     public void sendButtonPosition(String pos) {
