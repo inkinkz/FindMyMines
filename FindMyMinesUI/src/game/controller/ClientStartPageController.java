@@ -21,6 +21,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -129,7 +132,7 @@ public class ClientStartPageController implements Initializable {
 		stage.show();
 
 	}
-
+	
 	public boolean startConnection() {
 		// try to connect to the server
 		try {
@@ -166,7 +169,7 @@ public class ClientStartPageController implements Initializable {
 		// success we inform the caller that it worked
 		return true;
 	}
-
+	
 	private void disconnect() {
 		try {
 			if (sInput != null)
@@ -193,17 +196,15 @@ public class ClientStartPageController implements Initializable {
 		// don't react to a <CR> after the username
 		connected = false;
 	}
-
+	
     @FXML
     void clickedButton(MouseEvent event) {
-
-    	connectButton.setStyle("-fx-background-color: #8D99AE");
+    	//connectButton.setStyle("-fx-background-color: #8D99AE");
     }
-
+    
     @FXML
     void releasedButton(MouseEvent event) {
-
-    	connectButton.setStyle("-fx-background-color: #EDF2F4");
+    //	connectButton.setStyle("-fx-background-color: #EDF2F4");
     }
 
 	private void showErrorPopup() {
