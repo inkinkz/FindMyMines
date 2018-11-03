@@ -533,15 +533,15 @@ public class ClientGamePageController implements Initializable {
 
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-           // ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-        		((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42");
+            // ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
+            ((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42");
             ((Button) event.getTarget()).setDisable(true);
             player++;
         }
-       
+
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-        		// might need to getStyle().removeAll() before do this to prevent bugs
-			((Button) event.getTarget()).setStyle("-fx-background-color: #D90429; -fx-text-fill: #ffffff ; -fx-font-size: 10;");
+            // might need to getStyle().removeAll() before do this to prevent bugs
+            ((Button) event.getTarget()).setStyle("-fx-background-color: #D90429; -fx-text-fill: #ffffff ; -fx-font-size: 10;");
             ((Button) event.getTarget()).setText("BOMB");
             ((Button) event.getTarget()).setDisable(true);
             numBombLeft--;
@@ -581,25 +581,26 @@ public class ClientGamePageController implements Initializable {
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-			y.setStyle("-fx-font-size: 5");
-			y.setText("BOMB");
-		}
-		
-		if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-			y.setStyle("-fx-font-size: 5");
-			y.setText("BOMB \n x2");
-		}
-		
-		if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-			y.setStyle("-fx-font-size: 5");
-			y.setText("BOMB \n x3");
-		}
-		
-		if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-			y.setStyle("-fx-font-size: 5");
-			y.setText("BOMB \n x4");
-		}
+            y.setStyle("-fx-font-size: 5");
+            y.setText("BOMB");
+        }
+
+        if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
+            y.setStyle("-fx-font-size: 5");
+            y.setText("BOMB \n x2");
+        }
+
+        if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
+            y.setStyle("-fx-font-size: 5");
+            y.setText("BOMB \n x3");
+        }
+
+        if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
+            y.setStyle("-fx-font-size: 5");
+            y.setText("BOMB \n x4");
+        }
     }
+
 
     // to display count down game timer
     void startTimer() {
