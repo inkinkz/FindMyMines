@@ -685,7 +685,7 @@ public class ServerGamePageController implements Initializable {
 			//}
 			// if all players are ready 
 			//if(readyAll == true) {
-				stateCheck();
+			stateCheck();
 			//}
 		}
 		
@@ -695,10 +695,9 @@ public class ServerGamePageController implements Initializable {
 			// GAME_STATE = "WAITING";
 		
 		private void stateCheck() {
-			if (GAME_STATE == "WAITING") {
+			if (GAME_STATE.equals("WAITING")) {
 				// complete game template
-				numOfPlayer = 4;
-				// numOfPlayer = users.size(); // get from how many client
+				numOfPlayer = users.size(); // get from how many client
 				setupPane();
 				setScore();
 				// color change for the starting player
@@ -717,13 +716,13 @@ public class ServerGamePageController implements Initializable {
 				System.out.println("done if 1");
 				return;
 			}
-			if (GAME_STATE == "ONGOING") {
+			if (GAME_STATE.equals("ONGOING")) {
 				startButton.setText("Reset");
 				GAME_STATE = "ENDED";
 				System.out.println("done if 2");
 				return;
 			}
-			if (GAME_STATE == "ENDED") {
+			if (GAME_STATE.equals("ENDED")) {
 				startButton.setText("Start");
 				GAME_STATE = "ONGOING";
 				System.out.println("done if 3");
@@ -791,12 +790,14 @@ public class ServerGamePageController implements Initializable {
 	private void setMode() {
 		String selectedChoice = modebox.getValue().toString();
 		if (selectedChoice.equals("Default Mode")) {
+			return;
 		}
-		else if (selectedChoice.equals("Quick Game")) {
+		if (selectedChoice.equals("Quick Game")) {
 			time = 5;
+			return;
 		}
-		else if (selectedChoice.equals("Multipoints Bomb")) {
-			
+		if (selectedChoice.equals("Multipoints Bomb")) {
+			return;
 		}
 		
 
