@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -255,120 +256,32 @@ public class ServerGamePageController implements Initializable {
 
 	@FXML
 	private TextArea textArea;
-	
-	 @FXML
-	    private DialogPane scoreBoard;
-
-	    @FXML
-	    private Pane player1Pane1;
-
-	    @FXML
-	    private Label player11;
-
-	    @FXML
-	    private Label score11;
-
-	    @FXML
-	    private Pane player2Pane1;
-
-	    @FXML
-	    private Label player21;
-
-	    @FXML
-	    private Label score21;
-
-	    @FXML
-	    private Pane player3Pane1;
-
-	    @FXML
-	    private Label player31;
-
-	    @FXML
-	    private Label score31;
-
-	    @FXML
-	    private Pane player4Pane1;
-
-	    @FXML
-	    private Label player41;
-
-	    @FXML
-	    private Label score41;
-
-	    @FXML
-	    private Pane player5Pane1;
-
-	    @FXML
-	    private Label player51;
-
-	    @FXML
-	    private Label score51;
-
-	    @FXML
-	    private Pane player6Pane1;
-
-	    @FXML
-	    private Label player61;
-
-	    @FXML
-	    private Label score61;
-
-	    @FXML
-	    private Pane player7Pane1;
-
-	    @FXML
-	    private Label player71;
-
-	    @FXML
-	    private Label score71;
-
-	    @FXML
-	    private Pane player8Pane1;
-
-	    @FXML
-	    private Label player81;
-
-	    @FXML
-	    private Label score81;
-
-	    @FXML
-	    private Pane player9Pane1;
-
-	    @FXML
-	    private Label player91;
-
-	    @FXML
-	    private Label score91;
-
-	    @FXML
-	    private Pane player10Pane1;
-
-	    @FXML
-	    private Label player101;
-
-	    @FXML
-	    private Label score101;
-
-	    @FXML
-	    private AnchorPane paneOfBomb;
 
 	@FXML
 	private ListView<String> listUsersConnected;
 	
+	@FXML
+    private ChoiceBox<String> modebox;
+
+	@FXML
+    private Label warnReady;
+	
 	
 
 	// game
-	
+
 	static int numOfPlayer; // how many player
 	Button[][] setOfButton = new Button[6][6];
-	Pane[] setOfPlayer = new Pane[10]; // limit player :10
+	Pane[] setOfPlayerPane = new Pane[10]; // limit player :10
 	private static ObservableMap<Integer,Integer> scoreOfPlayer;
 	private ObservableValue<Integer> playerReady; // number of player ready
 	Label[] setOfScore = new Label[10];
+	Label[] setOfPlayer = new Label[10];
 	Label[] setOfNameBoard = new Label[10];
 	Label[] setOfScoreBoard = new Label[10];
 	int numBombLeft = 11;
-	String GAME_STATE; // default = waiting for player
+
+
 
 	// SERVER
 
@@ -424,14 +337,22 @@ public class ServerGamePageController implements Initializable {
         });
     }
 
-	@Override
+    @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		leftPane.setDisable(true);
 		textArea.setEditable(false);
+
+		warnReady.setVisible(false);
+		
+		// set up mode selection
+		ObservableList<String> availableChoices = FXCollections.observableArrayList( "Default Mode" ,"Quick Game", "Multipoints Bomb"); 
+		modebox.setItems(availableChoices);
+		modebox.setValue("Default Mode");
+		
 		startServer();
 		
 		
-	}
+}
 
     private void setScore() {
         for (int i=0; i<10; i++) {
@@ -471,20 +392,20 @@ public class ServerGamePageController implements Initializable {
 
 	private void setupPane() {
 		// put each pane into setOfPlayer
-		setOfPlayer[0] = player1Pane;
-		setOfPlayer[1] = player2Pane;
-		setOfPlayer[2] = player3Pane;
-		setOfPlayer[3] = player4Pane;
-		setOfPlayer[4] = player5Pane;
-		setOfPlayer[5] = player6Pane;
-		setOfPlayer[6] = player7Pane;
-		setOfPlayer[7] = player8Pane;
-		setOfPlayer[8] = player9Pane;
-		setOfPlayer[9] = player10Pane;
+		setOfPlayerPane[0] = player1Pane;
+		setOfPlayerPane[1] = player2Pane;
+		setOfPlayerPane[2] = player3Pane;
+		setOfPlayerPane[3] = player4Pane;
+		setOfPlayerPane[4] = player5Pane;
+		setOfPlayerPane[5] = player6Pane;
+		setOfPlayerPane[6] = player7Pane;
+		setOfPlayerPane[7] = player8Pane;
+		setOfPlayerPane[8] = player9Pane;
+		setOfPlayerPane[9] = player10Pane;
 
 		// to hide who does not play
 		for (int i = numOfPlayer; i < 10; i++) {
-			setOfPlayer[i].setVisible(false);
+			setOfPlayerPane[i].setVisible(false);
 		}
 
         setOfScore[0] = score1;
@@ -536,27 +457,6 @@ public class ServerGamePageController implements Initializable {
         setOfButton[4][5] = b55;
         setOfButton[5][5] = b65;
 
-        setOfNameBoard[0] = player11;
-        setOfNameBoard[1] = player21;
-        setOfNameBoard[2] = player31;
-        setOfNameBoard[3] = player41;
-        setOfNameBoard[4] = player51;
-        setOfNameBoard[5] = player61;
-        setOfNameBoard[6] = player71;
-        setOfNameBoard[7] = player81;
-        setOfNameBoard[8] = player91;
-        setOfNameBoard[9] = player101;
-
-        setOfScoreBoard[0] = score11;
-        setOfScoreBoard[1] = score21;
-        setOfScoreBoard[2] = score31;
-        setOfScoreBoard[3] = score41;
-        setOfScoreBoard[4] = score51;
-        setOfScoreBoard[5] = score61;
-        setOfScoreBoard[6] = score71;
-        setOfScoreBoard[7] = score81;
-        setOfScoreBoard[8] = score91;
-        setOfScoreBoard[9] = score101;
     }
 
     //starting of implementation from former StartPageController
@@ -694,13 +594,13 @@ public class ServerGamePageController implements Initializable {
 		
 		void colorChange() {
 			if (playerplaying < numOfPlayer ) {
-				setOfPlayer[--playerplaying].setStyle("-fx-background-color: white");
-				setOfPlayer[++playerplaying].setStyle("-fx-background-color: grey");
+				setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: white");
+				setOfPlayerPane[++playerplaying].setStyle("-fx-background-color: grey");
 				playerplaying++;
 			}
 			else if (playerplaying == numOfPlayer) {
-				setOfPlayer[numOfPlayer-1].setStyle("-fx-background-color: white");
-				setOfPlayer[0].setStyle("-fx-background-color: grey");
+				setOfPlayerPane[numOfPlayer-1].setStyle("-fx-background-color: white");
+				setOfPlayerPane[0].setStyle("-fx-background-color: grey");
 				playerplaying = 1;
 			} else {playerplaying = 1;}
 
@@ -735,11 +635,12 @@ public class ServerGamePageController implements Initializable {
 		}
 	}
 		
+    int time = 10;
 		//to display count down from 10 to 0
 		void startTimer() {
 			Task <Void> task = new Task<Void>() {
 		        @Override public Void call() throws InterruptedException {
-		        		for (int i = 10; i>=0; i--) {
+		        		for (int i = time; i>=0; i--) {
 		        			if(false) {
 		        				// to stop timer
 		        				return null;
@@ -773,40 +674,62 @@ public class ServerGamePageController implements Initializable {
 		      thread.start();
 		    }
 	
-	@FXML
-	void start(ActionEvent event) {
-	
-	// complete game template
-	numOfPlayer = users.size(); // get from how many client
-	setupPane();
-	setScore();
-	// color change for the starting player
-	setOfPlayer[player].setStyle("-fx-background-color: grey");
-	
-	/*if (playerReady.getValue() == numOfPlayer) {
-		//start game = first player leftPane enabled + startTimer
+		//check all the player already click ready
+		//boolean readyAll = true;
+		@FXML
+		void start(ActionEvent event) {
+			warnReady.setVisible(false);
+			setMode();
+			//if (readyAll == false) {
+			//	warnReady.setVisible(true);
+			//}
+			// if all players are ready 
+			//if(readyAll == true) {
+				stateCheck();
+			//}
+		}
 		
 		
-	}*/
+		String GAME_STATE = "WAITING" ; // default = waiting for player
+			//boolean firstTime =true;
+			// GAME_STATE = "WAITING";
+		
+		private void stateCheck() {
+			if (GAME_STATE == "WAITING") {
+				// complete game template
+				numOfPlayer = 4;
+				// numOfPlayer = users.size(); // get from how many client
+				setupPane();
+				setScore();
+				// color change for the starting player
+				setOfPlayerPane[player].setStyle("-fx-background-color: grey");
 
-		//if (GAME_STATE == "WAITING") {
-			assignBomb();
-			setUpBomb();
-			try {
-				showBomb();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				assignBomb();
+				setUpBomb();
+				try {
+					showBomb();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				GAME_STATE = "ONGOING";
+				startButton.setText("Stop");
+				System.out.println("done if 1");
+				return;
 			}
-			
-			startButton.setVisible(false);
-			startButton.setDisable(true);
-			stopButton.setVisible(true);
-			stopButton.setDisable(false);
-			/*GAME_STATE = "ONGOING";
-			System.out.println(GAME_STATE);*/
-
-		//}
+			if (GAME_STATE == "ONGOING") {
+				startButton.setText("Reset");
+				GAME_STATE = "ENDED";
+				System.out.println("done if 2");
+				return;
+			}
+			if (GAME_STATE == "ENDED") {
+				startButton.setText("Start");
+				GAME_STATE = "ONGOING";
+				System.out.println("done if 3");
+				//firstTime =true;
+				return;
+			}
 	}
 			
 	@FXML
@@ -839,7 +762,6 @@ public class ServerGamePageController implements Initializable {
 	//delete all the value assign & disble the dialogpane
 	@FXML
 	void goBack(ActionEvent event) throws IOException {
-		scoreBoard.setVisible(false);
 		//new ServerGamePageController();
 	}
 
@@ -865,6 +787,20 @@ public class ServerGamePageController implements Initializable {
 		return sorted;
 		
 	}
+	
+	private void setMode() {
+		String selectedChoice = modebox.getValue().toString();
+		if (selectedChoice.equals("Default Mode")) {
+		}
+		else if (selectedChoice.equals("Quick Game")) {
+			time = 5;
+		}
+		else if (selectedChoice.equals("Multipoints Bomb")) {
+			
+		}
+		
+
+}
 		     
 	
 }
