@@ -47,7 +47,7 @@ public class ClientStartPageController implements Initializable {
 	
 	@FXML
     private AnchorPane colorPane;
-	
+	@FXML
 	private Button connectButton;
 
 	// this will be assign to each button in the GamePage 0=free 1=bomb
@@ -81,8 +81,8 @@ public class ClientStartPageController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-    		Image image = new Image(getClass().getResourceAsStream("/bomb.png"));
-        backImage.setImage(image);
+		Image image = new Image(getClass().getResourceAsStream("/bomb.png"));
+		backImage.setImage(image);
 
     }
     
@@ -198,11 +198,13 @@ public class ClientStartPageController implements Initializable {
 	
     @FXML
     void clickedButton(MouseEvent event) {
+   
     	connectButton.setStyle("-fx-background-color: #8D99AE");
     }
     
     @FXML
     void releasedButton(MouseEvent event) {
+    	
     	connectButton.setStyle("-fx-background-color: #EDF2F4");
     }
 }
