@@ -2,6 +2,10 @@ package game.controller;
 
 import static java.util.stream.Collectors.toMap;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
@@ -349,6 +353,7 @@ public class ServerGamePageController implements Initializable {
 		modebox.setItems(availableChoices);
 		modebox.setValue("Default Mode");
 		
+		
 		startServer();
 		
 		
@@ -363,14 +368,23 @@ public class ServerGamePageController implements Initializable {
     private void setUpBomb() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
-                int result = getValueOfSpace(i, j);
-                Button y = setOfButton[i][j];
-                if (result == 0) {
-                    y.setStyle("-fx-font-size: 0.3"); // blank
-                }
-                if (result == 1) {
-                    y.setStyle("-fx-font-size: 0.1"); // bomb
-                }
+            	int result = getValueOfSpace(i, j);
+				Button y = setOfButton[i][j];
+				if (result == 0) {
+					y.setStyle("-fx-font-size: 0.0"); // blank
+				}
+				if (result == 1) {
+					y.setStyle("-fx-font-size: 0.1"); // bomb
+				}
+				if (result == 2) {
+					y.setStyle("-fx-font-size: 0.2"); // bomb
+				}
+				if (result == 3) {
+					y.setStyle("-fx-font-size: 0.3"); // bomb
+				}
+				if (result == 4) {
+					y.setStyle("-fx-font-size: 0.4"); // bomb
+				}
 
             }
         }
@@ -832,19 +846,33 @@ public class ServerGamePageController implements Initializable {
         // timer
         // startTimer();
 
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 6; j++) {
-                Button y = setOfButton[i][j];
-                if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
-                    y.setStyle("-fx-font-size: 10");
-                    y.setStyle("-fx-background-color:#cccccc");
-                }
+    	for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+				Button y = setOfButton[i][j];
+				if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
+					y.setStyle("-fx-font-size: 10");
+					y.setStyle("-fx-background-color:#cccccc");
+				}
 
-                if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-                    y.setStyle("-fx-font-size: 10");
-                    y.setText("bomb");
-
-                }
+				if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+					y.setStyle("-fx-font-size: 10");
+					y.setText("BOMB");
+				}
+				
+				if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
+					y.setStyle("-fx-font-size: 10");
+					y.setText("BOMB \n x2");
+				}
+				
+				if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
+					y.setStyle("-fx-font-size: 10");
+					y.setText("BOMB \n x3");
+				}
+				
+				if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
+					y.setStyle("-fx-font-size: 10");
+					y.setText("BOMB \n x4");
+				}
 
 			}
 		}
