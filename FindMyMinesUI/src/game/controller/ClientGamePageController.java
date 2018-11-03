@@ -643,17 +643,26 @@ public class ClientGamePageController implements Initializable {
         stage.show();
     }
 
-    // need to change to ready - disable when pressed
-    @FXML
-    void ready(ActionEvent event) throws IOException {
-        // number of ready player increase every time a client click ready
-        int ready = playerReady.getValue();
-        playerReady = new SimpleIntegerProperty(ready++).asObject();
+	boolean alreadyReady = false;
 
-        // set ready button to disable after being pressed
-        readyButton.setDisable(true);
+	@FXML
+	void ready(ActionEvent event) throws IOException {
 
-    }
+		if (!alreadyReady) {
+			// number of ready player increase every time a client click ready
+			int ready = playerReady.getValue();
+			playerReady = new SimpleIntegerProperty(ready++).asObject();
+			// set ready button to disable after being pressed
+			readyButton.setText("Not Ready");
+
+		} else {
+			/* if (alreadyReady) { */
+			// set ready button to disable after being pressed
+			readyButton.setText("Ready");
+		}
+		alreadyReady = !alreadyReady;
+
+	}
 
     // sort score
     public static Map<Integer, Integer> getSorted() {
