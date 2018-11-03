@@ -140,7 +140,7 @@ public class FindMyMinesServer {
             // try to write to the Client if it fails remove it from the list
             if(message.contains("CLICK")) {
                 ct.writeMsgServer(message);
-            }else {
+            }else if (message.contains("READDY") || message.contains("NOTREADY")){
                 String cName = message.substring(0, message.indexOf(":"));
                 if (cName.equals(ct.username)) {
                     ct.writeMsgServer(message);
@@ -240,7 +240,7 @@ public class FindMyMinesServer {
                         break;
                     case ButtonClick.CLICK:
                         broadcast(msg);
-                        broadcastServerOnly(msg+":CLICK");
+//                      broadcastServerOnly(msg+":CLICK");
 //                      display(message);
                         break;
                     case ButtonClick.READDY:
