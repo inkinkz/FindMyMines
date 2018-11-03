@@ -1,24 +1,30 @@
 package game.controller;
 
+import javafx.scene.image.Image;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class ClientStartPageController {
+public class ClientStartPageController implements Initializable {
 
 	@FXML
 	private Button connect;
@@ -28,6 +34,9 @@ public class ClientStartPageController {
 
 	@FXML
 	private Label clientNamebox;
+	
+	@FXML
+    private ImageView backImage;
 
 	// this will be assign to each button in the GamePage 0=free 1=bomb
 	public static int[][] valueOfSpace = new int[6][6];
@@ -57,6 +66,15 @@ public class ClientStartPageController {
 	@FXML
 	private Label warnName;
 
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+    		File file = new File("/Users/punyapapoonapanont/git/FindMyMinesUI/FindMyMinesUI/src/bomb.png");
+        Image image = new Image(file.toURI().toString());
+        backImage.setImage(image);
+
+    }
+    
 	@FXML
 	void connect(ActionEvent event) throws IOException {
 		
