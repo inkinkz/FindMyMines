@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -28,6 +29,9 @@ public class ClientStartPageController {
 
 	@FXML
 	private Label clientNamebox;
+	
+	@FXML
+	private Button connectButton;
 
 	// this will be assign to each button in the GamePage 0=free 1=bomb
 	public static int[][] valueOfSpace = new int[6][6];
@@ -166,4 +170,14 @@ public class ClientStartPageController {
 		// don't react to a <CR> after the username
 		connected = false;
 	}
+	
+    @FXML
+    void clickedButton(MouseEvent event) {
+    	connectButton.setStyle("-fx-background-color: #8D99AE");
+    }
+    
+    @FXML
+    void releasedButton(MouseEvent event) {
+    	connectButton.setStyle("-fx-background-color: #EDF2F4");
+    }
 }
