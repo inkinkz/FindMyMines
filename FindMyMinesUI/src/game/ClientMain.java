@@ -1,6 +1,12 @@
 
 package game;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -30,6 +36,9 @@ public class ClientMain extends Application {
 	public static void main(String[] args) {
 
 		launch(args);
+		
+		
+		  
 
 	}
 }

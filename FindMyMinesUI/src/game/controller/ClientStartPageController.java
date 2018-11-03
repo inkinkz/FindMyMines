@@ -1,6 +1,10 @@
 package game.controller;
 
 import javafx.scene.image.Image;
+
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -37,6 +42,11 @@ public class ClientStartPageController implements Initializable {
 	
 	@FXML
     private ImageView backImage;
+	
+	@FXML
+    private AnchorPane colorPane;
+	
+	private Button connectButton;
 
 	// this will be assign to each button in the GamePage 0=free 1=bomb
 	public static int[][] valueOfSpace = new int[6][6];
@@ -69,8 +79,7 @@ public class ClientStartPageController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-    		File file = new File("/Users/punyapapoonapanont/git/FindMyMinesUI/FindMyMinesUI/src/bomb.png");
-        Image image = new Image(file.toURI().toString());
+    		Image image = new Image(getClass().getResourceAsStream("/bomb.png"));
         backImage.setImage(image);
 
     }
@@ -184,4 +193,14 @@ public class ClientStartPageController implements Initializable {
 		// don't react to a <CR> after the username
 		connected = false;
 	}
+	
+    @FXML
+    void clickedButton(MouseEvent event) {
+    	connectButton.setStyle("-fx-background-color: #8D99AE");
+    }
+    
+    @FXML
+    void releasedButton(MouseEvent event) {
+    	connectButton.setStyle("-fx-background-color: #EDF2F4");
+    }
 }
