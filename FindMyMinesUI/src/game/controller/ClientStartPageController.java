@@ -81,6 +81,18 @@ public class ClientStartPageController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
     		Image image = new Image(getClass().getResourceAsStream("/bomb.png"));
         backImage.setImage(image);
+        
+       // try {
+            //GraphicsEnvironment ge = 
+             //   GraphicsEnvironment.getLocalGraphicsEnvironment();
+           // ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("ISOCP__.TTF")));
+           // ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("ISOCPEUI.TTF")));
+           // ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("ISOCPEUR.TTF")));
+            //ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("ISOCTEUI.TTF")));
+          //  ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("ISOCTEUR.TTF")));
+       //} catch (IOException|FontFormatException e) {
+            //Handle exception
+       //}
 
     }
     
