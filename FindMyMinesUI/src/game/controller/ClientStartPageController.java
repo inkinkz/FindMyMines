@@ -208,11 +208,11 @@ public class ClientStartPageController implements Initializable {
 	
     @FXML
     void clickedButton(MouseEvent event) {
-    	connectButton.setStyle("-fx-background-color: #8D99AE");
+    		//connectButton.setStyle("-fx-background-color: #8D99AE");
     }
     
     @FXML
     void releasedButton(MouseEvent event) {
-    	connectButton.setStyle("-fx-background-color: #EDF2F4");
+    		//connectButton.setStyle("-fx-background-color: #EDF2F4");
     }
 }

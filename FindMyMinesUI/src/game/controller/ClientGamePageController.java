@@ -343,6 +343,9 @@ public class ClientGamePageController implements Initializable {
 	
 	@FXML
     private AnchorPane rightPane;
+	
+	@FXML
+	private Label title;
 
 	
 	@FXML
@@ -529,15 +532,18 @@ public class ClientGamePageController implements Initializable {
         Button y = (Button) event.getTarget();
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
-            ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
+            ((Button) event.getTarget()).setStyle("-fx-font-size: 13");
+            ((Button) event.getTarget()).setStyle("-fx-base: #ffffff");
             ((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
             ((Button) event.getTarget()).setDisable(true);
             player++;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-            ((Button) event.getTarget()).setText("bomb");
+            ((Button) event.getTarget()).setStyle("-fx-font-size: 13");
+            ((Button) event.getTarget()).setStyle("-fx-base: #ffffff");
+            ((Button) event.getTarget()).setStyle("-fx-background-color: #d90429");
+            ((Button) event.getTarget()).setText("Bomb");
             ((Button) event.getTarget()).setDisable(true);
             numBombLeft--;
             bombLeft.setText(numBombLeft + "");

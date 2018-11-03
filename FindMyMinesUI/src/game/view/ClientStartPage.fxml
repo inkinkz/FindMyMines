@@ -21,30 +21,30 @@
             <Rectangle2D />
          </viewport></ImageView>
       <AnchorPane fx:id="colorPane" layoutY="480.0" prefHeight="165.0" prefWidth="1002.0" style="-fx-background-color: rgb(43, 45, 66)rgb(43, 45, 66);" />
-      <Pane layoutX="39.0" layoutY="499.0" prefHeight="125.0" prefWidth="318.0" AnchorPane.bottomAnchor="26.0">
+      <Pane layoutX="40.0" layoutY="500.0" prefHeight="125.0" prefWidth="320.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="40.0">
          <children>
-                  <TextField fx:id="txtServer" layoutX="11.0" layoutY="54.0" prefHeight="35.0" prefWidth="297.0" style="-fx-alignment: center; -fx-background-color: #EDF2F4;" text="localhost">
+                  <TextField fx:id="txtServer" layoutX="11.0" layoutY="54.0" prefHeight="35.0" prefWidth="300.0" style="-fx-alignment: center; -fx-background-color: #EDF2F4;" text="localhost">
                <font>
-                  <Font name="Avenir Book" size="24.0" />
+                  <Font name="ISOCPEUR" size="24.0" />
                </font>
             </TextField>
-            <Label layoutY="3.0" prefHeight="35.0" prefWidth="318.0" style="-fx-alignment: center;" text="Enter Server IP Address" textAlignment="CENTER" textFill="#edf2f4">
+            <Label prefHeight="35.0" prefWidth="318.0" style="-fx-alignment: center;" text="Enter Server IP Address" textAlignment="CENTER" textFill="#edf2f4">
                <font>
                   <Font name="ISOCPEUR" size="27.0" />
                </font>
             </Label>
-            <Label fx:id="warnIP" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutY="105.0" prefHeight="20.0" prefWidth="318.0" text="Please enter an IP" textAlignment="CENTER" textFill="WHITE" visible="false">
+            <Label fx:id="warnIP" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutY="105.0" prefHeight="20.0" prefWidth="318.0" text="Please enter an IP" textAlignment="CENTER" textFill="#ef233c" visible="false">
                <font>
-                  <Font name="Avenir Book" size="14.0" />
+                  <Font name="ISOCPEUR" size="14.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="364.0" layoutY="507.0" AnchorPane.bottomAnchor="25.0">
+      <Pane layoutX="370.0" layoutY="500.0" prefHeight="125.0" prefWidth="300.0" AnchorPane.bottomAnchor="25.0">
          <children>
-            <TextField fx:id="txtUser" layoutY="47.0" style="-fx-background-color: #EDF2F4;">
+            <TextField fx:id="txtUser" layoutY="54.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #EDF2F4;">
                <font>
-                  <Font name="Avenir Book" size="24.0" />
+                  <Font name="ISOCPEUR" size="24.0" />
                </font>
             </TextField>
             <Label layoutX="50.0" prefHeight="26.0" prefWidth="200.0" style="-fx-alignment: center;" text="Enter Username" textFill="#edf2f4">
@@ -52,15 +52,15 @@
                   <Font name="ISOCPEUR" size="27.0" />
                </font>
             </Label>
-            <Label fx:id="warnName" alignment="CENTER" disable="true" layoutY="98.0" prefHeight="20.0" prefWidth="297.0" text="Please enter your nickname" textFill="WHITE" visible="false">
+            <Label fx:id="warnName" alignment="CENTER" disable="true" layoutY="98.0" prefHeight="20.0" prefWidth="297.0" text="Please enter your nickname" textFill="#ef233c" visible="false">
                <font>
-                  <Font name="Avenir Book" size="14.0" />
+                  <Font name="ISOCPEUR" size="14.0" />
                </font>
             </Label>
          </children>
       </Pane>
 
-                  <Button fx:id="connectButton" layoutX="701.0" layoutY="530.0" mnemonicParsing="false" onAction="#connect" onMousePressed="#clickedButton" onMouseReleased="#releasedButton" prefHeight="86.0" prefWidth="271.0" style="-fx-alignment: center; -fx-background-color: EDF2F4;" text="CONNECT" textFill="#2b2d42" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="701.0" AnchorPane.rightAnchor="28.0">
+                  <Button fx:id="connectButton" layoutX="701.0" layoutY="530.0" mnemonicParsing="false" onAction="#connect" onMousePressed="#clickedButton" onMouseReleased="#releasedButton" style="-fx-alignment: center; -fx-background-color: EDF2F4;" text="CONNECT" textFill="#2b2d42" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="520.0">
          <font>
             <Font name="ISOCPEUR" size="48.0" />
          </font>
