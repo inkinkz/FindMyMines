@@ -354,7 +354,7 @@ public class ClientGamePageController implements Initializable {
     //game
     static int numOfPlayer; // how many player
     Button[][] setOfButton = new Button[6][6];
-    Pane[] setOfPlayer = new Pane[10]; // limit player :10
+    Pane[] setOfPlayerPane = new Pane[10]; // limit player :10
     private static ObservableMap<Integer, Integer> scoreOfPlayer;
     private ObservableValue<Integer> playerReady; // number of player ready
     Label[] setOfScore = new Label[10];
@@ -397,7 +397,7 @@ public class ClientGamePageController implements Initializable {
         setUpBomb();
         //setScore();
         // color change for the starting player
-        //setOfPlayer[player].setStyle("-fx-background-color: grey");
+        //setOfPlayerPane[player].setStyle("-fx-background-color: grey");
     }
 
     private void setScore() {
@@ -407,21 +407,21 @@ public class ClientGamePageController implements Initializable {
     }
 
     private void setUpPane() {
-        // put each pane into setOfPlayer
-        setOfPlayer[0] = player1Pane;
-        setOfPlayer[1] = player2Pane;
-        setOfPlayer[2] = player3Pane;
-        setOfPlayer[3] = player4Pane;
-        setOfPlayer[4] = player5Pane;
-        setOfPlayer[5] = player6Pane;
-        setOfPlayer[6] = player7Pane;
-        setOfPlayer[7] = player8Pane;
-        setOfPlayer[8] = player9Pane;
-        setOfPlayer[9] = player10Pane;
+        // put each pane into setOfPlayerPane
+        setOfPlayerPane[0] = player1Pane;
+        setOfPlayerPane[1] = player2Pane;
+        setOfPlayerPane[2] = player3Pane;
+        setOfPlayerPane[3] = player4Pane;
+        setOfPlayerPane[4] = player5Pane;
+        setOfPlayerPane[5] = player6Pane;
+        setOfPlayerPane[6] = player7Pane;
+        setOfPlayerPane[7] = player8Pane;
+        setOfPlayerPane[8] = player9Pane;
+        setOfPlayerPane[9] = player10Pane;
 
         // to hide who does not play
         for (int i = numOfPlayer; i < 10; i++) {
-            setOfPlayer[i].setVisible(false);
+            setOfPlayerPane[i].setVisible(false);
         }
 
         setOfScore[0] = score1;
@@ -501,12 +501,12 @@ public class ClientGamePageController implements Initializable {
 
     void colorChange() {
         if (playerplaying < numOfPlayer) {
-            setOfPlayer[--playerplaying].setStyle("-fx-background-color: white");
-            setOfPlayer[++playerplaying].setStyle("-fx-background-color: grey");
+            setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: white");
+            setOfPlayerPane[++playerplaying].setStyle("-fx-background-color: grey");
             playerplaying++;
         } else if (playerplaying == numOfPlayer) {
-            setOfPlayer[numOfPlayer - 1].setStyle("-fx-background-color: white");
-            setOfPlayer[0].setStyle("-fx-background-color: grey");
+            setOfPlayerPane[numOfPlayer - 1].setStyle("-fx-background-color: white");
+            setOfPlayerPane[0].setStyle("-fx-background-color: grey");
             playerplaying = 1;
         } else {
             playerplaying = 1;
