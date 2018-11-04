@@ -296,7 +296,7 @@ public class ServerGamePageController implements Initializable {
         // game initialize
         scoreOfPlayer = FXCollections.observableHashMap();
         playerReady = new SimpleIntegerProperty(0).asObject();
-        //leftPane.setDisable(true);
+        leftPane.setDisable(true);
 
         // create a new Server
         server = new FindMyMinesServer(1500, this);
