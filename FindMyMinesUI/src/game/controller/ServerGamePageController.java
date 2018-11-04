@@ -933,19 +933,20 @@ public class ServerGamePageController implements Initializable {
             if(!readyAll()) {
                 warnReady.setVisible(true);
                 return;
-            }
-            //All players are ready, proceed to game
-            warnReady.setVisible(false);
-            setMode();
-            modebox.setDisable(true);
-            // complete game template
-            numOfPlayer = users.size(); // get from how many client
-            setupPane();
-            setScore();
-            // color change for the starting player
-            setOfPlayerPane[player].setStyle("-fx-background-color: grey");
-            assignBombDefault();
-            setUpBomb();
+            } else {
+                //All players are ready, proceed to game
+                warnReady.setVisible(false);
+                setMode();
+                modebox.setDisable(true);
+                // complete game template
+                numOfPlayer = users.size(); // get from how many client
+                setupPane();
+                setScore();
+                // color change for the starting player
+                setOfPlayerPane[player].setStyle("-fx-background-color: grey");
+                assignBombDefault();
+                setUpBomb();
+                FindMyMinesServer.broadcast("GAMESTARTED:GAMESTART");
 
             try {
                 showBomb();
@@ -957,6 +958,7 @@ public class ServerGamePageController implements Initializable {
             server.changeGameState();
             startButton.setText("Stop");
             return;
+            }
         }
         else if (GAME_STATE.equals("ONGOING")) {
             //GAME_STATE = ONGOING -> ENDED
@@ -964,6 +966,7 @@ public class ServerGamePageController implements Initializable {
             System.out.println("Stop button clicked");
             startButton.setText("Reset");
             server.changeGameState();
+            FindMyMinesServer.broadcast("GAMESTOPPED:GAMESTOP");
             return;
         }
         else {

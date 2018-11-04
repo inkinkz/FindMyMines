@@ -809,44 +809,44 @@ public class ClientGamePageController implements Initializable {
             Platform.runLater(() -> {
                 setUpBomb();
             });
-
-            //listen for game_state messages
-            try {
-                msgt = (String) sInput.readObject();
-                msgt.trim();
-                if(msgt.equals("WAITING")){
-                    //This means the server has pressed "Reset" button
-                    //ENDED -> WAITING
-                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
-                    GAME_STATE = msgt;
-                    //do something
-
-                } else if(msgt.equals("ONGOING")){
-                    //This means the server has pressed "Start" button
-                    //WAITING -> ONGOING
-                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
-                    GAME_STATE = msgt;
-                    //do something
-
-                } else if(msgt.equals("ENDED")){
-                    //This means the server has pressed "Stop" button
-                    //ONGOING -> ENDED
-                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
-                    GAME_STATE = msgt;
-                    //do something
-                }
-
-            } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-
-            try {
-                sInput = new ObjectInputStream(socket.getInputStream());
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+//
+//            //listen for game_state messages
+//            try {
+//                msgt = (String) sInput.readObject();
+//                msgt.trim();
+//                if(msgt.equals("WAITING")){
+//                    //This means the server has pressed "Reset" button
+//                    //ENDED -> WAITING
+//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
+//                    GAME_STATE = msgt;
+//                    //do something
+//
+//                } else if(msgt.equals("ONGOING")){
+//                    //This means the server has pressed "Start" button
+//                    //WAITING -> ONGOING
+//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
+//                    GAME_STATE = msgt;
+//                    //do something
+//
+//                } else if(msgt.equals("ENDED")){
+//                    //This means the server has pressed "Stop" button
+//                    //ONGOING -> ENDED
+//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
+//                    GAME_STATE = msgt;
+//                    //do something
+//                }
+//
+//            } catch (ClassNotFoundException e1) {
+//                e1.printStackTrace();
+//            } catch (IOException e1) {
+//                e1.printStackTrace();
+//            }
+//
+//            try {
+//                sInput = new ObjectInputStream(socket.getInputStream());
+//            } catch (IOException e1) {
+//                e1.printStackTrace();
+//            }
 
             while (true) {
                 try {
@@ -872,11 +872,15 @@ public class ClientGamePageController implements Initializable {
                                 users.remove(split[0] + " (READY)");
                                 users.add(split[0]);
                             });
+                        } else if (split[1].equals("GAMESTART")) {
+                            Platform.runLater(() -> {
+                                display("Server started the game!");
+                            });
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                display("Server stopped the game!");
+                            });
                         }
-                    } else {
-                        Platform.runLater(() -> {
-                            playFromOthers(msg);
-                        });
                     }
                 } catch (IOException e) {
                     display("Server has close the connection");
