@@ -15,8 +15,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import javax.swing.event.ChangeListener;
+
+//import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ObservableValue;
@@ -296,8 +297,6 @@ public class ServerGamePageController implements Initializable {
         // game initialize
         scoreOfPlayer = FXCollections.observableHashMap();
         playerReady = new SimpleIntegerProperty(0).asObject();
-        //leftPane.setDisable(true);
-
         // create a new Server
         server = new FindMyMinesServer(1500, this);
         users = FXCollections.observableArrayList();
@@ -851,27 +850,26 @@ public class ServerGamePageController implements Initializable {
             for (int j = 0; j < 6; j++) {
                 Button y = setOfButton[i][j];
                 if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-                    y.setStyle("-fx-font-size: 10");
-                    y.setStyle("-fx-background-color:#cccccc");
+                    y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                    y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                	y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB \n x2");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                	y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB \n x3");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                	y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB \n x4");
                 }
 
@@ -1143,28 +1141,27 @@ public class ServerGamePageController implements Initializable {
         Button y = setOfButton[i][j];
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-            y.setStyle("-fx-font-size: 10");
-            y.setStyle("-fx-background-color:#2B2D42");
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42");
+
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            y.setStyle("-fx-font-size: 5");
-            y.setStyle("-fx-background-color:#D90429");
+            y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB \n x2");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	 y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB \n x3");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB \n x4");
         }
     }
