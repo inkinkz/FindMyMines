@@ -14,6 +14,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import game.model.ButtonClick;
 import javafx.application.Platform;
@@ -373,6 +375,8 @@ public class ClientGamePageController implements Initializable {
     private ListView<String> listUsersConnected;
 
     private ObservableList<String> users;
+    
+    
 
     int[][] bombplacement = new int[6][6];
     int[][] bombaround = new int[6][6];
@@ -399,6 +403,8 @@ public class ClientGamePageController implements Initializable {
         // trigger this when server press start
         setUpPane();
         setUpBomb();
+        
+        startTimer();  //need to start when the game start
         //setScore();
         // color change for the starting player
         //setOfPlayerPane[player].setStyle("-fx-background-color: grey");
@@ -528,6 +534,7 @@ public class ClientGamePageController implements Initializable {
         // set color of player to know whose turn is next
         colorChange();
         // timer of next player
+        maxTime = 0;
         startTimer();
         Button y = (Button) event.getTarget();
 
@@ -604,9 +611,47 @@ public class ClientGamePageController implements Initializable {
             y.setText("BOMB \n x4");
         }
     }
+    
+    //tram
+    static Timer timer = new Timer();//tram
+    int time=10;
+    int maxTime=10;
+    
+    void startTimer() {
+
+    	TimerTask task;
+    	task = new TimerTask() {
+         
+            @Override
+			public void run() {
+				if (maxTime > 0) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							showTime.setText(time + "");
+						}
+					});
+					System.out.println("Seconds = " + time);
+					time--;
+					maxTime--;
+                } else {
+                    // stop the timer
+             
+                	/*player++;
+                	if (player == numOfPlayer) {
+                        player = 0;
+                    }
+                    */colorChange();
+                    startTimer();
+                    cancel();
+                }
+            }
+        };
+        timer.schedule(task, 0, 1000);
+    }
 
 
-    // to display count down game timer
+    /*// to display count down game timer
     void startTimer() {
         // timer run
         Task<Void> task = new Task<Void>() {
@@ -648,7 +693,7 @@ public class ClientGamePageController implements Initializable {
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
-    }
+    }*/
 
     Integer[] nameOfPlayer = new Integer[10];
     private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
@@ -781,7 +826,11 @@ public class ClientGamePageController implements Initializable {
 
             //server
             users = FXCollections.observableArrayList();
+         
             listUsersConnected.setItems(users);
+            
+            
+          
 
             try {
                 bombplacement = (int[][]) sInput.readObject();
