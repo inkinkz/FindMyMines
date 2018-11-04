@@ -14,6 +14,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.event.ChangeListener;
 
@@ -287,13 +289,14 @@ public class ServerGamePageController implements Initializable {
     Label[] setOfScoreBoard = new Label[10];
     int numBombLeft = 11;
  
-
+    
     // SERVER
 
     public FindMyMinesServer server;
 
     private ObservableList<String> users;
-
+    
+    
     public void startServer() {
         // game initialize
         scoreOfPlayer = FXCollections.observableHashMap();
@@ -302,6 +305,7 @@ public class ServerGamePageController implements Initializable {
         // create a new Server
         server = new FindMyMinesServer(1500, this);
         users = FXCollections.observableArrayList();
+        
         listUsersConnected.setItems(users);
         assignBombDefault();
         new ServerRunning().start();
@@ -349,7 +353,7 @@ public class ServerGamePageController implements Initializable {
         textArea.setEditable(false);
 
         warnReady.setVisible(false);
-
+        
         // set up mode selection
         ObservableList<String> availableChoices = FXCollections.observableArrayList("Default Mode", "Quick Game", "Multipoints Bomb");
         modebox.setItems(availableChoices);
@@ -881,10 +885,47 @@ public class ServerGamePageController implements Initializable {
             }
         }
     }
+    
+    
+    
+    static Timer timer = new Timer();//tram
+    int time=10;
+    int maxTime=10;
+    
+    void startTimer() {
 
-    int time = 10;
-
-    //to display count down from 10 to 0
+    	TimerTask task;
+    	task = new TimerTask() {
+         
+            @Override
+			public void run() {
+				if (maxTime > 0) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							showTime.setText(time + "");
+						}
+					});
+					System.out.println("Seconds = " + time);
+					time--;
+					maxTime--;
+                } else {
+                    // stop the timer
+             
+                	/*player++;
+                	if (player == numOfPlayer) {
+                        player = 0;
+                    }
+                    */colorChange();
+                    startTimer();
+                    cancel();
+                }
+            }
+        };
+        timer.schedule(task, 0, 1000);
+    }
+    
+   /* //to display count down from 10 to 0
     void startTimer() {
         Task<Void> task = new Task<Void>() {
             @Override
@@ -921,7 +962,7 @@ public class ServerGamePageController implements Initializable {
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
-    }
+    }*/
 
     //check all the player already click ready
 //    boolean readyAll = false;
@@ -969,17 +1010,8 @@ public class ServerGamePageController implements Initializable {
             // color change for the starting player
             setOfPlayerPane[player].setStyle("-fx-background-color: grey");
          
-           /* if (modeSelected == "Default Mode") {
-            	assignBombDefault();
-            }
-            if (modeSelected == "Multipoints Bomb") {
-            	assignBombMultipleScore();
-            }
-            if (modeSelected == "Quick game") {
-            	
-            }*/
             setMode();
-            //System.out.println(modeSelected);
+            
             setUpBomb();
             try {
                 showBomb();
@@ -990,19 +1022,22 @@ public class ServerGamePageController implements Initializable {
             modebox.setDisable(true);
             GAME_STATE = "ONGOING";
             startButton.setText("Stop");
-            //System.out.println("done if 1");
+          
+            
             return;
         }
         if (GAME_STATE.equals("ONGOING")) {
             startButton.setText("Reset");
             GAME_STATE = "ENDED";
-            //System.out.println("done if 2");
+            
+            
             return;
         }
         if (GAME_STATE.equals("ENDED")) {
             startButton.setText("Start");
             GAME_STATE = "WAITING";
-           // System.out.println("done if 3");
+            
+           
             modebox.setDisable(false);
            
             //firstTime =true;
