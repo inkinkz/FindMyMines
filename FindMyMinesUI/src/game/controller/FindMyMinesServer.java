@@ -15,11 +15,12 @@ public class FindMyMinesServer {
     // an ArrayList to keep the list of the Client
     private ArrayList<ClientThread> clientsConnected;
     // if I am in a GUI
-    private ServerGamePageController serverController;
+    protected static ServerGamePageController serverController;
     // the port number to listen for connection
     private int port;
     // the boolean that will be turned of to stop the server
     private boolean keepGoing;
+    protected static String GAME_STATE;
 
     int[][] bombplacement = ServerGamePageController.valueOfSpace;
     static int[][] bombaround = ServerGamePageController.bombAround;
@@ -39,6 +40,7 @@ public class FindMyMinesServer {
         this.port = port;
         // ArrayList for the Client list
         clientsConnected = new ArrayList<ClientThread>();
+        GAME_STATE = "WAITING";
     }
 
     public void start() {
@@ -52,19 +54,44 @@ public class FindMyMinesServer {
 
             // infinite loop to wait for connections
             while (keepGoing) {
-                // format message saying we are waiting
 
-                Socket socket = serverSocket.accept(); // accept connection
+                if(keepGoing){
+                    //if a game hasn't started then the server accepts new connections
 
-                // if I was asked to stop
-                if (!keepGoing)
+                    // format message saying we are waiting
+                    Socket socket = serverSocket.accept(); // accept connection
+
+                    // if I was asked to stop
+                    if (!keepGoing)
+                        break;
+
+                    if(getGameState().equals("WAITING")){
+                        //the game is waiting for clients to join
+                        ClientThread t = new ClientThread(socket); // make a thread of it
+                        clientsConnected.add(t); // save it in the ArrayList
+                        t.start();
+                    }
+                    else{
+                        //the game is ongoing, let clients know about GAME_STATE but do not let them join the game
+
+                        ClientThread t = new ClientThread(socket); // make a thread of it
+                        clientsConnected.add(t); // save it in the ArrayList
+                        t.start();
+
+                        //to be implemented
+                        //exchange information about GAME_STATE here
+                        //then disconnect the client
+                    }
+                } else{
+                    //keepGoing == false, server stops accepting any connection
+                    System.out.println("Server: keepGoing = false, exiting while loop");
                     break;
-                ClientThread t = new ClientThread(socket); // make a thread of it
-                clientsConnected.add(t); // save it in the ArrayList
-                t.start();
+                }
+
             }
             // I was asked to stop
             try {
+                System.out.println("Server: close() is called, server closing");
                 serverSocket.close();
                 for (int i = 0; i < clientsConnected.size(); ++i) {
                     ClientThread tc = clientsConnected.get(i);
@@ -77,12 +104,12 @@ public class FindMyMinesServer {
                     }
                 }
             } catch (Exception e) {
-                display("Exception closing the server and clients: " + e);
+                System.out.println("Exception closing the server and clients: " + e);
             }
         }
         // something went bad
         catch (IOException e) {
-            display(" Exception on new ServerSocket: " + e + "\n");
+            System.out.println("Exception on new ServerSocket: " + e);
         }
     }
 
@@ -103,7 +130,7 @@ public class FindMyMinesServer {
     /*
      * Display an event (not a message) to the GUI
      */
-    private void display(String msg) {
+    protected void display(String msg) {
         serverController.appendEvent(msg + "\n");
     }
 
@@ -112,10 +139,10 @@ public class FindMyMinesServer {
      */
     private synchronized void broadcast(String message) {
         String messageLf;
-        if (message.contains("WHOISIN") || message.contains("REMOVE") || message.contains("READDY") || message.contains("NOTREADY") || message.contains("CLICK")) {
+        if (message.contains("WHOISIN") || message.contains("REMOVE") || message.contains("READY") || message.contains("NOTREADY") || message.contains("CLICK")) {
             messageLf = message;
         } else {
-            messageLf = " " + message + "\n";
+            messageLf = message + "\n";
             serverController.appendRoom(messageLf); // Show received message (in server)
         }
 
@@ -163,6 +190,57 @@ public class FindMyMinesServer {
             }
         }
     }
+
+
+    public static String getGameState(){
+        return GAME_STATE;
+    }
+
+    public void setGameState(String gameState){
+        GAME_STATE = gameState;
+        return;
+    }
+
+    public void changeGameState(){
+        if (getGameState().equals("WAITING")){
+            setGameState("ONGOING");
+            //change broadcast() to noticeClient() to get these messages to show in client textarea
+            broadcast("Welcome to Find My Mines.");
+            broadcast("Server has started the game("+ serverController.getGameMode()+")");
+
+            //Messages for debugging
+            System.out.println("GAME_STATE set to:" +getGameState()+" and button should be Stop");
+            System.out.println("Game mode: "+serverController.getGameMode());
+            System.out.println();
+
+            return;
+        } else if (getGameState().equals("ONGOING")){
+            setGameState("ENDED");
+
+            //change broadcast() to noticeClient() to get these messages to show in client textarea
+            broadcast("Server has stopped the game.");
+
+            //Messages for debugging
+            System.out.println("GAME_STATE set to:" +getGameState()+" and button should be Reset");
+            System.out.println();
+            return;
+        } else {
+            setGameState("WAITING");
+            //change broadcast() to noticeClient() to get these messages to show in client textarea
+            broadcast("Server has reset the game.");
+
+            //Messages for debugging
+            System.out.println("GAME_STATE set to:" +getGameState()+" and button should be Start");
+            System.out.println();
+            return;
+        }
+    }
+
+    public void noticeClient(){
+        //for Ink to implement
+        return;
+    }
+
 
     /**
      * One instance of this thread will run for each client
@@ -223,7 +301,8 @@ public class FindMyMinesServer {
                 try {
                     cm = (ButtonClick) sInput.readObject();
                 } catch (IOException e) {
-                    display(username + " Exception reading Streams: " + e);
+                    System.out.println("user disconnected: "+username + " Exception reading Streams: " + e);
+                    display(username+" disconnected.");
                     break;
                 } catch (ClassNotFoundException e2) {
                     break;
@@ -299,6 +378,8 @@ public class FindMyMinesServer {
                     serverController.playFromOthers(c);
                 }
                 return true;
+            } else {
+                display(msg);
             }
             return true;
         }
@@ -315,8 +396,8 @@ public class FindMyMinesServer {
             }
             // if an error occurs, do not abort just inform the user
             catch (IOException e) {
-                display("Error sending message to " + username);
-                display(e.toString());
+                System.out.println("Error sending message to " + username);
+                System.out.println(e.toString());
             }
             return true;
         }

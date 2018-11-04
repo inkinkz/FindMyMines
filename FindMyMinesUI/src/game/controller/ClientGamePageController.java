@@ -364,6 +364,7 @@ public class ClientGamePageController implements Initializable {
     Label[] setOfNameBoard = new Label[10];
     Label[] setOfScoreBoard = new Label[10];
     int numBombLeft = 11;
+    private static String GAME_STATE; //to be implemented to receive from server
 
     @FXML
     private TextArea txtArea;
@@ -392,7 +393,7 @@ public class ClientGamePageController implements Initializable {
 
         new ListenFromServer().start();
         txtArea.setEditable(false);
-//		leftPane.setDisable(true);
+		leftPane.setDisable(true);
         display("Hello, " + username + ".\n");
         display("When you are ready to play, press Ready button");
         // trigger this when server press start
@@ -438,7 +439,6 @@ public class ClientGamePageController implements Initializable {
         setOfScore[8] = score9;
         setOfScore[9] = score10;
 
-        // TODO Auto-generated method stub
         setOfButton[0][0] = b1;
         setOfButton[1][0] = b2;
         setOfButton[2][0] = b3;
@@ -770,6 +770,7 @@ public class ClientGamePageController implements Initializable {
     class ListenFromServer extends Thread {
 
         public void run() {
+            String msgt;
             // game initialize
             scoreOfPlayer = FXCollections.observableHashMap();
             playerReady = new SimpleIntegerProperty(0).asObject();
@@ -781,33 +782,27 @@ public class ClientGamePageController implements Initializable {
             try {
                 bombplacement = (int[][]) sInput.readObject();
             } catch (ClassNotFoundException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
 
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
             try {
                 bombaround = (int[][]) sInput.readObject();
 
             } catch (ClassNotFoundException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
 
@@ -815,9 +810,47 @@ public class ClientGamePageController implements Initializable {
                 setUpBomb();
             });
 
+            //listen for game_state messages
+            try {
+                msgt = (String) sInput.readObject();
+                msgt.trim();
+                if(msgt.equals("WAITING")){
+                    //This means the server has pressed "Reset" button
+                    //ENDED -> WAITING
+                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
+                    GAME_STATE = msgt;
+                    //do something
+
+                } else if(msgt.equals("ONGOING")){
+                    //This means the server has pressed "Start" button
+                    //WAITING -> ONGOING
+                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
+                    GAME_STATE = msgt;
+                    //do something
+
+                } else if(msgt.equals("ENDED")){
+                    //This means the server has pressed "Stop" button
+                    //ONGOING -> ENDED
+                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
+                    GAME_STATE = msgt;
+                    //do something
+                }
+
+            } catch (ClassNotFoundException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
             while (true) {
                 try {
-                    String msgt = (String) sInput.readObject();
+                    msgt = (String) sInput.readObject();
                     String msg = msgt.trim();
                     if (msg.length() >= 5) {
                         String[] split = msg.split(":");

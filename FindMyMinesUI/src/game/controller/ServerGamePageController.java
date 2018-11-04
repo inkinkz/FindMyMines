@@ -15,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -271,7 +272,6 @@ public class ServerGamePageController implements Initializable {
     @FXML
     private Label warnReady;
 
-
     // game
 
     static int numOfPlayer; // how many player
@@ -284,7 +284,7 @@ public class ServerGamePageController implements Initializable {
     Label[] setOfNameBoard = new Label[10];
     Label[] setOfScoreBoard = new Label[10];
     int numBombLeft = 11;
-
+    private String gameMode = "DEFAULT";
 
     // SERVER
 
@@ -296,6 +296,8 @@ public class ServerGamePageController implements Initializable {
         // game initialize
         scoreOfPlayer = FXCollections.observableHashMap();
         playerReady = new SimpleIntegerProperty(0).asObject();
+        //leftPane.setDisable(true);
+
         // create a new Server
         server = new FindMyMinesServer(1500, this);
         users = FXCollections.observableArrayList();
@@ -342,10 +344,9 @@ public class ServerGamePageController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-//        leftPane.setDisable(true);
         textArea.setEditable(false);
-
         warnReady.setVisible(false);
+        leftPane.setDisable(true);
 
         // set up mode selection
         ObservableList<String> availableChoices = FXCollections.observableArrayList("Default Mode", "Quick Game", "Multipoints Bomb");
@@ -354,8 +355,6 @@ public class ServerGamePageController implements Initializable {
 
 
         startServer();
-
-
     }
 
     private void setScore() {
@@ -925,20 +924,57 @@ public class ServerGamePageController implements Initializable {
 //    boolean readyAll = false;
 
     @FXML
-    void start(ActionEvent event) {
-        warnReady.setVisible(false);
-        setMode();
+    void nextGameState(ActionEvent event) {
+        //called when "Start" / "Stop" / "Reset" button is pressed
+        String GAME_STATE = server.getGameState();
 
-        if(!readyAll()){
-            warnReady.setVisible(true);
+        if (GAME_STATE.equals("WAITING")) {
+            //GAME_STATE = WAITING -> ONGOING
+            if(!readyAll()) {
+                warnReady.setVisible(true);
+                return;
+            }
+            //All players are ready, proceed to game
+            warnReady.setVisible(false);
+            setMode();
+            modebox.setDisable(true);
+            // complete game template
+            numOfPlayer = users.size(); // get from how many client
+            setupPane();
+            setScore();
+            // color change for the starting player
+            setOfPlayerPane[player].setStyle("-fx-background-color: grey");
+            assignBombDefault();
+            setUpBomb();
+
+            try {
+                showBomb();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("Start button clicked");
+            server.changeGameState();
+            startButton.setText("Stop");
+            return;
         }
-        //if (readyAll == false) {
-        //	warnReady.setVisible(true);
-        //}
-        // if all players are ready
-        //if(readyAll == true) {
-        stateCheck();
-        //}
+        else if (GAME_STATE.equals("ONGOING")) {
+            //GAME_STATE = ONGOING -> ENDED
+            modebox.setDisable(true);
+            System.out.println("Stop button clicked");
+            startButton.setText("Reset");
+            server.changeGameState();
+            return;
+        }
+        else {
+            //GAME_STATE = ENDED -> WAITING
+            modebox.setDisable(false);
+            System.out.println("Reset button clicked");
+            startButton.setText("Start");
+            server.changeGameState();
+            return;
+        }
+
     }
 
     //check if all users are ready
@@ -956,12 +992,11 @@ public class ServerGamePageController implements Initializable {
         return check;
     }
 
-
-    String GAME_STATE = "WAITING"; // default = waiting for player
     //boolean firstTime =true;
     // GAME_STATE = "WAITING";
 
-    private void stateCheck() {
+ /*   private void stateCheck() {
+        String GAME_STATE = FindMyMinesServer.getGameState();
         if (GAME_STATE.equals("WAITING")) {
             // complete game template
             numOfPlayer = users.size(); // get from how many client
@@ -975,28 +1010,31 @@ public class ServerGamePageController implements Initializable {
             try {
                 showBomb();
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            GAME_STATE = "ONGOING";
+            FindMyMinesServer.setGameState("ONGOING");
+            FindMyMinesServer.display("");
+            System.out.println("GAME_STATE set to:" +FindMyMinesServer.getGameState()+" and button should be Stop");
             startButton.setText("Stop");
             System.out.println("done if 1");
             return;
         }
-        if (GAME_STATE.equals("ONGOING")) {
+        else if (GAME_STATE.equals("ONGOING")) {
             startButton.setText("Reset");
-            GAME_STATE = "ENDED";
+            FindMyMinesServer.setGameState("ENDED");
+            System.out.println("GAME_STATE set to:" +FindMyMinesServer.getGameState()+" and button should be Reset");
             System.out.println("done if 2");
             return;
         }
-        if (GAME_STATE.equals("ENDED")) {
+        else {
             startButton.setText("Start");
-            GAME_STATE = "ONGOING";
+            FindMyMinesServer.setGameState("ONGOING");
+            System.out.println("GAME_STATE set to:" +FindMyMinesServer.getGameState()+" and button should be Start");
             System.out.println("done if 3");
             //firstTime =true;
             return;
         }
-    }
+    }*/
 
     @FXML
     void stop(ActionEvent event) {
@@ -1054,18 +1092,38 @@ public class ServerGamePageController implements Initializable {
 
     }
 
-    private void setMode() {
-        String selectedChoice = modebox.getValue().toString();
+    @FXML
+    public void setMode() {
+        String selectedChoice = modebox.getValue();
         if (selectedChoice.equals("Default Mode")) {
+            setGameMode("DEFAULT");
+            System.out.println("Game mode set to DEFAULT");
             return;
         }
         if (selectedChoice.equals("Quick Game")) {
+            setGameMode("QUICK_GAME");
+            System.out.println("Game mode set to QUICK_GAME");
             time = 5;
             return;
         }
         if (selectedChoice.equals("Multipoints Bomb")) {
+            setGameMode("MULTIPOINTS_BOMB");
+            System.out.println("Game mode set to MULTIPOINTS_BOMB");
             return;
         }
+    }
+
+    public String getGameMode() {
+        if(this.gameMode.equals("QUICK_GAME"))
+            return "Quick Game";
+        else if(this.gameMode.equals("MULTIPOINTS_BOMB"))
+            return "Multipoints Bomb";
+        else
+            return "Default Mode";
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
     }
 
     // receive button position clicked from other clients
