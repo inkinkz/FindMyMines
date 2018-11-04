@@ -13,7 +13,7 @@ public class FindMyMinesServer {
     // a unique ID for each connection
     private static int uniqueId;
     // an ArrayList to keep the list of the Client
-    private ArrayList<ClientThread> clientsConnected;
+    static ArrayList<ClientThread> clientsConnected;
     // if I am in a GUI
     protected static ServerGamePageController serverController;
     // the port number to listen for connection
@@ -137,12 +137,13 @@ public class FindMyMinesServer {
     /*
      * to broadcast a message to all Clients
      */
-    private synchronized void broadcast(String message) {
+    static synchronized void broadcast(String message) {
         String messageLf;
-        if (message.contains("WHOISIN") || message.contains("REMOVE") || message.contains("READY") || message.contains("NOTREADY") || message.contains("CLICK")) {
+        if (message.contains("WHOISIN") || message.contains("REMOVE") || message.contains("READDY") || message.contains("NOTREADY")
+                || message.contains("GAMESTART") || message.contains("GAMESTOP")) {
             messageLf = message;
         } else {
-            messageLf = message + "\n";
+            messageLf = " " + message + "\n";
             serverController.appendRoom(messageLf); // Show received message (in server)
         }
 
@@ -154,7 +155,7 @@ public class FindMyMinesServer {
             if (!ct.writeMsg(messageLf)) {
                 clientsConnected.remove(i);
                 serverController.remove(ct.username);
-                display("Disconnected Client " + ct.username + " removed from list.");
+//                display("Disconnected Client " + ct.username + " removed from list.");
             }
         }
     }
