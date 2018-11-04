@@ -42,7 +42,7 @@
       </Pane>
       <Pane layoutX="370.0" layoutY="500.0" prefHeight="125.0" prefWidth="300.0" AnchorPane.bottomAnchor="25.0">
          <children>
-            <TextField fx:id="txtUser" layoutY="54.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #EDF2F4;">
+            <TextField fx:id="txtUser" alignment="CENTER" layoutY="54.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #EDF2F4;">
                <font>
                   <Font name="ISOCPEUR" size="24.0" />
                </font>

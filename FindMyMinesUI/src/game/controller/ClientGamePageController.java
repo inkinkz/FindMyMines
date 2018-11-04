@@ -576,27 +576,31 @@ public class ClientGamePageController implements Initializable {
         Button y = setOfButton[i][j];
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-            y.setStyle("-fx-font-size: 10");
-            y.setStyle("-fx-background-color:#2B2D42");
+           y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42; -fx-text-fill: #ffffff");
+           y.setDisable(true);
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429; -fx-text-fill: #ffffff");
+        	y.setDisable(true);
             y.setText("BOMB");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429; -fx-text-fill: #ffffff");
+        	y.setDisable(true);
             y.setText("BOMB \n x2");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429; -fx-text-fill: #ffffff");
+        	y.setDisable(true);
             y.setText("BOMB \n x3");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429; -fx-text-fill: #ffffff");
+        	y.setDisable(true);
             y.setText("BOMB \n x4");
         }
     }

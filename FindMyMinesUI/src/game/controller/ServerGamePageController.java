@@ -981,6 +981,9 @@ public class ServerGamePageController implements Initializable {
             if (modeSelected == "Multipoints Bomb") {
             	assignBombMultipleScore();
             }
+            if (modeSelected == "Quick game") {
+            	
+            }
             System.out.println(modeSelected);
             
             setUpBomb();
@@ -1102,23 +1105,22 @@ public class ServerGamePageController implements Initializable {
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            y.setStyle("-fx-font-size: 5");
-            y.setStyle("-fx-background-color:#D90429");
+            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: ##edf2f4");
             y.setText("BOMB");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	 y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: ##edf2f4");
             y.setText("BOMB \n x2");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	 y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: ##edf2f4");
             y.setText("BOMB \n x3");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: ##edf2f4");
             y.setText("BOMB \n x4");
         }
     }
