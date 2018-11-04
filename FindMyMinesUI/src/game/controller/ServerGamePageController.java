@@ -933,14 +933,9 @@ public class ServerGamePageController implements Initializable {
 
         if(!readyAll()){
             warnReady.setVisible(true);
+        }else {
+            stateCheck();
         }
-        //if (readyAll == false) {
-        //	warnReady.setVisible(true);
-        //}
-        // if all players are ready
-        //if(readyAll == true) {
-        stateCheck();
-        //}
     }
 
     //check if all users are ready
