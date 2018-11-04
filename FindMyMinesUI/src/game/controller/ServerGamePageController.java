@@ -995,19 +995,19 @@ public class ServerGamePageController implements Initializable {
             modebox.setDisable(true);
             GAME_STATE = "ONGOING";
             startButton.setText("Stop");
-            System.out.println("done if 1");
+            //System.out.println("done if 1");
             return;
         }
         if (GAME_STATE.equals("ONGOING")) {
             startButton.setText("Reset");
             GAME_STATE = "ENDED";
-            System.out.println("done if 2");
+            //System.out.println("done if 2");
             return;
         }
         if (GAME_STATE.equals("ENDED")) {
             startButton.setText("Start");
             GAME_STATE = "WAITING";
-            System.out.println("done if 3");
+           // System.out.println("done if 3");
             modebox.setDisable(false);
            
             //firstTime =true;
