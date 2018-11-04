@@ -6,7 +6,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
-import java.io.IOException;
+import java.io.IOException;	
 import java.net.URL;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -15,7 +15,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import javax.swing.event.ChangeListener;
+
+//import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ObservableValue;
@@ -284,7 +286,7 @@ public class ServerGamePageController implements Initializable {
     Label[] setOfNameBoard = new Label[10];
     Label[] setOfScoreBoard = new Label[10];
     int numBombLeft = 11;
-
+    private ObservableValue<Integer> numReadyPlayer; //tram edited
 
     // SERVER
 
@@ -296,6 +298,7 @@ public class ServerGamePageController implements Initializable {
         // game initialize
         scoreOfPlayer = FXCollections.observableHashMap();
         playerReady = new SimpleIntegerProperty(0).asObject();
+        
         // create a new Server
         server = new FindMyMinesServer(1500, this);
         users = FXCollections.observableArrayList();
@@ -963,14 +966,23 @@ public class ServerGamePageController implements Initializable {
 
     private void stateCheck() {
         if (GAME_STATE.equals("WAITING")) {
+        	String modeSelected = modebox.getSelectionModel().getSelectedItem();
+        	
             // complete game template
             numOfPlayer = users.size(); // get from how many client
             setupPane();
             setScore();
             // color change for the starting player
             setOfPlayerPane[player].setStyle("-fx-background-color: grey");
-
-            assignBombDefault();
+            numReadyPlayer = new SimpleIntegerProperty(numOfPlayer).asObject(); //tram edited
+            if (modeSelected == "Default Mode") {
+            	assignBombDefault();
+            }
+            if (modeSelected == "Multipoints Bomb") {
+            	assignBombMultipleScore();
+            }
+            System.out.println(modeSelected);
+            
             setUpBomb();
             try {
                 showBomb();
