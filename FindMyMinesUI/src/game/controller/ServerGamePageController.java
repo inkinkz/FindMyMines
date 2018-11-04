@@ -345,7 +345,7 @@ public class ServerGamePageController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-//        leftPane.setDisable(true);
+        leftPane.setDisable(true);
         textArea.setEditable(false);
 
         warnReady.setVisible(false);
@@ -929,7 +929,7 @@ public class ServerGamePageController implements Initializable {
     @FXML
     void start(ActionEvent event) {
         warnReady.setVisible(false);
-        setMode();
+       // setMode();
 
         if(!readyAll()){
             warnReady.setVisible(true);
@@ -965,7 +965,7 @@ public class ServerGamePageController implements Initializable {
 
     private void stateCheck() {
         if (GAME_STATE.equals("WAITING")) {
-        	String modeSelected = modebox.getSelectionModel().getSelectedItem();
+        	//String modeSelected = modebox.getSelectionModel().getSelectedItem();
         	
             // complete game template
             numOfPlayer = users.size(); // get from how many client
@@ -974,7 +974,7 @@ public class ServerGamePageController implements Initializable {
             // color change for the starting player
             setOfPlayerPane[player].setStyle("-fx-background-color: grey");
          
-            if (modeSelected == "Default Mode") {
+           /* if (modeSelected == "Default Mode") {
             	assignBombDefault();
             }
             if (modeSelected == "Multipoints Bomb") {
@@ -982,8 +982,9 @@ public class ServerGamePageController implements Initializable {
             }
             if (modeSelected == "Quick game") {
             	
-            }
-            System.out.println(modeSelected);
+            }*/
+            setMode();
+            //System.out.println(modeSelected);
             setUpBomb();
             try {
                 showBomb();
@@ -991,6 +992,7 @@ public class ServerGamePageController implements Initializable {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+            modebox.setDisable(true);
             GAME_STATE = "ONGOING";
             startButton.setText("Stop");
             System.out.println("done if 1");
@@ -1006,6 +1008,8 @@ public class ServerGamePageController implements Initializable {
             startButton.setText("Start");
             GAME_STATE = "WAITING";
             System.out.println("done if 3");
+            modebox.setDisable(false);
+           
             //firstTime =true;
             return;
         }
@@ -1070,13 +1074,18 @@ public class ServerGamePageController implements Initializable {
     private void setMode() {
         String selectedChoice = modebox.getValue().toString();
         if (selectedChoice.equals("Default Mode")) {
+        	assignBombDefault();
+        	//System.out.println(selectedChoice);
             return;
         }
         if (selectedChoice.equals("Quick Game")) {
             time = 5;
+            //System.out.println(selectedChoice);
             return;
         }
         if (selectedChoice.equals("Multipoints Bomb")) {
+        	assignBombMultipleScore();
+        	//System.out.println(selectedChoice);
             return;
         }
     }
