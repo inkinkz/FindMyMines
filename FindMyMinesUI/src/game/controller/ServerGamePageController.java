@@ -15,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ObservableValue;
@@ -921,11 +922,16 @@ public class ServerGamePageController implements Initializable {
     }
 
     //check all the player already click ready
-    //boolean readyAll = true;
+//    boolean readyAll = false;
+
     @FXML
     void start(ActionEvent event) {
         warnReady.setVisible(false);
         setMode();
+
+        if(!readyAll()){
+            warnReady.setVisible(true);
+        }
         //if (readyAll == false) {
         //	warnReady.setVisible(true);
         //}
@@ -933,6 +939,21 @@ public class ServerGamePageController implements Initializable {
         //if(readyAll == true) {
         stateCheck();
         //}
+    }
+
+    //check if all users are ready
+    boolean readyAll() {
+
+        Boolean check = true;
+
+        for (String user : users) {
+            if(!user.contains("(READY)")){
+                check = false;
+                break;
+            }
+        }
+
+        return check;
     }
 
 
@@ -1048,12 +1069,12 @@ public class ServerGamePageController implements Initializable {
     }
 
     // receive button position clicked from other clients
-     void playFromOthers(String cl) {
+    void playFromOthers(String cl) {
 
         String s = cl.trim();
         int j = 0;
-        int i = (Integer.parseInt(s.charAt(0)+"")) - 1;
-        if(s.length() >= 2) {
+        int i = (Integer.parseInt(s.charAt(0) + "")) - 1;
+        if (s.length() >= 2) {
             if (!(s.substring(1).equals(","))) {
                 j = Integer.parseInt(s.charAt(1) + "");
             }
@@ -1089,7 +1110,6 @@ public class ServerGamePageController implements Initializable {
             y.setText("BOMB \n x4");
         }
     }
-
 
 
 }
