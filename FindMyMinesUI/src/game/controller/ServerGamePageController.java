@@ -1098,17 +1098,20 @@ public class ServerGamePageController implements Initializable {
         String selectedChoice = modebox.getValue();
         if (selectedChoice.equals("Default Mode")) {
             setGameMode("DEFAULT");
+            assignBombDefault();
             System.out.println("Game mode set to DEFAULT");
             return;
         }
         if (selectedChoice.equals("Quick Game")) {
             setGameMode("QUICK_GAME");
+            assignBombDefault();
             System.out.println("Game mode set to QUICK_GAME");
             time = 5;
             return;
         }
         if (selectedChoice.equals("Multipoints Bomb")) {
             setGameMode("MULTIPOINTS_BOMB");
+            assignBombMultipleScore();
             System.out.println("Game mode set to MULTIPOINTS_BOMB");
             return;
         }
