@@ -1,17 +1,11 @@
 
 package game;
 
-import javafx.*;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.fxml.FXMLLoader;
 
 public class ServerMain extends Application {
@@ -19,6 +13,10 @@ public class ServerMain extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			Font.loadFont(getClass().getResourceAsStream("/ISOCP___.TTF"), 14);
+			Font.loadFont(getClass().getResourceAsStream("/ISOCPEUR.TTF"), 14);
+			Font.loadFont(getClass().getResourceAsStream("/ISOCTEUR.TTF"), 14);
+			
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("view/GamePage.fxml"));
 			Scene scene = new Scene(root, 1000, 650);
 			scene.getStylesheets().add(getClass().getResource("view/application.css").toExternalForm());
@@ -32,7 +30,6 @@ public class ServerMain extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void main(String[] args) {

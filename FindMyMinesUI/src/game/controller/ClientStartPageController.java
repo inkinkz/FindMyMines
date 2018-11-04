@@ -1,34 +1,55 @@
 package game.controller;
 
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.Socket;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import game.controller.ClientGamePageController.ListenFromServer;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
-public class ClientStartPageController {
+
+public class ClientStartPageController implements Initializable {
+
 
 	@FXML
-	private Button start;
+	private Button connect;
 
 	@FXML
 	private Label Title;
 
 	@FXML
 	private Label clientNamebox;
+	
+	@FXML
+    private ImageView backImage;
+	
+	@FXML
+    private AnchorPane colorPane;
+	@FXML
+	private Button connectButton;
 
 	// this will be assign to each button in the GamePage 0=free 1=bomb
 	public static int[][] valueOfSpace = new int[6][6];
@@ -58,30 +79,38 @@ public class ClientStartPageController {
 	@FXML
 	private Label warnName;
 
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+		Image image = new Image(getClass().getResourceAsStream("/bomb.png"));
+		backImage.setImage(image);
+
+    }
+    
 	@FXML
-	void start(ActionEvent event) throws IOException {
+	void connect(ActionEvent event) throws IOException {
 		
 		server = txtServer.getText().trim();
 		userName = txtUser.getText().trim();
 		
-		if (server.isEmpty() == true && userName.isEmpty() == true) {
+		if (server.isEmpty() && userName.isEmpty()) {
 			warnIP.setVisible(true);
 			warnName.setVisible(true);
 			return;
 		}
-		else if (server.isEmpty() == true) {
+		else if (server.isEmpty()) {
 			warnIP.setVisible(true);
 			warnName.setVisible(false);
 			return;
 		}
-		else if (userName.isEmpty() == true) {
+		else if (userName.isEmpty()) {
 			warnName.setVisible(true);
 			warnIP.setVisible(false);
 			return;
 		}
 
 		else if (!startConnection()) {
-			System.out.println("No server to connect!");
+			showErrorPopup();
 			return;
 		}
 
@@ -91,6 +120,15 @@ public class ClientStartPageController {
 		stage.setMinWidth(1000);
 		stage.setMinHeight(520);
 		stage.setScene(scene);
+		//when user closed the window
+		stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.out.println("Disconnected from the server.");
+                disconnect();
+                System.exit(0);
+            }
+        });
 		stage.show();
 
 	}
@@ -99,6 +137,7 @@ public class ClientStartPageController {
 		// try to connect to the server
 		try {
 			socket = new Socket(server, port);
+			connected = true;
 		}
 		// if it failed
 		catch (Exception ec) {
@@ -117,9 +156,6 @@ public class ClientStartPageController {
 			System.out.println("Exception creating new Input/output Streams: " + eIO);
 			return false;
 		}
-
-		// creates the Thread to listen from the server
-		//new ListenFromServer().start();
 
 		// Send our username to the server this is the only message that we
 		// will send as a String. All other messages will be ChatMessage objects
@@ -159,5 +195,25 @@ public class ClientStartPageController {
 	public void connectionFailed() {
 		// don't react to a <CR> after the username
 		connected = false;
+	}
+	
+    @FXML
+    void clickedButton(MouseEvent event) {
+    	//connectButton.setStyle("-fx-background-color: #8D99AE");
+    }
+    
+    @FXML
+    void releasedButton(MouseEvent event) {
+    //	connectButton.setStyle("-fx-background-color: #EDF2F4");
+    }
+
+	private void showErrorPopup() {
+		String content = "Cannot connect to server. Please make sure the IP address is correct and the server is online.";
+		Alert alert = new Alert(Alert.AlertType.ERROR, content, ButtonType.OK);
+		alert.setHeaderText("Connection Error");
+		alert.showAndWait();
+		if(alert.getResult() == ButtonType.OK){
+			alert.close();
+		}
 	}
 }
