@@ -244,10 +244,12 @@ public class FindMyMinesServer {
 //                      display(message);
                         break;
                     case ButtonClick.READDY:
-                        broadcast(username + ":READDY");
                         broadcastServerOnly(username + ":READDY");
+                        username = (username + ":READDY");
+                        broadcast(username);
                         break;
                     case ButtonClick.NOTREADY:
+                        username = (username.split(":")[0]);
                         broadcast(username + ":NOTREADY");
                         broadcastServerOnly(username + ":NOTREADY");
                         break;
