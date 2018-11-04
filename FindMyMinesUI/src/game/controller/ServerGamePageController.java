@@ -855,27 +855,26 @@ public class ServerGamePageController implements Initializable {
             for (int j = 0; j < 6; j++) {
                 Button y = setOfButton[i][j];
                 if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-                    y.setStyle("-fx-font-size: 10");
-                    y.setStyle("-fx-background-color:#cccccc");
+                    y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                    y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                	y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB \n x2");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                	y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB \n x3");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                	y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB \n x4");
                 }
 
@@ -985,7 +984,6 @@ public class ServerGamePageController implements Initializable {
             	
             }
             System.out.println(modeSelected);
-            
             setUpBomb();
             try {
                 showBomb();
@@ -1006,7 +1004,7 @@ public class ServerGamePageController implements Initializable {
         }
         if (GAME_STATE.equals("ENDED")) {
             startButton.setText("Start");
-            GAME_STATE = "ONGOING";
+            GAME_STATE = "WAITING";
             System.out.println("done if 3");
             //firstTime =true;
             return;
@@ -1100,27 +1098,27 @@ public class ServerGamePageController implements Initializable {
         Button y = setOfButton[i][j];
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-            y.setStyle("-fx-font-size: 10");
-            y.setStyle("-fx-background-color:#2B2D42");
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42");
+         
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: ##edf2f4");
+            y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-        	 y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: ##edf2f4");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB \n x2");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-        	 y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: ##edf2f4");
+        	 y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB \n x3");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: ##edf2f4");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB \n x4");
         }
     }
