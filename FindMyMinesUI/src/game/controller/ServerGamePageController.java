@@ -286,7 +286,7 @@ public class ServerGamePageController implements Initializable {
     Label[] setOfNameBoard = new Label[10];
     Label[] setOfScoreBoard = new Label[10];
     int numBombLeft = 11;
-    private ObservableValue<Integer> numReadyPlayer; //tram edited
+ 
 
     // SERVER
 
@@ -974,7 +974,7 @@ public class ServerGamePageController implements Initializable {
             setScore();
             // color change for the starting player
             setOfPlayerPane[player].setStyle("-fx-background-color: grey");
-            numReadyPlayer = new SimpleIntegerProperty(numOfPlayer).asObject(); //tram edited
+         
             if (modeSelected == "Default Mode") {
             	assignBombDefault();
             }
