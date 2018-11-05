@@ -928,7 +928,7 @@ public class ServerGamePageController implements Initializable {
 
         if (GAME_STATE.equals("WAITING")) {
             //GAME_STATE = WAITING -> ONGOING
-            if(!readyAll()) {
+            if (!readyAll()) {
                 warnReady.setVisible(true);
                 return;
             } else {
@@ -944,21 +944,26 @@ public class ServerGamePageController implements Initializable {
                 setOfPlayerPane[player].setStyle("-fx-background-color: grey");
                 assignBombDefault();
                 setUpBomb();
-                FindMyMinesServer.broadcast("GAMESTARTED:GAMESTART");
+                switch (gameMode) {
+                    case "DEFAULT":
+                        FindMyMinesServer.broadcast("GAMESTARTED:GAMESTART");
+                    case "QUICK_GAME":
+                        FindMyMinesServer.broadcast("QUICK_GAME:GAMESTART");
+                    case "MULTIPOINTS_BOMB":
+                        FindMyMinesServer.broadcast("MULTIPOINTS_BOMB:GAMESTART");
+                }
+                try {
+                    showBomb();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-            try {
-                showBomb();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("Start button clicked");
+                server.changeGameState();
+                startButton.setText("Stop");
+                return;
             }
-
-            System.out.println("Start button clicked");
-            server.changeGameState();
-            startButton.setText("Stop");
-            return;
-            }
-        }
-        else if (GAME_STATE.equals("ONGOING")) {
+        } else if (GAME_STATE.equals("ONGOING")) {
             //GAME_STATE = ONGOING -> ENDED
             modebox.setDisable(true);
             System.out.println("Stop button clicked");
@@ -966,8 +971,7 @@ public class ServerGamePageController implements Initializable {
             server.changeGameState();
             FindMyMinesServer.broadcast("GAMESTOPPED:GAMESTOP");
             return;
-        }
-        else {
+        } else {
             //GAME_STATE = ENDED -> WAITING
             modebox.setDisable(false);
             System.out.println("Reset button clicked");
@@ -984,7 +988,7 @@ public class ServerGamePageController implements Initializable {
         Boolean check = true;
 
         for (String user : users) {
-            if(!user.contains("(READY)")){
+            if (!user.contains("(READY)")) {
                 check = false;
                 break;
             }
@@ -1118,9 +1122,9 @@ public class ServerGamePageController implements Initializable {
     }
 
     public String getGameMode() {
-        if(this.gameMode.equals("QUICK_GAME"))
+        if (this.gameMode.equals("QUICK_GAME"))
             return "Quick Game";
-        else if(this.gameMode.equals("MULTIPOINTS_BOMB"))
+        else if (this.gameMode.equals("MULTIPOINTS_BOMB"))
             return "Multipoints Bomb";
         else
             return "Default Mode";
