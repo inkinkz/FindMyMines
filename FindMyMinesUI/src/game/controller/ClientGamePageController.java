@@ -905,7 +905,8 @@ public class ClientGamePageController implements Initializable {
                 try {
                     msgt = (String) sInput.readObject();
                     String msg = msgt.trim();
-                    if (msg.length() >= 5) {
+                    if (msg.contains("WHOISIN") || msg.contains("REMOVE") || msg.contains("READDY") || msg.contains("NOTREADY")
+                            || msg.contains("GAMESTART") || msg.contains("GAMESTOP")) {
                         String[] split = msg.split(":");
                         if (split[1].equals("WHOISIN")) {
                             Platform.runLater(() -> {
@@ -932,28 +933,35 @@ public class ClientGamePageController implements Initializable {
                                         // Game started
                                         // Do things for default mode
                                         display("Server started the game! (Default)");
+                                        leftPane.setDisable(false);
                                     });
-                                    continue;
+                                    break;
                                 case "QUICK_GAME":
                                     Platform.runLater(() -> {
                                         // Game started
                                         // Do things for quick game mode
                                         display("Server started the game! (Quick Game)");
+                                        leftPane.setDisable(false);
                                     });
-                                    continue;
+                                    break;
                                 case "MULTIPOINTS_BOMB":
                                     Platform.runLater(() -> {
                                         // Game started
                                         // Do things for multipoints bomb mode
                                         display("Server started the game! (Multipoints Bomb)");
+                                        leftPane.setDisable(false);
                                     });
-                                    continue;
+                                    break;
                             }
                         } else if (split[1].equals("GAMESTOP")) {
                             Platform.runLater(() -> {
                                 display("Server stopped the game!");
                             });
                         }
+                    } else if (msg.length() == 2){
+                        Platform.runLater(() -> {
+                            playFromOthers(msg);
+                        });
                     }
                 } catch (IOException e) {
                     display("Server has close the connection");

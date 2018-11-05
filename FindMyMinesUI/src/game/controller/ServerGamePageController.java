@@ -949,10 +949,13 @@ public class ServerGamePageController implements Initializable {
                 switch (gameMode) {
                     case "DEFAULT":
                         FindMyMinesServer.broadcast("GAMESTARTED:GAMESTART");
+                        break;
                     case "QUICK_GAME":
                         FindMyMinesServer.broadcast("QUICK_GAME:GAMESTART");
+                        break;
                     case "MULTIPOINTS_BOMB":
                         FindMyMinesServer.broadcast("MULTIPOINTS_BOMB:GAMESTART");
+                        break;
                 }
                 try {
                     showBomb();

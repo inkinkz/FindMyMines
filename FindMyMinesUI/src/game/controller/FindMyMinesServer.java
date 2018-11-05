@@ -320,8 +320,6 @@ public class FindMyMinesServer {
                         break;
                     case ButtonClick.CLICK:
                         broadcast(msg);
-//                      broadcastServerOnly(msg+":CLICK");
-//                      display(message);
                         break;
                     case ButtonClick.READDY:
                         broadcastServerOnly(username + ":READDY");
@@ -382,7 +380,7 @@ public class FindMyMinesServer {
                 }
                 return true;
             } else {
-                display(msg);
+                display(msg + " from writeMsgServer");
             }
             return true;
         }
