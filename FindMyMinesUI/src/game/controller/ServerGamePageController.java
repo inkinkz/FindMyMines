@@ -14,6 +14,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
 import com.sun.org.apache.xpath.internal.operations.Bool;
@@ -272,6 +274,7 @@ public class ServerGamePageController implements Initializable {
     @FXML
     private Label warnReady;
 
+
     // game
 
     static int numOfPlayer; // how many player
@@ -296,6 +299,7 @@ public class ServerGamePageController implements Initializable {
         // game initialize
         scoreOfPlayer = FXCollections.observableHashMap();
         playerReady = new SimpleIntegerProperty(0).asObject();
+        
         // create a new Server
         server = new FindMyMinesServer(1500, this);
         users = FXCollections.observableArrayList();
@@ -849,27 +853,26 @@ public class ServerGamePageController implements Initializable {
             for (int j = 0; j < 6; j++) {
                 Button y = setOfButton[i][j];
                 if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-                    y.setStyle("-fx-font-size: 10");
-                    y.setStyle("-fx-background-color:#cccccc");
+                    y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                    y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                	y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB \n x2");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                	y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB \n x3");
                 }
 
                 if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-                    y.setStyle("-fx-font-size: 10");
+                	y.setStyle("-fx-font-size: 10;-fx-text-fill: #edf2f4");
                     y.setText("BOMB \n x4");
                 }
 
@@ -877,9 +880,46 @@ public class ServerGamePageController implements Initializable {
         }
     }
 
-    int time = 10;
 
-    //to display count down from 10 to 0
+
+    static Timer timer = new Timer();//tram
+    int time=10;
+    int maxTime=10;
+
+    void startTimer() {
+
+    	TimerTask task;
+    	task = new TimerTask() {
+
+            @Override
+			public void run() {
+				if (maxTime > 0) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							showTime.setText(time + "");
+						}
+					});
+					System.out.println("Seconds = " + time);
+					time--;
+					maxTime--;
+                } else {
+                    // stop the timer
+
+                	/*player++;
+                	if (player == numOfPlayer) {
+                        player = 0;
+                    }
+                    */colorChange();
+                    startTimer();
+                    cancel();
+                }
+            }
+        };
+        timer.schedule(task, 0, 1000);
+    }
+
+   /* //to display count down from 10 to 0
     void startTimer() {
         Task<Void> task = new Task<Void>() {
             @Override
@@ -916,7 +956,7 @@ public class ServerGamePageController implements Initializable {
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
-    }
+    }*/
 
     //check all the player already click ready
 //    boolean readyAll = false;
@@ -1159,23 +1199,22 @@ public class ServerGamePageController implements Initializable {
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            y.setStyle("-fx-font-size: 5");
-            y.setStyle("-fx-background-color:#D90429");
+            y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB \n x2");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	 y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB \n x3");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-            y.setStyle("-fx-font-size: 5");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
             y.setText("BOMB \n x4");
         }
     }
