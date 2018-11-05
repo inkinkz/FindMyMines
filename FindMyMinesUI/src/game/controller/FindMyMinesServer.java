@@ -353,7 +353,6 @@ public class FindMyMinesServer {
                     sInput.close();
             } catch (Exception e) {
             }
-            ;
             try {
                 if (socket != null)
                     socket.close();
@@ -376,7 +375,7 @@ public class FindMyMinesServer {
                 } else if (msg.contains("CLICK")) {
                     String c = msg.split(":")[0];
 //                    display("playFromOthers " + c);
-                    serverController.playFromOthers(c);
+//                    serverController.playFromOthers(c);
                 }
                 return true;
             } else {

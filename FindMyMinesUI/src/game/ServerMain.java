@@ -2,11 +2,11 @@
 package game;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import javafx.fxml.FXMLLoader;
 
 public class ServerMain extends Application {
 
