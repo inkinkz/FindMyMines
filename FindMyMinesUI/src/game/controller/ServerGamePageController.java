@@ -299,7 +299,8 @@ public class ServerGamePageController implements Initializable {
         // game initialize
         scoreOfPlayer = FXCollections.observableHashMap();
         playerReady = new SimpleIntegerProperty(0).asObject();
-        
+        //leftPane.setDisable(true);
+
         // create a new Server
         server = new FindMyMinesServer(1500, this);
         users = FXCollections.observableArrayList();
@@ -886,40 +887,7 @@ public class ServerGamePageController implements Initializable {
     int time=10;
     int maxTime=10;
 
-    void startTimer() {
-
-    	TimerTask task;
-    	task = new TimerTask() {
-
-            @Override
-			public void run() {
-				if (maxTime > 0) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							showTime.setText(time + "");
-						}
-					});
-					System.out.println("Seconds = " + time);
-					time--;
-					maxTime--;
-                } else {
-                    // stop the timer
-
-                	/*player++;
-                	if (player == numOfPlayer) {
-                        player = 0;
-                    }
-                    */colorChange();
-                    startTimer();
-                    cancel();
-                }
-            }
-        };
-        timer.schedule(task, 0, 1000);
-    }
-
-   /* //to display count down from 10 to 0
+    //to display count down from 10 to 0
     void startTimer() {
         Task<Void> task = new Task<Void>() {
             @Override
@@ -956,7 +924,47 @@ public class ServerGamePageController implements Initializable {
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
-    }*/
+    }
+
+   ///to display count down from 10 to 0
+//    void startTimer() {
+//        Task<Void> task = new Task<Void>() {
+//            @Override
+//            public Void call() throws InterruptedException {
+//                for (int i = time; i >= 0; i--) {
+//                    if (false) {
+//                        // to stop timer
+//                        return null;
+//                    }
+//                    updateMessage(i + "");
+//                    Thread.sleep(1000);
+//                }
+//                return null;
+//            }
+//        };
+//        if (false) {
+//            // to stop timer
+//            return;
+//        }
+//        showTime.textProperty().bind(task.messageProperty());
+//        task.setOnSucceeded(e -> {
+//            showTime.textProperty().unbind();
+//            showTime.setText("0");
+//            //skip this player when timeout
+//            player++;
+//            if (player == numOfPlayer) {
+//                player = 0;
+//            }
+//            colorChange();
+//            //startTimer after timeout
+//            startTimer();
+//        });
+//
+//        Thread thread = new Thread(task);
+//        thread.setDaemon(true);
+//        thread.start();
+//    }
+//
 
     //check all the player already click ready
 //    boolean readyAll = false;
@@ -983,13 +991,14 @@ public class ServerGamePageController implements Initializable {
                 // color change for the starting player
                 setOfPlayerPane[player].setStyle("-fx-background-color: grey");
                 assignBombDefault();
-                setUpBomb();
                 switch (gameMode) {
                     case "DEFAULT":
                         FindMyMinesServer.broadcast("GAMESTARTED:GAMESTART");
+                        setUpBomb();
                         break;
                     case "QUICK_GAME":
                         FindMyMinesServer.broadcast("QUICK_GAME:GAMESTART");
+                        setUpBomb();
                         break;
                     case "MULTIPOINTS_BOMB":
                         FindMyMinesServer.broadcast("MULTIPOINTS_BOMB:GAMESTART");
@@ -1178,46 +1187,5 @@ public class ServerGamePageController implements Initializable {
     }
 
     // receive button position clicked from other clients
-    void playFromOthers(String cl) {
-
-        String s = cl.trim();
-        int j = 0;
-        int i = (Integer.parseInt(s.charAt(0) + "")) - 1;
-        if (s.length() >= 2) {
-            if (!(s.substring(1).equals(","))) {
-                j = Integer.parseInt(s.charAt(1) + "");
-            }
-        }
-
-        // To check button position
-//        display("i = " + i + " j = " + j);
-        Button y = setOfButton[i][j];
-
-        if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-            y.setStyle("-fx-font-size: 10");
-            y.setStyle("-fx-background-color:#2B2D42");
-        }
-
-        if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
-            y.setText("BOMB");
-        }
-
-        if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
-            y.setText("BOMB \n x2");
-        }
-
-        if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-        	 y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
-            y.setText("BOMB \n x3");
-        }
-
-        if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#8D99AE;-fx-text-fill: #edf2f4");
-            y.setText("BOMB \n x4");
-        }
-    }
-
 
 }

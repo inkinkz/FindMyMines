@@ -360,13 +360,13 @@
                <font>
                   <Font name="Avenir Book" size="13.0" />
                </font></TextArea>
-            <Button fx:id="startButton" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#start" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #EDF2F4;" text="START" textFill="#2b2d42" AnchorPane.bottomAnchor="445.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="30.0">
+            <Button fx:id="startButton" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nextGameState" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #EDF2F4;" text="START" textFill="#2b2d42" AnchorPane.bottomAnchor="445.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="ISOCTEUR" size="16.0" />
                </font></Button>
             <ChoiceBox fx:id="modebox" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #EDF2F4;" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="75.0" />
             <ListView fx:id="listUsersConnected" layoutY="225.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="295.0" style="-fx-background-color: #EDF2F4;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="230.0" />
-            <Label fx:id="warnReady" layoutX="80.0" layoutY="5.0" text="Not alll players are ready" textFill="RED" AnchorPane.bottomAnchor="475.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="5.0">
+            <Label fx:id="warnReady" layoutX="80.0" layoutY="5.0" text="Not all players are ready" textFill="RED" AnchorPane.bottomAnchor="475.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font name="Avenir Book" size="13.0" />
                </font>

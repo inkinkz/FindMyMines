@@ -44,324 +44,324 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ClientGamePageController implements Initializable {
-	@FXML
-	private Button b1;
+    @FXML
+    private Button b1;
 
-	@FXML
-	private Button b2;
+    @FXML
+    private Button b2;
 
-	@FXML
-	private Button b3;
+    @FXML
+    private Button b3;
 
-	@FXML
-	private Button b4;
+    @FXML
+    private Button b4;
 
-	@FXML
-	private Button b5;
+    @FXML
+    private Button b5;
 
-	@FXML
-	private Button b6;
+    @FXML
+    private Button b6;
 
-	@FXML
-	private Button b11;
+    @FXML
+    private Button b11;
 
-	@FXML
-	private Button b21;
+    @FXML
+    private Button b21;
 
-	@FXML
-	private Button b31;
+    @FXML
+    private Button b31;
 
-	@FXML
-	private Button b41;
+    @FXML
+    private Button b41;
 
-	@FXML
-	private Button b51;
+    @FXML
+    private Button b51;
 
-	@FXML
-	private Button b61;
+    @FXML
+    private Button b61;
 
-	@FXML
-	private Button b12;
+    @FXML
+    private Button b12;
 
-	@FXML
-	private Button b22;
+    @FXML
+    private Button b22;
 
-	@FXML
-	private Button b32;
+    @FXML
+    private Button b32;
 
-	@FXML
-	private Button b42;
+    @FXML
+    private Button b42;
 
-	@FXML
-	private Button b52;
+    @FXML
+    private Button b52;
 
-	@FXML
-	private Button b62;
+    @FXML
+    private Button b62;
 
-	@FXML
-	private Button b13;
+    @FXML
+    private Button b13;
 
-	@FXML
-	private Button b23;
+    @FXML
+    private Button b23;
 
-	@FXML
-	private Button b33;
+    @FXML
+    private Button b33;
 
-	@FXML
-	private Button b43;
+    @FXML
+    private Button b43;
 
-	@FXML
-	private Button b53;
+    @FXML
+    private Button b53;
 
-	@FXML
-	private Button b63;
+    @FXML
+    private Button b63;
 
-	@FXML
-	private Button b14;
+    @FXML
+    private Button b14;
 
-	@FXML
-	private Button b24;
+    @FXML
+    private Button b24;
 
-	@FXML
-	private Button b34;
+    @FXML
+    private Button b34;
 
-	@FXML
-	private Button b44;
+    @FXML
+    private Button b44;
 
-	@FXML
-	private Button b54;
+    @FXML
+    private Button b54;
 
-	@FXML
-	private Button b64;
+    @FXML
+    private Button b64;
 
-	@FXML
-	private Button b15;
+    @FXML
+    private Button b15;
 
-	@FXML
-	private Button b25;
+    @FXML
+    private Button b25;
 
-	@FXML
-	private Button b35;
+    @FXML
+    private Button b35;
 
-	@FXML
-	private Button b45;
+    @FXML
+    private Button b45;
 
-	@FXML
-	private Button b55;
+    @FXML
+    private Button b55;
 
-	@FXML
-	private Button b65;
+    @FXML
+    private Button b65;
 
-	@FXML
-	private Label showTime;
+    @FXML
+    private Label showTime;
 
-	@FXML
-	private Pane player1Pane;
+    @FXML
+    private Pane player1Pane;
 
-	@FXML
-	private Label player1;
+    @FXML
+    private Label player1;
 
-	@FXML
-	private Label score1;
+    @FXML
+    private Label score1;
 
-	@FXML
-	private Pane player2Pane;
+    @FXML
+    private Pane player2Pane;
 
-	@FXML
-	private Label player2;
+    @FXML
+    private Label player2;
 
-	@FXML
-	private Label score2;
+    @FXML
+    private Label score2;
 
-	@FXML
-	private Pane player3Pane;
+    @FXML
+    private Pane player3Pane;
 
-	@FXML
-	private Label player3;
+    @FXML
+    private Label player3;
 
-	@FXML
-	private Label score3;
+    @FXML
+    private Label score3;
 
-	@FXML
-	private Pane player4Pane;
+    @FXML
+    private Pane player4Pane;
 
-	@FXML
-	private Label player4;
+    @FXML
+    private Label player4;
 
-	@FXML
-	private Label score4;
+    @FXML
+    private Label score4;
 
-	@FXML
-	private Pane player5Pane;
+    @FXML
+    private Pane player5Pane;
 
-	@FXML
-	private Label player5;
+    @FXML
+    private Label player5;
 
-	@FXML
-	private Label score5;
+    @FXML
+    private Label score5;
 
-	@FXML
-	private Pane player6Pane;
+    @FXML
+    private Pane player6Pane;
 
-	@FXML
-	private Label player6;
+    @FXML
+    private Label player6;
 
-	@FXML
-	private Label score6;
+    @FXML
+    private Label score6;
 
-	@FXML
-	private Pane player7Pane;
+    @FXML
+    private Pane player7Pane;
 
-	@FXML
-	private Label player7;
+    @FXML
+    private Label player7;
 
-	@FXML
-	private Label score7;
+    @FXML
+    private Label score7;
 
-	@FXML
-	private Pane player8Pane;
+    @FXML
+    private Pane player8Pane;
 
-	@FXML
-	private Label player8;
+    @FXML
+    private Label player8;
 
-	@FXML
-	private Label score8;
+    @FXML
+    private Label score8;
 
-	@FXML
-	private Pane player9Pane;
+    @FXML
+    private Pane player9Pane;
 
-	@FXML
-	private Label player9;
+    @FXML
+    private Label player9;
 
-	@FXML
-	private Label score9;
+    @FXML
+    private Label score9;
 
-	@FXML
-	private Pane player10Pane;
+    @FXML
+    private Pane player10Pane;
 
-	@FXML
-	private Label player10;
+    @FXML
+    private Label player10;
 
-	@FXML
-	private Label score10;
+    @FXML
+    private Label score10;
 
-	@FXML
-	private Label bombLeft;
+    @FXML
+    private Label bombLeft;
 
-	@FXML
-	private Button readyButton;
+    @FXML
+    private Button readyButton;
 
-//for score board
-	@FXML
-	private Pane player1Pane1;
+    //for score board
+    @FXML
+    private Pane player1Pane1;
 
-	@FXML
-	private Label player11;
+    @FXML
+    private Label player11;
 
-	@FXML
-	private Label score11;
+    @FXML
+    private Label score11;
 
-	@FXML
-	private Pane player2Pane1;
+    @FXML
+    private Pane player2Pane1;
 
-	@FXML
-	private Label player21;
+    @FXML
+    private Label player21;
 
-	@FXML
-	private Label score21;
+    @FXML
+    private Label score21;
 
-	@FXML
-	private Pane player3Pane1;
+    @FXML
+    private Pane player3Pane1;
 
-	@FXML
-	private Label player31;
+    @FXML
+    private Label player31;
 
-	@FXML
-	private Label score31;
+    @FXML
+    private Label score31;
 
-	@FXML
-	private Pane player4Pane1;
+    @FXML
+    private Pane player4Pane1;
 
-	@FXML
-	private Label player41;
+    @FXML
+    private Label player41;
 
-	@FXML
-	private Label score41;
+    @FXML
+    private Label score41;
 
-	@FXML
-	private Pane player5Pane1;
+    @FXML
+    private Pane player5Pane1;
 
-	@FXML
-	private Label player51;
+    @FXML
+    private Label player51;
 
-	@FXML
-	private Label score51;
+    @FXML
+    private Label score51;
 
-	@FXML
-	private Pane player6Pane1;
+    @FXML
+    private Pane player6Pane1;
 
-	@FXML
-	private Label player61;
+    @FXML
+    private Label player61;
 
-	@FXML
-	private Label score61;
+    @FXML
+    private Label score61;
 
-	@FXML
-	private Pane player7Pane1;
+    @FXML
+    private Pane player7Pane1;
 
-	@FXML
-	private Label player71;
+    @FXML
+    private Label player71;
 
-	@FXML
-	private Label score71;
+    @FXML
+    private Label score71;
 
-	@FXML
-	private Pane player8Pane1;
+    @FXML
+    private Pane player8Pane1;
 
-	@FXML
-	private Label player81;
+    @FXML
+    private Label player81;
 
-	@FXML
-	private Label score81;
+    @FXML
+    private Label score81;
 
-	@FXML
-	private Pane player9Pane1;
+    @FXML
+    private Pane player9Pane1;
 
-	@FXML
-	private Label player91;
+    @FXML
+    private Label player91;
 
-	@FXML
-	private Label score91;
+    @FXML
+    private Label score91;
 
-	@FXML
-	private Pane player10Pane1;
+    @FXML
+    private Pane player10Pane1;
 
-	@FXML
-	private Label player101;
+    @FXML
+    private Label player101;
 
-	@FXML
-	private Label score101;
-	
-	@FXML
+    @FXML
+    private Label score101;
+
+    @FXML
     private AnchorPane leftPane;
-	
-	@FXML
+
+    @FXML
     private AnchorPane rightPane;
-	
-	@FXML
-	private Label title;
-	
-	@FXML
+
+    @FXML
+    private Label title;
+
+    @FXML
     private ImageView winnerImage;
 
-	@FXML
+    @FXML
     private AnchorPane scoreboardPane;
-	
-	@FXML
-	private Button button_done;
-	
-	@FXML
-	private DialogPane scoreBoard;
+
+    @FXML
+    private Button button_done;
+
+    @FXML
+    private DialogPane scoreBoard;
 
     //game
     static int numOfPlayer; // how many player
@@ -373,7 +373,7 @@ public class ClientGamePageController implements Initializable {
     Label[] setOfNameBoard = new Label[10];
     Label[] setOfScoreBoard = new Label[10];
     int numBombLeft = 11;
-    int score =0;
+    int score = 0;
     private static String GAME_STATE; //to be implemented to receive from server
 
     @FXML
@@ -402,11 +402,11 @@ public class ClientGamePageController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
 
         new ListenFromServer().start();
-        
+
         Image image = new Image(getClass().getResourceAsStream("/podium.png"));
-		winnerImage.setImage(image);
-		
-		
+        winnerImage.setImage(image);
+
+
         txtArea.setEditable(false);
         leftPane.setDisable(true);
         display("Hello, " + username + ".\n");
@@ -576,24 +576,24 @@ public class ClientGamePageController implements Initializable {
 
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-        	((Button) event.getTarget()).setDisable(true);
-        	((Button) event.getTarget()).setText("BOMB \n x2");
-        	score = score+2;
+            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            ((Button) event.getTarget()).setDisable(true);
+            ((Button) event.getTarget()).setText("BOMB \n x2");
+            score = score + 2;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-        	((Button) event.getTarget()).setDisable(true);
-        	((Button) event.getTarget()).setText("BOMB \n x3");
-        	score = score+3;
+            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            ((Button) event.getTarget()).setDisable(true);
+            ((Button) event.getTarget()).setText("BOMB \n x3");
+            score = score + 3;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-        	((Button) event.getTarget()).setDisable(true);
-        	((Button) event.getTarget()).setText("BOMB \n x4");
-        	score = score+4;
+            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            ((Button) event.getTarget()).setDisable(true);
+            ((Button) event.getTarget()).setText("BOMB \n x4");
+            score = score + 4;
         }
 
         if (player == numOfPlayer) {
@@ -618,57 +618,57 @@ public class ClientGamePageController implements Initializable {
         Button y = setOfButton[i][j];
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-           y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42; -fx-text-fill: #edf2f4");
-           y.setDisable(true);
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42; -fx-text-fill: #edf2f4");
+            y.setDisable(true);
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-        	y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-        	y.setDisable(true);
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setDisable(true);
             y.setText("BOMB");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-        	y.setDisable(true);
+            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setDisable(true);
             y.setText("BOMB \n x2");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-        	y.setDisable(true);
+            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setDisable(true);
             y.setText("BOMB \n x3");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-        	y.setDisable(true);
+            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setDisable(true);
             y.setText("BOMB \n x4");
         }
     }
 
     //tram
     static Timer timer = new Timer();//tram
-    int time=10;
-    int maxTime=10;
+    int time = 10;
+    int maxTime = 10;
 
     void startTimer() {
 
-    	TimerTask task;
-    	task = new TimerTask() {
+        TimerTask task;
+        task = new TimerTask() {
 
             @Override
-			public void run() {
-				if (maxTime > 0) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							showTime.setText(time + "");
-						}
-					});
-					System.out.println("Seconds = " + time);
-					time--;
-					maxTime--;
+            public void run() {
+                if (maxTime > 0) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            showTime.setText(time + "");
+                        }
+                    });
+                    System.out.println("Seconds = " + time);
+                    time--;
+                    maxTime--;
                 } else {
                     // stop the timer
 
@@ -676,7 +676,8 @@ public class ClientGamePageController implements Initializable {
                 	if (player == numOfPlayer) {
                         player = 0;
                     }
-                    */colorChange();
+                    */
+                    colorChange();
                     startTimer();
                     cancel();
                 }
@@ -988,7 +989,7 @@ public class ClientGamePageController implements Initializable {
                                 display("Server stopped the game!");
                             });
                         }
-                    } else {
+                    } else if (msg.length() == 2) {
                         Platform.runLater(() -> {
                             playFromOthers(msg);
                         });
