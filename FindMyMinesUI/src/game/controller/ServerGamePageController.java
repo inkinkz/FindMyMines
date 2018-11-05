@@ -429,7 +429,6 @@ public class ServerGamePageController implements Initializable {
         setOfScore[8] = score9;
         setOfScore[9] = score10;
 
-        // TODO Auto-generated method stub
         setOfButton[0][0] = b1;
         setOfButton[1][0] = b2;
         setOfButton[2][0] = b3;
@@ -482,18 +481,15 @@ public class ServerGamePageController implements Initializable {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
 
-                int result = (int) Math.ceil(Math.random() * 2); //
-                // float result = (float) Math.random();
-                /*
-                 * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
-                 */
+                int result = (int) Math.ceil(Math.random() * 2); //result = 0,1,2
                 if (numBomb >= 11) {
-                    result = 1;
+                    //if there is already 11 bombs
+                    result = 1; //set remaining tiles to space
                 }
                 if (result == 1) {
                     valueOfSpace[i][j] = 0;// free space
                 }
-                if (result == 2) {
+                else if (result == 2) {
                     valueOfSpace[i][j] = 1;// bomb
                     numBomb++;
                 }
@@ -501,17 +497,13 @@ public class ServerGamePageController implements Initializable {
             }
         }
 
-        // fix number of bomb to 11
-        while (numBomb != 11) {
+        //if above method doesn't return 11 bombs, redo again with remaining space tiles
+        while (numBomb <= 11) {
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 6; j++) {
 
                     if (valueOfSpace[i][j] == 0) {
                         int result = (int) Math.ceil(Math.random() * 2);
-                        // float result = (float) Math.random();
-                        /*
-                         * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
-                         */
                         if (result == 1) {
                             valueOfSpace[i][j] = 0;// free space
                         }
@@ -685,13 +677,13 @@ public class ServerGamePageController implements Initializable {
                         if (valueOfSpace[i - 1][j - 1] == 1) { // if the upperleft is bomb
                             countBombAround++;
                         }
-                        if (valueOfSpace[i - 1][j - 1] == 2) { // if the upperleft is bomb
+                        else if (valueOfSpace[i - 1][j - 1] == 2) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i - 1][j - 1] == 3) { // if the upperleft is bomb
+                        else if (valueOfSpace[i - 1][j - 1] == 3) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i - 1][j - 1] == 4) { // if the upperleft is bomb
+                        else if (valueOfSpace[i - 1][j - 1] == 4) {
                             countBombAround++;
                         }
                     }
@@ -699,13 +691,13 @@ public class ServerGamePageController implements Initializable {
                         if (valueOfSpace[i][j - 1] == 1) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i][j - 1] == 2) {
+                        else if (valueOfSpace[i][j - 1] == 2) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i][j - 1] == 3) {
+                        else if (valueOfSpace[i][j - 1] == 3) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i][j - 1] == 4) {
+                        else if (valueOfSpace[i][j - 1] == 4) {
                             countBombAround++;
                         }
                     }
@@ -713,13 +705,13 @@ public class ServerGamePageController implements Initializable {
                         if (valueOfSpace[i + 1][j - 1] == 1) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i + 1][j - 1] == 2) {
+                        else if (valueOfSpace[i + 1][j - 1] == 2) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i + 1][j - 1] == 3) {
+                        else if (valueOfSpace[i + 1][j - 1] == 3) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i + 1][j - 1] == 4) {
+                        else if (valueOfSpace[i + 1][j - 1] == 4) {
                             countBombAround++;
                         }
                     }
@@ -727,13 +719,13 @@ public class ServerGamePageController implements Initializable {
                         if (valueOfSpace[i - 1][j] == 1) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i - 1][j] == 2) {
+                        else if (valueOfSpace[i - 1][j] == 2) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i - 1][j] == 3) {
+                        else if (valueOfSpace[i - 1][j] == 3) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i - 1][j] == 4) {
+                        else if (valueOfSpace[i - 1][j] == 4) {
                             countBombAround++;
                         }
                     }
@@ -741,13 +733,13 @@ public class ServerGamePageController implements Initializable {
                         if (valueOfSpace[i + 1][j] == 1) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i + 1][j] == 2) {
+                        else if (valueOfSpace[i + 1][j] == 2) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i + 1][j] == 3) {
+                        else if (valueOfSpace[i + 1][j] == 3) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i + 1][j] == 4) {
+                        else if (valueOfSpace[i + 1][j] == 4) {
                             countBombAround++;
                         }
                     }
@@ -755,13 +747,13 @@ public class ServerGamePageController implements Initializable {
                         if (valueOfSpace[i - 1][j + 1] == 1) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i - 1][j + 1] == 2) {
+                        else if (valueOfSpace[i - 1][j + 1] == 2) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i - 1][j + 1] == 3) {
+                        else if (valueOfSpace[i - 1][j + 1] == 3) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i - 1][j + 1] == 4) {
+                        else if (valueOfSpace[i - 1][j + 1] == 4) {
                             countBombAround++;
                         }
                     }
@@ -769,13 +761,13 @@ public class ServerGamePageController implements Initializable {
                         if (valueOfSpace[i][j + 1] == 1) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i][j + 1] == 2) {
+                        else if (valueOfSpace[i][j + 1] == 2) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i][j + 1] == 3) {
+                        else if (valueOfSpace[i][j + 1] == 3) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i][j + 1] == 4) {
+                        else if (valueOfSpace[i][j + 1] == 4) {
                             countBombAround++;
                         }
                     }
@@ -783,13 +775,13 @@ public class ServerGamePageController implements Initializable {
                         if (valueOfSpace[i + 1][j + 1] == 1) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i + 1][j + 1] == 2) {
+                        else if (valueOfSpace[i + 1][j + 1] == 2) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i + 1][j + 1] == 3) {
+                        else if (valueOfSpace[i + 1][j + 1] == 3) {
                             countBombAround++;
                         }
-                        if (valueOfSpace[i + 1][j + 1] == 4) {
+                        else if (valueOfSpace[i + 1][j + 1] == 4) {
                             countBombAround++;
                         }
                     }
@@ -835,7 +827,8 @@ public class ServerGamePageController implements Initializable {
     }
 
 
-    // playing
+    //When button is clicked
+    //playing
     @FXML
     void showBomb() throws InterruptedException {
         // set exit startTimer();
@@ -853,22 +846,22 @@ public class ServerGamePageController implements Initializable {
                     y.setStyle("-fx-background-color:#cccccc");
                 }
 
-                if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+                else if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
                     y.setStyle("-fx-font-size: 10");
                     y.setText("BOMB");
                 }
 
-                if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
+                else if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
                     y.setStyle("-fx-font-size: 10");
                     y.setText("BOMB \n x2");
                 }
 
-                if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
+                else if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
                     y.setStyle("-fx-font-size: 10");
                     y.setText("BOMB \n x3");
                 }
 
-                if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
+                else if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
                     y.setStyle("-fx-font-size: 10");
                     y.setText("BOMB \n x4");
                 }
