@@ -36,6 +36,8 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -348,7 +350,12 @@ public class ClientGamePageController implements Initializable {
 	
 	@FXML
 	private Label title;
+	
+	@FXML
+    private ImageView winnerImage;
 
+	@FXML
+    private AnchorPane scoreboardPane;
 	
 	@FXML
 	private Button button_done;
@@ -395,6 +402,11 @@ public class ClientGamePageController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
 
         new ListenFromServer().start();
+        
+        Image image = new Image(getClass().getResourceAsStream("/podium.png"));
+		winnerImage.setImage(image);
+		
+		
         txtArea.setEditable(false);
 //		leftPane.setDisable(true);
         display("Hello, " + username + ".\n");
@@ -703,14 +715,7 @@ public class ClientGamePageController implements Initializable {
 
     @FXML
     void goBack(ActionEvent event) throws IOException {
-        AnchorPane gamePage = (AnchorPane) FXMLLoader
-                .load(getClass().getResource("/FindMyMinesUI/src/game/view/ClientStartPage.fxml"));
-        Scene scene = new Scene(gamePage);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setMinWidth(1000);
-        stage.setMinHeight(520);
-        stage.setScene(scene);
-        stage.show();
+        scoreboardPane.setVisible(false);
     }
 
 	boolean alreadyReady = false;
