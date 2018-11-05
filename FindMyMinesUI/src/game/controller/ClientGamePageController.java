@@ -373,6 +373,7 @@ public class ClientGamePageController implements Initializable {
     Label[] setOfNameBoard = new Label[10];
     Label[] setOfScoreBoard = new Label[10];
     int numBombLeft = 11;
+    int score =0;
 
     @FXML
     private TextArea txtArea;
@@ -570,7 +571,30 @@ public class ClientGamePageController implements Initializable {
 //            scoreOfPlayer.put(player, score++);
 //
 //            setOfScore[player].setText(score + "");
+            score++;
             player++;
+        }
+        
+        
+        if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
+        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+        	((Button) event.getTarget()).setDisable(true);
+        	((Button) event.getTarget()).setText("BOMB \n x2");
+        	score = score+2;
+        }
+
+        if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
+        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+        	((Button) event.getTarget()).setDisable(true);
+        	((Button) event.getTarget()).setText("BOMB \n x3");
+        	score = score+3;
+        }
+
+        if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
+        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+        	((Button) event.getTarget()).setDisable(true);
+        	((Button) event.getTarget()).setText("BOMB \n x4");
+        	score = score+4;
         }
 
         if (player == numOfPlayer) {
