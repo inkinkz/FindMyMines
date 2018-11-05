@@ -415,7 +415,7 @@ public class ClientGamePageController implements Initializable {
         txtArea.setEditable(false);
         leftPane.setDisable(true);
         display("Hello, " + username + ".\n");
-        display("When you are ready to play, press Ready button");
+        display("When you are ready to play, press Ready button\n");
         // trigger this when server press start
         setUpPane();
 //        setUpBomb();
