@@ -25,6 +25,9 @@ public class FindMyMinesServer {
     int[][] bombplacement = ServerGamePageController.valueOfSpace;
     static int[][] bombaround = ServerGamePageController.bombAround;
 
+    int[][] bombplacementMultiPoints = ServerGamePageController.valueOfSpaceMultiPoints;
+    static int[][] bombAroundMultiPoints = ServerGamePageController.bombAroundMultiPoints;
+
     /*
      * server constructor that receive the port to listen to for connection as
      * parameter
@@ -140,7 +143,7 @@ public class FindMyMinesServer {
     static synchronized void broadcast(String message) {
         String messageLf;
         if (message.contains("WHOISIN") || message.contains("REMOVE") || message.contains("READDY") || message.contains("NOTREADY")
-                || message.contains("GAMESTART") || message.contains("GAMESTOP")) {
+                || message.contains("GAMESTART") || message.contains("GAMESTOP") || message.contains("CLICK")) {
             messageLf = message;
         } else {
             messageLf = " " + message + "\n";
@@ -269,9 +272,14 @@ public class FindMyMinesServer {
                 // create output first
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sInput = new ObjectInputStream(socket.getInputStream());
+
                 sOutput.writeObject(bombplacement);
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sOutput.writeObject(bombaround);
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                sOutput.writeObject(bombplacementMultiPoints);
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                sOutput.writeObject(bombAroundMultiPoints);
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
 
                 // read the username

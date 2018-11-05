@@ -36,6 +36,8 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -349,6 +351,11 @@ public class ClientGamePageController implements Initializable {
     @FXML
     private Label title;
 
+    @FXML
+    private ImageView winnerImage;
+
+    @FXML
+    private AnchorPane scoreboardPane;
 
     @FXML
     private Button button_done;
@@ -366,6 +373,7 @@ public class ClientGamePageController implements Initializable {
     Label[] setOfNameBoard = new Label[10];
     Label[] setOfScoreBoard = new Label[10];
     int numBombLeft = 11;
+    int score = 0;
     private static String GAME_STATE; //to be implemented to receive from server
 
     @FXML
@@ -380,6 +388,9 @@ public class ClientGamePageController implements Initializable {
 
     int[][] bombplacement = new int[6][6];
     int[][] bombaround = new int[6][6];
+
+    int[][] bombplacementMultiPoints = new int[6][6];
+    int[][] bombaroundMultiPoints = new int[6][6];
 
     // Server Configuration
     private boolean connected = ClientStartPageController.connected;
@@ -396,13 +407,18 @@ public class ClientGamePageController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
 
         new ListenFromServer().start();
+
+        Image image = new Image(getClass().getResourceAsStream("/podium.png"));
+        winnerImage.setImage(image);
+
+
         txtArea.setEditable(false);
         leftPane.setDisable(true);
         display("Hello, " + username + ".\n");
         display("When you are ready to play, press Ready button");
         // trigger this when server press start
         setUpPane();
-        setUpBomb();
+//        setUpBomb();
         
         startTimer();  //need to start when the game start
         //setScore();
@@ -558,8 +574,38 @@ public class ClientGamePageController implements Initializable {
 //            scoreOfPlayer.put(player, score++);
 //
 //            setOfScore[player].setText(score + "");
+            score++;
             player++;
         }
+
+
+        if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
+            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            ((Button) event.getTarget()).setDisable(true);
+            ((Button) event.getTarget()).setText("BOMB \n x2");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 2;
+            player++;
+        }
+
+        if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
+            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            ((Button) event.getTarget()).setDisable(true);
+            ((Button) event.getTarget()).setText("BOMB \n x3");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 3;
+            player++;        }
+
+        if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
+            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            ((Button) event.getTarget()).setDisable(true);
+            ((Button) event.getTarget()).setText("BOMB \n x4");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 4;
+            player++;        }
 
         if (player == numOfPlayer) {
             player = 0;
@@ -591,57 +637,74 @@ public class ClientGamePageController implements Initializable {
             y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             y.setDisable(true);
             y.setText("BOMB");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 1;
+            player++;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
             y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             y.setDisable(true);
             y.setText("BOMB \n x2");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 2;
+            player++;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
             y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             y.setDisable(true);
             y.setText("BOMB \n x3");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 3;
+            player++;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
             y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             y.setDisable(true);
             y.setText("BOMB \n x4");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 4;
+            player++;
         }
     }
-    
+
     //tram
     static Timer timer = new Timer();//tram
-    int time=10;
-    int maxTime=10;
-    
+    int time = 10;
+    int maxTime = 10;
+
     void startTimer() {
 
-    	TimerTask task;
-    	task = new TimerTask() {
-         
+        TimerTask task;
+        task = new TimerTask() {
+
             @Override
-			public void run() {
-				if (maxTime > 0) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							showTime.setText(time + "");
-						}
-					});
-					System.out.println("Seconds = " + time);
-					time--;
-					maxTime--;
+            public void run() {
+                if (maxTime > 0) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            showTime.setText(time + "");
+                        }
+                    });
+                    System.out.println("Seconds = " + time);
+                    time--;
+                    maxTime--;
                 } else {
                     // stop the timer
-             
+
                 	/*player++;
                 	if (player == numOfPlayer) {
                         player = 0;
                     }
-                    */colorChange();
+                    */
+                    colorChange();
                     startTimer();
                     cancel();
                 }
@@ -828,9 +891,6 @@ public class ClientGamePageController implements Initializable {
             users = FXCollections.observableArrayList();
          
             listUsersConnected.setItems(users);
-            
-            
-          
 
             try {
                 bombplacement = (int[][]) sInput.readObject();
@@ -859,9 +919,40 @@ public class ClientGamePageController implements Initializable {
                 e1.printStackTrace();
             }
 
-            Platform.runLater(() -> {
-                setUpBomb();
-            });
+            // Multi points bomb
+
+            try {
+                bombplacementMultiPoints = (int[][]) sInput.readObject();
+            } catch (ClassNotFoundException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                bombaroundMultiPoints = (int[][]) sInput.readObject();
+
+            } catch (ClassNotFoundException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+//            Platform.runLater(() -> {
+//                setUpBomb();
+//            });
+
+
 //
 //            //listen for game_state messages
 //            try {
@@ -928,11 +1019,12 @@ public class ClientGamePageController implements Initializable {
                             });
                         } else if (split[1].equals("GAMESTART")) {
                             switch (split[0]) {
-                                case "GAMESTARTED":
+                                case "DEFAULT":
                                     Platform.runLater(() -> {
                                         // Game started
                                         // Do things for default mode
                                         display("Server started the game! (Default)");
+                                        setUpBomb();
                                         leftPane.setDisable(false);
                                     });
                                     break;
@@ -941,6 +1033,7 @@ public class ClientGamePageController implements Initializable {
                                         // Game started
                                         // Do things for quick game mode
                                         display("Server started the game! (Quick Game)");
+                                        setUpBomb();
                                         leftPane.setDisable(false);
                                     });
                                     break;
@@ -949,6 +1042,7 @@ public class ClientGamePageController implements Initializable {
                                         // Game started
                                         // Do things for multipoints bomb mode
                                         display("Server started the game! (Multipoints Bomb)");
+                                        setUpBombMultiPoints();
                                         leftPane.setDisable(false);
                                     });
                                     break;
@@ -958,7 +1052,7 @@ public class ClientGamePageController implements Initializable {
                                 display("Server stopped the game!");
                             });
                         }
-                    } else if (msg.length() == 2){
+                    } else if (msg.length() == 2) {
                         Platform.runLater(() -> {
                             playFromOthers(msg);
                         });
@@ -1007,6 +1101,43 @@ public class ClientGamePageController implements Initializable {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 int numOfBombAround = bombaround[i][j];
+                if (numOfBombAround > 0) {
+                    setOfButton[i][j].setText("" + numOfBombAround);
+
+                }
+            }
+        }
+
+    }
+
+    private void setUpBombMultiPoints() {
+//		numOfPlayer = users.size(); // how many clients are there
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                int result = bombplacementMultiPoints[i][j];
+                Button y = setOfButton[i][j];
+                if (result == 0) {
+                    y.setStyle("-fx-font-size: 0.0"); // blank
+                }
+                if (result == 1) {
+                    y.setStyle("-fx-font-size: 0.1"); // bomb
+                }
+                if (result == 2) {
+                    y.setStyle("-fx-font-size: 0.2"); // bomb
+                }
+                if (result == 3) {
+                    y.setStyle("-fx-font-size: 0.3"); // bomb
+                }
+                if (result == 4) {
+                    y.setStyle("-fx-font-size: 0.4"); // bomb
+                }
+            }
+        }
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                int numOfBombAround = bombaroundMultiPoints[i][j];
                 if (numOfBombAround > 0) {
                     setOfButton[i][j].setText("" + numOfBombAround);
 
