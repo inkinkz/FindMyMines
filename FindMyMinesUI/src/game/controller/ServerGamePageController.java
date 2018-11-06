@@ -296,11 +296,12 @@ public class ServerGamePageController implements Initializable {
         // game initialize
         scoreOfPlayer = FXCollections.observableHashMap();
         playerReady = new SimpleIntegerProperty(0).asObject();
+        leftPane.setDisable(true);
+
         // create a new Server
         server = new FindMyMinesServer(1500, this);
         users = FXCollections.observableArrayList();
         listUsersConnected.setItems(users);
-        assignBombDefault();
         new ServerRunning().start();
     }
 
@@ -351,6 +352,9 @@ public class ServerGamePageController implements Initializable {
         modebox.setItems(availableChoices);
         modebox.setValue("Default Mode");
 
+        //assign values to bombs
+        assignBombMultipleScore();
+        assignBombDefault();
 
         startServer();
     }
@@ -387,6 +391,45 @@ public class ServerGamePageController implements Initializable {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 int numOfBombAround = getNumBombAround(i, j);
+                if (numOfBombAround > 0) {
+                    setOfButton[i][j].setText("" + numOfBombAround);
+                }
+            }
+        }
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                Button y = setOfButton[i][j];
+                y.setDisable(true);
+            }
+        }
+    }
+
+    private void setUpBombMultiPoints() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                int result = getValueOfSpaceMultiPoints(i, j);
+                Button y = setOfButton[i][j];
+                if (result == 0) {
+                    y.setStyle("-fx-font-size: 0.0"); // blank
+                }
+                if (result == 1) {
+                    y.setStyle("-fx-font-size: 0.1"); // bomb
+                }
+                if (result == 2) {
+                    y.setStyle("-fx-font-size: 0.2"); // bomb
+                }
+                if (result == 3) {
+                    y.setStyle("-fx-font-size: 0.3"); // bomb
+                }
+                if (result == 4) {
+                    y.setStyle("-fx-font-size: 0.4"); // bomb
+                }
+
+            }
+        }
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                int numOfBombAround = getNumBombAroundMultiPoints(i, j);
                 if (numOfBombAround > 0) {
                     setOfButton[i][j].setText("" + numOfBombAround);
                 }
@@ -471,25 +514,29 @@ public class ServerGamePageController implements Initializable {
     //starting of implementation from former StartPageController
     //this will be assign to each button in the GamePage 0=free 1=bomb
     public static int[][] valueOfSpace = new int[6][6];
+    public static int[][] valueOfSpaceMultiPoints = new int[6][6];
+
 
     // create array to keep number of surrounding bomb
     public static int[][] bombAround = new int[6][6];
+    public static int[][] bombAroundMultiPoints = new int[6][6];
+
     int numBomb = 0;
+    int numBombMultiPoints = 0;
 
     private void assignBombDefault() {
         // assign bomb to the slot
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
 
-                int result = (int) Math.ceil(Math.random() * 2); //result = 0,1,2
+                int result = (int) Math.ceil(Math.random() * 2); //
                 if (numBomb >= 11) {
-                    //if there is already 11 bombs
-                    result = 1; //set remaining tiles to space
+                    result = 1;
                 }
                 if (result == 1) {
                     valueOfSpace[i][j] = 0;// free space
                 }
-                else if (result == 2) {
+                if (result == 2) {
                     valueOfSpace[i][j] = 1;// bomb
                     numBomb++;
                 }
@@ -497,8 +544,8 @@ public class ServerGamePageController implements Initializable {
             }
         }
 
-        //if above method doesn't return 11 bombs, redo again with remaining space tiles
-        while (numBomb <= 11) {
+        // fix number of bomb to 11
+        while (numBomb != 11) {
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 6; j++) {
 
@@ -569,7 +616,6 @@ public class ServerGamePageController implements Initializable {
                 }
             }
         }
-
     }
 
     private void assignBombMultipleScore() {
@@ -583,82 +629,82 @@ public class ServerGamePageController implements Initializable {
                 /*
                  * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
                  */
-                if (numBomb >= 11) {
+                if (numBombMultiPoints >= 11) {
                     result = 1;
                 }
                 if (result == 1) {
-                    valueOfSpace[i][j] = 0;// free space
+                    valueOfSpaceMultiPoints[i][j] = 0;// free space
                 }
                 if (result == 6) {
-                    valueOfSpace[i][j] = 0;// free space
+                    valueOfSpaceMultiPoints[i][j] = 0;// free space
                 }
                 if (result == 7) {
-                    valueOfSpace[i][j] = 0;// free space
+                    valueOfSpaceMultiPoints[i][j] = 0;// free space
                 }
                 if (result == 8) {
-                    valueOfSpace[i][j] = 0;// free space
+                    valueOfSpaceMultiPoints[i][j] = 0;// free space
                 }
 
                 if (result == 2) {
-                    valueOfSpace[i][j] = 1;// bomb
-                    numBomb++;
+                    valueOfSpaceMultiPoints[i][j] = 1;// bomb
+                    numBombMultiPoints++;
                 }
                 if (result == 3) {
-                    valueOfSpace[i][j] = 2;// bomb
-                    numBomb++;
+                    valueOfSpaceMultiPoints[i][j] = 2;// bomb
+                    numBombMultiPoints++;
                 }
                 if (result == 4) {
-                    valueOfSpace[i][j] = 3;// bomb
-                    numBomb++;
+                    valueOfSpaceMultiPoints[i][j] = 3;// bomb
+                    numBombMultiPoints++;
                 }
                 if (result == 5) {
-                    valueOfSpace[i][j] = 4;// bomb
-                    numBomb++;
+                    valueOfSpaceMultiPoints[i][j] = 4;// bomb
+                    numBombMultiPoints++;
                 }
 
             }
         }
 
         // fix number of bomb to 11
-        while (numBomb != 11) {
+        while (numBombMultiPoints != 11) {
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 6; j++) {
 
-                    if (valueOfSpace[i][j] == 0) {
+                    if (valueOfSpaceMultiPoints[i][j] == 0) {
                         int result = (int) Math.ceil(Math.random() * 6);
                         // float result = (float) Math.random();
                         /*
                          * if (result < 0.5) { result = 0; } if (result >= 0.5) { result = 1; }
                          */
                         if (result == 1) {
-                            valueOfSpace[i][j] = 0;// free space
+                            valueOfSpaceMultiPoints[i][j] = 0;// free space
                         }
 
                         if (result == 6) {
-                            valueOfSpace[i][j] = 0;// free space
+                            valueOfSpaceMultiPoints[i][j] = 0;// free space
                         }
                         if (result == 7) {
-                            valueOfSpace[i][j] = 0;// free space
+                            valueOfSpaceMultiPoints[i][j] = 0;// free space
                         }
                         if (result == 8) {
-                            valueOfSpace[i][j] = 0;// free space
+                            valueOfSpaceMultiPoints[i][j] = 0;// free space
                         }
 
                         if (result == 2) {
-                            valueOfSpace[i][j] = 1;// bomb
-                            numBomb++;
+                            valueOfSpaceMultiPoints[i][j] = 1;// bomb
+                            numBombMultiPoints++;
                         }
                         if (result == 3) {
-                            valueOfSpace[i][j] = 2;// bomb
-                            numBomb++;
+                            valueOfSpaceMultiPoints[i][j] = 2;// bomb
+                            numBombMultiPoints++;
                         }
                         if (result == 4) {
-                            valueOfSpace[i][j] = 3;// bomb
-                            numBomb++;
+                            valueOfSpaceMultiPoints[i][j] = 3;// bomb
+                            numBombMultiPoints++;
                         }
                         if (result == 5) {
-                            valueOfSpace[i][j] = 4;// bomb
-                            numBomb++;
+                            valueOfSpaceMultiPoints[i][j] = 4;// bomb
+                            numBombMultiPoints++;
                         }
                     }
                 }
@@ -672,125 +718,124 @@ public class ServerGamePageController implements Initializable {
             for (int j = 0; j < 6; j++) {
 
                 int countBombAround = 0;
-                if (valueOfSpace[i][j] == 0) { // if this is free slot
+                if (valueOfSpaceMultiPoints[i][j] == 0) { // if this is free slot
                     if (i - 1 >= 0 && j - 1 >= 0) { // if there is a slot
-                        if (valueOfSpace[i - 1][j - 1] == 1) { // if the upperleft is bomb
+                        if (valueOfSpaceMultiPoints[i - 1][j - 1] == 1) { // if the upperleft is bomb
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i - 1][j - 1] == 2) {
+                        if (valueOfSpaceMultiPoints[i - 1][j - 1] == 2) { // if the upperleft is bomb
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i - 1][j - 1] == 3) {
+                        if (valueOfSpaceMultiPoints[i - 1][j - 1] == 3) { // if the upperleft is bomb
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i - 1][j - 1] == 4) {
+                        if (valueOfSpaceMultiPoints[i - 1][j - 1] == 4) { // if the upperleft is bomb
                             countBombAround++;
                         }
                     }
                     if (i >= 0 && j - 1 >= 0) {
-                        if (valueOfSpace[i][j - 1] == 1) {
+                        if (valueOfSpaceMultiPoints[i][j - 1] == 1) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i][j - 1] == 2) {
+                        if (valueOfSpaceMultiPoints[i][j - 1] == 2) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i][j - 1] == 3) {
+                        if (valueOfSpaceMultiPoints[i][j - 1] == 3) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i][j - 1] == 4) {
+                        if (valueOfSpaceMultiPoints[i][j - 1] == 4) {
                             countBombAround++;
                         }
                     }
                     if (i + 1 <= 5 && j - 1 >= 0) {
-                        if (valueOfSpace[i + 1][j - 1] == 1) {
+                        if (valueOfSpaceMultiPoints[i + 1][j - 1] == 1) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i + 1][j - 1] == 2) {
+                        if (valueOfSpaceMultiPoints[i + 1][j - 1] == 2) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i + 1][j - 1] == 3) {
+                        if (valueOfSpaceMultiPoints[i + 1][j - 1] == 3) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i + 1][j - 1] == 4) {
+                        if (valueOfSpaceMultiPoints[i + 1][j - 1] == 4) {
                             countBombAround++;
                         }
                     }
                     if (i - 1 >= 0 && j >= 0) {
-                        if (valueOfSpace[i - 1][j] == 1) {
+                        if (valueOfSpaceMultiPoints[i - 1][j] == 1) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i - 1][j] == 2) {
+                        if (valueOfSpaceMultiPoints[i - 1][j] == 2) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i - 1][j] == 3) {
+                        if (valueOfSpaceMultiPoints[i - 1][j] == 3) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i - 1][j] == 4) {
+                        if (valueOfSpaceMultiPoints[i - 1][j] == 4) {
                             countBombAround++;
                         }
                     }
                     if (i + 1 <= 5 && j >= 0) {
-                        if (valueOfSpace[i + 1][j] == 1) {
+                        if (valueOfSpaceMultiPoints[i + 1][j] == 1) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i + 1][j] == 2) {
+                        if (valueOfSpaceMultiPoints[i + 1][j] == 2) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i + 1][j] == 3) {
+                        if (valueOfSpaceMultiPoints[i + 1][j] == 3) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i + 1][j] == 4) {
+                        if (valueOfSpaceMultiPoints[i + 1][j] == 4) {
                             countBombAround++;
                         }
                     }
                     if (i - 1 >= 0 && j + 1 <= 5) {
-                        if (valueOfSpace[i - 1][j + 1] == 1) {
+                        if (valueOfSpaceMultiPoints[i - 1][j + 1] == 1) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i - 1][j + 1] == 2) {
+                        if (valueOfSpaceMultiPoints[i - 1][j + 1] == 2) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i - 1][j + 1] == 3) {
+                        if (valueOfSpaceMultiPoints[i - 1][j + 1] == 3) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i - 1][j + 1] == 4) {
+                        if (valueOfSpaceMultiPoints[i - 1][j + 1] == 4) {
                             countBombAround++;
                         }
                     }
                     if (i >= 0 && j + 1 <= 5) {
-                        if (valueOfSpace[i][j + 1] == 1) {
+                        if (valueOfSpaceMultiPoints[i][j + 1] == 1) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i][j + 1] == 2) {
+                        if (valueOfSpaceMultiPoints[i][j + 1] == 2) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i][j + 1] == 3) {
+                        if (valueOfSpaceMultiPoints[i][j + 1] == 3) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i][j + 1] == 4) {
+                        if (valueOfSpaceMultiPoints[i][j + 1] == 4) {
                             countBombAround++;
                         }
                     }
                     if (i + 1 <= 5 && j + 1 <= 5) {
-                        if (valueOfSpace[i + 1][j + 1] == 1) {
+                        if (valueOfSpaceMultiPoints[i + 1][j + 1] == 1) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i + 1][j + 1] == 2) {
+                        if (valueOfSpaceMultiPoints[i + 1][j + 1] == 2) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i + 1][j + 1] == 3) {
+                        if (valueOfSpaceMultiPoints[i + 1][j + 1] == 3) {
                             countBombAround++;
                         }
-                        else if (valueOfSpace[i + 1][j + 1] == 4) {
+                        if (valueOfSpaceMultiPoints[i + 1][j + 1] == 4) {
                             countBombAround++;
                         }
                     }
-                    bombAround[i][j] = countBombAround;
+                    bombAroundMultiPoints[i][j] = countBombAround;
 
                 }
             }
         }
-
     }
 
     public static int getValueOfSpace(int i, int j) {
@@ -803,6 +848,17 @@ public class ServerGamePageController implements Initializable {
         int numbombaround = bombAround[i][j];
         return numbombaround;
     }
+
+    public static int getValueOfSpaceMultiPoints(int i, int j) {
+        int valueofspace = valueOfSpaceMultiPoints[i][j];
+        return valueofspace;
+    }
+
+    public static int getNumBombAroundMultiPoints(int i, int j) {
+        int numbombaround = bombAroundMultiPoints[i][j];
+        return numbombaround;
+    }
+
     //end of implementation from former StartPageController
 
     //to keep track of score for the score board next page
@@ -846,22 +902,22 @@ public class ServerGamePageController implements Initializable {
                     y.setStyle("-fx-background-color:#cccccc");
                 }
 
-                else if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+                if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
                     y.setStyle("-fx-font-size: 10");
                     y.setText("BOMB");
                 }
 
-                else if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
+                if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
                     y.setStyle("-fx-font-size: 10");
                     y.setText("BOMB \n x2");
                 }
 
-                else if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
+                if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
                     y.setStyle("-fx-font-size: 10");
                     y.setText("BOMB \n x3");
                 }
 
-                else if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
+                if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
                     y.setStyle("-fx-font-size: 10");
                     y.setText("BOMB \n x4");
                 }
@@ -927,7 +983,6 @@ public class ServerGamePageController implements Initializable {
             } else {
                 //All players are ready, proceed to game
                 warnReady.setVisible(false);
-                setMode();
                 modebox.setDisable(true);
                 // complete game template
                 numOfPlayer = users.size(); // get from how many client
@@ -935,16 +990,22 @@ public class ServerGamePageController implements Initializable {
                 setScore();
                 // color change for the starting player
                 setOfPlayerPane[player].setStyle("-fx-background-color: grey");
-                assignBombDefault();
-                setUpBomb();
+//                assignBombDefault();
+                setMode();
                 switch (gameMode) {
                     case "DEFAULT":
-                        FindMyMinesServer.broadcast("GAMESTARTED:GAMESTART");
+//                        assignBombDefault();
+                        FindMyMinesServer.broadcast("DEFAULT:GAMESTART");
+                        setUpBomb();
                         break;
                     case "QUICK_GAME":
+//                        assignBombDefault();
+                        setUpBomb();
                         FindMyMinesServer.broadcast("QUICK_GAME:GAMESTART");
                         break;
                     case "MULTIPOINTS_BOMB":
+//                        assignBombMultipleScore();
+                        setUpBombMultiPoints();
                         FindMyMinesServer.broadcast("MULTIPOINTS_BOMB:GAMESTART");
                         break;
                 }
@@ -1129,49 +1190,5 @@ public class ServerGamePageController implements Initializable {
     public void setGameMode(String gameMode) {
         this.gameMode = gameMode;
     }
-
-    // receive button position clicked from other clients
-    void playFromOthers(String cl) {
-
-        String s = cl.trim();
-        int j = 0;
-        int i = (Integer.parseInt(s.charAt(0) + "")) - 1;
-        if (s.length() >= 2) {
-            if (!(s.substring(1).equals(","))) {
-                j = Integer.parseInt(s.charAt(1) + "");
-            }
-        }
-
-        // To check button position
-//        display("i = " + i + " j = " + j);
-        Button y = setOfButton[i][j];
-
-        if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-            y.setStyle("-fx-font-size: 10");
-            y.setStyle("-fx-background-color:#2B2D42");
-        }
-
-        if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            y.setStyle("-fx-font-size: 5");
-            y.setStyle("-fx-background-color:#D90429");
-            y.setText("BOMB");
-        }
-
-        if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-            y.setStyle("-fx-font-size: 5");
-            y.setText("BOMB \n x2");
-        }
-
-        if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-            y.setStyle("-fx-font-size: 5");
-            y.setText("BOMB \n x3");
-        }
-
-        if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-            y.setStyle("-fx-font-size: 5");
-            y.setText("BOMB \n x4");
-        }
-    }
-
 
 }
