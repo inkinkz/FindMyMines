@@ -523,12 +523,12 @@ public class ClientGamePageController implements Initializable {
 
     void colorChange() {
         if (playerplaying < numOfPlayer) {
-            setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: white");
-            setOfPlayerPane[++playerplaying].setStyle("-fx-background-color: grey");
+            setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: transparent");
+            setOfPlayerPane[++playerplaying].setStyle("-fx-background-color: #EDF2F4");
             playerplaying++;
         } else if (playerplaying == numOfPlayer) {
-            setOfPlayerPane[numOfPlayer - 1].setStyle("-fx-background-color: white");
-            setOfPlayerPane[0].setStyle("-fx-background-color: grey");
+            setOfPlayerPane[numOfPlayer - 1].setStyle("-fx-background-color: transparent");
+            setOfPlayerPane[0].setStyle("-fx-background-color: #EDF2F4");
             playerplaying = 1;
         } else {
             playerplaying = 1;
