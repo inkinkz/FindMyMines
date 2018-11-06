@@ -416,7 +416,7 @@ public class ClientGamePageController implements Initializable {
         setUpPane();
         setUpBomb();
         
-        startTimer();  //need to start when the game start
+        //startTimer();  //need to start when the game start
         //setScore();
         // color change for the starting player
         //setOfPlayerPane[player].setStyle("-fx-background-color: grey");
@@ -548,13 +548,13 @@ public class ClientGamePageController implements Initializable {
         colorChange();
         // timer of next player
         maxTime = 0;
-        startTimer();
+        //startTimer();
         Button y = (Button) event.getTarget();
 
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
             // ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-            ((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42");
+            ((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42;");
             ((Button) event.getTarget()).setDisable(true);
             player++;
         }
@@ -577,21 +577,21 @@ public class ClientGamePageController implements Initializable {
         
         
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4;");
         	((Button) event.getTarget()).setDisable(true);
         	((Button) event.getTarget()).setText("BOMB \n x2");
         	score = score+2;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4;");
         	((Button) event.getTarget()).setDisable(true);
         	((Button) event.getTarget()).setText("BOMB \n x3");
         	score = score+3;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4;");
         	((Button) event.getTarget()).setDisable(true);
         	((Button) event.getTarget()).setText("BOMB \n x4");
         	score = score+4;
@@ -740,6 +740,7 @@ public class ClientGamePageController implements Initializable {
     @FXML
     void goBack(ActionEvent event) throws IOException {
         scoreboardPane.setVisible(false);
+        
     }
 
 	boolean alreadyReady = false;
@@ -753,13 +754,13 @@ public class ClientGamePageController implements Initializable {
 			int ready = playerReady.getValue();
 			playerReady = new SimpleIntegerProperty(ready++).asObject();
 			// set ready button to disable after being pressed
-			readyButton.setText("Not Ready");
+			readyButton.setText("NOT READY");
 
 		} else {
 			/* if (alreadyReady) { */
 			// set ready button to disable after being pressed
             sendNotReady();
-			readyButton.setText("Ready");
+			readyButton.setText("READY");
 		}
 
 		alreadyReady = !alreadyReady;
