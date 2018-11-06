@@ -416,7 +416,7 @@ public class ClientGamePageController implements Initializable {
         setUpPane();
         setUpBomb();
         
-        //startTimer();  //need to start when the game start
+        startTimer();  //need to start when the game start
         //setScore();
         // color change for the starting player
         //setOfPlayerPane[player].setStyle("-fx-background-color: grey");
@@ -619,30 +619,30 @@ public class ClientGamePageController implements Initializable {
         Button y = setOfButton[i][j];
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-           y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42; -fx-text-fill: #edf2f4");
+           y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42;");
            y.setDisable(true);
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-        	y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+        	y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;");
         	y.setDisable(true);
             y.setText("BOMB");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;");
         	y.setDisable(true);
             y.setText("BOMB \n x2");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;");
         	y.setDisable(true);
             y.setText("BOMB \n x3");
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;");
         	y.setDisable(true);
             y.setText("BOMB \n x4");
         }
@@ -654,7 +654,8 @@ public class ClientGamePageController implements Initializable {
     int maxTime=10;
     
     void startTimer() {
-
+    
+    	showTime.setStyle("-fx-text-fill: #edf2f4");
     	TimerTask task;
     	task = new TimerTask() {
          
@@ -665,6 +666,9 @@ public class ClientGamePageController implements Initializable {
 						@Override
 						public void run() {
 							showTime.setText(time + "");
+							if(time < 4) {
+								showTime.setStyle("-fx-text-fill: #EF233C");
+							}
 						}
 					});
 					System.out.println("Seconds = " + time);

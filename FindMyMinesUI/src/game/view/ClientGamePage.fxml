@@ -15,202 +15,202 @@
          <children>
             <Button fx:id="b1" layoutX="54.0" layoutY="70.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="70.0">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b2" layoutX="119.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="70.0">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b3" layoutX="184.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="70.0">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b4" layoutX="249.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="70.0">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b5" layoutX="314.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="70.0">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b6" layoutX="379.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="70.0">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b11" layoutX="54.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b21" layoutX="119.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b31" layoutX="184.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b41" layoutX="249.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b51" layoutX="314.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b61" layoutX="379.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b12" layoutX="54.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b22" layoutX="119.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b32" layoutX="184.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b42" layoutX="249.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b52" layoutX="314.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b62" layoutX="379.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b13" layoutX="54.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b23" layoutX="119.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b33" layoutX="184.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b43" layoutX="249.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b53" layoutX="314.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b63" layoutX="379.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b14" layoutX="54.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b24" layoutX="119.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b34" layoutX="184.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b44" layoutX="249.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b54" layoutX="314.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b64" layoutX="379.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b15" layoutX="54.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b25" layoutX="119.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b35" layoutX="184.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b45" layoutX="249.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b55" layoutX="314.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
             <Button fx:id="b65" layoutX="379.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
                <font>
-                  <Font name="ISOCPEUR" size="13.0" />
+                  <Font name="ISOCPEUR" size="10.0" />
                </font>
             </Button>
-            <Label layoutX="353.0" layoutY="29.0" prefHeight="20.0" prefWidth="224.0" text="Time Remaining :" textFill="#edf2f4" AnchorPane.topAnchor="29.0">
+            <Label layoutX="353.0" layoutY="29.0" prefHeight="24.0" prefWidth="89.0" text="Time :" textFill="#edf2f4" AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="ISOCTEUR" size="19.0" />
                </font>
             </Label>
-            <Label fx:id="showTime" layoutX="577.0" layoutY="30.0" prefHeight="20.0" prefWidth="22.0" text="10" textFill="#edf2f4" AnchorPane.topAnchor="29.0">
+            <Label fx:id="showTime" layoutX="429.0" layoutY="29.0" prefHeight="20.0" prefWidth="22.0" text="10" textFill="#edf2f4" AnchorPane.leftAnchor="565.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="ISOCTEUR" size="19.0" />
                </font>
             </Label>
             <Pane fx:id="player1Pane" layoutX="454.0" layoutY="70.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player1" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="90.0" text="Player 1" textFill="#edf2f4">
+                  <Label fx:id="player1" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="90.0" text="Player 1" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score1" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="score1" layoutX="115.0" layoutY="11.0" prefHeight="17.0" prefWidth="18.0" text="0" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
@@ -219,12 +219,12 @@
             </Pane>
             <Pane fx:id="player2Pane" layoutX="454.0" layoutY="110.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player2" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 2" textFill="#edf2f4">
+                  <Label fx:id="player2" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 2" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score2" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="score2" layoutX="115.0" layoutY="11.0" prefHeight="17.0" prefWidth="18.0" text="0" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
@@ -233,12 +233,12 @@
             </Pane>
             <Pane fx:id="player3Pane" layoutX="454.0" layoutY="150.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player3" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 3" textFill="#edf2f4">
+                  <Label fx:id="player3" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 3" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score3" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="score3" layoutX="115.0" layoutY="11.0" prefHeight="17.0" prefWidth="18.0" text="0" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
@@ -247,12 +247,12 @@
             </Pane>
             <Pane fx:id="player4Pane" layoutX="454.0" layoutY="190.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player4" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 4" textFill="#edf2f4">
+                  <Label fx:id="player4" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 4" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score4" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="score4" layoutX="115.0" layoutY="11.0" prefHeight="17.0" prefWidth="18.0" text="0" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
@@ -261,12 +261,12 @@
             </Pane>
             <Pane fx:id="player5Pane" layoutX="454.0" layoutY="230.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player5" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 5" textFill="#edf2f4">
+                  <Label fx:id="player5" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 5" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score5" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="score5" layoutX="115.0" layoutY="11.0" prefHeight="17.0" prefWidth="18.0" text="0" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
@@ -275,12 +275,12 @@
             </Pane>
             <Pane fx:id="player6Pane" layoutX="454.0" layoutY="270.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player6" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 6" textFill="#edf2f4">
+                  <Label fx:id="player6" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 6" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score6" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="score6" layoutX="115.0" layoutY="11.0" prefHeight="17.0" prefWidth="18.0" text="0" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
@@ -289,12 +289,12 @@
             </Pane>
             <Pane fx:id="player7Pane" layoutX="454.0" layoutY="310.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player7" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 7" textFill="#edf2f4">
+                  <Label fx:id="player7" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 7" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score7" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="score7" layoutX="115.0" layoutY="11.0" prefHeight="17.0" prefWidth="18.0" text="0" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
@@ -303,12 +303,12 @@
             </Pane>
             <Pane fx:id="player8Pane" layoutX="454.0" layoutY="350.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player8" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 8" textFill="#edf2f4">
+                  <Label fx:id="player8" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 8" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score8" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="score8" layoutX="115.0" layoutY="11.0" prefHeight="17.0" prefWidth="18.0" text="0" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
@@ -317,12 +317,12 @@
             </Pane>
             <Pane fx:id="player9Pane" layoutX="454.0" layoutY="390.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player9" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 9" textFill="#edf2f4">
+                  <Label fx:id="player9" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 9" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score9" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="score9" layoutX="115.0" layoutY="11.0" prefHeight="17.0" prefWidth="18.0" text="0" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
@@ -331,24 +331,24 @@
             </Pane>
             <Pane fx:id="player10Pane" layoutX="454.0" layoutY="430.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player10" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 10" textFill="#edf2f4">
+                  <Label fx:id="player10" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 10" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score10" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="score10" layoutX="115.0" layoutY="11.0" prefHeight="17.0" prefWidth="18.0" text="0" textFill="#ffffff">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="38.0" layoutY="29.0" prefHeight="20.0" prefWidth="250.0" text="Remaining Bombs :" textFill="#edf2f4" AnchorPane.topAnchor="29.0">
+            <Label layoutX="38.0" layoutY="29.0" prefHeight="24.0" prefWidth="235.0" text="Bombs Remaining :" textFill="#edf2f4" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="ISOCTEUR" size="19.0" />
                </font>
             </Label>
-            <Label fx:id="bombLeft" layoutX="279.0" layoutY="29.0" text="11" textFill="#edf2f4" AnchorPane.topAnchor="29.0">
+            <Label fx:id="bombLeft" layoutX="234.0" layoutY="29.0" text="11" textFill="#edf2f4" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="ISOCTEUR" size="19.0" />
                </font>
