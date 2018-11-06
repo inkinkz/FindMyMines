@@ -664,7 +664,7 @@ public class ServerGamePageController implements Initializable {
 
             }
         }
-
+ 
         // fix number of bomb to 11
         while (numBombMultiPoints != 11) {
             for (int i = 0; i < 6; i++) {

@@ -140,6 +140,7 @@ public class FindMyMinesServer {
     /*
      * to broadcast a message to all Clients
      */
+
     static synchronized void broadcast(String message) {
         String messageLf;
         if (message.contains("WHOISIN") || message.contains("REMOVE") || message.contains("READDY") || message.contains("NOTREADY")

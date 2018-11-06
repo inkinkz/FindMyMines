@@ -1190,7 +1190,7 @@ public class ClientGamePageController implements Initializable {
         }
     }
 
-    //method to control how client screen behavior should be when a game state changes
+    //(Queenie) method to control how client screen behavior should be when a game state changes
     public void triggerClientScreen(String game_state, String game_mode){
         switch (game_state){
             case "WAITING":
@@ -1214,7 +1214,7 @@ public class ClientGamePageController implements Initializable {
         return;
     }
 
-    // method to control client screen for game_state = ONGOING with specified game_mode
+    //(Queenie) method to control client screen for game_state = ONGOING with specified game_mode
     public void startWithGameMode(String game_mode){
         switch (game_mode) {
             case "DEFAULT":
