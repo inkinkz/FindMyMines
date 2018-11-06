@@ -15,182 +15,182 @@
          <children>
             <Button fx:id="b1" layoutX="54.0" layoutY="70.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;" AnchorPane.leftAnchor="54.0">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b2" layoutX="119.0" layoutY="68.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b3" layoutX="184.0" layoutY="68.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b4" layoutX="249.0" layoutY="68.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b5" layoutX="314.0" layoutY="68.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b6" layoutX="379.0" layoutY="68.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b11" layoutX="54.0" layoutY="133.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b21" layoutX="119.0" layoutY="133.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b31" layoutX="184.0" layoutY="133.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b41" layoutX="249.0" layoutY="133.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b51" layoutX="314.0" layoutY="133.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b61" layoutX="379.0" layoutY="133.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b12" layoutX="54.0" layoutY="198.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b22" layoutX="119.0" layoutY="198.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b32" layoutX="184.0" layoutY="198.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b42" layoutX="249.0" layoutY="198.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b52" layoutX="314.0" layoutY="198.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b62" layoutX="379.0" layoutY="198.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b13" layoutX="54.0" layoutY="263.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b23" layoutX="119.0" layoutY="263.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b33" layoutX="184.0" layoutY="263.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b43" layoutX="249.0" layoutY="263.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b53" layoutX="314.0" layoutY="263.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b63" layoutX="379.0" layoutY="263.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b14" layoutX="54.0" layoutY="328.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b24" layoutX="119.0" layoutY="328.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b34" layoutX="184.0" layoutY="328.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b44" layoutX="249.0" layoutY="328.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b54" layoutX="314.0" layoutY="328.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b64" layoutX="379.0" layoutY="328.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b15" layoutX="54.0" layoutY="393.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b25" layoutX="119.0" layoutY="393.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b35" layoutX="184.0" layoutY="393.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b45" layoutX="249.0" layoutY="393.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b55" layoutX="314.0" layoutY="393.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Button fx:id="b65" layoutX="379.0" layoutY="393.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 13;">
                <font>
-                  <Font name="ISOCPEUR" size="10.0" />
+                  <Font name="ISOCPEUR" size="13.0" />
                </font>
             </Button>
             <Pane fx:id="player1Pane" layoutX="457.0" layoutY="70.0" prefHeight="38.0" prefWidth="150.0">

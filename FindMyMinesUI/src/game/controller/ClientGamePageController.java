@@ -564,7 +564,7 @@ public class ClientGamePageController implements Initializable {
 
 		if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
 			// ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-			((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42;");
+			((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42; -fx-font-size: 13;");
 			((Button) event.getTarget()).setDisable(true);
 			player++;
 		}
@@ -635,7 +635,7 @@ public class ClientGamePageController implements Initializable {
 		Button y = setOfButton[i][j];
 
 		if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-			y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42;");
+			y.setStyle("-fx-font-size: 13;-fx-background-color:#2B2D42;");
 			y.setDisable(true);
 		}
 
