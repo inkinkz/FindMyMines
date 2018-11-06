@@ -1235,7 +1235,6 @@ public class ClientGamePageController implements Initializable {
 
         for (int i = 0; i < numOfPlayer; i++) {
             playerNames[i] = users.get(i).substring(0,users.get(i).indexOf("("));
-            display(users.get(i).substring(0,users.get(i).indexOf("(")));
         }
 
         player1.setText(playerNames[0]);
