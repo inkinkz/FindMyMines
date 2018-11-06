@@ -927,7 +927,6 @@ public class ServerGamePageController implements Initializable {
     }
 
     int time = 10;
-
     //to display count down from 10 to 0
     void startTimer() {
         Task<Void> task = new Task<Void>() {
@@ -995,8 +994,8 @@ public class ServerGamePageController implements Initializable {
                 switch (gameMode) {
                     case "DEFAULT":
 //                        assignBombDefault();
-                        FindMyMinesServer.broadcast("DEFAULT:GAMESTART");
                         setUpBomb();
+                        FindMyMinesServer.broadcast("DEFAULT:GAMESTART");
                         break;
                     case "QUICK_GAME":
 //                        assignBombDefault();
@@ -1034,6 +1033,7 @@ public class ServerGamePageController implements Initializable {
             System.out.println("Reset button clicked");
             startButton.setText("Start");
             server.changeGameState();
+            FindMyMinesServer.broadcast("GAMERESET:GAMERESET");
             return;
         }
 
@@ -1184,7 +1184,7 @@ public class ServerGamePageController implements Initializable {
         else if (this.gameMode.equals("MULTIPOINTS_BOMB"))
             return "Multipoints Bomb";
         else
-            return "Default Mode";
+            return "Default";
     }
 
     public void setGameMode(String gameMode) {

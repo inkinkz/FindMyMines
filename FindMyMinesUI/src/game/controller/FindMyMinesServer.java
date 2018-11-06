@@ -143,10 +143,10 @@ public class FindMyMinesServer {
     static synchronized void broadcast(String message) {
         String messageLf;
         if (message.contains("WHOISIN") || message.contains("REMOVE") || message.contains("READDY") || message.contains("NOTREADY")
-                || message.contains("GAMESTART") || message.contains("GAMESTOP") || message.contains("CLICK")) {
+                || message.contains("GAMESTART") || message.contains("GAMESTOP") || message.contains("GAMERESET") ||message.contains("CLICK")) {
             messageLf = message;
         } else {
-            messageLf = " " + message + "\n";
+            messageLf = message + "\n";
             serverController.appendRoom(messageLf); // Show received message (in server)
         }
 
@@ -209,8 +209,8 @@ public class FindMyMinesServer {
         if (getGameState().equals("WAITING")){
             setGameState("ONGOING");
             //change broadcast() to noticeClient() to get these messages to show in client textarea
-            broadcast("Welcome to Find My Mines.");
-            broadcast("Server has started the game("+ serverController.getGameMode()+")");
+            broadcast("Welcome to Find My Mines");
+            broadcast("Server has started the game (Mode: "+ serverController.getGameMode()+")"+"\n");
 
             //Messages for debugging
             System.out.println("GAME_STATE set to:" +getGameState()+" and button should be Stop");
@@ -222,7 +222,7 @@ public class FindMyMinesServer {
             setGameState("ENDED");
 
             //change broadcast() to noticeClient() to get these messages to show in client textarea
-            broadcast("Server has stopped the game.");
+            broadcast("Server has stopped the game"+"\n");
 
             //Messages for debugging
             System.out.println("GAME_STATE set to:" +getGameState()+" and button should be Reset");
@@ -231,7 +231,7 @@ public class FindMyMinesServer {
         } else {
             setGameState("WAITING");
             //change broadcast() to noticeClient() to get these messages to show in client textarea
-            broadcast("Server has reset the game.");
+            broadcast("Server has reset the game"+"\n");
 
             //Messages for debugging
             System.out.println("GAME_STATE set to:" +getGameState()+" and button should be Start");

@@ -997,7 +997,7 @@ public class ClientGamePageController implements Initializable {
                     msgt = (String) sInput.readObject();
                     String msg = msgt.trim();
                     if (msg.contains("WHOISIN") || msg.contains("REMOVE") || msg.contains("READDY") || msg.contains("NOTREADY")
-                            || msg.contains("GAMESTART") || msg.contains("GAMESTOP")) {
+                            || msg.contains("GAMESTART") || msg.contains("GAMESTOP") || msg.contains("GAMERESET")) {
                         String[] split = msg.split(":");
                         if (split[1].equals("WHOISIN")) {
                             Platform.runLater(() -> {
@@ -1023,7 +1023,8 @@ public class ClientGamePageController implements Initializable {
                                     Platform.runLater(() -> {
                                         // Game started
                                         // Do things for default mode
-                                        display("Server started the game! (Default)");
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
                                         setUpBomb();
                                         leftPane.setDisable(false);
                                     });
@@ -1032,7 +1033,8 @@ public class ClientGamePageController implements Initializable {
                                     Platform.runLater(() -> {
                                         // Game started
                                         // Do things for quick game mode
-                                        display("Server started the game! (Quick Game)");
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
                                         setUpBomb();
                                         leftPane.setDisable(false);
                                     });
@@ -1041,7 +1043,8 @@ public class ClientGamePageController implements Initializable {
                                     Platform.runLater(() -> {
                                         // Game started
                                         // Do things for multipoints bomb mode
-                                        display("Server started the game! (Multipoints Bomb)");
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
                                         setUpBombMultiPoints();
                                         leftPane.setDisable(false);
                                     });
@@ -1049,7 +1052,18 @@ public class ClientGamePageController implements Initializable {
                             }
                         } else if (split[1].equals("GAMESTOP")) {
                             Platform.runLater(() -> {
-                                display("Server stopped the game!");
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                //left pane reset and disabled
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
                             });
                         }
                     } else if (msg.length() == 2) {
@@ -1058,7 +1072,7 @@ public class ClientGamePageController implements Initializable {
                         });
                     }
                 } catch (IOException e) {
-                    display("Server has close the connection");
+                    display("Server has closed the connection");
                     connectionFailed();
                     Platform.runLater(() -> {
                         listUsersConnected.setItems(null);
