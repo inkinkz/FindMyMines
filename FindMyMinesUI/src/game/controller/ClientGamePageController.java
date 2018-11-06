@@ -1078,9 +1078,6 @@ public class ClientGamePageController implements Initializable {
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Default)"+"\n");
                                         triggerClientScreen("ONGOING", "DEFAULT");
-                                        setUpBomb();
-                                        startTimer();
-                                        leftPane.setDisable(false);
                                     });
                                     break;
                                 case "QUICK_GAME":
@@ -1090,9 +1087,6 @@ public class ClientGamePageController implements Initializable {
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Quick Game)"+"\n");
                                         triggerClientScreen("ONGOING", "QUICK_GAME");
-                                        setUpBomb();
-                                        startTimer();
-                                        leftPane.setDisable(false);
                                     });
                                     break;
                                 case "MULTIPOINTS_BOMB":
@@ -1102,9 +1096,6 @@ public class ClientGamePageController implements Initializable {
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
                                         triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
-                                        setUpBombMultiPoints();
-                                        startTimer();
-                                        leftPane.setDisable(false);
                                     });
                                     break;
                             }
@@ -1116,6 +1107,13 @@ public class ClientGamePageController implements Initializable {
                                 display("Server has stopped the game"+"\n");
                                 triggerClientScreen("ENDED",null);
 
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
                             });
                         }
                     } // Button Clicked
@@ -1277,14 +1275,17 @@ public class ClientGamePageController implements Initializable {
             case "DEFAULT":
                 setUpBomb();
                 leftPane.setDisable(false);
+                startTimer();
                 break;
             case "QUICK_GAME":
                 setUpBomb();
                 leftPane.setDisable(false);
+                startTimer();
                 break;
             case "MULTIPOINTS_BOMB":
                 setUpBombMultiPoints();
                 leftPane.setDisable(false);
+                startTimer();
                 break;
         }
         return;
