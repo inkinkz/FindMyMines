@@ -8,7 +8,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -24,7 +23,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -415,20 +413,23 @@ public class ClientGamePageController implements Initializable {
         display("Hello, " + username + ".\n");
         display("When you are ready to play, press Ready button\n");
         // trigger this when server press start
-        setUpPane();
+        setUpLeftPane();
+//        setUpBomb();
 
+        //startTimer();  //need to start when the game start
         //setScore();
         // color change for the starting player
         //setOfPlayerPane[player].setStyle("-fx-background-color: grey");
     }
 
-    private void setScore() {
+    //method to reset all score to 0
+    private void resetScore() {
         for (int i = 0; i < 10; i++) {
             scoreOfPlayer.put(i, 0);
         }
     }
 
-    private void setUpPane() {
+    private void setUpLeftPane() {
         // put each pane into setOfPlayerPane
         setOfPlayerPane[0] = player1Pane;
         setOfPlayerPane[1] = player2Pane;
@@ -669,7 +670,7 @@ public class ClientGamePageController implements Initializable {
             player++;
         }
 
-        setScore();
+        resetScore();
 
     }
 
@@ -789,8 +790,6 @@ public class ClientGamePageController implements Initializable {
             readyButton.setText("Not Ready");
 
         } else {
-            /* if (alreadyReady) { */
-            // set ready button to disable after being pressed
             sendNotReady();
             readyButton.setText("Ready");
         }
@@ -1024,9 +1023,7 @@ public class ClientGamePageController implements Initializable {
                                         // Do things for default mode
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Default)"+"\n");
-                                        setUpBomb();
-                                        startTimer();
-                                        leftPane.setDisable(false);
+                                        triggerClientScreen("ONGOING", "DEFAULT");
                                     });
                                     break;
                                 case "QUICK_GAME":
@@ -1035,9 +1032,7 @@ public class ClientGamePageController implements Initializable {
                                         // Do things for quick game mode
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Quick Game)"+"\n");
-                                        setUpBomb();
-                                        startTimer();
-                                        leftPane.setDisable(false);
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
                                     });
                                     break;
                                 case "MULTIPOINTS_BOMB":
@@ -1046,9 +1041,7 @@ public class ClientGamePageController implements Initializable {
                                         // Do things for multipoints bomb mode
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
-                                        setUpBombMultiPoints();
-                                        startTimer();
-                                        leftPane.setDisable(false);
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
                                     });
                                     break;
                             }
@@ -1058,7 +1051,7 @@ public class ClientGamePageController implements Initializable {
                                 // Do things when game ends
                                 display("Game Over!");
                                 display("Server has stopped the game"+"\n");
-                                //left pane reset and disabled
+                                triggerClientScreen("ENDED",null);
 
                             });
                         } else if (split[1].equals("GAMERESET")){
@@ -1066,6 +1059,7 @@ public class ClientGamePageController implements Initializable {
                                 // Game reset
                                 // Revert things back to start
                                 display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
                             });
                         }
                     } else if (msg.length() == 2) {
@@ -1194,6 +1188,49 @@ public class ClientGamePageController implements Initializable {
                 display("Exception writing to server: " + e);
             }
         }
+    }
+
+    //method to control how client screen behavior should be when a game state changes
+    public void triggerClientScreen(String game_state, String game_mode){
+        switch (game_state){
+            case "WAITING":
+                //Server pressed "Reset", changing game state from "ENDED" -> "WAITING"
+                //do what clients during waiting period should do
+                //reset everything on client screen
+
+                break;
+            case "ONGOING":
+                //Server pressed "Start", changing game state from "WAITING" -> "ONGOING"
+                startWithGameMode(game_mode);
+                break;
+            case "ENDED":
+                //Server pressed "Stop", changing game state from "ONGOING" -> "ENDED"
+                //do what clients during ended period should do
+
+                //showScoreSummary()
+                break;
+
+        }
+        return;
+    }
+
+    // method to control client screen for game_state = ONGOING with specified game_mode
+    public void startWithGameMode(String game_mode){
+        switch (game_mode) {
+            case "DEFAULT":
+                setUpBomb();
+                leftPane.setDisable(false);
+                break;
+            case "QUICK_GAME":
+                setUpBomb();
+                leftPane.setDisable(false);
+                break;
+            case "MULTIPOINTS_BOMB":
+                setUpBombMultiPoints();
+                leftPane.setDisable(false);
+                break;
+        }
+        return;
     }
 
 }
