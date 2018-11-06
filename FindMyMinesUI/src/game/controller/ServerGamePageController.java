@@ -828,7 +828,8 @@ public class ServerGamePageController implements Initializable {
     private int player = 0;
     private int playerplaying = 1;
 
-
+    //Poon
+    //call to change color to inform the next player that it's their turn
     void colorChange() {
         if (playerplaying < numOfPlayer) {
             setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: transparent");
@@ -1109,7 +1110,7 @@ public class ServerGamePageController implements Initializable {
             return;
         }
         if (selectedChoice.equals("Quick Game")) {
-            maxTime = 5;
+            //maxTime = 5;
             //System.out.println(selectedChoice);
             return;
         }
