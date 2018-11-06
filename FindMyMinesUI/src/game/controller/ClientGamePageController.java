@@ -617,8 +617,8 @@ public class ClientGamePageController implements Initializable {
         }
 
         // timer of next player
-        time = 11;
-        maxTime = 11;
+        time = getTimerMode() ;
+        maxTime = getTimerMode() ;
         startTimer();
 
     }
@@ -686,9 +686,8 @@ public class ClientGamePageController implements Initializable {
             player++;
         }
 
-
-        maxTime = 11;
-        time = 11;
+        maxTime = getTimerMode() ;
+        time = getTimerMode() ;
         startTimer();
         resetScore();
 
@@ -696,14 +695,14 @@ public class ClientGamePageController implements Initializable {
     
     //Tram
     static Timer timer = new Timer();//tram
-    int time = 11;
-    int maxTime = 11;
+    int time;
+    int maxTime;
 
     void startTimer() {
     	showTime.setStyle("-fx-text-fill: #edf2f4");
     	TimerTask task;
-    	task = new TimerTask() {
-         
+        task = new TimerTask() {
+
             @Override
 			public void run() {
 				if (maxTime > 0) {
@@ -726,9 +725,10 @@ public class ClientGamePageController implements Initializable {
                 	if (player == numOfPlayer) {
                         player = 0;
                     }
-                    */colorChange();
-                    time = 11;
-                    maxTime = 11;
+                    */
+                	colorChange();
+                    time = getTimerMode() ;
+                    maxTime = getTimerMode() ;
                     startTimer();
                     cancel();
                 }
@@ -757,9 +757,9 @@ public class ClientGamePageController implements Initializable {
     //get the maxTime for startTimer method ( 5 or 10 )
     private int getTimerMode() {
     		if(currentMode.equals("Quick Game")) {
-    			return 5;
+    			return 6;
     		} else {
-    			return 10;
+    			return 11;
     		}
     }
     
@@ -999,50 +999,6 @@ public class ClientGamePageController implements Initializable {
                 e1.printStackTrace();
             }
 
-//            Platform.runLater(() -> {
-//                setUpBomb();
-//            });
-
-
-//
-//            //listen for game_state messages
-//            try {
-//                msgt = (String) sInput.readObject();
-//                msgt.trim();
-//                if(msgt.equals("WAITING")){
-//                    //This means the server has pressed "Reset" button
-//                    //ENDED -> WAITING
-//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
-//                    GAME_STATE = msgt;
-//                    //do something
-//
-//                } else if(msgt.equals("ONGOING")){
-//                    //This means the server has pressed "Start" button
-//                    //WAITING -> ONGOING
-//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
-//                    GAME_STATE = msgt;
-//                    //do something
-//
-//                } else if(msgt.equals("ENDED")){
-//                    //This means the server has pressed "Stop" button
-//                    //ONGOING -> ENDED
-//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
-//                    GAME_STATE = msgt;
-//                    //do something
-//                }
-//
-//            } catch (ClassNotFoundException e1) {
-//                e1.printStackTrace();
-//            } catch (IOException e1) {
-//                e1.printStackTrace();
-//            }
-//
-//            try {
-//                sInput = new ObjectInputStream(socket.getInputStream());
-//            } catch (IOException e1) {
-//                e1.printStackTrace();
-//            }
-
             while (true) {
                 try {
                     msgt = (String) sInput.readObject();
@@ -1278,6 +1234,7 @@ public class ClientGamePageController implements Initializable {
                 startTimer();
                 break;
             case "QUICK_GAME":
+                currentMode = "Quick Game";
                 setUpBomb();
                 leftPane.setDisable(false);
                 startTimer();
