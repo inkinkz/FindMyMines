@@ -394,9 +394,7 @@ public class ClientGamePageController implements Initializable {
 
     // Server Configuration
     private boolean connected = ClientStartPageController.connected;
-    private String server = ClientStartPageController.server;
     private String username = ClientStartPageController.userName;
-    private int port = ClientStartPageController.port;
 
     // for I/O
     private ObjectInputStream sInput = ClientStartPageController.sInput; // to read from the socket
@@ -418,9 +416,7 @@ public class ClientGamePageController implements Initializable {
         display("When you are ready to play, press Ready button\n");
         // trigger this when server press start
         setUpPane();
-//        setUpBomb();
-        
-        startTimer();  //need to start when the game start
+
         //setScore();
         // color change for the starting player
         //setOfPlayerPane[player].setStyle("-fx-background-color: grey");
@@ -672,12 +668,15 @@ public class ClientGamePageController implements Initializable {
             score = score + 4;
             player++;
         }
+
+        setScore();
+
     }
 
     //tram
     static Timer timer = new Timer();//tram
-    int time = 10;
-    int maxTime = 10;
+    int time = 11;
+    int maxTime = 11;
 
     void startTimer() {
 
@@ -1026,6 +1025,7 @@ public class ClientGamePageController implements Initializable {
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Default)"+"\n");
                                         setUpBomb();
+                                        startTimer();
                                         leftPane.setDisable(false);
                                     });
                                     break;
@@ -1036,6 +1036,7 @@ public class ClientGamePageController implements Initializable {
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Quick Game)"+"\n");
                                         setUpBomb();
+                                        startTimer();
                                         leftPane.setDisable(false);
                                     });
                                     break;
@@ -1046,6 +1047,7 @@ public class ClientGamePageController implements Initializable {
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
                                         setUpBombMultiPoints();
+                                        startTimer();
                                         leftPane.setDisable(false);
                                     });
                                     break;

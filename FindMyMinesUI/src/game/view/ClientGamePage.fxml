@@ -362,7 +362,7 @@
                </font></TextArea>
             <Button fx:id="readyButton" layoutY="28.0" mnemonicParsing="false" onAction="#ready" prefHeight="29.0" prefWidth="309.0" style="-fx-background-color: #EDF2F4;" text="READY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="25.0">
                <font>
-                  <Font name="ISOCTEUR" size="13.0" />
+                  <Font name="ISOCTEUR" size="16.0" />
                </font></Button>
             <ListView fx:id="listUsersConnected" layoutY="225.0" prefHeight="225.0" prefWidth="295.0" style="-fx-background-color: #EDF2F4;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="225.0" />
          </children>
