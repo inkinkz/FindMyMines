@@ -388,11 +388,12 @@ public class ClientGamePageController implements Initializable {
     int[][] bombplacement = new int[6][6];
     int[][] bombaround = new int[6][6];
 
+    int[][] bombplacementMultiPoints = new int[6][6];
+    int[][] bombaroundMultiPoints = new int[6][6];
+
     // Server Configuration
     private boolean connected = ClientStartPageController.connected;
-    private String server = ClientStartPageController.server;
     private String username = ClientStartPageController.userName;
-    private int port = ClientStartPageController.port;
 
     // for I/O
     private ObjectInputStream sInput = ClientStartPageController.sInput; // to read from the socket
@@ -411,13 +412,13 @@ public class ClientGamePageController implements Initializable {
 		
 		
         txtArea.setEditable(false);
-//		leftPane.setDisable(true);
+        leftPane.setDisable(true);
         display("Hello, " + username + ".\n");
-        display("When you are ready to play, press Ready button");
+        display("When you are ready to play, press Ready button\n");
         // trigger this when server press start
-        setUpPane();
-        setUpBomb();
-        
+        setUpLeftPane();
+//        setUpBomb();
+
         //startTimer();  //need to start when the game start
         //setScore();
         // color change for the starting player
@@ -425,14 +426,15 @@ public class ClientGamePageController implements Initializable {
     }
 
     //Poon
-    private void setScore() {
+    //method to reset all score to 0
+    private void resetScore() {
         for (int i = 0; i < 10; i++) {
             scoreOfPlayer.put(i, 0);
         }
     }
 
     //Tram and Poon
-    private void setUpPane() {
+    private void setUpLeftPane() {
         // put each pane into setOfPlayerPane
         setOfPlayerPane[0] = player1Pane;
         setOfPlayerPane[1] = player2Pane;
@@ -461,7 +463,6 @@ public class ClientGamePageController implements Initializable {
         setOfScore[8] = score9;
         setOfScore[9] = score10;
 
-        // TODO Auto-generated method stub
         setOfButton[0][0] = b1;
         setOfButton[1][0] = b2;
         setOfButton[2][0] = b3;
@@ -584,29 +585,42 @@ public class ClientGamePageController implements Initializable {
         
         //Tram
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4;");
-        	((Button) event.getTarget()).setDisable(true);
-        	((Button) event.getTarget()).setText("BOMB \n x2");
-        	score = score+2;
+            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            ((Button) event.getTarget()).setDisable(true);
+            ((Button) event.getTarget()).setText("BOMB \n x2");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 2;
+            player++;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4;");
-        	((Button) event.getTarget()).setDisable(true);
-        	((Button) event.getTarget()).setText("BOMB \n x3");
-        	score = score+3;
-        }
+            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            ((Button) event.getTarget()).setDisable(true);
+            ((Button) event.getTarget()).setText("BOMB \n x3");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 3;
+            player++;        }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4;");
-        	((Button) event.getTarget()).setDisable(true);
-        	((Button) event.getTarget()).setText("BOMB \n x4");
-        	score = score+4;
-        }
+            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            ((Button) event.getTarget()).setDisable(true);
+            ((Button) event.getTarget()).setText("BOMB \n x4");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 4;
+            player++;        }
 
         if (player == numOfPlayer) {
             player = 0;
         }
+
+        // timer of next player
+        time = 11;
+        maxTime = 11;
+        startTimer();
+
     }
 
     // receive button position clicked from other clients
@@ -628,40 +642,63 @@ public class ClientGamePageController implements Initializable {
         Button y = setOfButton[i][j];
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-           y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42;");
-           y.setDisable(true);
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42; -fx-text-fill: #edf2f4");
+            y.setDisable(true);
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-        	y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;");
-        	y.setDisable(true);
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setDisable(true);
             y.setText("BOMB");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 1;
+            player++;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;");
-        	y.setDisable(true);
+            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setDisable(true);
             y.setText("BOMB \n x2");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 2;
+            player++;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;");
-        	y.setDisable(true);
+            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setDisable(true);
             y.setText("BOMB \n x3");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 3;
+            player++;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;");
-        	y.setDisable(true);
+            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setDisable(true);
             y.setText("BOMB \n x4");
+            numBombLeft--;
+            bombLeft.setText(numBombLeft + "");
+            score = score + 4;
+            player++;
         }
+
+
+        maxTime = 11;
+        time = 11;
+        startTimer();
+        resetScore();
+
     }
     
     //Tram
     static Timer timer = new Timer();//tram
-    int time=10;
-    int maxTime=10;
-    
+    int time = 11;
+    int maxTime = 11;
+
     void startTimer() {
     	showTime.setStyle("-fx-text-fill: #edf2f4");
     	TimerTask task;
@@ -690,6 +727,8 @@ public class ClientGamePageController implements Initializable {
                         player = 0;
                     }
                     */colorChange();
+                    time = 11;
+                    maxTime = 11;
                     startTimer();
                     cancel();
                 }
@@ -894,6 +933,7 @@ public class ClientGamePageController implements Initializable {
     class ListenFromServer extends Thread {
 
         public void run() {
+            String msgt;
             // game initialize
             scoreOfPlayer = FXCollections.observableHashMap();
             playerReady = new SimpleIntegerProperty(0).asObject();
@@ -902,52 +942,113 @@ public class ClientGamePageController implements Initializable {
             users = FXCollections.observableArrayList();
          
             listUsersConnected.setItems(users);
-            
-            
-          
 
             try {
                 bombplacement = (int[][]) sInput.readObject();
             } catch (ClassNotFoundException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
 
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
             try {
                 bombaround = (int[][]) sInput.readObject();
 
             } catch (ClassNotFoundException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
 
-            Platform.runLater(() -> {
-                setUpBomb();
-            });
+            // Multi points bomb
+
+            try {
+                bombplacementMultiPoints = (int[][]) sInput.readObject();
+            } catch (ClassNotFoundException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                bombaroundMultiPoints = (int[][]) sInput.readObject();
+
+            } catch (ClassNotFoundException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+//            Platform.runLater(() -> {
+//                setUpBomb();
+//            });
+
+
+//
+//            //listen for game_state messages
+//            try {
+//                msgt = (String) sInput.readObject();
+//                msgt.trim();
+//                if(msgt.equals("WAITING")){
+//                    //This means the server has pressed "Reset" button
+//                    //ENDED -> WAITING
+//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
+//                    GAME_STATE = msgt;
+//                    //do something
+//
+//                } else if(msgt.equals("ONGOING")){
+//                    //This means the server has pressed "Start" button
+//                    //WAITING -> ONGOING
+//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
+//                    GAME_STATE = msgt;
+//                    //do something
+//
+//                } else if(msgt.equals("ENDED")){
+//                    //This means the server has pressed "Stop" button
+//                    //ONGOING -> ENDED
+//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
+//                    GAME_STATE = msgt;
+//                    //do something
+//                }
+//
+//            } catch (ClassNotFoundException e1) {
+//                e1.printStackTrace();
+//            } catch (IOException e1) {
+//                e1.printStackTrace();
+//            }
+//
+//            try {
+//                sInput = new ObjectInputStream(socket.getInputStream());
+//            } catch (IOException e1) {
+//                e1.printStackTrace();
+//            }
 
             while (true) {
                 try {
-                    String msgt = (String) sInput.readObject();
+                    msgt = (String) sInput.readObject();
                     String msg = msgt.trim();
-                    if (msg.length() >= 5) {
+                    if (msg.contains("WHOISIN") || msg.contains("REMOVE") || msg.contains("READDY") || msg.contains("NOTREADY")
+                            || msg.contains("GAMESTART") || msg.contains("GAMESTOP") || msg.contains("GAMERESET")) {
                         String[] split = msg.split(":");
                         if (split[1].equals("WHOISIN")) {
                             Platform.runLater(() -> {
@@ -960,21 +1061,682 @@ public class ClientGamePageController implements Initializable {
                         } else if (split[1].equals("READDY")) {
                             Platform.runLater(() -> {
                                 users.remove(split[0]);
-                                users.add(split[0]+" (READY)");
+                                users.add(split[0] + " (READY)");
                             });
                         } else if (split[1].equals("NOTREADY")) {
                             Platform.runLater(() -> {
                                 users.remove(split[0] + " (READY)");
                                 users.add(split[0]);
                             });
+
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)"+"\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)"+"\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
+                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                display("Server has stopped the game"+"\n");
+                                triggerClientScreen("ENDED",null);
+
+                            });
+                        } else if (split[1].equals("GAMERESET")){
+                            Platform.runLater(() -> {
+                                // Game reset
+                                // Revert things back to start
+                                display("Server has reset the game"+"\n");
+                                triggerClientScreen("WAITING",null);
+                            });
                         }
-                    } else {
+                    } else if (msg.length() == 2) {
                         Platform.runLater(() -> {
                             playFromOthers(msg);
                         });
                     }
                 } catch (IOException e) {
-                    display("Server has close the connection");
+                    display("Server has closed the connection");
                     connectionFailed();
                     Platform.runLater(() -> {
                         listUsersConnected.setItems(null);
@@ -997,26 +1759,63 @@ public class ClientGamePageController implements Initializable {
                 int result = bombplacement[i][j];
                 Button y = setOfButton[i][j];
                 if (result == 0) {
-					y.setStyle("-fx-font-size: 0.0"); // blank
-				}
-				if (result == 1) {
-					y.setStyle("-fx-font-size: 0.1"); // bomb
-				}
-				if (result == 2) {
-					y.setStyle("-fx-font-size: 0.2"); // bomb
-				}
-				if (result == 3) {
-					y.setStyle("-fx-font-size: 0.3"); // bomb
-				}
-				if (result == 4) {
-					y.setStyle("-fx-font-size: 0.4"); // bomb
-				}
+                    y.setStyle("-fx-font-size: 0.0"); // blank
+                }
+                if (result == 1) {
+                    y.setStyle("-fx-font-size: 0.1"); // bomb
+                }
+                if (result == 2) {
+                    y.setStyle("-fx-font-size: 0.2"); // bomb
+                }
+                if (result == 3) {
+                    y.setStyle("-fx-font-size: 0.3"); // bomb
+                }
+                if (result == 4) {
+                    y.setStyle("-fx-font-size: 0.4"); // bomb
+                }
             }
         }
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 int numOfBombAround = bombaround[i][j];
+                if (numOfBombAround > 0) {
+                    setOfButton[i][j].setText("" + numOfBombAround);
+
+                }
+            }
+        }
+
+    }
+
+    private void setUpBombMultiPoints() {
+//		numOfPlayer = users.size(); // how many clients are there
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                int result = bombplacementMultiPoints[i][j];
+                Button y = setOfButton[i][j];
+                if (result == 0) {
+                    y.setStyle("-fx-font-size: 0.0"); // blank
+                }
+                if (result == 1) {
+                    y.setStyle("-fx-font-size: 0.1"); // bomb
+                }
+                if (result == 2) {
+                    y.setStyle("-fx-font-size: 0.2"); // bomb
+                }
+                if (result == 3) {
+                    y.setStyle("-fx-font-size: 0.3"); // bomb
+                }
+                if (result == 4) {
+                    y.setStyle("-fx-font-size: 0.4"); // bomb
+                }
+            }
+        }
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                int numOfBombAround = bombaroundMultiPoints[i][j];
                 if (numOfBombAround > 0) {
                     setOfButton[i][j].setText("" + numOfBombAround);
 
@@ -1037,7 +1836,7 @@ public class ClientGamePageController implements Initializable {
         }
     }
 
-    public void sendReady(){
+    public void sendReady() {
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.READDY, username);
             try {
@@ -1048,7 +1847,7 @@ public class ClientGamePageController implements Initializable {
         }
     }
 
-    public void sendNotReady(){
+    public void sendNotReady() {
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.NOTREADY, username);
             try {
@@ -1058,8 +1857,51 @@ public class ClientGamePageController implements Initializable {
             }
         }
     }
-    
-    private void showScoreSummary() {
+
+    //(Queenie) method to control how client screen behavior should be when a game state changes
+    public void triggerClientScreen(String game_state, String game_mode){
+        switch (game_state){
+            case "WAITING":
+                //Server pressed "Reset", changing game state from "ENDED" -> "WAITING"
+                //do what clients during waiting period should do
+                //reset everything on client screen
+
+                break;
+            case "ONGOING":
+                //Server pressed "Start", changing game state from "WAITING" -> "ONGOING"
+                startWithGameMode(game_mode);
+                break;
+            case "ENDED":
+                //Server pressed "Stop", changing game state from "ONGOING" -> "ENDED"
+                //do what clients during ended period should do
+
+                //showScoreSummary()
+                break;
+
+        }
+        return;
+    }
+
+    //(Queenie) method to control client screen for game_state = ONGOING with specified game_mode
+    public void startWithGameMode(String game_mode){
+        switch (game_mode) {
+            case "DEFAULT":
+                setUpBomb();
+                leftPane.setDisable(false);
+                break;
+            case "QUICK_GAME":
+                setUpBomb();
+                leftPane.setDisable(false);
+                break;
+            case "MULTIPOINTS_BOMB":
+                setUpBombMultiPoints();
+                leftPane.setDisable(false);
+                break;
+        }
+        return;
+	}
+	
+	private void showScoreSummary() {
     		scoreboardPane.setVisible(true);
     }
 
