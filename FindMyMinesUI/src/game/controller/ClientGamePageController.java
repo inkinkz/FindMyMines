@@ -7,15 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import game.model.ButtonClick;
 import javafx.application.Platform;
@@ -24,13 +16,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
@@ -41,7 +29,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 public class ClientGamePageController implements Initializable {
 	@FXML
@@ -375,6 +362,8 @@ public class ClientGamePageController implements Initializable {
     int numBombLeft = 11;
     int score =0;
 
+    private String[] playerNames = new String[10];
+
     @FXML
     private TextArea txtArea;
 
@@ -404,6 +393,8 @@ public class ClientGamePageController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
 
         new ListenFromServer().start();
+
+        Arrays.fill(playerNames, " ");
         
         //Poon
         //set podium image in scoreboard
@@ -417,9 +408,6 @@ public class ClientGamePageController implements Initializable {
         display("When you are ready to play, press Ready button\n");
         // trigger this when server press start
         setUpLeftPane();
-//        setUpBomb();
-
-        //startTimer();  //need to start when the game start
         //setScore();
         // color change for the starting player
         //setOfPlayerPane[player].setStyle("-fx-background-color: grey");
@@ -435,7 +423,7 @@ public class ClientGamePageController implements Initializable {
 
     //Tram and Poon
     private void setUpLeftPane() {
-        // put each pane into setOfPlayerPane
+
         setOfPlayerPane[0] = player1Pane;
         setOfPlayerPane[1] = player2Pane;
         setOfPlayerPane[2] = player3Pane;
@@ -447,21 +435,11 @@ public class ClientGamePageController implements Initializable {
         setOfPlayerPane[8] = player9Pane;
         setOfPlayerPane[9] = player10Pane;
 
-        // to hide who does not play
-        for (int i = numOfPlayer; i < 10; i++) {
+
+        // hide players by default
+        for (int i = 0; i < 10; i++) {
             setOfPlayerPane[i].setVisible(false);
         }
-
-        setOfScore[0] = score1;
-        setOfScore[1] = score2;
-        setOfScore[2] = score3;
-        setOfScore[3] = score4;
-        setOfScore[4] = score5;
-        setOfScore[5] = score6;
-        setOfScore[6] = score7;
-        setOfScore[7] = score8;
-        setOfScore[8] = score9;
-        setOfScore[9] = score10;
 
         setOfButton[0][0] = b1;
         setOfButton[1][0] = b2;
@@ -1168,7 +1146,7 @@ public class ClientGamePageController implements Initializable {
 
     }
 
-    public void sendButtonPosition(String pos) {
+    private void sendButtonPosition(String pos) {
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.CLICK, pos);
             try {
@@ -1179,7 +1157,7 @@ public class ClientGamePageController implements Initializable {
         }
     }
 
-    public void sendReady() {
+    private void sendReady() {
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.READDY, username);
             try {
@@ -1190,7 +1168,7 @@ public class ClientGamePageController implements Initializable {
         }
     }
 
-    public void sendNotReady() {
+    private void sendNotReady() {
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.NOTREADY, username);
             try {
@@ -1202,7 +1180,7 @@ public class ClientGamePageController implements Initializable {
     }
 
     //(Queenie) method to control how client screen behavior should be when a game state changes
-    public void triggerClientScreen(String game_state, String game_mode){
+    private void triggerClientScreen(String game_state, String game_mode){
         switch (game_state){
             case "WAITING":
                 //Server pressed "Reset", changing game state from "ENDED" -> "WAITING"
@@ -1226,30 +1204,67 @@ public class ClientGamePageController implements Initializable {
     }
 
     //(Queenie) method to control client screen for game_state = ONGOING with specified game_mode
-    public void startWithGameMode(String game_mode){
+    private void startWithGameMode(String game_mode){
         switch (game_mode) {
             case "DEFAULT":
                 setUpBomb();
-                leftPane.setDisable(false);
-                startTimer();
                 break;
             case "QUICK_GAME":
                 currentMode = "Quick Game";
                 setUpBomb();
-                leftPane.setDisable(false);
-                startTimer();
                 break;
             case "MULTIPOINTS_BOMB":
                 setUpBombMultiPoints();
-                leftPane.setDisable(false);
-                startTimer();
                 break;
         }
+
+        setPlayerPane();
+        leftPane.setDisable(false);
+        startTimer();
+
         return;
 	}
 	
 	private void showScoreSummary() {
     		scoreboardPane.setVisible(true);
+    }
+
+    private void setPlayerPane(){
+
+        int numOfPlayer = users.size();
+
+        for (int i = 0; i < numOfPlayer; i++) {
+            playerNames[i] = users.get(i).substring(0,users.get(i).indexOf("("));
+            display(users.get(i).substring(0,users.get(i).indexOf("(")));
+        }
+
+        player1.setText(playerNames[0]);
+        player2.setText(playerNames[1]);
+        player3.setText(playerNames[2]);
+        player4.setText(playerNames[3]);
+        player5.setText(playerNames[4]);
+        player6.setText(playerNames[5]);
+        player7.setText(playerNames[6]);
+        player8.setText(playerNames[7]);
+        player9.setText(playerNames[8]);
+        player10.setText(playerNames[9]);
+
+        // display users name
+        for (int i = 0; i < numOfPlayer; i++) {
+            setOfPlayerPane[i].setVisible(true);
+        }
+
+        setOfScore[0] = score1;
+        setOfScore[1] = score2;
+        setOfScore[2] = score3;
+        setOfScore[3] = score4;
+        setOfScore[4] = score5;
+        setOfScore[5] = score6;
+        setOfScore[6] = score7;
+        setOfScore[7] = score8;
+        setOfScore[8] = score9;
+        setOfScore[9] = score10;
+
     }
 
 }
