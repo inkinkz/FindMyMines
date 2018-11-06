@@ -270,7 +270,7 @@ public class ServerGamePageController implements Initializable {
     private ChoiceBox<String> modebox;
 
     @FXML
-    private Label warnReady;
+    private Label warnText;
 
     // game
 
@@ -344,7 +344,7 @@ public class ServerGamePageController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         textArea.setEditable(false);
-        warnReady.setVisible(false);
+        warnText.setVisible(false);
         leftPane.setDisable(true);
 
         // set up mode selection
@@ -976,12 +976,17 @@ public class ServerGamePageController implements Initializable {
 
         if (GAME_STATE.equals("WAITING")) {
             //GAME_STATE = WAITING -> ONGOING
-            if (!readyAll()) {
-                warnReady.setVisible(true);
+        		warnText.setText("Not alll players are ready");
+        		if(FindMyMinesServer.clientsConnected.isEmpty()) {
+        			warnText.setText("No player is connected");
+        			warnText.setVisible(true);
+        		}
+        		else if (!readyAll()) {
+                warnText.setVisible(true);
                 return;
             } else {
                 //All players are ready, proceed to game
-                warnReady.setVisible(false);
+                warnText.setVisible(false);
                 modebox.setDisable(true);
                 // complete game template
                 numOfPlayer = users.size(); // get from how many client

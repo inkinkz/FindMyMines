@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -23,6 +24,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,324 +44,324 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ClientGamePageController implements Initializable {
-    @FXML
-    private Button b1;
+	@FXML
+	private Button b1;
 
-    @FXML
-    private Button b2;
+	@FXML
+	private Button b2;
 
-    @FXML
-    private Button b3;
+	@FXML
+	private Button b3;
 
-    @FXML
-    private Button b4;
+	@FXML
+	private Button b4;
 
-    @FXML
-    private Button b5;
+	@FXML
+	private Button b5;
 
-    @FXML
-    private Button b6;
+	@FXML
+	private Button b6;
 
-    @FXML
-    private Button b11;
+	@FXML
+	private Button b11;
 
-    @FXML
-    private Button b21;
+	@FXML
+	private Button b21;
 
-    @FXML
-    private Button b31;
+	@FXML
+	private Button b31;
 
-    @FXML
-    private Button b41;
+	@FXML
+	private Button b41;
 
-    @FXML
-    private Button b51;
+	@FXML
+	private Button b51;
 
-    @FXML
-    private Button b61;
+	@FXML
+	private Button b61;
 
-    @FXML
-    private Button b12;
+	@FXML
+	private Button b12;
 
-    @FXML
-    private Button b22;
+	@FXML
+	private Button b22;
 
-    @FXML
-    private Button b32;
+	@FXML
+	private Button b32;
 
-    @FXML
-    private Button b42;
+	@FXML
+	private Button b42;
 
-    @FXML
-    private Button b52;
+	@FXML
+	private Button b52;
 
-    @FXML
-    private Button b62;
+	@FXML
+	private Button b62;
 
-    @FXML
-    private Button b13;
+	@FXML
+	private Button b13;
 
-    @FXML
-    private Button b23;
+	@FXML
+	private Button b23;
 
-    @FXML
-    private Button b33;
+	@FXML
+	private Button b33;
 
-    @FXML
-    private Button b43;
+	@FXML
+	private Button b43;
 
-    @FXML
-    private Button b53;
+	@FXML
+	private Button b53;
 
-    @FXML
-    private Button b63;
+	@FXML
+	private Button b63;
 
-    @FXML
-    private Button b14;
+	@FXML
+	private Button b14;
 
-    @FXML
-    private Button b24;
+	@FXML
+	private Button b24;
 
-    @FXML
-    private Button b34;
+	@FXML
+	private Button b34;
 
-    @FXML
-    private Button b44;
+	@FXML
+	private Button b44;
 
-    @FXML
-    private Button b54;
+	@FXML
+	private Button b54;
 
-    @FXML
-    private Button b64;
+	@FXML
+	private Button b64;
 
-    @FXML
-    private Button b15;
+	@FXML
+	private Button b15;
 
-    @FXML
-    private Button b25;
+	@FXML
+	private Button b25;
 
-    @FXML
-    private Button b35;
+	@FXML
+	private Button b35;
 
-    @FXML
-    private Button b45;
+	@FXML
+	private Button b45;
 
-    @FXML
-    private Button b55;
+	@FXML
+	private Button b55;
 
-    @FXML
-    private Button b65;
+	@FXML
+	private Button b65;
 
-    @FXML
-    private Label showTime;
+	@FXML
+	private Label showTime;
+	
+	@FXML
+	private Pane player1Pane;
 
-    @FXML
-    private Pane player1Pane;
+	@FXML
+	private Label player1;
 
-    @FXML
-    private Label player1;
+	@FXML
+	private Label score1;
 
-    @FXML
-    private Label score1;
+	@FXML
+	private Pane player2Pane;
 
-    @FXML
-    private Pane player2Pane;
+	@FXML
+	private Label player2;
 
-    @FXML
-    private Label player2;
+	@FXML
+	private Label score2;
 
-    @FXML
-    private Label score2;
+	@FXML
+	private Pane player3Pane;
 
-    @FXML
-    private Pane player3Pane;
+	@FXML
+	private Label player3;
 
-    @FXML
-    private Label player3;
+	@FXML
+	private Label score3;
 
-    @FXML
-    private Label score3;
+	@FXML
+	private Pane player4Pane;
 
-    @FXML
-    private Pane player4Pane;
+	@FXML
+	private Label player4;
 
-    @FXML
-    private Label player4;
+	@FXML
+	private Label score4;
 
-    @FXML
-    private Label score4;
+	@FXML
+	private Pane player5Pane;
 
-    @FXML
-    private Pane player5Pane;
+	@FXML
+	private Label player5;
 
-    @FXML
-    private Label player5;
+	@FXML
+	private Label score5;
 
-    @FXML
-    private Label score5;
+	@FXML
+	private Pane player6Pane;
 
-    @FXML
-    private Pane player6Pane;
+	@FXML
+	private Label player6;
 
-    @FXML
-    private Label player6;
+	@FXML
+	private Label score6;
 
-    @FXML
-    private Label score6;
+	@FXML
+	private Pane player7Pane;
 
-    @FXML
-    private Pane player7Pane;
+	@FXML
+	private Label player7;
 
-    @FXML
-    private Label player7;
+	@FXML
+	private Label score7;
 
-    @FXML
-    private Label score7;
+	@FXML
+	private Pane player8Pane;
 
-    @FXML
-    private Pane player8Pane;
+	@FXML
+	private Label player8;
 
-    @FXML
-    private Label player8;
+	@FXML
+	private Label score8;
 
-    @FXML
-    private Label score8;
+	@FXML
+	private Pane player9Pane;
 
-    @FXML
-    private Pane player9Pane;
+	@FXML
+	private Label player9;
 
-    @FXML
-    private Label player9;
+	@FXML
+	private Label score9;
 
-    @FXML
-    private Label score9;
+	@FXML
+	private Pane player10Pane;
 
-    @FXML
-    private Pane player10Pane;
+	@FXML
+	private Label player10;
 
-    @FXML
-    private Label player10;
+	@FXML
+	private Label score10;
 
-    @FXML
-    private Label score10;
+	@FXML
+	private Label bombLeft;
 
-    @FXML
-    private Label bombLeft;
+	@FXML
+	private Button readyButton;
 
-    @FXML
-    private Button readyButton;
+//for score board
+	@FXML
+	private Pane player1Pane1;
 
-    //for score board
-    @FXML
-    private Pane player1Pane1;
+	@FXML
+	private Label player11;
 
-    @FXML
-    private Label player11;
+	@FXML
+	private Label score11;
 
-    @FXML
-    private Label score11;
+	@FXML
+	private Pane player2Pane1;
 
-    @FXML
-    private Pane player2Pane1;
+	@FXML
+	private Label player21;
 
-    @FXML
-    private Label player21;
+	@FXML
+	private Label score21;
 
-    @FXML
-    private Label score21;
+	@FXML
+	private Pane player3Pane1;
 
-    @FXML
-    private Pane player3Pane1;
+	@FXML
+	private Label player31;
 
-    @FXML
-    private Label player31;
+	@FXML
+	private Label score31;
 
-    @FXML
-    private Label score31;
+	@FXML
+	private Pane player4Pane1;
 
-    @FXML
-    private Pane player4Pane1;
+	@FXML
+	private Label player41;
 
-    @FXML
-    private Label player41;
+	@FXML
+	private Label score41;
 
-    @FXML
-    private Label score41;
+	@FXML
+	private Pane player5Pane1;
 
-    @FXML
-    private Pane player5Pane1;
+	@FXML
+	private Label player51;
 
-    @FXML
-    private Label player51;
+	@FXML
+	private Label score51;
 
-    @FXML
-    private Label score51;
+	@FXML
+	private Pane player6Pane1;
 
-    @FXML
-    private Pane player6Pane1;
+	@FXML
+	private Label player61;
 
-    @FXML
-    private Label player61;
+	@FXML
+	private Label score61;
 
-    @FXML
-    private Label score61;
+	@FXML
+	private Pane player7Pane1;
 
-    @FXML
-    private Pane player7Pane1;
+	@FXML
+	private Label player71;
 
-    @FXML
-    private Label player71;
+	@FXML
+	private Label score71;
 
-    @FXML
-    private Label score71;
+	@FXML
+	private Pane player8Pane1;
 
-    @FXML
-    private Pane player8Pane1;
+	@FXML
+	private Label player81;
 
-    @FXML
-    private Label player81;
+	@FXML
+	private Label score81;
 
-    @FXML
-    private Label score81;
+	@FXML
+	private Pane player9Pane1;
 
-    @FXML
-    private Pane player9Pane1;
+	@FXML
+	private Label player91;
 
-    @FXML
-    private Label player91;
+	@FXML
+	private Label score91;
 
-    @FXML
-    private Label score91;
+	@FXML
+	private Pane player10Pane1;
 
-    @FXML
-    private Pane player10Pane1;
+	@FXML
+	private Label player101;
 
-    @FXML
-    private Label player101;
-
-    @FXML
-    private Label score101;
-
-    @FXML
+	@FXML
+	private Label score101;
+	
+	@FXML
     private AnchorPane leftPane;
-
-    @FXML
+	
+	@FXML
     private AnchorPane rightPane;
-
-    @FXML
-    private Label title;
-
-    @FXML
+	
+	@FXML
+	private Label title;
+	
+	@FXML
     private ImageView winnerImage;
 
-    @FXML
+	@FXML
     private AnchorPane scoreboardPane;
-
-    @FXML
-    private Button button_done;
-
-    @FXML
-    private DialogPane scoreBoard;
+	
+	@FXML
+	private Button button_done;
+	
+	@FXML
+	private DialogPane scoreBoard;
 
     //game
     static int numOfPlayer; // how many player
@@ -371,8 +373,7 @@ public class ClientGamePageController implements Initializable {
     Label[] setOfNameBoard = new Label[10];
     Label[] setOfScoreBoard = new Label[10];
     int numBombLeft = 11;
-    int score = 0;
-    private static String GAME_STATE; //to be implemented to receive from server
+    int score =0;
 
     @FXML
     private TextArea txtArea;
@@ -387,12 +388,11 @@ public class ClientGamePageController implements Initializable {
     int[][] bombplacement = new int[6][6];
     int[][] bombaround = new int[6][6];
 
-    int[][] bombplacementMultiPoints = new int[6][6];
-    int[][] bombaroundMultiPoints = new int[6][6];
-
     // Server Configuration
     private boolean connected = ClientStartPageController.connected;
+    private String server = ClientStartPageController.server;
     private String username = ClientStartPageController.userName;
+    private int port = ClientStartPageController.port;
 
     // for I/O
     private ObjectInputStream sInput = ClientStartPageController.sInput; // to read from the socket
@@ -403,33 +403,36 @@ public class ClientGamePageController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
 
         new ListenFromServer().start();
-
+        
+        //Poon
+        //set podium image in scoreboard
         Image image = new Image(getClass().getResourceAsStream("/podium.png"));
-        winnerImage.setImage(image);
-
-
+		winnerImage.setImage(image);
+		
+		
         txtArea.setEditable(false);
-        leftPane.setDisable(true);
+//		leftPane.setDisable(true);
         display("Hello, " + username + ".\n");
-        display("When you are ready to play, press Ready button\n");
+        display("When you are ready to play, press Ready button");
         // trigger this when server press start
-        setUpLeftPane();
-//        setUpBomb();
-
+        setUpPane();
+        setUpBomb();
+        
         //startTimer();  //need to start when the game start
         //setScore();
         // color change for the starting player
         //setOfPlayerPane[player].setStyle("-fx-background-color: grey");
     }
 
-    //method to reset all score to 0
-    private void resetScore() {
+    //Poon
+    private void setScore() {
         for (int i = 0; i < 10; i++) {
             scoreOfPlayer.put(i, 0);
         }
     }
 
-    private void setUpLeftPane() {
+    //Tram and Poon
+    private void setUpPane() {
         // put each pane into setOfPlayerPane
         setOfPlayerPane[0] = player1Pane;
         setOfPlayerPane[1] = player2Pane;
@@ -458,6 +461,7 @@ public class ClientGamePageController implements Initializable {
         setOfScore[8] = score9;
         setOfScore[9] = score10;
 
+        // TODO Auto-generated method stub
         setOfButton[0][0] = b1;
         setOfButton[1][0] = b2;
         setOfButton[2][0] = b3;
@@ -521,14 +525,16 @@ public class ClientGamePageController implements Initializable {
     private int player = 0;
     private int playerplaying = 1;
 
+    //Poon
+    //call to change color to inform the next player that it's their turn
     void colorChange() {
         if (playerplaying < numOfPlayer) {
-            setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: white");
-            setOfPlayerPane[++playerplaying].setStyle("-fx-background-color: grey");
+            setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: transparent");
+            setOfPlayerPane[++playerplaying].setStyle("-fx-background-color: #EDF2F4");
             playerplaying++;
         } else if (playerplaying == numOfPlayer) {
-            setOfPlayerPane[numOfPlayer - 1].setStyle("-fx-background-color: white");
-            setOfPlayerPane[0].setStyle("-fx-background-color: grey");
+            setOfPlayerPane[numOfPlayer - 1].setStyle("-fx-background-color: transparent");
+            setOfPlayerPane[0].setStyle("-fx-background-color: #EDF2F4");
             playerplaying = 1;
         } else {
             playerplaying = 1;
@@ -536,6 +542,7 @@ public class ClientGamePageController implements Initializable {
 
     }
 
+    //Tram
     // playing (Button Clicked)
     @FXML
     void play(MouseEvent event) {
@@ -547,14 +554,14 @@ public class ClientGamePageController implements Initializable {
         // set color of player to know whose turn is next
         colorChange();
         // timer of next player
-        maxTime = 0;
-        startTimer();
+        //maxTime = 0;
+        //startTimer();
         Button y = (Button) event.getTarget();
 
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
             // ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-            ((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42");
+            ((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42;");
             ((Button) event.getTarget()).setDisable(true);
             player++;
         }
@@ -574,35 +581,28 @@ public class ClientGamePageController implements Initializable {
             score++;
             player++;
         }
-
-
+        
+        //Tram
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-            ((Button) event.getTarget()).setDisable(true);
-            ((Button) event.getTarget()).setText("BOMB \n x2");
-            numBombLeft--;
-            bombLeft.setText(numBombLeft + "");
-            score = score + 2;
-            player++;
+        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4;");
+        	((Button) event.getTarget()).setDisable(true);
+        	((Button) event.getTarget()).setText("BOMB \n x2");
+        	score = score+2;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-            ((Button) event.getTarget()).setDisable(true);
-            ((Button) event.getTarget()).setText("BOMB \n x3");
-            numBombLeft--;
-            bombLeft.setText(numBombLeft + "");
-            score = score + 3;
-            player++;        }
+        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4;");
+        	((Button) event.getTarget()).setDisable(true);
+        	((Button) event.getTarget()).setText("BOMB \n x3");
+        	score = score+3;
+        }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-            ((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-            ((Button) event.getTarget()).setDisable(true);
-            ((Button) event.getTarget()).setText("BOMB \n x4");
-            numBombLeft--;
-            bombLeft.setText(numBombLeft + "");
-            score = score + 4;
-            player++;        }
+        	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4;");
+        	((Button) event.getTarget()).setDisable(true);
+        	((Button) event.getTarget()).setText("BOMB \n x4");
+        	score = score+4;
+        }
 
         if (player == numOfPlayer) {
             player = 0;
@@ -611,100 +611,85 @@ public class ClientGamePageController implements Initializable {
 
     // receive button position clicked from other clients
     void playFromOthers(String cl) {
-
+    	
+    		//Inkz
         String s = cl.trim();
         int j = 0;
-        int i = (Integer.parseInt(s.charAt(0) + "")) - 1;
-        if (s.length() >= 2) {
+        int i = (Integer.parseInt(s.charAt(0)+"")) - 1;
+        if(s.length() >= 2) {
             if (!(s.substring(1).equals(","))) {
                 j = Integer.parseInt(s.charAt(1) + "");
             }
         }
 
+        //Tram
         // To check button position
 //        display("i = " + i + " j = " + j);
         Button y = setOfButton[i][j];
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
-            y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42; -fx-text-fill: #edf2f4");
-            y.setDisable(true);
+           y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42;");
+           y.setDisable(true);
         }
 
         if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-            y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-            y.setDisable(true);
+        	y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;");
+        	y.setDisable(true);
             y.setText("BOMB");
-            numBombLeft--;
-            bombLeft.setText(numBombLeft + "");
-            score = score + 1;
-            player++;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-            y.setDisable(true);
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;");
+        	y.setDisable(true);
             y.setText("BOMB \n x2");
-            numBombLeft--;
-            bombLeft.setText(numBombLeft + "");
-            score = score + 2;
-            player++;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-            y.setDisable(true);
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;");
+        	y.setDisable(true);
             y.setText("BOMB \n x3");
-            numBombLeft--;
-            bombLeft.setText(numBombLeft + "");
-            score = score + 3;
-            player++;
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
-            y.setDisable(true);
+        	y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;");
+        	y.setDisable(true);
             y.setText("BOMB \n x4");
-            numBombLeft--;
-            bombLeft.setText(numBombLeft + "");
-            score = score + 4;
-            player++;
         }
-
-        resetScore();
-
     }
-
-    //tram
+    
+    //Tram
     static Timer timer = new Timer();//tram
-    int time = 11;
-    int maxTime = 11;
-
+    int time=10;
+    int maxTime=10;
+    
     void startTimer() {
-
-        TimerTask task;
-        task = new TimerTask() {
-
+    	showTime.setStyle("-fx-text-fill: #edf2f4");
+    	TimerTask task;
+    	task = new TimerTask() {
+         
             @Override
-            public void run() {
-                if (maxTime > 0) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            showTime.setText(time + "");
-                        }
-                    });
-                    System.out.println("Seconds = " + time);
-                    time--;
-                    maxTime--;
+			public void run() {
+				if (maxTime > 0) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							showTime.setText(time + "");
+							if(time < 4) {
+								showTime.setStyle("-fx-text-fill: #EF233C");
+							}
+						}
+					});
+					System.out.println("Seconds = " + time);
+					time--;
+					maxTime--;
                 } else {
                     // stop the timer
-
+             
                 	/*player++;
                 	if (player == numOfPlayer) {
                         player = 0;
                     }
-                    */
-                    colorChange();
+                    */colorChange();
                     startTimer();
                     cancel();
                 }
@@ -712,7 +697,37 @@ public class ClientGamePageController implements Initializable {
         };
         timer.schedule(task, 0, 1000);
     }
-
+    
+    //Poon
+    private void stopTimer () {
+    		showTime.setStyle("-fx-text-fill: #edf2f4");
+    		maxTime = 0;
+    }
+    
+    //Poon
+    private void resetTimer() {
+    		stopTimer();
+    		maxTime = getTimerMode();
+    		startTimer();
+    }
+    
+    //Poon
+    //default currentMode
+    //please setGameMode() before server press start button
+    String currentMode = "";
+    //get the maxTime for startTimer method ( 5 or 10 )
+    private int getTimerMode() {
+    		if(currentMode.equals("Quick Game")) {
+    			return 5;
+    		} else {
+    			return 10;
+    		}
+    }
+    
+    //Poon
+    private void setGameMode(String mode) {
+    		currentMode = mode;
+    }
 
     /*// to display count down game timer
     void startTimer() {
@@ -758,46 +773,44 @@ public class ClientGamePageController implements Initializable {
         thread.start();
     }*/
 
-    Integer[] nameOfPlayer = new Integer[10];
-    private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
-
     @FXML
     private Button buttonDone;
 
+    //Poon
     @FXML
     void goBack(ActionEvent event) throws IOException {
-        AnchorPane gamePage = (AnchorPane) FXMLLoader
-                .load(getClass().getResource("/FindMyMinesUI/src/game/view/ClientStartPage.fxml"));
-        Scene scene = new Scene(gamePage);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setMinWidth(1000);
-        stage.setMinHeight(520);
-        stage.setScene(scene);
-        stage.show();
+        scoreboardPane.setVisible(false);
     }
 
-    boolean alreadyReady = false;
+	boolean alreadyReady = false;
 
-    @FXML
-    void ready(ActionEvent event) throws IOException {
+	@FXML
+	void ready(ActionEvent event) throws IOException {
 
-        if (!alreadyReady) {
-            sendReady();
-            // number of ready player increase every time a client click ready
-            int ready = playerReady.getValue();
-            playerReady = new SimpleIntegerProperty(ready++).asObject();
-            // set ready button to disable after being pressed
-            readyButton.setText("Not Ready");
+		if (!alreadyReady) {
+		    sendReady();
+			// number of ready player increase every time a client click ready
+			int ready = playerReady.getValue();
+			playerReady = new SimpleIntegerProperty(ready++).asObject();
+			// set ready button to disable after being pressed
+			readyButton.setText("NOT READY");
 
-        } else {
+		} else {
+			/* if (alreadyReady) { */
+			// set ready button to disable after being pressed
             sendNotReady();
-            readyButton.setText("Ready");
-        }
+			readyButton.setText("READY");
+		}
 
-        alreadyReady = !alreadyReady;
+		alreadyReady = !alreadyReady;
 
-    }
+	}
 
+	//Poon
+    Integer[] nameOfPlayer = new Integer[10];
+    private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
+    
+	//Poon
     // sort score
     public static Map<Integer, Integer> getSorted() {
         sorted = sort(scoreOfPlayer);
@@ -805,7 +818,8 @@ public class ClientGamePageController implements Initializable {
         return sorted;
     }
 
-    // remove non=playing players
+    //Poon
+    // remove non-playing players from sorted arraylist
     private static Map<Integer, Integer> sort(Map<Integer, Integer> map) {
         Map<Integer, Integer> sorted = map.entrySet().stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
@@ -880,7 +894,6 @@ public class ClientGamePageController implements Initializable {
     class ListenFromServer extends Thread {
 
         public void run() {
-            String msgt;
             // game initialize
             scoreOfPlayer = FXCollections.observableHashMap();
             playerReady = new SimpleIntegerProperty(0).asObject();
@@ -889,113 +902,52 @@ public class ClientGamePageController implements Initializable {
             users = FXCollections.observableArrayList();
          
             listUsersConnected.setItems(users);
+            
+            
+          
 
             try {
                 bombplacement = (int[][]) sInput.readObject();
             } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
                 e1.printStackTrace();
             } catch (IOException e1) {
+                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
 
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
             } catch (IOException e1) {
+                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
             try {
                 bombaround = (int[][]) sInput.readObject();
 
             } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
                 e1.printStackTrace();
             } catch (IOException e1) {
+                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
             } catch (IOException e1) {
+                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
 
-            // Multi points bomb
-
-            try {
-                bombplacementMultiPoints = (int[][]) sInput.readObject();
-            } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-
-            try {
-                sInput = new ObjectInputStream(socket.getInputStream());
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                bombaroundMultiPoints = (int[][]) sInput.readObject();
-
-            } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                sInput = new ObjectInputStream(socket.getInputStream());
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-
-//            Platform.runLater(() -> {
-//                setUpBomb();
-//            });
-
-
-//
-//            //listen for game_state messages
-//            try {
-//                msgt = (String) sInput.readObject();
-//                msgt.trim();
-//                if(msgt.equals("WAITING")){
-//                    //This means the server has pressed "Reset" button
-//                    //ENDED -> WAITING
-//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
-//                    GAME_STATE = msgt;
-//                    //do something
-//
-//                } else if(msgt.equals("ONGOING")){
-//                    //This means the server has pressed "Start" button
-//                    //WAITING -> ONGOING
-//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
-//                    GAME_STATE = msgt;
-//                    //do something
-//
-//                } else if(msgt.equals("ENDED")){
-//                    //This means the server has pressed "Stop" button
-//                    //ONGOING -> ENDED
-//                    System.out.println("Received server msg (GAME_STATE): "+msgt); //just for debugging
-//                    GAME_STATE = msgt;
-//                    //do something
-//                }
-//
-//            } catch (ClassNotFoundException e1) {
-//                e1.printStackTrace();
-//            } catch (IOException e1) {
-//                e1.printStackTrace();
-//            }
-//
-//            try {
-//                sInput = new ObjectInputStream(socket.getInputStream());
-//            } catch (IOException e1) {
-//                e1.printStackTrace();
-//            }
+            Platform.runLater(() -> {
+                setUpBomb();
+            });
 
             while (true) {
                 try {
-                    msgt = (String) sInput.readObject();
+                    String msgt = (String) sInput.readObject();
                     String msg = msgt.trim();
-                    if (msg.contains("WHOISIN") || msg.contains("REMOVE") || msg.contains("READDY") || msg.contains("NOTREADY")
-                            || msg.contains("GAMESTART") || msg.contains("GAMESTOP") || msg.contains("GAMERESET")) {
+                    if (msg.length() >= 5) {
                         String[] split = msg.split(":");
                         if (split[1].equals("WHOISIN")) {
                             Platform.runLater(() -> {
@@ -1008,67 +960,21 @@ public class ClientGamePageController implements Initializable {
                         } else if (split[1].equals("READDY")) {
                             Platform.runLater(() -> {
                                 users.remove(split[0]);
-                                users.add(split[0] + " (READY)");
+                                users.add(split[0]+" (READY)");
                             });
                         } else if (split[1].equals("NOTREADY")) {
                             Platform.runLater(() -> {
                                 users.remove(split[0] + " (READY)");
                                 users.add(split[0]);
                             });
-                        } else if (split[1].equals("GAMESTART")) {
-                            switch (split[0]) {
-                                case "DEFAULT":
-                                    Platform.runLater(() -> {
-                                        // Game started
-                                        // Do things for default mode
-                                        display("Welcome to Find My Mines");
-                                        display("Server has started the game (Mode: Default)"+"\n");
-                                        triggerClientScreen("ONGOING", "DEFAULT");
-                                    });
-                                    break;
-                                case "QUICK_GAME":
-                                    Platform.runLater(() -> {
-                                        // Game started
-                                        // Do things for quick game mode
-                                        display("Welcome to Find My Mines");
-                                        display("Server has started the game (Mode: Quick Game)"+"\n");
-                                        triggerClientScreen("ONGOING", "QUICK_GAME");
-                                    });
-                                    break;
-                                case "MULTIPOINTS_BOMB":
-                                    Platform.runLater(() -> {
-                                        // Game started
-                                        // Do things for multipoints bomb mode
-                                        display("Welcome to Find My Mines");
-                                        display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
-                                        triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
-                                    });
-                                    break;
-                            }
-                        } else if (split[1].equals("GAMESTOP")) {
-                            Platform.runLater(() -> {
-                                // Game ended
-                                // Do things when game ends
-                                display("Game Over!");
-                                display("Server has stopped the game"+"\n");
-                                triggerClientScreen("ENDED",null);
-
-                            });
-                        } else if (split[1].equals("GAMERESET")){
-                            Platform.runLater(() -> {
-                                // Game reset
-                                // Revert things back to start
-                                display("Server has reset the game"+"\n");
-                                triggerClientScreen("WAITING",null);
-                            });
                         }
-                    } else if (msg.length() == 2) {
+                    } else {
                         Platform.runLater(() -> {
                             playFromOthers(msg);
                         });
                     }
                 } catch (IOException e) {
-                    display("Server has closed the connection");
+                    display("Server has close the connection");
                     connectionFailed();
                     Platform.runLater(() -> {
                         listUsersConnected.setItems(null);
@@ -1091,63 +997,26 @@ public class ClientGamePageController implements Initializable {
                 int result = bombplacement[i][j];
                 Button y = setOfButton[i][j];
                 if (result == 0) {
-                    y.setStyle("-fx-font-size: 0.0"); // blank
-                }
-                if (result == 1) {
-                    y.setStyle("-fx-font-size: 0.1"); // bomb
-                }
-                if (result == 2) {
-                    y.setStyle("-fx-font-size: 0.2"); // bomb
-                }
-                if (result == 3) {
-                    y.setStyle("-fx-font-size: 0.3"); // bomb
-                }
-                if (result == 4) {
-                    y.setStyle("-fx-font-size: 0.4"); // bomb
-                }
+					y.setStyle("-fx-font-size: 0.0"); // blank
+				}
+				if (result == 1) {
+					y.setStyle("-fx-font-size: 0.1"); // bomb
+				}
+				if (result == 2) {
+					y.setStyle("-fx-font-size: 0.2"); // bomb
+				}
+				if (result == 3) {
+					y.setStyle("-fx-font-size: 0.3"); // bomb
+				}
+				if (result == 4) {
+					y.setStyle("-fx-font-size: 0.4"); // bomb
+				}
             }
         }
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 int numOfBombAround = bombaround[i][j];
-                if (numOfBombAround > 0) {
-                    setOfButton[i][j].setText("" + numOfBombAround);
-
-                }
-            }
-        }
-
-    }
-
-    private void setUpBombMultiPoints() {
-//		numOfPlayer = users.size(); // how many clients are there
-
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 6; j++) {
-                int result = bombplacementMultiPoints[i][j];
-                Button y = setOfButton[i][j];
-                if (result == 0) {
-                    y.setStyle("-fx-font-size: 0.0"); // blank
-                }
-                if (result == 1) {
-                    y.setStyle("-fx-font-size: 0.1"); // bomb
-                }
-                if (result == 2) {
-                    y.setStyle("-fx-font-size: 0.2"); // bomb
-                }
-                if (result == 3) {
-                    y.setStyle("-fx-font-size: 0.3"); // bomb
-                }
-                if (result == 4) {
-                    y.setStyle("-fx-font-size: 0.4"); // bomb
-                }
-            }
-        }
-
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 6; j++) {
-                int numOfBombAround = bombaroundMultiPoints[i][j];
                 if (numOfBombAround > 0) {
                     setOfButton[i][j].setText("" + numOfBombAround);
 
@@ -1168,7 +1037,7 @@ public class ClientGamePageController implements Initializable {
         }
     }
 
-    public void sendReady() {
+    public void sendReady(){
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.READDY, username);
             try {
@@ -1179,7 +1048,7 @@ public class ClientGamePageController implements Initializable {
         }
     }
 
-    public void sendNotReady() {
+    public void sendNotReady(){
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.NOTREADY, username);
             try {
@@ -1189,48 +1058,9 @@ public class ClientGamePageController implements Initializable {
             }
         }
     }
-
-    //(Queenie) method to control how client screen behavior should be when a game state changes
-    public void triggerClientScreen(String game_state, String game_mode){
-        switch (game_state){
-            case "WAITING":
-                //Server pressed "Reset", changing game state from "ENDED" -> "WAITING"
-                //do what clients during waiting period should do
-                //reset everything on client screen
-
-                break;
-            case "ONGOING":
-                //Server pressed "Start", changing game state from "WAITING" -> "ONGOING"
-                startWithGameMode(game_mode);
-                break;
-            case "ENDED":
-                //Server pressed "Stop", changing game state from "ONGOING" -> "ENDED"
-                //do what clients during ended period should do
-
-                //showScoreSummary()
-                break;
-
-        }
-        return;
-    }
-
-    //(Queenie) method to control client screen for game_state = ONGOING with specified game_mode
-    public void startWithGameMode(String game_mode){
-        switch (game_mode) {
-            case "DEFAULT":
-                setUpBomb();
-                leftPane.setDisable(false);
-                break;
-            case "QUICK_GAME":
-                setUpBomb();
-                leftPane.setDisable(false);
-                break;
-            case "MULTIPOINTS_BOMB":
-                setUpBombMultiPoints();
-                leftPane.setDisable(false);
-                break;
-        }
-        return;
+    
+    private void showScoreSummary() {
+    		scoreboardPane.setVisible(true);
     }
 
 }
