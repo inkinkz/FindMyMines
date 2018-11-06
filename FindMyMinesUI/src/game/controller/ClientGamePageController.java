@@ -406,6 +406,8 @@ public class ClientGamePageController implements Initializable {
 
         new ListenFromServer().start();
         
+        //Poon
+        //set podium image in scoreboard
         Image image = new Image(getClass().getResourceAsStream("/podium.png"));
 		winnerImage.setImage(image);
 		
@@ -418,18 +420,20 @@ public class ClientGamePageController implements Initializable {
         setUpPane();
         setUpBomb();
         
-        startTimer();  //need to start when the game start
+        //startTimer();  //need to start when the game start
         //setScore();
         // color change for the starting player
         //setOfPlayerPane[player].setStyle("-fx-background-color: grey");
     }
 
+    //Poon
     private void setScore() {
         for (int i = 0; i < 10; i++) {
             scoreOfPlayer.put(i, 0);
         }
     }
 
+    //Tram and Poon
     private void setUpPane() {
         // put each pane into setOfPlayerPane
         setOfPlayerPane[0] = player1Pane;
@@ -523,6 +527,8 @@ public class ClientGamePageController implements Initializable {
     private int player = 0;
     private int playerplaying = 1;
 
+    //Poon
+    //call to change color to inform the next player that it's their turn
     void colorChange() {
         if (playerplaying < numOfPlayer) {
             setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: transparent");
@@ -538,6 +544,7 @@ public class ClientGamePageController implements Initializable {
 
     }
 
+    //Tram and Poon
     // playing (Button Clicked)
     @FXML
     void play(MouseEvent event) {
@@ -577,7 +584,7 @@ public class ClientGamePageController implements Initializable {
             player++;
         }
         
-        
+        //Tram
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
         	((Button) event.getTarget()).setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4;");
         	((Button) event.getTarget()).setDisable(true);
@@ -606,7 +613,8 @@ public class ClientGamePageController implements Initializable {
 
     // receive button position clicked from other clients
     void playFromOthers(String cl) {
-
+    	
+    		//Inkz
         String s = cl.trim();
         int j = 0;
         int i = (Integer.parseInt(s.charAt(0)+"")) - 1;
@@ -616,6 +624,7 @@ public class ClientGamePageController implements Initializable {
             }
         }
 
+        //Tram
         // To check button position
 //        display("i = " + i + " j = " + j);
         Button y = setOfButton[i][j];
@@ -650,7 +659,7 @@ public class ClientGamePageController implements Initializable {
         }
     }
     
-    //tram
+    //Tram
     static Timer timer = new Timer();//tram
     int time=10;
     int maxTime=10;
@@ -692,9 +701,35 @@ public class ClientGamePageController implements Initializable {
         timer.schedule(task, 0, 1000);
     }
     
-    void stopTimer () {
+    //Poon
+    private void stopTimer () {
     		showTime.setStyle("-fx-text-fill: #edf2f4");
     		maxTime = 0;
+    }
+    
+    //Poon
+    private void resetTimer() {
+    		stopTimer();
+    		maxTime = getTimerMode();
+    		startTimer();
+    }
+    
+    //Poon
+    //default currentMode
+    //please setGameMode() before server press start button
+    String currentMode = "";
+    //get the maxTime for startTimer method ( 5 or 10 )
+    private int getTimerMode() {
+    		if(currentMode.equals("Quick Game")) {
+    			return 5;
+    		} else {
+    			return 10;
+    		}
+    }
+    
+    //Poon
+    private void setGameMode(String mode) {
+    		currentMode = mode;
     }
 
 
@@ -742,12 +777,10 @@ public class ClientGamePageController implements Initializable {
         thread.start();
     }*/
 
-    Integer[] nameOfPlayer = new Integer[10];
-    private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
-
     @FXML
     private Button buttonDone;
 
+    //Poon
     @FXML
     void goBack(ActionEvent event) throws IOException {
         scoreboardPane.setVisible(false);
@@ -778,6 +811,11 @@ public class ClientGamePageController implements Initializable {
 
 	}
 
+	//Poon
+    Integer[] nameOfPlayer = new Integer[10];
+    private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
+    
+	//Poon
     // sort score
     public static Map<Integer, Integer> getSorted() {
         sorted = sort(scoreOfPlayer);
@@ -785,7 +823,8 @@ public class ClientGamePageController implements Initializable {
         return sorted;
     }
 
-    // remove non=playing players
+    //Poon
+    // remove non-playing players from sorted arraylist
     private static Map<Integer, Integer> sort(Map<Integer, Integer> map) {
         Map<Integer, Integer> sorted = map.entrySet().stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
