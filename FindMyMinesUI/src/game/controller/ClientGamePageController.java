@@ -607,6 +607,12 @@ public class ClientGamePageController implements Initializable {
         if (player == numOfPlayer) {
             player = 0;
         }
+
+        // timer of next player
+        time = 11;
+        maxTime = 11;
+        startTimer();
+
     }
 
     // receive button position clicked from other clients
@@ -670,6 +676,9 @@ public class ClientGamePageController implements Initializable {
             player++;
         }
 
+        maxTime = 11;
+        time = 11;
+        startTimer();
         resetScore();
 
     }
@@ -693,7 +702,7 @@ public class ClientGamePageController implements Initializable {
                             showTime.setText(time + "");
                         }
                     });
-                    System.out.println("Seconds = " + time);
+//                    System.out.println("Seconds = " + time);
                     time--;
                     maxTime--;
                 } else {
@@ -705,6 +714,8 @@ public class ClientGamePageController implements Initializable {
                     }
                     */
                     colorChange();
+                    time = 11;
+                    maxTime = 11;
                     startTimer();
                     cancel();
                 }
@@ -1024,6 +1035,9 @@ public class ClientGamePageController implements Initializable {
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Default)"+"\n");
                                         triggerClientScreen("ONGOING", "DEFAULT");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
                                     });
                                     break;
                                 case "QUICK_GAME":
@@ -1033,6 +1047,9 @@ public class ClientGamePageController implements Initializable {
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Quick Game)"+"\n");
                                         triggerClientScreen("ONGOING", "QUICK_GAME");
+                                        setUpBomb();
+                                        startTimer();
+                                        leftPane.setDisable(false);
                                     });
                                     break;
                                 case "MULTIPOINTS_BOMB":
@@ -1042,6 +1059,9 @@ public class ClientGamePageController implements Initializable {
                                         display("Welcome to Find My Mines");
                                         display("Server has started the game (Mode: Multipoints Bomb)"+"\n");
                                         triggerClientScreen("ONGOING","MULTIPOINTS_BOMB");
+                                        setUpBombMultiPoints();
+                                        startTimer();
+                                        leftPane.setDisable(false);
                                     });
                                     break;
                             }
