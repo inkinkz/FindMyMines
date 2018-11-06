@@ -1109,7 +1109,7 @@ public class ServerGamePageController implements Initializable {
             return;
         }
         if (selectedChoice.equals("Quick Game")) {
-            time = 5;
+            maxTime = 5;
             //System.out.println(selectedChoice);
             return;
         }

@@ -155,6 +155,8 @@ public class ClientGamePageController implements Initializable {
 	@FXML
 	private Label showTime;
 
+	//scoreboard
+	
 	@FXML
 	private Pane player1Pane;
 
@@ -547,7 +549,7 @@ public class ClientGamePageController implements Initializable {
         // set color of player to know whose turn is next
         colorChange();
         // timer of next player
-        maxTime = 0;
+        //maxTime = 0;
         //startTimer();
         Button y = (Button) event.getTarget();
 
@@ -688,6 +690,11 @@ public class ClientGamePageController implements Initializable {
             }
         };
         timer.schedule(task, 0, 1000);
+    }
+    
+    void stopTimer () {
+    		showTime.setStyle("-fx-text-fill: #edf2f4");
+    		maxTime = 0;
     }
 
 
@@ -1016,6 +1023,10 @@ public class ClientGamePageController implements Initializable {
                 display("Exception writing to server: " + e);
             }
         }
+    }
+    
+    private void showScoreSummary() {
+    		scoreboardPane.setVisible(true);
     }
 
 }
