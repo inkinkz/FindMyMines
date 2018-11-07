@@ -8,12 +8,7 @@ import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collections;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
 import com.sun.org.apache.xpath.internal.operations.Bool;
@@ -277,6 +272,7 @@ public class ServerGamePageController implements Initializable {
     static int numOfPlayer; // how many player
     static Button[][] setOfButton = new Button[6][6];
     Pane[] setOfPlayerPane = new Pane[10]; // limit player :10
+    private String[] playerNames = new String[10];
     private static ObservableMap<Integer, Integer> scoreOfPlayer;
     private ObservableValue<Integer> playerReady; // number of player ready
     Label[] setOfScore = new Label[10];
@@ -296,7 +292,7 @@ public class ServerGamePageController implements Initializable {
         // game initialize
         scoreOfPlayer = FXCollections.observableHashMap();
         playerReady = new SimpleIntegerProperty(0).asObject();
-        leftPane.setDisable(true);
+
 
         // create a new Server
         server = new FindMyMinesServer(1500, this);
@@ -346,6 +342,7 @@ public class ServerGamePageController implements Initializable {
         textArea.setEditable(false);
         warnText.setVisible(false);
         leftPane.setDisable(true);
+
 
         // set up mode selection
         ObservableList<String> availableChoices = FXCollections.observableArrayList("Default Mode", "Quick Game", "Multipoints Bomb");
@@ -444,7 +441,11 @@ public class ServerGamePageController implements Initializable {
     }
 
     private void setupPane() {
+        numOfPlayer = users.size(); // get from how many client
+        Arrays.fill(playerNames, " ");
+
         // put each pane into setOfPlayer
+
         setOfPlayerPane[0] = player1Pane;
         setOfPlayerPane[1] = player2Pane;
         setOfPlayerPane[2] = player3Pane;
@@ -456,9 +457,26 @@ public class ServerGamePageController implements Initializable {
         setOfPlayerPane[8] = player9Pane;
         setOfPlayerPane[9] = player10Pane;
 
-        // to hide who does not play
-        for (int i = numOfPlayer; i < 10; i++) {
-            setOfPlayerPane[i].setVisible(false);
+        numOfPlayer = users.size();
+
+        for (int i = 0; i < numOfPlayer; i++) {
+            playerNames[i] = users.get(i).substring(0,users.get(i).indexOf("("));
+        }
+
+        player1.setText(playerNames[0]);
+        player2.setText(playerNames[1]);
+        player3.setText(playerNames[2]);
+        player4.setText(playerNames[3]);
+        player5.setText(playerNames[4]);
+        player6.setText(playerNames[5]);
+        player7.setText(playerNames[6]);
+        player8.setText(playerNames[7]);
+        player9.setText(playerNames[8]);
+        player10.setText(playerNames[9]);
+
+        //show available players
+        for (int i = 0; i < numOfPlayer; i++) {
+            setOfPlayerPane[i].setVisible(true);
         }
 
         setOfScore[0] = score1;
@@ -989,7 +1007,6 @@ public class ServerGamePageController implements Initializable {
                 warnText.setVisible(false);
                 modebox.setDisable(true);
                 // complete game template
-                numOfPlayer = users.size(); // get from how many client
                 setupPane();
                 setScore();
                 // color change for the starting player
@@ -1040,6 +1057,7 @@ public class ServerGamePageController implements Initializable {
             startButton.setText("Start");
             server.changeGameState();
             FindMyMinesServer.broadcast("GAMERESET:GAMERESET");
+            setPlayerPaneVisible(users.size(),false);
             return;
         }
 
@@ -1195,6 +1213,13 @@ public class ServerGamePageController implements Initializable {
 
     public void setGameMode(String gameMode) {
         this.gameMode = gameMode;
+    }
+
+    private void setPlayerPaneVisible(int size, boolean value){
+        for (int i=0; i<size;i++){
+            setOfPlayerPane[i].setVisible(value);
+        }
+
     }
 
 }
