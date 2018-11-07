@@ -1213,6 +1213,7 @@ public class ClientGamePageController implements Initializable {
                 break;
             case "ENDED":
                 //Server pressed "Stop", changing game state from "ONGOING" -> "ENDED"
+            		setScoreboardPane(); // set panes in scoreboard
                 showScoreSummary();
                 break;
             default:
@@ -1256,6 +1257,67 @@ public class ClientGamePageController implements Initializable {
 	private void showScoreSummary() {
     		scoreboardPane.setVisible(true);
     }
+	
+	// (Poon) setup scores and player names on scoreboard
+		private void setScoreboardPane() {
+			numOfPlayer = users.size();
+
+			for (int i = 0; i < numOfPlayer; i++) {
+				playerNames[i] = users.get(i).substring(0, users.get(i).indexOf("("));
+			}
+
+			player11.setText(playerNames[0]);
+			player21.setText(playerNames[1]);
+			player31.setText(playerNames[2]);
+			player41.setText(playerNames[3]);
+			player51.setText(playerNames[4]);
+			player61.setText(playerNames[5]);
+			player71.setText(playerNames[6]);
+			player81.setText(playerNames[7]);
+			player91.setText(playerNames[8]);
+			player101.setText(playerNames[9]);
+
+			// display user names
+			Pane[] setOfScoreboardPane = new Pane[10];
+			setOfScoreboardPane[0] = player1Pane1;
+			setOfScoreboardPane[1] = player2Pane1;
+			setOfScoreboardPane[2] = player3Pane1;
+			setOfScoreboardPane[3] = player4Pane1;
+			setOfScoreboardPane[4] = player5Pane1;
+			setOfScoreboardPane[5] = player6Pane1;
+			setOfScoreboardPane[6] = player7Pane1;
+			setOfScoreboardPane[7] = player8Pane1;
+			setOfScoreboardPane[8] = player9Pane1;
+			setOfScoreboardPane[9] = player10Pane1;
+			for (int i = 0; i < numOfPlayer; i++) {
+				setOfScoreboardPane[i].setVisible(true);
+			}
+
+			Label[] setOfScoreboardScore = new Label[10];
+			setOfScoreboardScore[0] = score11;
+			setOfScoreboardScore[1] = score21;
+			setOfScoreboardScore[2] = score31;
+			setOfScoreboardScore[3] = score41;
+			setOfScoreboardScore[4] = score51;
+			setOfScoreboardScore[5] = score61;
+			setOfScoreboardScore[6] = score71;
+			setOfScoreboardScore[7] = score81;
+			setOfScoreboardScore[8] = score91;
+			setOfScoreboardScore[9] = score101;
+
+			// Setup scores on scoreboard
+			// currently not working
+			for (int i = 0; i < numOfPlayer; i++) {
+				setOfScoreboardScore[i].setText(sorted.get(i) + "");
+			}
+
+			// setText for score board
+			/*
+			 * int i = 0; for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) { if
+			 * (i < numOfPlayer) { setOfScore[i].setText(entry.getValue() + ""); i++; } }
+			 */
+
+	}
 
     private void setPlayerPane(){
 
