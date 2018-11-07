@@ -514,12 +514,19 @@ public class ClientGamePageController implements Initializable {
 	// Poon
 	// call to change color to inform the next player that it's their turn
 	void colorChange() {
+
+		int prev, next;
+		String nameToCompare;
+
 		if (playerplaying < numOfPlayer) {
-			setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: transparent");
-			setOfPlayerPane[++playerplaying].setStyle("-fx-background-color: #484c4a");
+			prev = --playerplaying;
+			setOfPlayerPane[prev].setStyle("-fx-background-color: transparent");
+			next = ++playerplaying;
+			setOfPlayerPane[next].setStyle("-fx-background-color: #484c4a");
 			playerplaying++;
 		} else if (playerplaying == numOfPlayer) {
-			setOfPlayerPane[numOfPlayer - 1].setStyle("-fx-background-color: transparent");
+			prev = numOfPlayer - 1;
+			setOfPlayerPane[prev].setStyle("-fx-background-color: transparent");
 			setOfPlayerPane[0].setStyle("-fx-background-color: #484c4a");
 			playerplaying = 1;
 		} else {
@@ -527,6 +534,48 @@ public class ClientGamePageController implements Initializable {
 		}
 
 	}
+
+	//Inkz
+    // add score
+    void colorChange(int score) {
+
+	    int prev,newScore,next;
+		String nameToCompare;
+
+        if (playerplaying < numOfPlayer) {
+            prev = --playerplaying;
+            newScore = Integer.parseInt(setOfScore[prev].getText()) + score;
+            setOfPlayerPane[prev].setStyle("-fx-background-color: transparent");
+            setOfScore[prev].setText(newScore+"");
+            next = ++playerplaying;
+			nameToCompare = setOfPlayerPane[prev].getChildren().get(0).toString().substring(setOfPlayerPane[prev].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
+			setOfPlayerPane[next].setStyle("-fx-background-color: #484c4a");
+//			if(nameToCompare.equals(username))
+//				leftPane.setDisable(true);
+//			else
+//				leftPane.setDisable(false);
+			display(nameToCompare + " turn.");
+			playerplaying++;
+        } else if (playerplaying == numOfPlayer) {
+            prev = numOfPlayer - 1;
+            newScore = Integer.parseInt(setOfScore[prev].getText()) + score;
+            setOfPlayerPane[prev].setStyle("-fx-background-color: transparent");
+            setOfScore[prev].setText(newScore+"");
+            setOfPlayerPane[0].setStyle("-fx-background-color: #484c4a");
+			nameToCompare = setOfPlayerPane[0].getChildren().get(0).toString().substring(setOfPlayerPane[0].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
+//			if(nameToCompare.equals(username))
+//				leftPane.setDisable(true);
+//			else
+//				leftPane.setDisable(false);
+			display(nameToCompare + " turn.");
+			playerplaying = 1;
+        } else {
+            playerplaying = 1;
+        }
+
+
+
+    }
 
 	// Tram
 	// playing (Button Clicked)
@@ -543,7 +592,8 @@ public class ClientGamePageController implements Initializable {
 			((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42;");
 			((Button) event.getTarget()).setDisable(true);
 			player++;
-		}
+            colorChange();
+        }
 
 		if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
 			// might need to getStyle().removeAll() before do this to prevent bugs
@@ -560,7 +610,8 @@ public class ClientGamePageController implements Initializable {
 			// setOfScore[player].setText(score + "");
 			score++;
 			player++;
-		}
+            colorChange(1);
+        }
 
 		// Tram
 		if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
@@ -570,9 +621,8 @@ public class ClientGamePageController implements Initializable {
 			((Button) event.getTarget()).setText("BOMB \n x2");
 			numBombLeft--;
 			bombLeft.setText(numBombLeft + "");
-			score = score + 2;
-			player++;
-		}
+            colorChange(2);
+        }
 
 		if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
 			((Button) event.getTarget())
@@ -581,9 +631,8 @@ public class ClientGamePageController implements Initializable {
 			((Button) event.getTarget()).setText("BOMB \n x3");
 			numBombLeft--;
 			bombLeft.setText(numBombLeft + "");
-			score = score + 3;
-			player++;
-		}
+            colorChange(3);
+        }
 
 		if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
 			((Button) event.getTarget())
@@ -592,13 +641,12 @@ public class ClientGamePageController implements Initializable {
 			((Button) event.getTarget()).setText("BOMB \n x4");
 			numBombLeft--;
 			bombLeft.setText(numBombLeft + "");
-			score = score + 4;
-			player++;
-		}
+            colorChange(4);
+        }
 
-		if (player == numOfPlayer) {
-			player = 0;
-		}
+//		if (player == numOfPlayer) {
+//			player = 0;
+//		}
 
 		// timer of next player
 		resetTimer();
@@ -628,6 +676,7 @@ public class ClientGamePageController implements Initializable {
 		if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
 			y.setStyle("-fx-font-size: 10;-fx-background-color:#2B2D42; -fx-text-fill: #edf2f4");
 			y.setDisable(true);
+			colorChange();
 		}
 
 		if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
@@ -636,8 +685,7 @@ public class ClientGamePageController implements Initializable {
 			y.setText("BOMB");
 			numBombLeft--;
 			bombLeft.setText(numBombLeft + "");
-			score = score + 1;
-			player++;
+			colorChange(1);
 		}
 
 		if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
@@ -646,9 +694,8 @@ public class ClientGamePageController implements Initializable {
 			y.setText("BOMB \n x2");
 			numBombLeft--;
 			bombLeft.setText(numBombLeft + "");
-			score = score + 2;
-			player++;
-		}
+            colorChange(2);
+        }
 
 		if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
 			y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
@@ -656,9 +703,8 @@ public class ClientGamePageController implements Initializable {
 			y.setText("BOMB \n x3");
 			numBombLeft--;
 			bombLeft.setText(numBombLeft + "");
-			score = score + 3;
-			player++;
-		}
+            colorChange(3);
+        }
 
 		if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
 			y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
@@ -666,9 +712,8 @@ public class ClientGamePageController implements Initializable {
 			y.setText("BOMB \n x4");
 			numBombLeft--;
 			bombLeft.setText(numBombLeft + "");
-			score = score + 4;
-			player++;
-		}
+            colorChange(4);
+        }
 
 		resetTimer();
 		startTimer();
@@ -687,7 +732,7 @@ public class ClientGamePageController implements Initializable {
 		this.timer = new Timer();
 		showTime.setStyle("-fx-text-fill: #edf2f4");
 		TimerTask task;
-		task = new TimerTask() {
+        task = new TimerTask() {
 
 			@Override
 			public void run() {
@@ -701,20 +746,17 @@ public class ClientGamePageController implements Initializable {
 							}
 						}
 					});
-					System.out.println("Seconds = " + time);
+//					System.out.println("Seconds = " + time);
 					time--;
 					maxTime--;
 				} else {
-					// automatically restart the timer after timeout if uncomment below
-					//time = getTimerMode();
-					//maxTime = getTimerMode();
-					cancel();
-					showTime.setText(maxTime+"");
-				}
+                    resetTimer();
+                    colorChange();
+                    startTimer();
+                }
 			}
 		};
-		colorChange();
-		this.timer.schedule(task, 0, 1000);
+		timer.schedule(task, 0, 1000);
 	}
 
 	// (Poon) pause timer at the current time
@@ -1233,6 +1275,7 @@ public class ClientGamePageController implements Initializable {
 		maxTime = getTimerMode();
 		time = getTimerMode();
 		startTimer();
+		setOfPlayerPane[0].setStyle("-fx-background-color: #484c4a");
 
 		return;
 	}
