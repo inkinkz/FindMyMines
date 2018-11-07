@@ -1034,6 +1034,7 @@ public class ServerGamePageController implements Initializable {
             return;
         } else {
             //GAME_STATE = ENDED -> WAITING
+
             modebox.setDisable(false);
             System.out.println("Reset button clicked");
             startButton.setText("Start");

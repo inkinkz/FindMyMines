@@ -714,7 +714,7 @@ public class ClientGamePageController implements Initializable {
     private void resetTimer() {
     		stopTimer();
     		maxTime = getTimerMode();
-    		startTimer();
+    		//startTimer();
     }
     
     //Poon
@@ -888,6 +888,7 @@ public class ClientGamePageController implements Initializable {
         // don't react to a <CR> after the username
         connected = false;
         display("Disconnected.");
+        triggerClientScreen("", "");
     }
 
     /*
@@ -1173,20 +1174,31 @@ public class ClientGamePageController implements Initializable {
         switch (game_state){
             case "WAITING":
                 //Server pressed "Reset", changing game state from "ENDED" -> "WAITING"
-                //do what clients during waiting period should do
                 //reset everything on client screen
-
+                resetScore();
+                setUpLeftPane();
+                resetTimer();
+                leftPane.setDisable(true);
+                readyButton.setDisable(false);
+                //To be implemented: request server to call assignBomb() and assignBombMultiPoints()
                 break;
             case "ONGOING":
                 //Server pressed "Start", changing game state from "WAITING" -> "ONGOING"
+                resetReadyButton();
+                setPlayerPane();
+                leftPane.setDisable(false);
                 startWithGameMode(game_mode);
                 break;
             case "ENDED":
                 //Server pressed "Stop", changing game state from "ONGOING" -> "ENDED"
-                //do what clients during ended period should do
-
-                //showScoreSummary()
+                showScoreSummary();
                 break;
+            default:
+                leftPane.setDisable(true);
+                readyButton.setDisable(true);
+                stopTimer(); // currently this method doesn't work yet
+                break;
+
 
         }
         return;
@@ -1196,19 +1208,20 @@ public class ClientGamePageController implements Initializable {
     private void startWithGameMode(String game_mode){
         switch (game_mode) {
             case "DEFAULT":
+                //need receive bomb information from server first before setting up bombs on client page
                 setUpBomb();
                 break;
             case "QUICK_GAME":
-                currentMode = "Quick Game";
+                setGameMode("Quick Game");
+                //need receive bomb information from server first before setting up bombs on client page
                 setUpBomb();
                 break;
             case "MULTIPOINTS_BOMB":
+                //need receive bomb information from server first before setting up bombs on client page
                 setUpBombMultiPoints();
                 break;
         }
 
-        setPlayerPane();
-        leftPane.setDisable(false);
         startTimer();
 
         return;
@@ -1253,6 +1266,13 @@ public class ClientGamePageController implements Initializable {
         setOfScore[8] = score9;
         setOfScore[9] = score10;
 
+    }
+    //Method to reset all ready status from players, reset ready button and disable it
+    private void resetReadyButton(){
+        readyButton.setText("READY");
+        alreadyReady=false;
+        sendNotReady();
+        readyButton.setDisable(true);
     }
 
 }
