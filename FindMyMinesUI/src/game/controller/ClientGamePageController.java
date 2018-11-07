@@ -373,6 +373,7 @@ public class ClientGamePageController implements Initializable {
     @FXML
     private TextArea txtArea;
 
+    //list of users on right hand side of the window
     @FXML
     private ListView<String> listUsersConnected;
 
@@ -537,10 +538,12 @@ public class ClientGamePageController implements Initializable {
     @FXML
     void play(MouseEvent event) {
 
-        //send buttion position to server
-        sendButtonPosition(event.toString().substring(32, 34).trim());
+        //send button position to server
+        Button y = (Button) event.getSource();
 
-        Button y = (Button) event.getTarget();
+        String buttonPosition = (y.getId().substring(1));
+        sendButtonPosition(buttonPosition);
+
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
             // ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
@@ -603,7 +606,6 @@ public class ClientGamePageController implements Initializable {
         maxTime = getTimerMode() ;
         startTimer();
         resetScore();
-
 
     }
 
@@ -699,7 +701,7 @@ public class ClientGamePageController implements Initializable {
 							}
 						}
 					});
-					System.out.println("Seconds = " + time);
+					//System.out.println("Seconds = " + time);
 					time--;
 					maxTime--;
                 } else {
@@ -909,6 +911,7 @@ public class ClientGamePageController implements Initializable {
         txtArea.appendText(msg + "\n");
     }
 
+    //class to make this client game page updates itself
     class ListenFromServer extends Thread {
 
         public void run() {
@@ -917,11 +920,12 @@ public class ClientGamePageController implements Initializable {
             scoreOfPlayer = FXCollections.observableHashMap();
             playerReady = new SimpleIntegerProperty(0).asObject();
 
-            //server
+            //each player in the list
             users = FXCollections.observableArrayList();
-         
+            //show users in player list on the right hand side of the window
             listUsersConnected.setItems(users);
 
+            //read input of bombplacement from server
             try {
                 bombplacement = (int[][]) sInput.readObject();
             } catch (ClassNotFoundException e1) {
@@ -929,12 +933,14 @@ public class ClientGamePageController implements Initializable {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
-
+            //clear input
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+
+            //read input of bomb around from server
             try {
                 bombaround = (int[][]) sInput.readObject();
 
@@ -943,6 +949,7 @@ public class ClientGamePageController implements Initializable {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+            //clear input
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
             } catch (IOException e1) {
@@ -977,6 +984,8 @@ public class ClientGamePageController implements Initializable {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+
+
 
             while (true) {
                 try {
