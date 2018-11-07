@@ -529,14 +529,7 @@ public class ClientGamePageController implements Initializable {
         //send buttion position to server
         sendButtonPosition(event.toString().substring(32, 34).trim());
 
-
-        // set color of player to know whose turn is next
-//        colorChange();
-        // timer of next player
-        //maxTime = 0;
-        //startTimer();
         Button y = (Button) event.getTarget();
-
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
             // ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
@@ -598,6 +591,8 @@ public class ClientGamePageController implements Initializable {
         time = getTimerMode() ;
         maxTime = getTimerMode() ;
         startTimer();
+        resetScore();
+
 
     }
 
