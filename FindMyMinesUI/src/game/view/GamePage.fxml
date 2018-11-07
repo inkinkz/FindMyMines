@@ -337,7 +337,7 @@
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="48.0" layoutY="39.0" prefHeight="20.0" prefWidth="250.0" text="Remaining Bombs :" textFill="#edf2f4">
+            <Label fx:id="bombLeftLabel" layoutX="48.0" layoutY="39.0" prefHeight="20.0" prefWidth="250.0" text="Remaining Bombs :" textFill="#edf2f4">
                <font>
                   <Font name="ISOCTEUR" size="19.0" />
                </font>

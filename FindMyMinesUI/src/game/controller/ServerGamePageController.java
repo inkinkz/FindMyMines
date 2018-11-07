@@ -244,6 +244,9 @@ public class ServerGamePageController implements Initializable {
     private Label score10;
 
     @FXML
+    private Label bombLeftLabel;
+
+    @FXML
     private Label bombLeft;
 
     @FXML
@@ -342,6 +345,8 @@ public class ServerGamePageController implements Initializable {
         textArea.setEditable(false);
         warnText.setVisible(false);
         leftPane.setDisable(true);
+        bombLeft.setVisible(false);
+        bombLeftLabel.setVisible(false);
 
 
         // set up mode selection
@@ -1004,8 +1009,12 @@ public class ServerGamePageController implements Initializable {
                 return;
             } else {
                 //All players are ready, proceed to game
+                //UI display
                 warnText.setVisible(false);
                 modebox.setDisable(true);
+                bombLeft.setVisible(true);
+                bombLeftLabel.setVisible(true);
+
                 // complete game template
                 setupPane();
                 setScore();
@@ -1043,7 +1052,9 @@ public class ServerGamePageController implements Initializable {
             }
         } else if (GAME_STATE.equals("ONGOING")) {
             //GAME_STATE = ONGOING -> ENDED
+            //UI display
             modebox.setDisable(true);
+
             System.out.println("Stop button clicked");
             startButton.setText("Reset");
             server.changeGameState();
@@ -1051,8 +1062,11 @@ public class ServerGamePageController implements Initializable {
             return;
         } else {
             //GAME_STATE = ENDED -> WAITING
-
+            //UI display
             modebox.setDisable(false);
+            bombLeft.setVisible(false);
+            bombLeftLabel.setVisible(false);
+
             System.out.println("Reset button clicked");
             startButton.setText("Start");
             server.changeGameState();

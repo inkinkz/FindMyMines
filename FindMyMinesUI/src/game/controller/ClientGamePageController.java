@@ -139,6 +139,9 @@ public class ClientGamePageController implements Initializable {
 	@FXML
 	private Button b65;
 
+    @FXML
+    private Label showTimeLabel;
+
 	@FXML
 	private Label showTime;
 	
@@ -231,6 +234,9 @@ public class ClientGamePageController implements Initializable {
 
 	@FXML
 	private Label score10;
+
+    @FXML
+    private Label bombLeftLabel;
 
 	@FXML
 	private Label bombLeft;
@@ -404,6 +410,11 @@ public class ClientGamePageController implements Initializable {
 		
         txtArea.setEditable(false);
         leftPane.setDisable(true);
+        bombLeft.setVisible(false);
+        bombLeftLabel.setVisible(false);
+        showTime.setVisible(false);
+        showTimeLabel.setVisible(false);
+
         display("Hello, " + username + ".\n");
         display("When you are ready to play, press Ready button\n");
         // trigger this when server press start
@@ -1180,6 +1191,11 @@ public class ClientGamePageController implements Initializable {
                 resetTimer();
                 leftPane.setDisable(true);
                 readyButton.setDisable(false);
+                //hiding bomb and time information until game starts
+                bombLeft.setVisible(false);
+                bombLeftLabel.setVisible(false);
+                showTime.setVisible(false);
+                showTimeLabel.setVisible(false);
                 //To be implemented: request server to call assignBomb() and assignBombMultiPoints()
                 break;
             case "ONGOING":
@@ -1187,6 +1203,12 @@ public class ClientGamePageController implements Initializable {
                 resetReadyButton();
                 setPlayerPane();
                 leftPane.setDisable(false);
+                //game starts, time and bombs remaining become visible
+                bombLeft.setVisible(true);
+                bombLeftLabel.setVisible(true);
+                showTime.setVisible(true);
+                showTimeLabel.setVisible(true);
+
                 startWithGameMode(game_mode);
                 break;
             case "ENDED":
@@ -1194,9 +1216,13 @@ public class ClientGamePageController implements Initializable {
                 showScoreSummary();
                 break;
             default:
+                //for when server shuts down
                 leftPane.setDisable(true);
                 readyButton.setDisable(true);
-                stopTimer(); // currently this method doesn't work yet
+                bombLeft.setVisible(false);
+                bombLeftLabel.setVisible(false);
+                showTime.setVisible(false);
+                showTimeLabel.setVisible(false);
                 break;
 
 
