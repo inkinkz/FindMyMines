@@ -509,11 +509,11 @@ public class ClientGamePageController implements Initializable {
     void colorChange() {
         if (playerplaying < numOfPlayer) {
             setOfPlayerPane[--playerplaying].setStyle("-fx-background-color: transparent");
-            setOfPlayerPane[++playerplaying].setStyle("-fx-background-color: #EDF2F4");
+            setOfPlayerPane[++playerplaying].setStyle("-fx-background-color: #484c4a");
             playerplaying++;
         } else if (playerplaying == numOfPlayer) {
             setOfPlayerPane[numOfPlayer - 1].setStyle("-fx-background-color: transparent");
-            setOfPlayerPane[0].setStyle("-fx-background-color: #EDF2F4");
+            setOfPlayerPane[0].setStyle("-fx-background-color: #484c4a");
             playerplaying = 1;
         } else {
             playerplaying = 1;
@@ -531,7 +531,7 @@ public class ClientGamePageController implements Initializable {
 
 
         // set color of player to know whose turn is next
-        colorChange();
+//        colorChange();
         // timer of next player
         //maxTime = 0;
         //startTimer();
@@ -603,8 +603,8 @@ public class ClientGamePageController implements Initializable {
 
     // receive button position clicked from other clients
     void playFromOthers(String cl) {
-    	
-    		//Inkz
+
+        //Inkz
         String s = cl.trim();
         int j = 0;
         int i = (Integer.parseInt(s.charAt(0)+"")) - 1;
@@ -698,13 +698,6 @@ public class ClientGamePageController implements Initializable {
 					maxTime--;
                 } else {
                     // stop the timer
-             
-                	/*player++;
-                	if (player == numOfPlayer) {
-                        player = 0;
-                    }
-                    */
-                	colorChange();
                     time = getTimerMode() ;
                     maxTime = getTimerMode() ;
                     startTimer();
@@ -712,6 +705,7 @@ public class ClientGamePageController implements Initializable {
                 }
             }
         };
+        colorChange();
         timer.schedule(task, 0, 1000);
     }
     
@@ -1231,7 +1225,7 @@ public class ClientGamePageController implements Initializable {
 
     private void setPlayerPane(){
 
-        int numOfPlayer = users.size();
+        numOfPlayer = users.size();
 
         for (int i = 0; i < numOfPlayer; i++) {
             playerNames[i] = users.get(i).substring(0,users.get(i).indexOf("("));
