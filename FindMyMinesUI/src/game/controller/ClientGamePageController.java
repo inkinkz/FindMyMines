@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.*;
 
+import game.controller.FindMyMinesServer.ClientThread;
 import game.model.ButtonClick;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -378,6 +379,9 @@ public class ClientGamePageController implements Initializable {
 
     private ObservableList<String> users;
     
+    int id;
+    int myTurn;
+    
     
 
     int[][] bombplacement = new int[6][6];
@@ -394,12 +398,14 @@ public class ClientGamePageController implements Initializable {
     private ObjectInputStream sInput = ClientStartPageController.sInput; // to read from the socket
     private ObjectOutputStream sOutput = ClientStartPageController.sOutput; // to write on the socket
     private Socket socket = ClientStartPageController.socket;
+    
+    int myID;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
         new ListenFromServer().start();
-
+       // myID = ClientThread.id;
         Arrays.fill(playerNames, " ");
         
         //Poon
@@ -921,6 +927,16 @@ public class ClientGamePageController implements Initializable {
             users = FXCollections.observableArrayList();
          
             listUsersConnected.setItems(users);
+            
+            try {
+				id = (int) sInput.readObject();
+			} catch (ClassNotFoundException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 
             try {
                 bombplacement = (int[][]) sInput.readObject();

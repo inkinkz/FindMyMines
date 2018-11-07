@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import game.model.ButtonClick;
 
@@ -255,18 +257,23 @@ public class FindMyMinesServer {
         Socket socket;
         ObjectInputStream sInput;
         ObjectOutputStream sOutput;
+       // ObjectOutputStream idOutput;
+        
+        
         // my unique id (easier for deconnection)
         int id;
         // the Username of the Client
         String username;
         // the only type of message a will receive
         ButtonClick cm;
+        int myTurn;
 
         // Constructor
         ClientThread(Socket socket) {
             // a unique id
             id = ++uniqueId;
             this.socket = socket;
+            
             /* Creating both Data Stream */
             System.out.println("Thread trying to create Object Input/Output Streams");
             try {
@@ -282,6 +289,11 @@ public class FindMyMinesServer {
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sOutput.writeObject(bombAroundMultiPoints);
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
+                sOutput.writeObject(id);
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                sOutput.writeObject(myTurn);
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                
 
                 // read the username
                 username = (String) sInput.readObject();
@@ -410,5 +422,33 @@ public class FindMyMinesServer {
             }
             return true;
         }
+    }
+    
+    
+    public void randomTurn() {
+		Map<Integer, Integer> matchIDandTurn = new HashMap<>();
+		//ClientThread ct = clientsConnected.get(i);
+		int numberOfPlayer = clientsConnected.size();
+		ArrayList<Integer> remainingTurn = new ArrayList<Integer>();
+		for (int i = 1; i <= numberOfPlayer; i++) { // assign turn1,2,3,... to arraylist remainingTurn
+			remainingTurn.add(i);
+		}
+
+		for (int i = 0; i < numberOfPlayer; i++) {
+			int randomTurn = (int) Math.ceil(Math.random() * numberOfPlayer);
+			if (remainingTurn.contains(randomTurn)) {// if that turn is not already assigned to other clients
+				clientsConnected.get(i).myTurn = randomTurn; // assign randomTurn to player
+				matchIDandTurn.put(clientsConnected.get(i).id,randomTurn); //it is the same purpose as line above--leave it 
+				remainingTurn.remove(randomTurn);
+			} else {// if that turn is already assign to other player
+				while (!remainingTurn.contains(randomTurn)) {
+					randomTurn = (int) Math.ceil(Math.random() * numberOfPlayer);
+				}
+				clientsConnected.get(i).myTurn = randomTurn;
+				matchIDandTurn.put(clientsConnected.get(i).id,randomTurn);
+				remainingTurn.remove(randomTurn);
+			}
+
+		}
     }
 }
