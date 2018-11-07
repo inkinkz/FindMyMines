@@ -353,7 +353,7 @@ public class ServerGamePageController implements Initializable {
         modebox.setValue("Default Mode");
 
         //assign values to bombs
-        assignBombMultipleScore();
+        assignBombMultiPoints();
         assignBombDefault();
 
         startServer();
@@ -618,7 +618,7 @@ public class ServerGamePageController implements Initializable {
         }
     }
 
-    private void assignBombMultipleScore() {
+    private void assignBombMultiPoints() {
         // assign bomb to the slot
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
@@ -976,7 +976,7 @@ public class ServerGamePageController implements Initializable {
 
         if (GAME_STATE.equals("WAITING")) {
             //GAME_STATE = WAITING -> ONGOING
-        		warnText.setText("Not alll players are ready");
+        		warnText.setText("Not all players are ready");
         		if(FindMyMinesServer.clientsConnected.isEmpty()) {
         			warnText.setText("No player is connected");
         			warnText.setVisible(true);
@@ -1008,7 +1008,7 @@ public class ServerGamePageController implements Initializable {
                         FindMyMinesServer.broadcast("QUICK_GAME:GAMESTART");
                         break;
                     case "MULTIPOINTS_BOMB":
-//                        assignBombMultipleScore();
+//                        assignBombMultiPoints();
                         setUpBombMultiPoints();
                         FindMyMinesServer.broadcast("MULTIPOINTS_BOMB:GAMESTART");
                         break;
@@ -1177,7 +1177,7 @@ public class ServerGamePageController implements Initializable {
         }
         if (selectedChoice.equals("Multipoints Bomb")) {
             setGameMode("MULTIPOINTS_BOMB");
-            assignBombMultipleScore();
+            assignBombMultiPoints();
             System.out.println("Game mode set to MULTIPOINTS_BOMB");
             return;
         }
