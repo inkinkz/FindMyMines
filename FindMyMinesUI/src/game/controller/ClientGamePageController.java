@@ -382,6 +382,8 @@ public class ClientGamePageController implements Initializable {
     int myid;
     int myTurn;
     Map<String, Integer> matchNameandTurn = new HashMap<>(); //tram
+    ArrayList<String> matchName = new ArrayList<>();
+    ArrayList<Integer> matchTurn = new ArrayList<>();
     
 
     int[][] bombplacement = new int[6][6];
@@ -439,12 +441,24 @@ public class ClientGamePageController implements Initializable {
         }
     }
     
+    int testnum;//test tram
     
-    private int getMyTurn() {
+    /*private int getMyTurn() {
     	int getTurnofThisName = matchNameandTurn.get(username);
     	return getTurnofThisName;
-    }
+    }*/
 
+    private void getMyTurn() {
+    	for (int i=0;i<matchName.size();i++) {
+    		String name = matchName.get(i);
+    		if(name==username) {
+    			myTurn = matchTurn.get(i);
+    		}
+    	}
+    	
+    	
+    }
+    
     //Tram and Poon
     private void setUpLeftPane() {
 
@@ -924,7 +938,8 @@ public class ClientGamePageController implements Initializable {
 
     class ListenFromServer extends Thread {
 
-        public void run() {
+        @SuppressWarnings("unchecked")
+		public void run() {
             String msgt;
             // game initialize
             scoreOfPlayer = FXCollections.observableHashMap();
@@ -1007,23 +1022,8 @@ public class ClientGamePageController implements Initializable {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
-
-           /* try {
-                myTurn = (int) sInput.readObject();
-            } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
             
             try {
-                sInput = new ObjectInputStream(socket.getInputStream());
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }*/
-            
-         
-			try {
 				matchNameandTurn = (Map<String, Integer>) sInput.readObject();
 			} catch (ClassNotFoundException e2) {
 				// TODO Auto-generated catch block
@@ -1039,6 +1039,63 @@ public class ClientGamePageController implements Initializable {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+            
+            try {
+				testnum = (int) sInput.readObject();
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+            
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            
+            try {
+				matchName = (ArrayList<String>) sInput.readObject();
+			} catch (ClassNotFoundException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+
+            
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            
+            try {
+				matchTurn = (ArrayList<Integer>) sInput.readObject();
+			} catch (ClassNotFoundException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+
+            
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            
+           /* System.out.println(Arrays.asList(matchNameandTurn)); 
+        	System.out.println(testnum); 
+        	System.out.println("Name :"+matchName); 
+        	System.out.println("Turn :"+matchTurn); 
+        	System.out.println(bombaroundMultiPoints);*/
             
             while (true) {
                 try {
@@ -1265,8 +1322,8 @@ public class ClientGamePageController implements Initializable {
                 //Server pressed "Start", changing game state from "WAITING" -> "ONGOING"
                 resetReadyButton();
                 setPlayerPane();
-                myTurn = getMyTurn();
-                System.out.println(myTurn);
+//                myTurn = getMyTurn();
+  //              System.out.println(myTurn);
                 leftPane.setDisable(false);
                 //game starts, time and bombs remaining become visible
                 bombLeft.setVisible(true);

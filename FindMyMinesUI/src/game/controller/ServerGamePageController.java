@@ -455,6 +455,7 @@ public class ServerGamePageController implements Initializable {
     //int turn;
     ArrayList<Integer> remainingTurn = new ArrayList<Integer>();
     static Map<String, Integer> matchNameandTurn = new HashMap<>();
+    static Map<String, Integer> fullmatchNameandTurn = new HashMap<>();
     
     public void setRemainingTurn() {
     	for (int i = 1; i <= totalPlayer; i++) { // assign turn1,2,3,... to arraylist remainingTurn
@@ -476,6 +477,9 @@ public class ServerGamePageController implements Initializable {
 		}
     }
     
+    
+    static ArrayList<String> matchName = new ArrayList<>();
+    static ArrayList<Integer> matchTurn = new ArrayList<>();
     
     private void setupPane() {
         numOfPlayer = users.size(); // get from how many client
@@ -540,10 +544,16 @@ public class ServerGamePageController implements Initializable {
            /* System.out.println(playerNames[i]);
             System.out.println(turn);
             */
+            
+            //method2
+            matchName.add(playerNames[i]);
+            matchTurn.add(turn);
+            
+            
             System.out.println(Arrays.asList(matchNameandTurn)); 
         }
         
-       
+       fullmatchNameandTurn = matchNameandTurn;
 
         player1.setText(playerNames[0]);
         player2.setText(playerNames[1]);

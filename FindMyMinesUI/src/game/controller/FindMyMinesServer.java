@@ -32,11 +32,13 @@ public class FindMyMinesServer {
     //ArrayList<String> allUserName = ServerGamePageController.allUserName;
     //int numberOfPlayer=3; //test
     
-    Map<String, Integer> matchNameandTurn = ServerGamePageController.matchNameandTurn;
+    Map<String, Integer> matchNameandTurn = ServerGamePageController.fullmatchNameandTurn;
     
     int[][] bombplacementMultiPoints = ServerGamePageController.valueOfSpaceMultiPoints;
     static int[][] bombAroundMultiPoints = ServerGamePageController.bombAroundMultiPoints;
 
+    ArrayList<String> matchName = ServerGamePageController.matchName;
+    ArrayList<Integer> matchTurn =  ServerGamePageController.matchTurn;
 
     /*
      * server constructor that receive the port to listen to for connection as
@@ -301,6 +303,7 @@ public class FindMyMinesServer {
             System.out.println("Thread trying to create Object Input/Output Streams");
             try {
                 // create output first
+            	int testnum = 1;
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sInput = new ObjectInputStream(socket.getInputStream());
 
@@ -316,9 +319,13 @@ public class FindMyMinesServer {
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sOutput.writeObject(matchNameandTurn);
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
-                /*sOutput.writeObject(myTurn);
-                sOutput = new ObjectOutputStream(socket.getOutputStream()); //tram
-*/                
+                sOutput.writeObject(testnum);
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                sOutput.writeObject(matchName);
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                sOutput.writeObject(matchTurn);
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                
 
                 // read the username
                 username = (String) sInput.readObject();
