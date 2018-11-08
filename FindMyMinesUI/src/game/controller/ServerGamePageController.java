@@ -1052,7 +1052,7 @@ public class ServerGamePageController implements Initializable {
 
                 System.out.println("Start button clicked");
                 server.changeGameState();
-                startButton.setText("Stop");
+                startButton.setText("STOP");
                 return;
             }
         } else if (GAME_STATE.equals("ONGOING")) {
@@ -1071,7 +1071,7 @@ public class ServerGamePageController implements Initializable {
             assignBombMultiPoints();
 
             System.out.println("Stop button clicked");
-            startButton.setText("Reset");
+            startButton.setText("RESET");
             server.changeGameState();
             FindMyMinesServer.broadcast("GAMESTOPPED:GAMESTOP");
             return;
@@ -1087,7 +1087,7 @@ public class ServerGamePageController implements Initializable {
 //            assignBombMultiPoints();
 
             System.out.println("Reset button clicked");
-            startButton.setText("Start");
+            startButton.setText("START");
             server.changeGameState();
             FindMyMinesServer.broadcast("GAMERESET:GAMERESET");
             FindMyMinesServer.broadcastBomb();
