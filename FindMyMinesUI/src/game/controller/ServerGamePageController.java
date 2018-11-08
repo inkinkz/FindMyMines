@@ -480,9 +480,10 @@ public class ServerGamePageController implements Initializable {
         player10.setText(playerNames[9]);
 
         //show available players
-        for (int i = 0; i < numOfPlayer; i++) {
+        //I don't want the server to display this anymore
+        /*for (int i = 0; i < numOfPlayer; i++) {
             setOfPlayerPane[i].setVisible(true);
-        }
+        }*/
 
         setOfScore[0] = score1;
         setOfScore[1] = score2;
@@ -1015,14 +1016,15 @@ public class ServerGamePageController implements Initializable {
                 //UI display
                 warnText.setVisible(false);
                 modebox.setDisable(true);
-                bombLeft.setVisible(true);
-                bombLeftLabel.setVisible(true);
+                //I don't want the server to see these anymore
+                //bombLeft.setVisible(true);
+                //bombLeftLabel.setVisible(true);
 
                 // complete game template
                 setupPane();
                 setScore();
                 // color change for the starting player
-                setOfPlayerPane[player].setStyle("-fx-background-color: grey");
+                //setOfPlayerPane[player].setStyle("-fx-background-color: grey");
 //                assignBombDefault();
                 setMode();
                 switch (gameMode) {
@@ -1067,8 +1069,8 @@ public class ServerGamePageController implements Initializable {
             //GAME_STATE = ENDED -> WAITING
             //UI display
             modebox.setDisable(false);
-            bombLeft.setVisible(false);
-            bombLeftLabel.setVisible(false);
+            //bombLeft.setVisible(false);
+            //bombLeftLabel.setVisible(false);
 
             System.out.println("Reset button clicked");
             startButton.setText("Start");
