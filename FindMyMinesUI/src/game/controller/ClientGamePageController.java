@@ -1438,6 +1438,7 @@ public class ClientGamePageController implements Initializable {
         System.out.println("startWithGameMode("+game_mode+")");
         switch (game_mode) {
             case "DEFAULT":
+                setGameMode("Default");
                 // need receive bomb information from server first before setting up bombs on
                 // client page
                 setUpBomb();
@@ -1449,6 +1450,7 @@ public class ClientGamePageController implements Initializable {
                 setUpBomb();
                 break;
             case "MULTIPOINTS_BOMB":
+                setGameMode("Multipoints Bomb");
                 // need receive bomb information from server first before setting up bombs on
                 // client page
                 setUpBombMultiPoints();

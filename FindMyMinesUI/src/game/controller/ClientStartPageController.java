@@ -109,6 +109,7 @@ public class ClientStartPageController implements Initializable {
 			return;
 		}
 
+
 		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("/game/view/ClientGamePage.fxml"));
 		Scene scene = new Scene(gamePage);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -139,7 +140,6 @@ public class ClientStartPageController implements Initializable {
 
 		try {
 			socket = new Socket(server, port);
-			connected = true;
 		}
 		// if it failed
 		catch (Exception ec) {
@@ -152,9 +152,9 @@ public class ClientStartPageController implements Initializable {
 
 		/* Creating both Data Stream */
 		try {
-			sInput = new ObjectInputStream(socket.getInputStream());
-			sOutput = new ObjectOutputStream(socket.getOutputStream());
-		} catch (IOException eIO) {
+            sInput = new ObjectInputStream(socket.getInputStream());
+            sOutput = new ObjectOutputStream(socket.getOutputStream());
+        } catch (IOException eIO) {
 			System.out.println("Exception creating new Input/output Streams: " + eIO);
 			return false;
 		}
