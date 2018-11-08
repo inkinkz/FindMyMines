@@ -1079,8 +1079,6 @@ public class ServerGamePageController implements Initializable {
             //GAME_STATE = ENDED -> WAITING
             //UI display
             modebox.setDisable(false);
-            //bombLeft.setVisible(false);
-            //bombLeftLabel.setVisible(false);
 
 //            //reassign bombs
 //            assignBombDefault();

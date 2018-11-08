@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import game.model.ButtonClick;
@@ -144,7 +146,8 @@ public class FindMyMinesServer {
     static synchronized void broadcast(String message) {
         String messageLf;
         if (message.contains("WHOISIN") || message.contains("REMOVE") || message.contains("READDY") || message.contains("NOTREADY")
-                || message.contains("GAMESTART") || message.contains("GAMESTOP") || message.contains("GAMERESET") ||message.contains("CLICK")) {
+                || message.contains("GAMESTART") || message.contains("GAMESTOP") || message.contains("GAMERESET")
+                ||message.contains("CLICK")) {
             messageLf = message;
         } else {
             messageLf = message + "\n";
@@ -165,7 +168,7 @@ public class FindMyMinesServer {
     }
 
     static synchronized void broadcastBomb() {
-
+        System.out.println(LocalTime.now() + " broadcastBomb()");
         bombplacement = ServerGamePageController.valueOfSpace;
         bombaround = ServerGamePageController.bombAround;
         bombplacementMultiPoints = ServerGamePageController.valueOfSpaceMultiPoints;

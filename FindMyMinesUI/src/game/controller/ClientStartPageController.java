@@ -130,9 +130,9 @@ public class ClientStartPageController implements Initializable {
 
         //if there is a game playing, allow client to start connection but not join the game
         //method getGameStateBeforeConnection() right now is blank and needs implementation
-        if (getGameStateBeforeConnection() != null && !getGameStateBeforeConnection().equals("WAITING")) {
+/*        if (getGameStateBeforeConnection() != null && !getGameStateBeforeConnection().equals("WAITING")) {
             //do something
-        }
+        }*/
 
         try {
             socket = new Socket(server, port);
@@ -215,12 +215,12 @@ public class ClientStartPageController implements Initializable {
         String content = "Cannot connect to server. Please make sure that the IP address is correct and the server is online.";
         String header = "Connection Error";
 
-        //error if client tries to join during game
+/*        //error if client tries to join during game
         if (getGameStateBeforeConnection() != null && !getGameStateBeforeConnection().equals("WAITING")) {
             System.out.println("Result from getGameStateBeforeConnection() = " + FindMyMinesServer.getGameState());
             content = "The current game is playing right now. Please wait until the current game ends and try again.";
             header = "Server is busy";
-        }
+        }*/
         Alert alert = new Alert(Alert.AlertType.ERROR, content, ButtonType.OK);
         alert.setHeaderText(header);
         alert.showAndWait();

@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.*;
 
 import game.model.ButtonClick;
@@ -1198,6 +1199,7 @@ public class ClientGamePageController implements Initializable {
     }
 
     private void reassignBombs() {
+        System.out.println(LocalTime.now()+" reassignBombs()");
         receiveMessages(false);
         this.bombaround = new int[6][6];
         this.bombaroundMultiPoints = new int[6][6];
@@ -1414,7 +1416,6 @@ public class ClientGamePageController implements Initializable {
                 resetTimer();
                 sortScoreSummary();
                 showScoreSummary();
-
                 //Clearing color from every player pane
                 for (Pane pane :
                         setOfPlayerPane_playerPane) {
