@@ -1051,7 +1051,8 @@ public class ServerGamePageController implements Initializable {
 
                 System.out.println("Start button clicked");
                 server.changeGameState();
-                startButton.setText("STOP");
+                //startButton.setText("STOP");
+                startButton.setText("RESET");
                 return;
             }
         } else if (GAME_STATE.equals("ONGOING")) {
