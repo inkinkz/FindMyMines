@@ -284,6 +284,8 @@ public class ServerGamePageController implements Initializable {
     Label[] setOfScoreBoard = new Label[10];
     int numBombLeft = 11;
     private String gameMode = "DEFAULT";
+    
+    int id=0;
 
     // SERVER
 
@@ -321,7 +323,9 @@ public class ServerGamePageController implements Initializable {
     public void addUser(String user) {
         Platform.runLater(() -> {
             users.add(user);
+            //allUserName.add(user);
             numOfPlayer++;
+            //id++;
         });
     }
 
@@ -445,8 +449,73 @@ public class ServerGamePageController implements Initializable {
         }
     }
 
+    static int totalPlayer;//tram
+   ObservableList<String> allUserName;
+   // ArrayList<String> allUserName = new ArrayList<>();
+    //int turn;
+    ArrayList<Integer> remainingTurn = new ArrayList<Integer>();
+    Map<String, Integer> matchNameandTurn = new HashMap<>();
+    
+    public void setRemainingTurn() {
+    	for (int i = 1; i <= totalPlayer; i++) { // assign turn1,2,3,... to arraylist remainingTurn
+			remainingTurn.add(i);
+		}
+    }
+ 
+    public int randomTurn() {//return remaining turn
+    	int randomTurn = (int) Math.ceil(Math.random() * totalPlayer);
+    	if (remainingTurn.contains(randomTurn)) {
+    		remainingTurn.remove(randomTurn);
+    		return randomTurn;
+    	}else {// if that turn is already assign to other player
+			while (!remainingTurn.contains(randomTurn)) {
+				randomTurn = (int) Math.ceil(Math.random() * totalPlayer);
+			}
+			remainingTurn.remove(randomTurn);
+			return randomTurn;
+		}
+    }
+    
+    
     private void setupPane() {
         numOfPlayer = users.size(); // get from how many client
+        totalPlayer = numOfPlayer; //set tolal player -- used by findmymineserver
+        allUserName = users;
+       // allUserName = new ArrayList<>(((ListView<String>) users).getItems()); //set all user name
+       /* for (int i=0;i<totalPlayer;i++) {
+        	int turn = randomTurn();
+        	matchNameandTurn.put(allUserName.get(i), turn);
+        	
+        }
+        System.out.println(Arrays.asList(matchNameandTurn));*/
+
+       // allUserName
+        
+        System.out.println(totalPlayer);
+        System.out.println("all user"+allUserName);
+        
+        
+        //setRemainingTurn();
+       // randomTurn(); //need to set up hash map (username-turn) first then send to findmymineserver (change method randomturn) 
+        //and then it will be sent to clienstartpage -> tell what it's turn is by mataching with username
+        //maybe need to move this into findmymine server and then check the username with connectedclients
+        
+        
+        //tram
+        //send how many clients it is to findmymineserver by call ....= sInput.readobject(); //in the state ongoing
+        //in findmymineserver, create hash map that contains username and turn. username is got from connected clients and turn from randomTurn
+        //writeobject (hashmap)
+        //in client startpage, we pull hashmap from the ffmserver. we find what turn that match with its username
+        //send username to clietgamepage
+        //clientgamepage has a while loop as following
+        // while (ongoing)
+        //	currentTurn = ...read...
+        // 	if(currentTurn==myturn){}
+        // CurrentTurn is update from clicking button from clientgamepage controller //if message contains click, currntturn++
+        //if currentTurn exceeds numberofplayer =>current turn =0
+        
+        
+        
         Arrays.fill(playerNames, " ");
 
         // put each pane into setOfPlayer
@@ -543,6 +612,9 @@ public class ServerGamePageController implements Initializable {
     // create array to keep number of surrounding bomb
     public static int[][] bombAround = new int[6][6];
     public static int[][] bombAroundMultiPoints = new int[6][6];
+    
+    
+    
 
     int numBomb = 0;
     int numBombMultiPoints = 0;
@@ -999,57 +1071,56 @@ public class ServerGamePageController implements Initializable {
 
         if (GAME_STATE.equals("WAITING")) {
             //GAME_STATE = WAITING -> ONGOING
-        		warnText.setText("Not all players are ready");
-        		if(FindMyMinesServer.clientsConnected.isEmpty()) {
-        			warnText.setText("No player is connected");
-        			warnText.setVisible(true);
-        		}
-        		else if (!readyAll()) {
-                warnText.setVisible(true);
-                return;
-            } else {
-                //All players are ready, proceed to game
-                //UI display
-                warnText.setVisible(false);
-                modebox.setDisable(true);
-                bombLeft.setVisible(true);
-                bombLeftLabel.setVisible(true);
+			warnText.setText("Not all players are ready");
+			if (FindMyMinesServer.clientsConnected.isEmpty()) {
+				warnText.setText("No player is connected");
+				warnText.setVisible(true);
+			} else if (!readyAll()) {
+				warnText.setVisible(true);
+				return;
+			} else {
+				// All players are ready, proceed to game
+				// UI display
+				warnText.setVisible(false);
+				modebox.setDisable(true);
+				bombLeft.setVisible(true);
+				bombLeftLabel.setVisible(true);
 
                 // complete game template
-                setupPane();
-                setScore();
-                // color change for the starting player
-                setOfPlayerPane[player].setStyle("-fx-background-color: grey");
-//                assignBombDefault();
-                setMode();
-                switch (gameMode) {
-                    case "DEFAULT":
-//                        assignBombDefault();
-                        setUpBomb();
-                        FindMyMinesServer.broadcast("DEFAULT:GAMESTART");
-                        break;
-                    case "QUICK_GAME":
-//                        assignBombDefault();
-                        setUpBomb();
-                        FindMyMinesServer.broadcast("QUICK_GAME:GAMESTART");
-                        break;
-                    case "MULTIPOINTS_BOMB":
-//                        assignBombMultiPoints();
-                        setUpBombMultiPoints();
-                        FindMyMinesServer.broadcast("MULTIPOINTS_BOMB:GAMESTART");
-                        break;
-                }
-                try {
-                    showBomb();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+				setupPane();
+				setScore();
+				// color change for the starting player
+				setOfPlayerPane[player].setStyle("-fx-background-color: grey");
+				// assignBombDefault();
+				setMode();
+				switch (gameMode) {
+				case "DEFAULT":
+					// assignBombDefault();
+					setUpBomb();
+					FindMyMinesServer.broadcast("DEFAULT:GAMESTART");
+					break;
+				case "QUICK_GAME":
+					// assignBombDefault();
+					setUpBomb();
+					FindMyMinesServer.broadcast("QUICK_GAME:GAMESTART");
+					break;
+				case "MULTIPOINTS_BOMB":
+					// assignBombMultiPoints();
+					setUpBombMultiPoints();
+					FindMyMinesServer.broadcast("MULTIPOINTS_BOMB:GAMESTART");
+					break;
+				}
+				try {
+					showBomb();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 
-                System.out.println("Start button clicked");
-                server.changeGameState();
-                startButton.setText("Stop");
-                return;
-            }
+				System.out.println("Start button clicked");
+				server.changeGameState();
+				startButton.setText("Stop");
+				return;
+			}
         } else if (GAME_STATE.equals("ONGOING")) {
             //GAME_STATE = ONGOING -> ENDED
             //UI display

@@ -26,9 +26,15 @@ public class FindMyMinesServer {
 
     int[][] bombplacement = ServerGamePageController.valueOfSpace;
     static int[][] bombaround = ServerGamePageController.bombAround;
-
+    
+    //tram
+    int numberOfPlayer = ServerGamePageController.totalPlayer;
+    //ArrayList<String> allUserName = ServerGamePageController.allUserName;
+    //int numberOfPlayer=3; //test
+    
     int[][] bombplacementMultiPoints = ServerGamePageController.valueOfSpaceMultiPoints;
     static int[][] bombAroundMultiPoints = ServerGamePageController.bombAroundMultiPoints;
+
 
     /*
      * server constructor that receive the port to listen to for connection as
@@ -116,8 +122,21 @@ public class FindMyMinesServer {
         catch (IOException e) {
             System.out.println("Exception on new ServerSocket: " + e);
         }
+        //setRemainingTurn(); tram
+        
     }
-
+    
+    //tram
+    Map<Integer, Integer> matchNameandTurn = new HashMap<>();
+    ArrayList<Integer> remainingTurn = new ArrayList<Integer>();
+    public void setRemainingTurn() {
+    	for (int i = 1; i <= numberOfPlayer; i++) { // assign turn1,2,3,... to arraylist remainingTurn
+			remainingTurn.add(i);
+		}
+    }
+    
+   
+    
     /*
      * For the GUI to stop the server
      */
@@ -266,7 +285,9 @@ public class FindMyMinesServer {
         String username;
         // the only type of message a will receive
         ButtonClick cm;
-        int myTurn;
+        //int myTurn = randomTurn(); //tram
+        
+        int myid;
 
         // Constructor
         ClientThread(Socket socket) {
@@ -289,14 +310,15 @@ public class FindMyMinesServer {
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sOutput.writeObject(bombAroundMultiPoints);
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
-                sOutput.writeObject(id);
+                sOutput.writeObject(myid);
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
-                sOutput.writeObject(myTurn);
-                sOutput = new ObjectOutputStream(socket.getOutputStream());
-                
+                /*sOutput.writeObject(myTurn);
+                sOutput = new ObjectOutputStream(socket.getOutputStream()); //tram
+*/                
 
                 // read the username
                 username = (String) sInput.readObject();
+                myid = (Integer) sInput.readObject();
                 serverController.addUser(username);
                 broadcast(username + ":WHOISIN"); // Broadcast user who logged in
                 writeMsg(username + ":WHOISIN");
@@ -425,10 +447,24 @@ public class FindMyMinesServer {
     }
     
     
-    public void randomTurn() {
+    public int randomTurn() { //random the turn that remain in the remaining turn
+    	int randomTurn = (int) Math.ceil(Math.random() * numberOfPlayer);
+    	if (remainingTurn.contains(randomTurn)) {
+    		remainingTurn.remove(randomTurn);
+    		return randomTurn;
+    	}else {// if that turn is already assign to other player
+			while (!remainingTurn.contains(randomTurn)) {
+				randomTurn = (int) Math.ceil(Math.random() * numberOfPlayer);
+			}
+			remainingTurn.remove(randomTurn);
+			return randomTurn;
+		}
+    }
+    
+   /* public void randomTurn() {
 		Map<Integer, Integer> matchIDandTurn = new HashMap<>();
 		//ClientThread ct = clientsConnected.get(i);
-		int numberOfPlayer = clientsConnected.size();
+		//int numberOfPlayer = clientsConnected.size();
 		ArrayList<Integer> remainingTurn = new ArrayList<Integer>();
 		for (int i = 1; i <= numberOfPlayer; i++) { // assign turn1,2,3,... to arraylist remainingTurn
 			remainingTurn.add(i);
@@ -450,5 +486,5 @@ public class FindMyMinesServer {
 			}
 
 		}
-    }
+    }*/
 }

@@ -68,6 +68,9 @@ public class ClientStartPageController implements Initializable {
 	public static ObjectInputStream sInput; // to read from the socket
 	public static ObjectOutputStream sOutput; // to write on the socket
 
+	int myid=0;
+	
+	
 	@FXML
 	private Label warnIP;
 
@@ -163,6 +166,8 @@ public class ClientStartPageController implements Initializable {
 		// will send as a String. All other messages will be ChatMessage objects
 		try {
 			sOutput.writeObject(userName);
+			sOutput.writeObject(myid);
+			myid++;
 		} catch (IOException eIO) {
 			System.out.println(eIO);
 			disconnect();

@@ -379,7 +379,7 @@ public class ClientGamePageController implements Initializable {
 
     private ObservableList<String> users;
     
-    int id;
+    int myid;
     int myTurn;
     
     
@@ -412,7 +412,8 @@ public class ClientGamePageController implements Initializable {
         //set podium image in scoreboard
         Image image = new Image(getClass().getResourceAsStream("/podium.png"));
 		winnerImage.setImage(image);
-		
+		System.out.println("This client id is "+myid);
+		//System.out.println(myTurn);
 		
         txtArea.setEditable(false);
         leftPane.setDisable(true);
@@ -928,16 +929,8 @@ public class ClientGamePageController implements Initializable {
          
             listUsersConnected.setItems(users);
             
-            try {
-				id = (int) sInput.readObject();
-			} catch (ClassNotFoundException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			} catch (IOException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-
+            
+            
             try {
                 bombplacement = (int[][]) sInput.readObject();
             } catch (ClassNotFoundException e1) {
@@ -953,12 +946,12 @@ public class ClientGamePageController implements Initializable {
             }
             try {
                 bombaround = (int[][]) sInput.readObject();
-
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+            
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
             } catch (IOException e1) {
@@ -980,20 +973,49 @@ public class ClientGamePageController implements Initializable {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+            
             try {
                 bombaroundMultiPoints = (int[][]) sInput.readObject();
-
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+            
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            
+            try {
+                myid = (int) sInput.readObject();
+            } catch (ClassNotFoundException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
 
+           /* try {
+                myTurn = (int) sInput.readObject();
+            } catch (ClassNotFoundException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }*/
+            
             while (true) {
                 try {
                     msgt = (String) sInput.readObject();
