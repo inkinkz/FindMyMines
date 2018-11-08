@@ -426,6 +426,7 @@ public class ClientGamePageController implements Initializable {
     private void resetScore() {
         for (int i = 0; i < 10; i++) {
             scoreOfPlayer.put(i, 0);
+            setOfScore[i].setText("0");
         }
     }
 
@@ -1351,7 +1352,9 @@ public class ClientGamePageController implements Initializable {
          */
 
     }
-
+    //(Owner unknown - If this is your method put your name here)
+    //Method to set up the player pane (middle of client game page) with current players name
+    //put score labels into an array of Label
     private void setPlayerPane() {
 
         numOfPlayer = users.size();
@@ -1375,7 +1378,8 @@ public class ClientGamePageController implements Initializable {
         for (int i = 0; i < numOfPlayer; i++) {
             setOfPlayerPane[i].setVisible(true);
         }
-
+        //setOfScore is an array of Labels
+        //score1-10 is the label for displaying score
         setOfScore[0] = score1;
         setOfScore[1] = score2;
         setOfScore[2] = score3;
@@ -1404,7 +1408,6 @@ public class ClientGamePageController implements Initializable {
         bombLeft.setText("11");
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
-                int result = bombplacementMultiPoints[i][j];
                 Button y = setOfButton[i][j];
                 y.setDisable(false);
                 y.setStyle(null);
