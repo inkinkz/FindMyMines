@@ -422,8 +422,8 @@ public class ClientGamePageController implements Initializable {
         Image image = new Image(getClass().getResourceAsStream("/podium.png"));
         winnerImage.setImage(image);
         Image image1 = new Image(getClass().getResourceAsStream("/bomb.png"));
-		backImage.setImage(image1);
-		welcomeLabel.setText("Welcome "+ username.toUpperCase() + " !");
+        backImage.setImage(image1);
+        welcomeLabel.setText("Welcome " + username.toUpperCase() + " !");
 
         txtArea.setEditable(false);
         leftPane.setDisable(true);
@@ -523,89 +523,84 @@ public class ClientGamePageController implements Initializable {
         String nameToCompare;
 
         if (playerplaying < numOfPlayer) {
-            System.out.println(">>>colorChange("+score+") case 1 playerplaying < numOfPlayer");
-            System.out.println("playerplaying="+playerplaying);
-            System.out.println("numOfPlayer="+numOfPlayer);
+            System.out.println(">>>colorChange(" + score + ") case 1 playerplaying < numOfPlayer");
+            System.out.println("playerplaying=" + playerplaying);
+            System.out.println("numOfPlayer=" + numOfPlayer);
             //if the player playing is not the last one
             //update the score and color of the player who played previously
             //then update the color of current player
 
             //get the previous player
             prev = --playerplaying;
-            System.out.println("prev="+prev);
+            System.out.println("prev=" + prev);
 
             //original score + new score
             newScore = Integer.parseInt(setOfPlayerPane_scoreLabel[prev].getText()) + score;
-            System.out.println("newScore="+newScore);
+            System.out.println("newScore=" + newScore);
 
             //remove the color of previous player and update their score both in the playerPane and scoreSummary
             setOfPlayerPane_playerPane[prev].setStyle("-fx-background-color: transparent");
             setOfPlayerPane_scoreLabel[prev].setText(newScore + "");
 
-                //System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
+            //System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
             setOfScoreSummary_scoreLabel[prev].setText(newScore + "");
-                //System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
+            //System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
             System.out.println(">score setting finished");
 
             //get the current player and update their color
             next = ++playerplaying;
             setOfPlayerPane_playerPane[next].setStyle("-fx-background-color: #484c4a");
-//			nameToCompare = setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().substring(setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
-//          nameToCompare = setOfPlayerPane_playerPane[prev].getChildren().get(prev).toString().substring(setOfPlayerPane_playerPane[prev].getChildren().get(prev).toString().indexOf("'")+1, setOfPlayerPane_playerPane[prev].getChildren().get(prev).toString().lastIndexOf("'"));
 
-            //TODO --- get name that is currently have background color to nameToCompare plz
-            nameToCompare = "";
-
+            nameToCompare = playerNames[next];
 
             // Enable leftPane if username = nameToCompare
-//			if(nameToCompare.equals(username))
-//				leftPane.setDisable(false);
-//			else
-//				leftPane.setDisable(true);
+            if (nameToCompare.trim().equals(ClientStartPageController.userName)) {
+                buttonPane.setDisable(false);
+            } else {
+                buttonPane.setDisable(true);
+            }
 
             //move on to the next player
             playerplaying++;
 
         } else if (playerplaying == numOfPlayer) {
-            System.out.println(">>>colorChange("+score+") case 2 playerplaying == numOfPlayer");
-            System.out.println("playerplaying="+playerplaying);
-            System.out.println("numOfPlayer="+numOfPlayer);
+            System.out.println(">>>colorChange(" + score + ") case 2 playerplaying == numOfPlayer");
+            System.out.println("playerplaying=" + playerplaying);
+            System.out.println("numOfPlayer=" + numOfPlayer);
             //if the player playing is the last one or the only one
 
             //previous player is the one before last or this current player (if there is only 1 player)
             prev = numOfPlayer - 1;
-            System.out.println("prev="+prev);
+            System.out.println("prev=" + prev);
 
             //original score + new score
             newScore = Integer.parseInt(setOfPlayerPane_scoreLabel[prev].getText()) + score;
-            System.out.println("newScore="+newScore);
+            System.out.println("newScore=" + newScore);
 
             //remove the color of previous player and update their score both in the playerPane and scoreSummary
             setOfPlayerPane_playerPane[prev].setStyle("-fx-background-color: transparent");
             setOfPlayerPane_scoreLabel[prev].setText(newScore + "");
-                System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
+            System.out.println("setOfScoreSummary_scoreLabel[prev].getText()=" + setOfScoreSummary_scoreLabel[prev].getText());
             setOfScoreSummary_scoreLabel[prev].setText(newScore + "");
-                System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
+            System.out.println("setOfScoreSummary_scoreLabel[prev].getText()=" + setOfScoreSummary_scoreLabel[prev].getText());
             System.out.println(">score setting finished");
 
             //since the next player wraps around back to the 1st one, update their color
             setOfPlayerPane_playerPane[0].setStyle("-fx-background-color: #484c4a");
 
-//			nameToCompare = setOfPlayerPane_playerPane[0].getChildren().get(0).toString().substring(setOfPlayerPane_playerPane[0].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
-
-            //TODO --- get name that is currently have background color to nameToCompare plz
-            nameToCompare = "get name that is currently have background color plz";
+            nameToCompare = playerNames[0];
 
             // Enable leftPane if username = nameToCompare
-//			if(nameToCompare.equals(username))
-//				leftPane.setDisable(false);
-//			else
-//				leftPane.setDisable(true);
+            if (nameToCompare.trim().equals(ClientStartPageController.userName)) {
+                buttonPane.setDisable(false);
+            } else {
+                buttonPane.setDisable(true);
+            }
 
             //next player is wrapped around back to 1st player
             playerplaying = 1;
         } else {
-            System.out.println("colorChange("+score+") case 3 playerplaying > numOfPlayer");
+            System.out.println("colorChange(" + score + ") case 3 playerplaying > numOfPlayer");
             //if player playing exceeds number of player then we wrap around back to 1st player
             playerplaying = 1;
         }
@@ -624,16 +619,14 @@ public class ClientGamePageController implements Initializable {
         //Update client game page
         //Reveal if free slot or bomb
         Button y = (Button) event.getTarget();
-        System.out.println(">>>"+username+" clicked "+y.getId());
+        System.out.println(">>>" + username + " clicked " + y.getId());
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
             // ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
             ((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42;");
             ((Button) event.getTarget()).setDisable(true);
             colorChange(0);
-        }
-
-        else if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+        } else if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
             // might need to getStyle().removeAll() before do this to prevent bugs
             ((Button) event.getTarget())
                     .setStyle("-fx-background-color: #D90429; -fx-text-fill: #ffffff ; -fx-font-size: 10;");
@@ -659,9 +652,7 @@ public class ClientGamePageController implements Initializable {
             numBombLeft--;
             bombLeft.setText(numBombLeft + "");
             colorChange(2);
-        }
-
-        else if (y.getStyle() == "-fx-font-size: 0.3") {// bomb (3 points)
+        } else if (y.getStyle() == "-fx-font-size: 0.3") {// bomb (3 points)
             ((Button) event.getTarget())
                     .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
@@ -669,9 +660,7 @@ public class ClientGamePageController implements Initializable {
             numBombLeft--;
             bombLeft.setText(numBombLeft + "");
             colorChange(3);
-        }
-
-        else if (y.getStyle() == "-fx-font-size: 0.4") {// bomb (4 points)
+        } else if (y.getStyle() == "-fx-font-size: 0.4") {// bomb (4 points)
             ((Button) event.getTarget())
                     .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
@@ -681,13 +670,13 @@ public class ClientGamePageController implements Initializable {
             colorChange(4);
         }
 
-         // currently using colorChange() to move to next player
+        // currently using colorChange() to move to next player
 //        player++;
 //		if (player == numOfPlayer) {
 //			player = 0;
 //		}
 
-        if(numBombLeft==0)
+        if (numBombLeft == 0)
             sendTriggerEnd();
 
         // timer of next player
@@ -911,38 +900,37 @@ public class ClientGamePageController implements Initializable {
     }
 
     //(Queenie) sort scores in the scoreSummary
-    private void sortScoreSummary(){
+    private void sortScoreSummary() {
         //using selection sort
-            System.out.println("sortScoreSummary()");
-            System.out.println("setOfScoreSummary_scoreLabel.length="+setOfScoreSummary_scoreLabel.length);
+        System.out.println("sortScoreSummary()");
+        System.out.println("setOfScoreSummary_scoreLabel.length=" + setOfScoreSummary_scoreLabel.length);
         numOfPlayer = users.size();
-        System.out.println("numOfPlayer="+numOfPlayer);
-        for (int i = 0; i < numOfPlayer - 1; i++)
-        {
-            System.out.println("i="+i);
+        System.out.println("numOfPlayer=" + numOfPlayer);
+        for (int i = 0; i < numOfPlayer - 1; i++) {
+            System.out.println("i=" + i);
             int index = i; //variable index is for lowest index containing least score
-            for (int j = i + 1; j < numOfPlayer; j++){
-                System.out.println("j="+j);
-                if (Integer.parseInt(setOfScoreSummary_scoreLabel[j].getText()) > Integer.parseInt(setOfScoreSummary_scoreLabel[index].getText())){
+            for (int j = i + 1; j < numOfPlayer; j++) {
+                System.out.println("j=" + j);
+                if (Integer.parseInt(setOfScoreSummary_scoreLabel[j].getText()) > Integer.parseInt(setOfScoreSummary_scoreLabel[index].getText())) {
                     index = j;//searching for lowest index
-                    System.out.println("index = j ("+index+" = "+j+")");
+                    System.out.println("index = j (" + index + " = " + j + ")");
                 }
             }
             int biggerNumber = Integer.parseInt(setOfScoreSummary_scoreLabel[index].getText());
             String winner = setOfScoreSummary_playerNameLabel[index].getText();
-                System.out.println("biggerNumber="+biggerNumber);
-                System.out.println("winner="+winner);
+            System.out.println("biggerNumber=" + biggerNumber);
+            System.out.println("winner=" + winner);
 
             //swapping winner and winner's scores
             setOfScoreSummary_scoreLabel[index].setText(setOfScoreSummary_scoreLabel[i].getText());
             setOfScoreSummary_playerNameLabel[index].setText(setOfScoreSummary_playerNameLabel[i].getText());
 
-            setOfScoreSummary_scoreLabel[i].setText(biggerNumber+"");
+            setOfScoreSummary_scoreLabel[i].setText(biggerNumber + "");
             setOfScoreSummary_playerNameLabel[i].setText(winner);
         }
     }
 
-//
+    //
 //    // Poon
 //    // remove non-playing players from sorted arraylist
     private static Map<Integer, Integer> sort(Map<Integer, Integer> map) {
@@ -1139,42 +1127,42 @@ public class ClientGamePageController implements Initializable {
                             users.add(split[0]);
                         });
 
-                        } else if (split[1].equals("GAMESTART")) {
-                            switch (split[0]) {
-                                case "DEFAULT":
-                                    Platform.runLater(() -> {
-                                        // Game started
-                                        // Do things for default mode
-                                        display("Welcome to Find My Mines");
-                                        display("Server has started the game (Mode: Default)" + "\n");
-                                        triggerClientScreen("ONGOING", "DEFAULT");
-                                    });
-                                    break;
-                                case "QUICK_GAME":
-                                    Platform.runLater(() -> {
-                                        // Game started
-                                        // Do things for quick game mode
-                                        display("Welcome to Find My Mines");
-                                        display("Server has started the game (Mode: Quick Game)" + "\n");
-                                        triggerClientScreen("ONGOING", "QUICK_GAME");
-                                    });
-                                    break;
-                                case "MULTIPOINTS_BOMB":
-                                    Platform.runLater(() -> {
-                                        // Game started
-                                        // Do things for multipoints bomb mode
-                                        display("Welcome to Find My Mines");
-                                        display("Server has started the game (Mode: Multipoints Bomb)" + "\n");
-                                        triggerClientScreen("ONGOING", "MULTIPOINTS_BOMB");
-                                    });
-                                    break;
-                            }
-                        } else if (split[1].equals("GAMESTOP")) {
-                            Platform.runLater(() -> {
-                                // Game ended
-                                // Do things when game ends
-                                display("Game Over!");
-                                triggerClientScreen("ENDED", null);
+                    } else if (split[1].equals("GAMESTART")) {
+                        switch (split[0]) {
+                            case "DEFAULT":
+                                Platform.runLater(() -> {
+                                    // Game started
+                                    // Do things for default mode
+                                    display("Welcome to Find My Mines");
+                                    display("Server has started the game (Mode: Default)" + "\n");
+                                    triggerClientScreen("ONGOING", "DEFAULT");
+                                });
+                                break;
+                            case "QUICK_GAME":
+                                Platform.runLater(() -> {
+                                    // Game started
+                                    // Do things for quick game mode
+                                    display("Welcome to Find My Mines");
+                                    display("Server has started the game (Mode: Quick Game)" + "\n");
+                                    triggerClientScreen("ONGOING", "QUICK_GAME");
+                                });
+                                break;
+                            case "MULTIPOINTS_BOMB":
+                                Platform.runLater(() -> {
+                                    // Game started
+                                    // Do things for multipoints bomb mode
+                                    display("Welcome to Find My Mines");
+                                    display("Server has started the game (Mode: Multipoints Bomb)" + "\n");
+                                    triggerClientScreen("ONGOING", "MULTIPOINTS_BOMB");
+                                });
+                                break;
+                        }
+                    } else if (split[1].equals("GAMESTOP")) {
+                        Platform.runLater(() -> {
+                            // Game ended
+                            // Do things when game ends
+                            display("Game Over!");
+                            triggerClientScreen("ENDED", null);
 
                         });
                     } else if (split[1].equals("GAMERESET")) {
@@ -1331,7 +1319,7 @@ public class ClientGamePageController implements Initializable {
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.CLICK, pos);
             try {
-                System.out.println("sendButtonPosition("+pos+")");
+                System.out.println("sendButtonPosition(" + pos + ")");
                 sOutput.writeObject(msg);
             } catch (IOException e) {
                 display("Exception writing to server: " + e);
@@ -1339,10 +1327,10 @@ public class ClientGamePageController implements Initializable {
         }
     }
 
-    private void sendTriggerEnd(){
+    private void sendTriggerEnd() {
         ButtonClick msg;
         if (connected) {
-                msg = new ButtonClick(ButtonClick.TRIGGER_END);
+            msg = new ButtonClick(ButtonClick.TRIGGER_END);
             try {
                 sOutput.writeObject(msg);
             } catch (IOException e) {
@@ -1400,6 +1388,7 @@ public class ClientGamePageController implements Initializable {
                 // assignBombMultiPoints()
                 break;
             case "ONGOING":
+
                 // Server pressed "Start", changing game state from "WAITING" -> "ONGOING"
                 System.out.println("(triggerClientScreen()) Server has started the game");
                 resetReadyButton();
@@ -1411,6 +1400,8 @@ public class ClientGamePageController implements Initializable {
                 bombLeftLabel.setVisible(true);
                 showTime.setVisible(true);
                 showTimeLabel.setVisible(true);
+                if (!playerNames[0].trim().equals(ClientStartPageController.userName))
+                    buttonPane.setDisable(true);
                 //buttonPane.Disable(); here
                 //setPlayable(myturn); should be here
                 startWithGameMode(game_mode);
@@ -1425,8 +1416,8 @@ public class ClientGamePageController implements Initializable {
                 showScoreSummary();
 
                 //Clearing color from every player pane
-                for (Pane pane:
-                     setOfPlayerPane_playerPane) {
+                for (Pane pane :
+                        setOfPlayerPane_playerPane) {
                     pane.setStyle("-fx-background-color: transparent");
                 }
                 break;
@@ -1448,7 +1439,7 @@ public class ClientGamePageController implements Initializable {
     // (Queenie) method to control client screen for game_state = ONGOING with
     // specified game_mode
     private void startWithGameMode(String game_mode) {
-        System.out.println("startWithGameMode("+game_mode+")");
+        System.out.println("startWithGameMode(" + game_mode + ")");
         switch (game_mode) {
             case "DEFAULT":
                 setGameMode("Default");
@@ -1486,7 +1477,7 @@ public class ClientGamePageController implements Initializable {
     // (Poon) setup scores and player names on scoreSummary
     private void setUpScoreSummaryPane() {
         numOfPlayer = users.size();
-        System.out.println("setUpScoreSummaryPane(), numOfPlayer= "+numOfPlayer);
+        System.out.println("setUpScoreSummaryPane(), numOfPlayer= " + numOfPlayer);
 
         //suggestion to replace above
         /* sorted = getSorted();
@@ -1550,7 +1541,7 @@ public class ClientGamePageController implements Initializable {
         setOfScoreSummary_playerPane[9] = scoreSummary_player10Pane;
 
         //set player nickname in order of pressing ready
-        for (int i = 0; i<numOfPlayer; i++) { // this loop could be
+        for (int i = 0; i < numOfPlayer; i++) { // this loop could be
             setOfScoreSummary_playerNameLabel[i].setText(playerNames[i]); //playerNames[] collect player nickname in order of pressing ready
         }
 
@@ -1573,7 +1564,7 @@ public class ClientGamePageController implements Initializable {
     private void setUpPlayerPane() {
 
         numOfPlayer = users.size();
-        System.out.println("setUpPlayerPane(), numOfPlayer= "+numOfPlayer);
+        System.out.println("setUpPlayerPane(), numOfPlayer= " + numOfPlayer);
         for (int i = 0; i < numOfPlayer; i++) {
             playerNames[i] = users.get(i).substring(0, users.get(i).indexOf("("));
         }
@@ -1635,9 +1626,9 @@ public class ClientGamePageController implements Initializable {
     //before call this method should set buttonPane default as Disable(true)
     //prepare for tram's gameturn system
     private void setPlayable(int myturn) {
-    		if(myturn == playerplaying) {
-    			buttonPane.setDisable(false);
-    		}
+        if (myturn == playerplaying) {
+            buttonPane.setDisable(false);
+        }
     }
 
     //tram
@@ -1646,19 +1637,19 @@ public class ClientGamePageController implements Initializable {
     //if it a bomb, is it the last bomb??
     //if it is the last bomb (numbombleft==0), we change the game state to ended
     boolean isThereBombLeft() {
-    	if (numBombLeft ==0) {
-    		return false;
-    	}
-		return true;
+        if (numBombLeft == 0) {
+            return false;
+        }
+        return true;
 
     }
 
 
     //Method to print out contents within a label array
-    private String toString(Label[] setOfLabels){
-        String s="";
-        for (Label label: setOfLabels) {
-            s+=label.getText()+", ";
+    private String toString(Label[] setOfLabels) {
+        String s = "";
+        for (Label label : setOfLabels) {
+            s += label.getText() + ", ";
         }
         return s;
     }

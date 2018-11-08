@@ -250,7 +250,7 @@ public class ServerGamePageController implements Initializable {
     private Label bombLeft;
 
     @FXML
-    public Button startButton;
+    public  Button startButton;
 
     @FXML
     private Button stopButton;
@@ -282,7 +282,6 @@ public class ServerGamePageController implements Initializable {
     Label[] setOfPlayer = new Label[10];
     Label[] setOfNameBoard = new Label[10];
     Label[] setOfScoreBoard = new Label[10];
-    int numBombLeft = 11;
     private String gameMode = "DEFAULT";
 
     // SERVER
@@ -1064,6 +1063,7 @@ public class ServerGamePageController implements Initializable {
             valueOfSpaceMultiPoints = new int[6][6];
             bombAround = new int[6][6];
             bombAroundMultiPoints = new int[6][6];
+
             //reassign bombs
             numBomb = 0;
             numBombMultiPoints = 0;
@@ -1286,5 +1286,4 @@ public class ServerGamePageController implements Initializable {
     			//reset playerid
     		}
     }
-
 }
