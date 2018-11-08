@@ -245,7 +245,7 @@ public class FindMyMinesServer {
             setGameState("ENDED");
 
             //change broadcast() to noticeClient() to get these messages to show in client textarea
-            broadcast("Server has stopped the game"+"\n");
+            broadcast("Game Over!"+"\n");
 
             //Messages for debugging
             System.out.println("GAME_STATE set to:" +getGameState()+" and button should be Reset");
@@ -364,6 +364,12 @@ public class FindMyMinesServer {
                         username = (username.split(":")[0]);
                         broadcast(username + ":NOTREADY");
                         broadcastServerOnly(username + ":NOTREADY");
+                        break;
+                    case ButtonClick.TRIGGER_END:
+                        System.out.println("ButtonClick.TRIGGER_END");
+                        broadcast("GAMESTOPPED:GAMESTOP");
+                        changeGameState();
+                        serverController.startButton.setText("Reset");
                         break;
                 }
 

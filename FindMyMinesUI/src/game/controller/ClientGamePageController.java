@@ -633,7 +633,7 @@ public class ClientGamePageController implements Initializable {
             colorChange(0);
         }
 
-        if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+        else if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
             // might need to getStyle().removeAll() before do this to prevent bugs
             ((Button) event.getTarget())
                     .setStyle("-fx-background-color: #D90429; -fx-text-fill: #ffffff ; -fx-font-size: 10;");
@@ -651,7 +651,7 @@ public class ClientGamePageController implements Initializable {
         }
 
         // Tram
-        if (y.getStyle() == "-fx-font-size: 0.2") {// bomb (2 points)
+        else if (y.getStyle() == "-fx-font-size: 0.2") {// bomb (2 points)
             ((Button) event.getTarget())
                     .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
@@ -661,7 +661,7 @@ public class ClientGamePageController implements Initializable {
             colorChange(2);
         }
 
-        if (y.getStyle() == "-fx-font-size: 0.3") {// bomb (3 points)
+        else if (y.getStyle() == "-fx-font-size: 0.3") {// bomb (3 points)
             ((Button) event.getTarget())
                     .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
@@ -671,7 +671,7 @@ public class ClientGamePageController implements Initializable {
             colorChange(3);
         }
 
-        if (y.getStyle() == "-fx-font-size: 0.4") {// bomb (4 points)
+        else if (y.getStyle() == "-fx-font-size: 0.4") {// bomb (4 points)
             ((Button) event.getTarget())
                     .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
@@ -681,12 +681,14 @@ public class ClientGamePageController implements Initializable {
             colorChange(4);
         }
 
-        // currently using colorChange() to move to next player
+         // currently using colorChange() to move to next player
 //        player++;
 //		if (player == numOfPlayer) {
 //			player = 0;
 //		}
 
+        if(numBombLeft==0)
+            sendTriggerEnd();
 
         // timer of next player
         resetTimer();
@@ -1137,43 +1139,42 @@ public class ClientGamePageController implements Initializable {
                             users.add(split[0]);
                         });
 
-                    } else if (split[1].equals("GAMESTART")) {
-                        switch (split[0]) {
-                            case "DEFAULT":
-                                Platform.runLater(() -> {
-                                    // Game started
-                                    // Do things for default mode
-                                    display("Welcome to Find My Mines");
-                                    display("Server has started the game (Mode: Default)" + "\n");
-                                    triggerClientScreen("ONGOING", "DEFAULT");
-                                });
-                                break;
-                            case "QUICK_GAME":
-                                Platform.runLater(() -> {
-                                    // Game started
-                                    // Do things for quick game mode
-                                    display("Welcome to Find My Mines");
-                                    display("Server has started the game (Mode: Quick Game)" + "\n");
-                                    triggerClientScreen("ONGOING", "QUICK_GAME");
-                                });
-                                break;
-                            case "MULTIPOINTS_BOMB":
-                                Platform.runLater(() -> {
-                                    // Game started
-                                    // Do things for multipoints bomb mode
-                                    display("Welcome to Find My Mines");
-                                    display("Server has started the game (Mode: Multipoints Bomb)" + "\n");
-                                    triggerClientScreen("ONGOING", "MULTIPOINTS_BOMB");
-                                });
-                                break;
-                        }
-                    } else if (split[1].equals("GAMESTOP")) {
-                        Platform.runLater(() -> {
-                            // Game ended
-                            // Do things when game ends
-                            display("Game Over!");
-                            display("Server has stopped the game" + "\n");
-                            triggerClientScreen("ENDED", null);
+                        } else if (split[1].equals("GAMESTART")) {
+                            switch (split[0]) {
+                                case "DEFAULT":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for default mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Default)" + "\n");
+                                        triggerClientScreen("ONGOING", "DEFAULT");
+                                    });
+                                    break;
+                                case "QUICK_GAME":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for quick game mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Quick Game)" + "\n");
+                                        triggerClientScreen("ONGOING", "QUICK_GAME");
+                                    });
+                                    break;
+                                case "MULTIPOINTS_BOMB":
+                                    Platform.runLater(() -> {
+                                        // Game started
+                                        // Do things for multipoints bomb mode
+                                        display("Welcome to Find My Mines");
+                                        display("Server has started the game (Mode: Multipoints Bomb)" + "\n");
+                                        triggerClientScreen("ONGOING", "MULTIPOINTS_BOMB");
+                                    });
+                                    break;
+                            }
+                        } else if (split[1].equals("GAMESTOP")) {
+                            Platform.runLater(() -> {
+                                // Game ended
+                                // Do things when game ends
+                                display("Game Over!");
+                                triggerClientScreen("ENDED", null);
 
                         });
                     } else if (split[1].equals("GAMERESET")) {
@@ -1338,6 +1339,18 @@ public class ClientGamePageController implements Initializable {
         }
     }
 
+    private void sendTriggerEnd(){
+        ButtonClick msg;
+        if (connected) {
+                msg = new ButtonClick(ButtonClick.TRIGGER_END);
+            try {
+                sOutput.writeObject(msg);
+            } catch (IOException e) {
+                display("Exception writing to server: " + e);
+            }
+        }
+    }
+
     private void sendReady() {
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.READDY, username);
@@ -1438,6 +1451,7 @@ public class ClientGamePageController implements Initializable {
         System.out.println("startWithGameMode("+game_mode+")");
         switch (game_mode) {
             case "DEFAULT":
+                setGameMode("Default");
                 // need receive bomb information from server first before setting up bombs on
                 // client page
                 setUpBomb();
@@ -1449,6 +1463,7 @@ public class ClientGamePageController implements Initializable {
                 setUpBomb();
                 break;
             case "MULTIPOINTS_BOMB":
+                setGameMode("Multipoints Bomb");
                 // need receive bomb information from server first before setting up bombs on
                 // client page
                 setUpBombMultiPoints();
