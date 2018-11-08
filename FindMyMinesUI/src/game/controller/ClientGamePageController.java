@@ -572,9 +572,11 @@ public class ClientGamePageController implements Initializable {
     @FXML
     void play(MouseEvent event) {
 
-        // send buttion position to server
+        // send button position to server
         sendButtonPosition(event.toString().substring(32, 34).trim());
 
+        //Update client game page
+        //Reveal if free slot or bomb
         Button y = (Button) event.getTarget();
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
@@ -604,7 +606,7 @@ public class ClientGamePageController implements Initializable {
         }
 
         // Tram
-        if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
+        if (y.getStyle() == "-fx-font-size: 0.2") {// bomb (2 points)
             ((Button) event.getTarget())
                     .setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
@@ -614,7 +616,7 @@ public class ClientGamePageController implements Initializable {
             colorChange(2);
         }
 
-        if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
+        if (y.getStyle() == "-fx-font-size: 0.3") {// bomb (3 points)
             ((Button) event.getTarget())
                     .setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
@@ -624,7 +626,7 @@ public class ClientGamePageController implements Initializable {
             colorChange(3);
         }
 
-        if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
+        if (y.getStyle() == "-fx-font-size: 0.4") {// bomb (4 points)
             ((Button) event.getTarget())
                     .setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
@@ -634,15 +636,9 @@ public class ClientGamePageController implements Initializable {
             colorChange(4);
         }
 
-//		if (player == numOfPlayer) {
-//			player = 0;
-//		}
-
         // timer of next player
         resetTimer();
         startTimer();
-//		resetScore();
-
     }
 
     // receive button position clicked from other clients
