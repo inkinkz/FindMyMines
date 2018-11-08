@@ -513,33 +513,7 @@ public class ClientGamePageController implements Initializable {
 
     // Poon
     // call to change color to inform the next player that it's their turn
-//	void colorChange() {
-//
-//		int prev, next;
-//		String nameToCompare;
-//
-//		if (playerplaying < numOfPlayer) {
-//			prev = --playerplaying;
-//			setOfPlayerPane[prev].setStyle("-fx-background-color: transparent");
-//			next = ++playerplaying;
-//			setOfPlayerPane[next].setStyle("-fx-background-color: #484c4a");
-//            nameToCompare = setOfPlayerPane[prev].getChildren().get(0).toString().substring(setOfPlayerPane[prev].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
-//            display("nameToCompare = " + nameToCompare);
-//			playerplaying++;
-//		} else if (playerplaying == numOfPlayer) {
-//			prev = numOfPlayer - 1;
-//			setOfPlayerPane[prev].setStyle("-fx-background-color: transparent");
-//			setOfPlayerPane[0].setStyle("-fx-background-color: #484c4a");
-//            nameToCompare = setOfPlayerPane[0].getChildren().get(0).toString().substring(setOfPlayerPane[0].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
-//            display("nameToCompare = " + nameToCompare);
-//			playerplaying = 1;
-//		} else {
-//			playerplaying = 1;
-//		}
-//
-//	}
-
-    //Inkz
+    // Inkz
     // add score
     void colorChange(int score) {
 
@@ -552,15 +526,20 @@ public class ClientGamePageController implements Initializable {
             setOfPlayerPane[prev].setStyle("-fx-background-color: transparent");
             setOfScore[prev].setText(newScore + "");
             next = ++playerplaying;
-//			nameToCompare = setOfPlayerPane[prev].getChildren().get(0).toString().substring(setOfPlayerPane[prev].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
-//            display("nameToCompare = " + nameToCompare);
-
             setOfPlayerPane[next].setStyle("-fx-background-color: #484c4a");
+//			nameToCompare = setOfPlayerPane[prev].getChildren().get(0).toString().substring(setOfPlayerPane[prev].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
+//          nameToCompare = setOfPlayerPane[prev].getChildren().get(prev).toString().substring(setOfPlayerPane[prev].getChildren().get(prev).toString().indexOf("'")+1, setOfPlayerPane[prev].getChildren().get(prev).toString().lastIndexOf("'"));
+
+            //TODO --- get name that is currently have background color to nameToCompare plz
+            nameToCompare = "";
+
+
+            // Enable leftPane if username = nameToCompare
 //			if(nameToCompare.equals(username))
-//				leftPane.setDisable(true);
-//			else
 //				leftPane.setDisable(false);
-//			display(nameToCompare + " turn.");
+//			else
+//				leftPane.setDisable(true);
+
             playerplaying++;
         } else if (playerplaying == numOfPlayer) {
             prev = numOfPlayer - 1;
@@ -569,12 +548,16 @@ public class ClientGamePageController implements Initializable {
             setOfScore[prev].setText(newScore + "");
             setOfPlayerPane[0].setStyle("-fx-background-color: #484c4a");
 //			nameToCompare = setOfPlayerPane[0].getChildren().get(0).toString().substring(setOfPlayerPane[0].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
-//			display("nameToCompare = " + nameToCompare);
+
+            //TODO --- get name that is currently have background color to nameToCompare plz
+            nameToCompare = "get name that is currently have background color plz";
+
+            // Enable leftPane if username = nameToCompare
 //			if(nameToCompare.equals(username))
-//				leftPane.setDisable(true);
-//			else
 //				leftPane.setDisable(false);
-//			display(nameToCompare + " turn.");
+//			else
+//				leftPane.setDisable(true);
+
             playerplaying = 1;
         } else {
             playerplaying = 1;
