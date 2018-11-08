@@ -407,7 +407,7 @@
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="score21" layoutX="103.0" text="0" textFill="#2b2d42">
+                        <Label fx:id="scoreSummary_scoreLabel2" layoutX="103.0" text="0" textFill="#2b2d42">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
@@ -421,7 +421,7 @@
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="scoreSummaryLabel3" layoutX="91.0" text="0" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_scoreLabel3" layoutX="91.0" text="0" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
