@@ -897,15 +897,15 @@ public class ClientGamePageController implements Initializable {
 
     // Poon
 //    Integer[] nameOfPlayer = new Integer[10];
-    //private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
+    private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
 //
 //    // Poon
 //    // sort score
-  /*  public static Map<Integer, Integer> getSorted() {
+    public static Map<Integer, Integer> getSorted() {
         sorted = sort(scoreOfPlayer);
         System.out.print(sorted);
         return sorted;
-    }*/
+    }
 
     //(Queenie) sort scores in the scoreSummary
     private void sortScoreSummary(){
@@ -942,7 +942,7 @@ public class ClientGamePageController implements Initializable {
 //
 //    // Poon
 //    // remove non-playing players from sorted arraylist
-/*    private static Map<Integer, Integer> sort(Map<Integer, Integer> map) {
+    private static Map<Integer, Integer> sort(Map<Integer, Integer> map) {
         Map<Integer, Integer> sorted = map.entrySet().stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                 .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
@@ -955,7 +955,7 @@ public class ClientGamePageController implements Initializable {
         }
         // System.out.print(sorted);
         return sorted;
-    }*/
+    }
 
     // event going back to the starting page
     /*
