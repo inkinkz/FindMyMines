@@ -1106,7 +1106,7 @@ public class ServerGamePageController implements Initializable {
             setupPane();
             setScore();
             // color change for the starting player
-            setOfPlayerPane[player].setStyle("-fx-background-color: grey");
+            setOfPlayerPane_playerPane[player].setStyle("-fx-background-color: grey");
 
             assignBombDefault();
             setUpBomb();

@@ -23,140 +23,140 @@
                   <Font name="ISOCTEUR" size="19.0" />
                </font>
             </Label>
-            <Pane fx:id="player1Pane" layoutX="454.0" layoutY="70.0" prefHeight="38.0" prefWidth="150.0">
+            <Pane fx:id="playerPane_player1Pane" layoutX="454.0" layoutY="70.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player1" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="90.0" text="Player 1" textFill="#edf2f4">
+                  <Label fx:id="playerPane_player1Label" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="90.0" text="Player 1" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score1" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="playerPane_scoreLabel1" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="player2Pane" layoutX="454.0" layoutY="110.0" prefHeight="38.0" prefWidth="150.0">
+            <Pane fx:id="playerPane_player2Pane" layoutX="454.0" layoutY="110.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player2" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 2" textFill="#edf2f4">
+                  <Label fx:id="playerPane_player2Label" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 2" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score2" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="playerPane_scoreLabel2" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="player3Pane" layoutX="454.0" layoutY="150.0" prefHeight="38.0" prefWidth="150.0">
+            <Pane fx:id="playerPane_player3Pane" layoutX="454.0" layoutY="150.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player3" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 3" textFill="#edf2f4">
+                  <Label fx:id="playerPane_player3Label" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 3" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score3" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="playerPane_scoreLabel3" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="player4Pane" layoutX="454.0" layoutY="190.0" prefHeight="38.0" prefWidth="150.0">
+            <Pane fx:id="playerPane_player4Pane" layoutX="454.0" layoutY="190.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player4" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 4" textFill="#edf2f4">
+                  <Label fx:id="playerPane_player4Label" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 4" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score4" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="playerPane_scoreLabel4" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="player5Pane" layoutX="454.0" layoutY="230.0" prefHeight="38.0" prefWidth="150.0">
+            <Pane fx:id="playerPane_player5Pane" layoutX="454.0" layoutY="230.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player5" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 5" textFill="#edf2f4">
+                  <Label fx:id="playerPane_player5Label" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 5" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score5" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="playerPane_scoreLabel5" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="player6Pane" layoutX="454.0" layoutY="270.0" prefHeight="38.0" prefWidth="150.0">
+            <Pane fx:id="playerPane_player6Pane" layoutX="454.0" layoutY="270.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player6" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 6" textFill="#edf2f4">
+                  <Label fx:id="playerPane_player6Label" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 6" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score6" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="playerPane_scoreLabel6" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="player7Pane" layoutX="454.0" layoutY="310.0" prefHeight="38.0" prefWidth="150.0">
+            <Pane fx:id="playerPane_player7Pane" layoutX="454.0" layoutY="310.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player7" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 7" textFill="#edf2f4">
+                  <Label fx:id="playerPane_player7Label" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 7" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score7" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="playerPane_scoreLabel7" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="player8Pane" layoutX="454.0" layoutY="350.0" prefHeight="38.0" prefWidth="150.0">
+            <Pane fx:id="playerPane_player8Pane" layoutX="454.0" layoutY="350.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player8" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 8" textFill="#edf2f4">
+                  <Label fx:id="playerPane_player8Label" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 8" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score8" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="playerPane_scoreLabel8" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="player9Pane" layoutX="454.0" layoutY="390.0" prefHeight="38.0" prefWidth="150.0">
+            <Pane fx:id="playerPane_player9Pane" layoutX="454.0" layoutY="390.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player9" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 9" textFill="#edf2f4">
+                  <Label fx:id="playerPane_player9Label" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 9" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score9" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="playerPane_scoreLabel9" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="player10Pane" layoutX="454.0" layoutY="430.0" prefHeight="38.0" prefWidth="150.0">
+            <Pane fx:id="playerPane_player10Pane" layoutX="454.0" layoutY="430.0" prefHeight="38.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="player10" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 10" textFill="#edf2f4">
+                  <Label fx:id="playerPane_player10Label" layoutX="25.0" layoutY="11.0" prefHeight="17.0" prefWidth="69.0" text="Player 10" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="score10" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
+                  <Label fx:id="playerPane_scoreLabel10" layoutX="125.0" layoutY="11.0" text="0" textFill="#edf2f4">
                      <font>
                         <Font name="ISOCPEUR" size="13.0" />
                      </font>
@@ -380,7 +380,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="scoreboardPane" layoutX="150.0" layoutY="150.0" prefHeight="481.0" prefWidth="700.0" style="-fx-background-color: #EDF2F4; -fx-border-color: #8D99AE;" visible="false" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="150.0">
+      <AnchorPane fx:id="scoreSummaryPane" layoutX="150.0" layoutY="150.0" prefHeight="481.0" prefWidth="700.0" style="-fx-background-color: #EDF2F4; -fx-border-color: #8D99AE;" visible="false" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="150.0">
          <children>
             <Label fx:id="scoreLabel" alignment="CENTER" layoutX="202.0" layoutY="32.0" prefHeight="54.0" prefWidth="298.0" text="SCORE BOARD" textAlignment="CENTER" textFill="#8d99ae" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="201.0" AnchorPane.rightAnchor="201.0" AnchorPane.topAnchor="30.0">
                <font>
@@ -390,23 +390,23 @@
             <AnchorPane layoutX="2.0" prefHeight="382.0" prefWidth="696.0" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0">
                <children>
                   <ImageView fx:id="winnerImage" fitHeight="311.0" fitWidth="387.0" layoutX="74.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
-                  <Pane fx:id="player1Pane1" layoutX="142.0" layoutY="95.0" prefHeight="38.0" prefWidth="150.0" visible="false" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="372.0" AnchorPane.topAnchor="120.0">
+                  <Pane fx:id="scoreSummary_player1Pane" layoutX="142.0" layoutY="95.0" prefHeight="38.0" prefWidth="150.0" visible="false" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="372.0" AnchorPane.topAnchor="120.0">
                      <children>
-                        <Label fx:id="player11" prefHeight="29.0" prefWidth="106.0" text="Player 1" textFill="#f4b831">
+                        <Label fx:id="scoreSummary_playerNameLabel1" prefHeight="29.0" prefWidth="106.0" text="Player 1" textFill="#f4b831">
                            <font>
                               <Font name="ISOCPEUR" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="score11" layoutX="131.0" text="0" textFill="#f4b831">
+                        <Label fx:id="scoreSummary_scoreLabel1" layoutX="131.0" text="0" textFill="#f4b831">
                            <font>
                               <Font name="ISOCPEUR" size="24.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="player2Pane1" layoutX="43.0" layoutY="188.0" prefHeight="29.0" prefWidth="130.0" visible="false" AnchorPane.bottomAnchor="129.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="220.0">
+                  <Pane fx:id="scoreSummary_player2Pane" layoutX="43.0" layoutY="188.0" prefHeight="29.0" prefWidth="130.0" visible="false" AnchorPane.bottomAnchor="129.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="220.0">
                      <children>
-                        <Label fx:id="player21" prefHeight="23.0" prefWidth="89.0" text="Player 2" textFill="#2b2d42">
+                        <Label fx:id="scoreSummary_playerNameLabel2" prefHeight="23.0" prefWidth="89.0" text="Player 2" textFill="#2b2d42">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
@@ -418,28 +418,28 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="player3Pane1" layoutX="261.0" layoutY="191.0" prefHeight="31.0" prefWidth="106.0" visible="false" AnchorPane.bottomAnchor="129.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="288.0" AnchorPane.topAnchor="220.0">
+                  <Pane fx:id="scoreSummary_player3Pane" layoutX="261.0" layoutY="191.0" prefHeight="31.0" prefWidth="106.0" visible="false" AnchorPane.bottomAnchor="129.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="288.0" AnchorPane.topAnchor="220.0">
                      <children>
-                        <Label fx:id="player31" prefHeight="23.0" prefWidth="90.0" text="Player 3" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_playerNameLabel3" prefHeight="23.0" prefWidth="90.0" text="Player 3" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="score31" layoutX="91.0" text="0" textFill="#8d99ae">
+                        <Label fx:id="scoreSummaryLabel3" layoutX="91.0" text="0" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="player4Pane1" layoutX="442.0" layoutY="113.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
+                  <Pane fx:id="scoreSummary_player4Pane" layoutX="442.0" layoutY="113.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
                      <children>
-                        <Label fx:id="player41" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 4" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_playerNameLabel4" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 4" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="score41" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_scoreLabel4" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
@@ -451,14 +451,14 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="player5Pane1" layoutX="442.0" layoutY="151.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
+                  <Pane fx:id="scoreSummary_player5Pane" layoutX="442.0" layoutY="151.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
                      <children>
-                        <Label fx:id="player51" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 5" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_playerNameLabel5" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 5" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="score51" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_scoreLabel5" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
@@ -470,71 +470,71 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="player6Pane1" layoutX="442.0" layoutY="189.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
+                  <Pane fx:id="scoreSummary_player6Pane" layoutX="442.0" layoutY="189.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
                      <children>
                         <Label layoutX="14.0" layoutY="11.0" text="6th" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player61" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 6" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_playerNameLabel6" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 6" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="score61" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_scoreLabel6" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="player7Pane1" layoutX="444.0" layoutY="226.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
+                  <Pane fx:id="scoreSummary_player7Pane" layoutX="444.0" layoutY="226.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
                      <children>
                         <Label layoutX="14.0" layoutY="11.0" text="7th" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player71" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 7" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_playerNameLabel7" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 7" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="score71" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_scoreLabel7" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="player8Pane1" layoutX="451.0" layoutY="267.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
+                  <Pane fx:id="scoreSummary_player8Pane" layoutX="451.0" layoutY="267.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
                      <children>
                         <Label layoutX="14.0" layoutY="11.0" text="8th" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player81" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 8" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_playerNameLabel8" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 8" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="score81" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_scoreLabel8" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="player9Pane1" layoutX="451.0" layoutY="305.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
+                  <Pane fx:id="scoreSummary_player9Pane" layoutX="451.0" layoutY="305.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
                      <children>
-                        <Label fx:id="player91" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 9" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_playerNameLabel9" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 9" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="score91" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_scoreLabel9" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
@@ -546,14 +546,14 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="player10Pane1" layoutX="451.0" layoutY="344.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
+                  <Pane fx:id="scoreSummary_player10Pane" layoutX="451.0" layoutY="344.0" prefHeight="38.0" prefWidth="223.0" visible="false" AnchorPane.leftAnchor="444.0">
                      <children>
-                        <Label fx:id="player101" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 10" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_playerNameLabel10" layoutX="65.0" layoutY="11.0" prefHeight="17.0" prefWidth="130.0" text="Player 10" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="score101" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
+                        <Label fx:id="scoreSummary_scoreLabel10" layoutX="200.0" layoutY="11.0" text="0" textFill="#8d99ae">
                            <font>
                               <Font name="ISOCPEUR" size="18.0" />
                            </font>

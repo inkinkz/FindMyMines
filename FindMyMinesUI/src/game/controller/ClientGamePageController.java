@@ -146,94 +146,94 @@ public class ClientGamePageController implements Initializable {
     private Label showTime;
 
     @FXML
-    private Pane player1Pane;
+    private Pane playerPane_player1Pane;
 
     @FXML
-    private Label player1;
+    private Label playerPane_player1Label;
 
     @FXML
-    private Label score1;
+    private Label playerPane_scoreLabel1;
 
     @FXML
-    private Pane player2Pane;
+    private Pane playerPane_player2Pane;
 
     @FXML
-    private Label player2;
+    private Label playerPane_player2Label;
 
     @FXML
-    private Label score2;
+    private Label playerPane_scoreLabel2;
 
     @FXML
-    private Pane player3Pane;
+    private Pane playerPane_player3Pane;
 
     @FXML
-    private Label player3;
+    private Label playerPane_player3Label;
 
     @FXML
-    private Label score3;
+    private Label playerPane_scoreLabel3;
 
     @FXML
-    private Pane player4Pane;
+    private Pane playerPane_player4Pane;
 
     @FXML
-    private Label player4;
+    private Label playerPane_player4Label;
 
     @FXML
-    private Label score4;
+    private Label playerPane_scoreLabel4;
 
     @FXML
-    private Pane player5Pane;
+    private Pane playerPane_player5Pane;
 
     @FXML
-    private Label player5;
+    private Label playerPane_player5Label;
 
     @FXML
-    private Label score5;
+    private Label playerPane_scoreLabel5;
 
     @FXML
-    private Pane player6Pane;
+    private Pane playerPane_player6Pane;
 
     @FXML
-    private Label player6;
+    private Label playerPane_player6Label;
 
     @FXML
-    private Label score6;
+    private Label playerPane_scoreLabel6;
 
     @FXML
-    private Pane player7Pane;
+    private Pane playerPane_player7Pane;
 
     @FXML
-    private Label player7;
+    private Label playerPane_player7Label;
 
     @FXML
-    private Label score7;
+    private Label playerPane_scoreLabel7;
 
     @FXML
-    private Pane player8Pane;
+    private Pane playerPane_player8Pane;
 
     @FXML
-    private Label player8;
+    private Label playerPane_player8Label;
 
     @FXML
-    private Label score8;
+    private Label playerPane_scoreLabel8;
 
     @FXML
-    private Pane player9Pane;
+    private Pane playerPane_player9Pane;
 
     @FXML
-    private Label player9;
+    private Label playerPane_player9Label;
 
     @FXML
-    private Label score9;
+    private Label playerPane_scoreLabel9;
 
     @FXML
-    private Pane player10Pane;
+    private Pane playerPane_player10Pane;
 
     @FXML
-    private Label player10;
+    private Label playerPane_player10Label;
 
     @FXML
-    private Label score10;
+    private Label playerPane_scoreLabel10;
 
     @FXML
     private Label bombLeftLabel;
@@ -244,96 +244,96 @@ public class ClientGamePageController implements Initializable {
     @FXML
     private Button readyButton;
 
-    // for score board
+    // for score summary
     @FXML
-    private Pane player1Pane1;
+    private Pane scoreSummary_player1Pane;
 
     @FXML
-    private Label player11;
+    private Label scoreSummary_playerNameLabel1;
 
     @FXML
-    private Label score11;
+    private Label scoreSummary_scoreLabel1;
 
     @FXML
-    private Pane player2Pane1;
+    private Pane scoreSummary_player2Pane;
 
     @FXML
-    private Label player21;
+    private Label scoreSummary_playerNameLabel2;
 
     @FXML
-    private Label score21;
+    private Label scoreSummary_scoreLabel2;
 
     @FXML
-    private Pane player3Pane1;
+    private Pane scoreSummary_player3Pane;
 
     @FXML
-    private Label player31;
+    private Label scoreSummary_playerNameLabel3;
 
     @FXML
-    private Label score31;
+    private Label scoreSummary_scoreLabel3;
 
     @FXML
-    private Pane player4Pane1;
+    private Pane scoreSummary_player4Pane;
 
     @FXML
-    private Label player41;
+    private Label scoreSummary_playerNameLabel4;
 
     @FXML
-    private Label score41;
+    private Label scoreSummary_scoreLabel4;
 
     @FXML
-    private Pane player5Pane1;
+    private Pane scoreSummary_player5Pane;
 
     @FXML
-    private Label player51;
+    private Label scoreSummary_playerNameLabel5;
 
     @FXML
-    private Label score51;
+    private Label scoreSummary_scoreLabel5;
 
     @FXML
-    private Pane player6Pane1;
+    private Pane scoreSummary_player6Pane;
 
     @FXML
-    private Label player61;
+    private Label scoreSummary_playerNameLabel6;
 
     @FXML
-    private Label score61;
+    private Label scoreSummary_scoreLabel6;
 
     @FXML
-    private Pane player7Pane1;
+    private Pane scoreSummary_player7Pane;
 
     @FXML
-    private Label player71;
+    private Label scoreSummary_playerNameLabel7;
 
     @FXML
-    private Label score71;
+    private Label scoreSummary_scoreLabel7;
 
     @FXML
-    private Pane player8Pane1;
+    private Pane scoreSummary_player8Pane;
 
     @FXML
-    private Label player81;
+    private Label scoreSummary_playerNameLabel8;
 
     @FXML
-    private Label score81;
+    private Label scoreSummary_scoreLabel8;
 
     @FXML
-    private Pane player9Pane1;
+    private Pane scoreSummary_player9Pane;
 
     @FXML
-    private Label player91;
+    private Label scoreSummary_playerNameLabel9;
 
     @FXML
-    private Label score91;
+    private Label scoreSummary_scoreLabel9;
 
     @FXML
-    private Pane player10Pane1;
+    private Pane scoreSummary_player10Pane;
 
     @FXML
-    private Label player101;
+    private Label scoreSummary_playerNameLabel10;
 
     @FXML
-    private Label score101;
+    private Label scoreSummary_scoreLabel10;
 
     @FXML
     private AnchorPane leftPane;
@@ -348,7 +348,7 @@ public class ClientGamePageController implements Initializable {
     private ImageView winnerImage;
 
     @FXML
-    private AnchorPane scoreboardPane;
+    private AnchorPane scoreSummaryPane;
 
     @FXML
     private Button button_done;
@@ -359,15 +359,21 @@ public class ClientGamePageController implements Initializable {
     @FXML
     private AnchorPane buttonPane;
 
+    /*READ ME
+    * left pane - whole left side of the page
+    * player pane - middle box on the client game page
+    * score summary - popup displayed only when game ends
+    * */
+
     // game
     static int numOfPlayer; // how many player
     Button[][] setOfButton = new Button[6][6];
-    Pane[] setOfPlayerPane = new Pane[10]; // limit player :10
+    Pane[] setOfPlayerPane_playerPane = new Pane[10]; // limit player :10
     private static ObservableMap<Integer, Integer> scoreOfPlayer;
     private ObservableValue<Integer> playerReady; // number of player ready
-    Label[] setOfScore = new Label[10];
-    Label[] setOfNameBoard = new Label[10];
-    Label[] setOfScoreBoard = new Label[10];
+    Label[] setOfPlayerPane_scoreLabel = new Label[10]; //contains Label playerPane_scoreLabel1, ... ,playerPane_scoreLabel10
+    Label[] setOfScoreSummary_playerNameLabel = new Label[10];
+    Label[] setOfScoreSummary_scoreLabel = new Label[10];
     int numBombLeft = 11;
     int score = 0;
 
@@ -404,7 +410,7 @@ public class ClientGamePageController implements Initializable {
         Arrays.fill(playerNames, " ");
 
         // Poon
-        // set podium image in scoreboard
+        // set podium image in scoreSummary
         Image image = new Image(getClass().getResourceAsStream("/podium.png"));
         winnerImage.setImage(image);
 
@@ -419,9 +425,10 @@ public class ClientGamePageController implements Initializable {
         display("When you are ready to play, press Ready button\n");
         // trigger this when server press start
         setUpLeftPane();
+        setUpScoreSummaryPane();
         // setScore();
         // color change for the starting player
-        // setOfPlayerPane[player].setStyle("-fx-background-color: grey");
+        // setOfPlayerPane_playerPane[player].setStyle("-fx-background-color: grey");
     }
 
     // Poon
@@ -429,27 +436,27 @@ public class ClientGamePageController implements Initializable {
     private void resetScore() {
         for (int i = 0; i < 10; i++) {
             scoreOfPlayer.put(i, 0);
-            setOfScore[i].setText("0");
+            setOfPlayerPane_scoreLabel[i].setText("0");
         }
     }
 
     // Tram and Poon
     private void setUpLeftPane() {
 
-        setOfPlayerPane[0] = player1Pane;
-        setOfPlayerPane[1] = player2Pane;
-        setOfPlayerPane[2] = player3Pane;
-        setOfPlayerPane[3] = player4Pane;
-        setOfPlayerPane[4] = player5Pane;
-        setOfPlayerPane[5] = player6Pane;
-        setOfPlayerPane[6] = player7Pane;
-        setOfPlayerPane[7] = player8Pane;
-        setOfPlayerPane[8] = player9Pane;
-        setOfPlayerPane[9] = player10Pane;
+        setOfPlayerPane_playerPane[0] = playerPane_player1Pane;
+        setOfPlayerPane_playerPane[1] = playerPane_player2Pane;
+        setOfPlayerPane_playerPane[2] = playerPane_player3Pane;
+        setOfPlayerPane_playerPane[3] = playerPane_player4Pane;
+        setOfPlayerPane_playerPane[4] = playerPane_player5Pane;
+        setOfPlayerPane_playerPane[5] = playerPane_player6Pane;
+        setOfPlayerPane_playerPane[6] = playerPane_player7Pane;
+        setOfPlayerPane_playerPane[7] = playerPane_player8Pane;
+        setOfPlayerPane_playerPane[8] = playerPane_player9Pane;
+        setOfPlayerPane_playerPane[9] = playerPane_player10Pane;
 
-        // hide players by default
+        // hide players pane by default
         for (int i = 0; i < 10; i++) {
-            setOfPlayerPane[i].setVisible(false);
+            setOfPlayerPane_playerPane[i].setVisible(false);
         }
 
         setOfButton[0][0] = b1;
@@ -489,30 +496,9 @@ public class ClientGamePageController implements Initializable {
         setOfButton[4][5] = b55;
         setOfButton[5][5] = b65;
 
-        setOfNameBoard[0] = player11;
-        setOfNameBoard[1] = player21;
-        setOfNameBoard[2] = player31;
-        setOfNameBoard[3] = player41;
-        setOfNameBoard[4] = player51;
-        setOfNameBoard[5] = player61;
-        setOfNameBoard[6] = player71;
-        setOfNameBoard[7] = player81;
-        setOfNameBoard[8] = player91;
-        setOfNameBoard[9] = player101;
-
-        setOfScoreBoard[0] = score11;
-        setOfScoreBoard[1] = score21;
-        setOfScoreBoard[2] = score31;
-        setOfScoreBoard[3] = score41;
-        setOfScoreBoard[4] = score51;
-        setOfScoreBoard[5] = score61;
-        setOfScoreBoard[6] = score71;
-        setOfScoreBoard[7] = score81;
-        setOfScoreBoard[8] = score91;
-        setOfScoreBoard[9] = score101;
     }
 
-//    private int player = 0;
+ //    private int player = 0;
     private int playerplaying = 1;
 
     // Poon
@@ -526,13 +512,13 @@ public class ClientGamePageController implements Initializable {
 
         if (playerplaying < numOfPlayer) {
             prev = --playerplaying;
-            newScore = Integer.parseInt(setOfScore[prev].getText()) + score;
-            setOfPlayerPane[prev].setStyle("-fx-background-color: transparent");
-            setOfScore[prev].setText(newScore + "");
+            newScore = Integer.parseInt(setOfPlayerPane_scoreLabel[prev].getText()) + score;
+            setOfPlayerPane_playerPane[prev].setStyle("-fx-background-color: transparent");
+            setOfPlayerPane_scoreLabel[prev].setText(newScore + "");
             next = ++playerplaying;
-            setOfPlayerPane[next].setStyle("-fx-background-color: #484c4a");
-//			nameToCompare = setOfPlayerPane[prev].getChildren().get(0).toString().substring(setOfPlayerPane[prev].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
-//          nameToCompare = setOfPlayerPane[prev].getChildren().get(prev).toString().substring(setOfPlayerPane[prev].getChildren().get(prev).toString().indexOf("'")+1, setOfPlayerPane[prev].getChildren().get(prev).toString().lastIndexOf("'"));
+            setOfPlayerPane_playerPane[next].setStyle("-fx-background-color: #484c4a");
+//			nameToCompare = setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().substring(setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
+//          nameToCompare = setOfPlayerPane_playerPane[prev].getChildren().get(prev).toString().substring(setOfPlayerPane_playerPane[prev].getChildren().get(prev).toString().indexOf("'")+1, setOfPlayerPane_playerPane[prev].getChildren().get(prev).toString().lastIndexOf("'"));
 
             //TODO --- get name that is currently have background color to nameToCompare plz
             nameToCompare = "";
@@ -547,11 +533,11 @@ public class ClientGamePageController implements Initializable {
             playerplaying++;
         } else if (playerplaying == numOfPlayer) {
             prev = numOfPlayer - 1;
-            newScore = Integer.parseInt(setOfScore[prev].getText()) + score;
-            setOfPlayerPane[prev].setStyle("-fx-background-color: transparent");
-            setOfScore[prev].setText(newScore + "");
-            setOfPlayerPane[0].setStyle("-fx-background-color: #484c4a");
-//			nameToCompare = setOfPlayerPane[0].getChildren().get(0).toString().substring(setOfPlayerPane[0].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
+            newScore = Integer.parseInt(setOfPlayerPane_scoreLabel[prev].getText()) + score;
+            setOfPlayerPane_playerPane[prev].setStyle("-fx-background-color: transparent");
+            setOfPlayerPane_scoreLabel[prev].setText(newScore + "");
+            setOfPlayerPane_playerPane[0].setStyle("-fx-background-color: #484c4a");
+//			nameToCompare = setOfPlayerPane_playerPane[0].getChildren().get(0).toString().substring(setOfPlayerPane_playerPane[0].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
 
             //TODO --- get name that is currently have background color to nameToCompare plz
             nameToCompare = "get name that is currently have background color plz";
@@ -601,7 +587,7 @@ public class ClientGamePageController implements Initializable {
             // int score = scoreOfPlayer.get(player);
             // scoreOfPlayer.put(player, score++);
             //
-            // setOfScore[player].setText(score + "");
+            // setOfPlayerPane_scoreLabel[player].setText(score + "");
             score++;
             colorChange(1);
         }
@@ -822,7 +808,7 @@ public class ClientGamePageController implements Initializable {
     // Poon
     @FXML
     void goBack(ActionEvent event) throws IOException {
-        scoreboardPane.setVisible(false);
+        scoreSummaryPane.setVisible(false);
     }
 
     boolean alreadyReady = false;
@@ -1214,6 +1200,7 @@ public class ClientGamePageController implements Initializable {
                 System.out.println("(triggerClientScreen()) Server has reset the game");
                 resetScore();
                 setUpLeftPane();
+                setUpScoreSummaryPane();
                 resetAllBombButtons();
                 resetTimer();
                 leftPane.setDisable(true);
@@ -1230,7 +1217,7 @@ public class ClientGamePageController implements Initializable {
                 // Server pressed "Start", changing game state from "WAITING" -> "ONGOING"
                 System.out.println("(triggerClientScreen()) Server has started the game");
                 resetReadyButton();
-                setPlayerPane();
+                setUpPlayerPane();
                 leftPane.setDisable(false);
                 // game starts, time and bombs remaining become visible
                 bombLeft.setVisible(true);
@@ -1246,7 +1233,7 @@ public class ClientGamePageController implements Initializable {
                 leftPane.setDisable(true);
                 stopTimer();
                 resetTimer();
-                setScoreboardPane(); // set panes in scoreboard
+                setUpScoreSummaryPane(); // set panes in scoreSummary
                 showScoreSummary();
                 break;
             default:
@@ -1288,25 +1275,25 @@ public class ClientGamePageController implements Initializable {
         maxTime = getTimerMode();
         time = getTimerMode();
         startTimer();
-        setOfPlayerPane[0].setStyle("-fx-background-color: #484c4a");
+        setOfPlayerPane_playerPane[0].setStyle("-fx-background-color: #484c4a");
 
         return;
     }
 
     private void showScoreSummary() {
         System.out.println("showScoreSummary() is called");
-        scoreboardPane.setVisible(true);
+        scoreSummaryPane.setVisible(true);
     }
 
-    // (Poon) setup scores and player names on scoreboard
-    private void setScoreboardPane() {
+    // (Poon) setup scores and player names on scoreSummary
+    private void setUpScoreSummaryPane() {
         numOfPlayer = users.size();
 
         //set player nickname in order of pressing ready
         for (int i = 0; i<numOfPlayer; i++) { // this loop could be
-        		setOfNameBoard[i].setText(playerNames[i]); //playerNames[] collect player nickname in order of pressing ready
+        		setOfScoreSummary_playerNameLabel[i].setText(playerNames[i]); //playerNames[] collect player nickname in order of pressing ready
         }
-        // please use setOfScoreBoard[i], it is the set of score Label on UI
+        // please use setOfScoreSummary_scoreLabel[i], it is the set of score Label on UI
 
         //suggestion to replace above
         /* sorted = getSorted();
@@ -1315,52 +1302,65 @@ public class ClientGamePageController implements Initializable {
 		    if(i<numOfPlayer) {
 		    		int v = entry.getKey();
 		    		v++;
-		    		setOfNameBoard[i].setText(playerNames[v]);
-		    		setOfScoreBoard[i].setText(entry.getValue() +"");
+		    		setOfScoreSummary_playerNameLabel[i].setText(playerNames[v]);
+		    		setOfScoreSummary_scoreLabel[i].setText(entry.getValue() +"");
 		    		i++;
 		    }
 		}*/
 
+
         // display user names
-        Pane[] setOfScoreboardPane = new Pane[10];
-        setOfScoreboardPane[0] = player1Pane1;
-        setOfScoreboardPane[1] = player2Pane1;
-        setOfScoreboardPane[2] = player3Pane1;
-        setOfScoreboardPane[3] = player4Pane1;
-        setOfScoreboardPane[4] = player5Pane1;
-        setOfScoreboardPane[5] = player6Pane1;
-        setOfScoreboardPane[6] = player7Pane1;
-        setOfScoreboardPane[7] = player8Pane1;
-        setOfScoreboardPane[8] = player9Pane1;
-        setOfScoreboardPane[9] = player10Pane1;
-        
+        Pane[] setOfScoreSummary_PlayerPane = new Pane[10];
+        setOfScoreSummary_PlayerPane[0] = scoreSummary_player1Pane;
+        setOfScoreSummary_PlayerPane[1] = scoreSummary_player2Pane;
+        setOfScoreSummary_PlayerPane[2] = scoreSummary_player3Pane;
+        setOfScoreSummary_PlayerPane[3] = scoreSummary_player4Pane;
+        setOfScoreSummary_PlayerPane[4] = scoreSummary_player5Pane;
+        setOfScoreSummary_PlayerPane[5] = scoreSummary_player6Pane;
+        setOfScoreSummary_PlayerPane[6] = scoreSummary_player7Pane;
+        setOfScoreSummary_PlayerPane[7] = scoreSummary_player8Pane;
+        setOfScoreSummary_PlayerPane[8] = scoreSummary_player9Pane;
+        setOfScoreSummary_PlayerPane[9] = scoreSummary_player10Pane;
+
+        //(Queenie) moved these down from setUpPlayerPane() since these codes belong here
+        setOfScoreSummary_playerNameLabel[0] = scoreSummary_playerNameLabel1;
+        setOfScoreSummary_playerNameLabel[1] = scoreSummary_playerNameLabel2;
+        setOfScoreSummary_playerNameLabel[2] = scoreSummary_playerNameLabel3;
+        setOfScoreSummary_playerNameLabel[3] = scoreSummary_playerNameLabel4;
+        setOfScoreSummary_playerNameLabel[4] = scoreSummary_playerNameLabel5;
+        setOfScoreSummary_playerNameLabel[5] = scoreSummary_playerNameLabel6;
+        setOfScoreSummary_playerNameLabel[6] = scoreSummary_playerNameLabel7;
+        setOfScoreSummary_playerNameLabel[7] = scoreSummary_playerNameLabel8;
+        setOfScoreSummary_playerNameLabel[8] = scoreSummary_playerNameLabel9;
+        setOfScoreSummary_playerNameLabel[9] = scoreSummary_playerNameLabel10;
+
+
+        setOfScoreSummary_scoreLabel = new Label[10];
+        setOfScoreSummary_scoreLabel[0] = scoreSummary_scoreLabel1;
+        setOfScoreSummary_scoreLabel[1] = scoreSummary_scoreLabel2;
+        setOfScoreSummary_scoreLabel[2] = scoreSummary_scoreLabel3;
+        setOfScoreSummary_scoreLabel[3] = scoreSummary_scoreLabel4;
+        setOfScoreSummary_scoreLabel[4] = scoreSummary_scoreLabel5;
+        setOfScoreSummary_scoreLabel[5] = scoreSummary_scoreLabel6;
+        setOfScoreSummary_scoreLabel[6] = scoreSummary_scoreLabel7;
+        setOfScoreSummary_scoreLabel[7] = scoreSummary_scoreLabel8;
+        setOfScoreSummary_scoreLabel[8] = scoreSummary_scoreLabel9;
+        setOfScoreSummary_scoreLabel[9] = scoreSummary_scoreLabel10;
+
         for (int i = 0; i < numOfPlayer; i++) {
-            setOfScoreboardPane[i].setVisible(true);
+            setOfScoreSummary_PlayerPane[i].setVisible(true);
         }
-
-        Label[] setOfScoreboardScore = new Label[10];
-        setOfScoreboardScore[0] = score11;
-        setOfScoreboardScore[1] = score21;
-        setOfScoreboardScore[2] = score31;
-        setOfScoreboardScore[3] = score41;
-        setOfScoreboardScore[4] = score51;
-        setOfScoreboardScore[5] = score61;
-        setOfScoreboardScore[6] = score71;
-        setOfScoreboardScore[7] = score81;
-        setOfScoreboardScore[8] = score91;
-        setOfScoreboardScore[9] = score101;
-
-        // Setup scores on scoreboard
+        // Setup scores on scoreSummary
         // currently not working
 //        for (int i = 0; i < numOfPlayer; i++) {
-//            setOfScoreboardScore[i].setText(sorted.get(i) + "");
+//            setOfScoreSummary_scoreLabel[i].setText(sorted.get(i) + "");
 //        }
 
     }
     //(Owner unknown - If this is your method put your name here)
     //Method to set up the player pane (middle of client game page) with current players name
     //put score labels into an array of Label
-    private void setPlayerPane() {
+    private void setUpPlayerPane() {
 
         numOfPlayer = users.size();
 
@@ -1368,33 +1368,33 @@ public class ClientGamePageController implements Initializable {
             playerNames[i] = users.get(i).substring(0, users.get(i).indexOf("("));
         }
 
-        player1.setText(playerNames[0]);
-        player2.setText(playerNames[1]);
-        player3.setText(playerNames[2]);
-        player4.setText(playerNames[3]);
-        player5.setText(playerNames[4]);
-        player6.setText(playerNames[5]);
-        player7.setText(playerNames[6]);
-        player8.setText(playerNames[7]);
-        player9.setText(playerNames[8]);
-        player10.setText(playerNames[9]);
+        playerPane_player1Label.setText(playerNames[0]);
+        playerPane_player2Label.setText(playerNames[1]);
+        playerPane_player3Label.setText(playerNames[2]);
+        playerPane_player4Label.setText(playerNames[3]);
+        playerPane_player5Label.setText(playerNames[4]);
+        playerPane_player6Label.setText(playerNames[5]);
+        playerPane_player7Label.setText(playerNames[6]);
+        playerPane_player8Label.setText(playerNames[7]);
+        playerPane_player9Label.setText(playerNames[8]);
+        playerPane_player10Label.setText(playerNames[9]);
 
         // display users name
         for (int i = 0; i < numOfPlayer; i++) {
-            setOfPlayerPane[i].setVisible(true);
+            setOfPlayerPane_playerPane[i].setVisible(true);
         }
-        //setOfScore is an array of Labels
-        //score1-10 is the label for displaying score
-        setOfScore[0] = score1;
-        setOfScore[1] = score2;
-        setOfScore[2] = score3;
-        setOfScore[3] = score4;
-        setOfScore[4] = score5;
-        setOfScore[5] = score6;
-        setOfScore[6] = score7;
-        setOfScore[7] = score8;
-        setOfScore[8] = score9;
-        setOfScore[9] = score10;
+        //setOfPlayerPane_scoreLabel is an array of Labels
+        //playerPane_scoreLabel1-10 is the label for displaying score
+        setOfPlayerPane_scoreLabel[0] = playerPane_scoreLabel1;
+        setOfPlayerPane_scoreLabel[1] = playerPane_scoreLabel2;
+        setOfPlayerPane_scoreLabel[2] = playerPane_scoreLabel3;
+        setOfPlayerPane_scoreLabel[3] = playerPane_scoreLabel4;
+        setOfPlayerPane_scoreLabel[4] = playerPane_scoreLabel5;
+        setOfPlayerPane_scoreLabel[5] = playerPane_scoreLabel6;
+        setOfPlayerPane_scoreLabel[6] = playerPane_scoreLabel7;
+        setOfPlayerPane_scoreLabel[7] = playerPane_scoreLabel8;
+        setOfPlayerPane_scoreLabel[8] = playerPane_scoreLabel9;
+        setOfPlayerPane_scoreLabel[9] = playerPane_scoreLabel10;
 
     }
 
