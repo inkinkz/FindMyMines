@@ -1174,7 +1174,6 @@ public class ClientGamePageController implements Initializable {
                                 // Game ended
                                 // Do things when game ends
                                 display("Game Over!");
-                                display("Server has stopped the game" + "\n");
                                 triggerClientScreen("ENDED", null);
 
                         });

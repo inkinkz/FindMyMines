@@ -250,7 +250,7 @@ public class ServerGamePageController implements Initializable {
     private Label bombLeft;
 
     @FXML
-    private Button startButton;
+    public Button startButton;
 
     @FXML
     private Button stopButton;
