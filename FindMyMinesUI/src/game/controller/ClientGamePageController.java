@@ -509,7 +509,7 @@ public class ClientGamePageController implements Initializable {
         setOfScoreBoard[9] = score101;
     }
 
-    private int player = 0;
+//    private int player = 0;
     private int playerplaying = 1;
 
     // Poon
@@ -581,7 +581,6 @@ public class ClientGamePageController implements Initializable {
             // ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
             ((Button) event.getTarget()).setStyle("-fx-text-fill: #ffffff ; -fx-background-color:#2B2D42;");
             ((Button) event.getTarget()).setDisable(true);
-            player++;
             colorChange(0);
         }
 
@@ -593,13 +592,12 @@ public class ClientGamePageController implements Initializable {
             ((Button) event.getTarget()).setDisable(true);
             numBombLeft--;
             bombLeft.setText(numBombLeft + "");
-            //
+            //not needed if set score using colorChange()
             // int score = scoreOfPlayer.get(player);
             // scoreOfPlayer.put(player, score++);
             //
             // setOfScore[player].setText(score + "");
             score++;
-            player++;
             colorChange(1);
         }
 
@@ -634,9 +632,12 @@ public class ClientGamePageController implements Initializable {
             colorChange(4);
         }
 
+         // currently using colorChange() to move to next player
+//        player++;
 //		if (player == numOfPlayer) {
 //			player = 0;
 //		}
+
 
         // timer of next player
         resetTimer();
@@ -844,19 +845,19 @@ public class ClientGamePageController implements Initializable {
     }
 
     // Poon
-    Integer[] nameOfPlayer = new Integer[10];
+//    Integer[] nameOfPlayer = new Integer[10];
     private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
-
-    // Poon
-    // sort Map according to highest to lowest score
+//
+//    // Poon
+//    // sort score
     public static Map<Integer, Integer> getSorted() {
         sorted = sort(scoreOfPlayer);
         System.out.print(sorted);
         return sorted;
     }
-
-    // Poon
-    // remove non-playing players from sorted arraylist
+//
+//    // Poon
+//    // remove non-playing players from sorted arraylist
     private static Map<Integer, Integer> sort(Map<Integer, Integer> map) {
         Map<Integer, Integer> sorted = map.entrySet().stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
@@ -870,8 +871,8 @@ public class ClientGamePageController implements Initializable {
         }
         // System.out.print(sorted);
         return sorted;
-
     }
+
     // event going back to the starting page
     /*
      * @FXML void backtohome(ActionEvent event) throws IOException { AnchorPane
@@ -1301,7 +1302,7 @@ public class ClientGamePageController implements Initializable {
         		setOfNameBoard[i].setText(playerNames[i]); //playerNames[] collect player nickname in order of pressing ready
         }
         // please use setOfScoreBoard[i], it is the set of score Label on UI
-        
+
         //suggestion to replace above
         /* sorted = getSorted();
         int i = 0;
@@ -1312,7 +1313,7 @@ public class ClientGamePageController implements Initializable {
 		    		setOfNameBoard[i].setText(playerNames[v]);
 		    		setOfScoreBoard[i].setText(entry.getValue() +"");
 		    		i++;
-		    }   
+		    }
 		}*/
 
         // display user names
@@ -1346,9 +1347,9 @@ public class ClientGamePageController implements Initializable {
 
         // Setup scores on scoreboard
         // currently not working
-        for (int i = 0; i < numOfPlayer; i++) {
-            setOfScoreboardScore[i].setText(sorted.get(i) + "");
-        }
+//        for (int i = 0; i < numOfPlayer; i++) {
+//            setOfScoreboardScore[i].setText(sorted.get(i) + "");
+//        }
 
     }
     //(Owner unknown - If this is your method put your name here)
