@@ -358,6 +358,12 @@ public class ClientGamePageController implements Initializable {
     
     @FXML
     private AnchorPane buttonPane;
+    
+    @FXML
+    private ImageView backImage;
+    
+    @FXML
+    private Label welcomeLabel;
 
     /*READ ME
     * left pane - whole left side of the page
@@ -413,6 +419,9 @@ public class ClientGamePageController implements Initializable {
         // set podium image in scoreSummary
         Image image = new Image(getClass().getResourceAsStream("/podium.png"));
         winnerImage.setImage(image);
+        Image image1 = new Image(getClass().getResourceAsStream("/bomb.png"));
+		backImage.setImage(image1);
+		welcomeLabel.setText("Welcome "+ username.toUpperCase() + " !");
 
         txtArea.setEditable(false);
         leftPane.setDisable(true);
@@ -1224,7 +1233,8 @@ public class ClientGamePageController implements Initializable {
                 bombLeftLabel.setVisible(true);
                 showTime.setVisible(true);
                 showTimeLabel.setVisible(true);
-
+                //buttonPane.Disable(); here
+                //setPlayable(myturn); should be here
                 startWithGameMode(game_mode);
                 break;
             case "ENDED":
