@@ -454,7 +454,7 @@ public class ServerGamePageController implements Initializable {
    // ArrayList<String> allUserName = new ArrayList<>();
     //int turn;
     ArrayList<Integer> remainingTurn = new ArrayList<Integer>();
-    Map<String, Integer> matchNameandTurn = new HashMap<>();
+    static Map<String, Integer> matchNameandTurn = new HashMap<>();
     
     public void setRemainingTurn() {
     	for (int i = 1; i <= totalPlayer; i++) { // assign turn1,2,3,... to arraylist remainingTurn
@@ -465,13 +465,13 @@ public class ServerGamePageController implements Initializable {
     public int randomTurn() {//return remaining turn
     	int randomTurn = (int) Math.ceil(Math.random() * totalPlayer);
     	if (remainingTurn.contains(randomTurn)) {
-    		remainingTurn.remove(randomTurn);
+    		remainingTurn.remove(Integer.valueOf(randomTurn));
     		return randomTurn;
     	}else {// if that turn is already assign to other player
 			while (!remainingTurn.contains(randomTurn)) {
 				randomTurn = (int) Math.ceil(Math.random() * totalPlayer);
 			}
-			remainingTurn.remove(randomTurn);
+			remainingTurn.remove(Integer.valueOf(randomTurn));
 			return randomTurn;
 		}
     }
@@ -481,6 +481,7 @@ public class ServerGamePageController implements Initializable {
         numOfPlayer = users.size(); // get from how many client
         totalPlayer = numOfPlayer; //set tolal player -- used by findmymineserver
         allUserName = users;
+        setRemainingTurn();
        // allUserName = new ArrayList<>(((ListView<String>) users).getItems()); //set all user name
        /* for (int i=0;i<totalPlayer;i++) {
         	int turn = randomTurn();
@@ -489,10 +490,9 @@ public class ServerGamePageController implements Initializable {
         }
         System.out.println(Arrays.asList(matchNameandTurn));*/
 
-       // allUserName
-        
+   
         System.out.println(totalPlayer);
-        System.out.println("all user"+allUserName);
+  
         
         
         //setRemainingTurn();
@@ -534,8 +534,16 @@ public class ServerGamePageController implements Initializable {
         numOfPlayer = users.size();
 
         for (int i = 0; i < numOfPlayer; i++) {
+        	int turn = randomTurn();
             playerNames[i] = users.get(i).substring(0,users.get(i).indexOf("("));
+            matchNameandTurn.put(playerNames[i], turn);
+           /* System.out.println(playerNames[i]);
+            System.out.println(turn);
+            */
+            System.out.println(Arrays.asList(matchNameandTurn)); 
         }
+        
+       
 
         player1.setText(playerNames[0]);
         player2.setText(playerNames[1]);

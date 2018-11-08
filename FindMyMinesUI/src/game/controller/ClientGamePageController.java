@@ -381,7 +381,7 @@ public class ClientGamePageController implements Initializable {
     
     int myid;
     int myTurn;
-    
+    Map<String, Integer> matchNameandTurn = new HashMap<>(); //tram
     
 
     int[][] bombplacement = new int[6][6];
@@ -437,6 +437,12 @@ public class ClientGamePageController implements Initializable {
         for (int i = 0; i < 10; i++) {
             scoreOfPlayer.put(i, 0);
         }
+    }
+    
+    
+    private int getMyTurn() {
+    	int getTurnofThisName = matchNameandTurn.get(username);
+    	return getTurnofThisName;
     }
 
     //Tram and Poon
@@ -1016,6 +1022,24 @@ public class ClientGamePageController implements Initializable {
                 e1.printStackTrace();
             }*/
             
+         
+			try {
+				matchNameandTurn = (Map<String, Integer>) sInput.readObject();
+			} catch (ClassNotFoundException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+
+            
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            
             while (true) {
                 try {
                     msgt = (String) sInput.readObject();
@@ -1043,6 +1067,7 @@ public class ClientGamePageController implements Initializable {
                             });
 
                         } else if (split[1].equals("GAMESTART")) {
+                        	
                             switch (split[0]) {
                                 case "DEFAULT":
                                     Platform.runLater(() -> {
@@ -1240,6 +1265,8 @@ public class ClientGamePageController implements Initializable {
                 //Server pressed "Start", changing game state from "WAITING" -> "ONGOING"
                 resetReadyButton();
                 setPlayerPane();
+                myTurn = getMyTurn();
+                System.out.println(myTurn);
                 leftPane.setDisable(false);
                 //game starts, time and bombs remaining become visible
                 bombLeft.setVisible(true);
