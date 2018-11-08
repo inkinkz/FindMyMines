@@ -355,6 +355,9 @@ public class ClientGamePageController implements Initializable {
 
     @FXML
     private DialogPane scoreBoard;
+    
+    @FXML
+    private AnchorPane buttonPane;
 
     // game
     static int numOfPlayer; // how many player
@@ -1415,6 +1418,15 @@ public class ClientGamePageController implements Initializable {
                 y.setStyle(null);
             }
         }
+    }
+    
+    //(Poon) should set if it's their turn to play, they can play
+    //before call this method should set buttonPane default as Disable(true)
+    //prepare for tram's gameturn system
+    private void setPlayable(int myturn) {
+    		if(myturn == playerplaying) {
+    			buttonPane.setDisable(false);
+    		}
     }
 
 }

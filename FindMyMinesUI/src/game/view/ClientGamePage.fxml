@@ -13,186 +13,6 @@
    <children>
       <AnchorPane fx:id="leftPane" layoutY="165.0" prefHeight="500.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="150.0">
          <children>
-            <Button fx:id="b1" layoutX="54.0" layoutY="70.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="70.0">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b2" layoutX="119.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="70.0">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b3" layoutX="184.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="70.0">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b4" layoutX="249.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="70.0">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b5" layoutX="314.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="70.0">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b6" layoutX="379.0" layoutY="68.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="70.0">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b11" layoutX="54.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b21" layoutX="119.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b31" layoutX="184.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b41" layoutX="249.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b51" layoutX="314.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b61" layoutX="379.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b12" layoutX="54.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b22" layoutX="119.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b32" layoutX="184.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b42" layoutX="249.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b52" layoutX="314.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b62" layoutX="379.0" layoutY="198.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b13" layoutX="54.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b23" layoutX="119.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b33" layoutX="184.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b43" layoutX="249.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b53" layoutX="314.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b63" layoutX="379.0" layoutY="263.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b14" layoutX="54.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b24" layoutX="119.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b34" layoutX="184.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b44" layoutX="249.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b54" layoutX="314.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b64" layoutX="379.0" layoutY="328.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b15" layoutX="54.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b25" layoutX="119.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b35" layoutX="184.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b45" layoutX="249.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b55" layoutX="314.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="b65" layoutX="379.0" layoutY="393.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
-               <font>
-                  <Font name="ISOCPEUR" size="13.0" />
-               </font>
-            </Button>
             <Label fx:id="showTimeLabel" layoutX="353.0" layoutY="29.0" prefHeight="20.0" prefWidth="224.0" text="Time Remaining :" textFill="#edf2f4" AnchorPane.topAnchor="29.0">
                <font>
                   <Font name="ISOCTEUR" size="19.0" />
@@ -353,6 +173,190 @@
                   <Font name="ISOCTEUR" size="19.0" />
                </font>
             </Label>
+            <AnchorPane fx:id="buttonPane" layoutX="54.0" layoutY="79.0" prefHeight="389.0" prefWidth="387.0" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="70.0">
+               <children>
+                  <Button fx:id="b1" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b2" layoutX="65.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b3" layoutX="130.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b4" layoutX="195.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b5" layoutX="260.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b6" layoutX="325.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b11" layoutY="63.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b21" layoutX="65.0" layoutY="63.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b31" layoutX="130.0" layoutY="63.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b41" layoutX="195.0" layoutY="63.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b51" layoutX="260.0" layoutY="63.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b61" layoutX="325.0" layoutY="63.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b12" layoutY="128.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b22" layoutX="65.0" layoutY="128.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b32" layoutX="130.0" layoutY="128.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b42" layoutX="195.0" layoutY="128.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b52" layoutX="260.0" layoutY="128.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b62" layoutX="325.0" layoutY="128.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b13" layoutY="193.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b23" layoutX="65.0" layoutY="193.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b33" layoutX="130.0" layoutY="193.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b43" layoutX="195.0" layoutY="193.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b53" layoutX="260.0" layoutY="193.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b63" layoutX="325.0" layoutY="193.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b14" layoutY="258.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b24" layoutX="65.0" layoutY="258.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b34" layoutX="130.0" layoutY="258.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b44" layoutX="195.0" layoutY="258.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b54" layoutX="260.0" layoutY="258.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b64" layoutX="325.0" layoutY="258.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b15" layoutY="323.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b25" layoutX="65.0" layoutY="323.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b35" layoutX="130.0" layoutY="323.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b45" layoutX="195.0" layoutY="323.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b55" layoutX="260.0" layoutY="323.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b65" layoutX="325.0" layoutY="323.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" textFill="TRANSPARENT">
+                     <font>
+                        <Font name="ISOCPEUR" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
          </children></AnchorPane>
       <AnchorPane fx:id="rightPane" layoutX="587.0" prefHeight="261.0" prefWidth="410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="650.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
