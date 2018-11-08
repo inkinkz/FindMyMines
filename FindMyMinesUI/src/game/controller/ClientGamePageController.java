@@ -356,6 +356,15 @@ public class ClientGamePageController implements Initializable {
     @FXML
     private DialogPane scoreBoard;
 
+    @FXML
+    private AnchorPane buttonPane;
+
+    @FXML
+    private ImageView backImage;
+
+    @FXML
+    private Label welcomeLabel;
+
     /*READ ME
     * left pane - whole left side of the page
     * player pane - middle box on the client game page
@@ -407,13 +416,14 @@ public class ClientGamePageController implements Initializable {
 
         //fill a space as all players' names
         Arrays.fill(playerNames, " ");
-        System.out.println("array playerNames size = "+playerNames.length);
 
         // Poon
-
         // set podium image in scoreSummary
         Image image = new Image(getClass().getResourceAsStream("/podium.png"));
         winnerImage.setImage(image);
+        Image image1 = new Image(getClass().getResourceAsStream("/bomb.png"));
+		backImage.setImage(image1);
+		welcomeLabel.setText("Welcome "+ username.toUpperCase() + " !");
 
         txtArea.setEditable(false);
         leftPane.setDisable(true);
@@ -444,7 +454,7 @@ public class ClientGamePageController implements Initializable {
 
     // Tram and Poon
     private void setUpLeftPane() {
-        //Pane[] setOfPlayerPane_playerPane = new Pane[10];
+
         setOfPlayerPane_playerPane[0] = playerPane_player1Pane;
         setOfPlayerPane_playerPane[1] = playerPane_player2Pane;
         setOfPlayerPane_playerPane[2] = playerPane_player3Pane;
@@ -498,28 +508,6 @@ public class ClientGamePageController implements Initializable {
         setOfButton[4][5] = b55;
         setOfButton[5][5] = b65;
 
-        /*setOfScoreSummary_playerNameLabel[0] = scoreSummary_playerNameLabel1;
-        setOfScoreSummary_playerNameLabel[1] = scoreSummary_playerNameLabel2;
-        setOfScoreSummary_playerNameLabel[2] = scoreSummary_playerNameLabel3;
-        setOfScoreSummary_playerNameLabel[3] = scoreSummary_playerNameLabel4;
-        setOfScoreSummary_playerNameLabel[4] = scoreSummary_playerNameLabel5;
-        setOfScoreSummary_playerNameLabel[5] = scoreSummary_playerNameLabel6;
-        setOfScoreSummary_playerNameLabel[6] = scoreSummary_playerNameLabel7;
-        setOfScoreSummary_playerNameLabel[7] = scoreSummary_playerNameLabel8;
-        setOfScoreSummary_playerNameLabel[8] = scoreSummary_playerNameLabel9;
-        setOfScoreSummary_playerNameLabel[9] = scoreSummary_playerNameLabel10;
-
-        setOfScoreSummary_scoreLabel[0] = scoreSummary_scoreLabel1;
-        setOfScoreSummary_scoreLabel[1] = scoreSummary_scoreLabel2;
-        setOfScoreSummary_scoreLabel[2] = scoreSummary_scoreLabel3;
-        setOfScoreSummary_scoreLabel[3] = scoreSummary_scoreLabel4;
-        setOfScoreSummary_scoreLabel[4] = scoreSummary_scoreLabel5;
-        setOfScoreSummary_scoreLabel[5] = scoreSummary_scoreLabel6;
-        setOfScoreSummary_scoreLabel[6] = scoreSummary_scoreLabel7;
-        setOfScoreSummary_scoreLabel[7] = scoreSummary_scoreLabel8;
-        setOfScoreSummary_scoreLabel[8] = scoreSummary_scoreLabel9;
-        setOfScoreSummary_scoreLabel[9] = scoreSummary_scoreLabel10;*/
-
     }
 
  //    private int player = 0;
@@ -553,7 +541,7 @@ public class ClientGamePageController implements Initializable {
             //remove the color of previous player and update their score both in the playerPane and scoreSummary
             setOfPlayerPane_playerPane[prev].setStyle("-fx-background-color: transparent");
             setOfPlayerPane_scoreLabel[prev].setText(newScore + "");
-            
+
                 //System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
             setOfScoreSummary_scoreLabel[prev].setText(newScore + "");
                 //System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
@@ -567,6 +555,7 @@ public class ClientGamePageController implements Initializable {
 
             //TODO --- get name that is currently have background color to nameToCompare plz
             nameToCompare = "";
+
 
             // Enable leftPane if username = nameToCompare
 //			if(nameToCompare.equals(username))
@@ -664,7 +653,7 @@ public class ClientGamePageController implements Initializable {
         // Tram
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb (2 points)
             ((Button) event.getTarget())
-                    .setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+                    .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
             ((Button) event.getTarget()).setText("BOMB \n x2");
             numBombLeft--;
@@ -674,7 +663,7 @@ public class ClientGamePageController implements Initializable {
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb (3 points)
             ((Button) event.getTarget())
-                    .setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+                    .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
             ((Button) event.getTarget()).setText("BOMB \n x3");
             numBombLeft--;
@@ -684,7 +673,7 @@ public class ClientGamePageController implements Initializable {
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb (4 points)
             ((Button) event.getTarget())
-                    .setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+                    .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
             ((Button) event.getTarget()).setText("BOMB \n x4");
             numBombLeft--;
@@ -740,7 +729,7 @@ public class ClientGamePageController implements Initializable {
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             y.setDisable(true);
             y.setText("BOMB \n x2");
             numBombLeft--;
@@ -749,7 +738,7 @@ public class ClientGamePageController implements Initializable {
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             y.setDisable(true);
             y.setText("BOMB \n x3");
             numBombLeft--;
@@ -758,7 +747,7 @@ public class ClientGamePageController implements Initializable {
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             y.setDisable(true);
             y.setText("BOMB \n x4");
             numBombLeft--;
@@ -1339,7 +1328,8 @@ public class ClientGamePageController implements Initializable {
                 bombLeftLabel.setVisible(true);
                 showTime.setVisible(true);
                 showTimeLabel.setVisible(true);
-
+                //buttonPane.Disable(); here
+                //setPlayable(myturn); should be here
                 startWithGameMode(game_mode);
                 break;
             case "ENDED":
@@ -1554,6 +1544,29 @@ public class ClientGamePageController implements Initializable {
             }
         }
     }
+
+    //(Poon) should set if it's their turn to play, they can play
+    //before call this method should set buttonPane default as Disable(true)
+    //prepare for tram's gameturn system
+    private void setPlayable(int myturn) {
+    		if(myturn == playerplaying) {
+    			buttonPane.setDisable(false);
+    		}
+    }
+
+    //tram
+    //if there is no bomb left - return false
+    //we should call this method in some while loop ,to check every clicking button that is it a bomb?
+    //if it a bomb, is it the last bomb??
+    //if it is the last bomb (numbombleft==0), we change the game state to ended
+    boolean isThereBombLeft() {
+    	if (numBombLeft ==0) {
+    		return false;
+    	}
+		return true;
+
+    }
+
 
     //Method to print out contents within a label array
     private String toString(Label[] setOfLabels){
