@@ -1060,6 +1060,16 @@ public class ServerGamePageController implements Initializable {
             //UI display
             modebox.setDisable(true);
 
+            valueOfSpace = new int[6][6];
+            valueOfSpaceMultiPoints = new int[6][6];
+            bombAround = new int[6][6];
+            bombAroundMultiPoints = new int[6][6];
+            //reassign bombs
+            numBomb = 0;
+            numBombMultiPoints = 0;
+            assignBombDefault();
+            assignBombMultiPoints();
+
             System.out.println("Stop button clicked");
             startButton.setText("RESET");
             server.changeGameState();
@@ -1072,10 +1082,15 @@ public class ServerGamePageController implements Initializable {
             //bombLeft.setVisible(false);
             //bombLeftLabel.setVisible(false);
 
+//            //reassign bombs
+//            assignBombDefault();
+//            assignBombMultiPoints();
+
             System.out.println("Reset button clicked");
             startButton.setText("START");
             server.changeGameState();
             FindMyMinesServer.broadcast("GAMERESET:GAMERESET");
+            FindMyMinesServer.broadcastBomb();
             setPlayerPaneVisible(users.size(),false);
             return;
         }
