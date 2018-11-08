@@ -1235,5 +1235,36 @@ public class ServerGamePageController implements Initializable {
         }
 
     }
+    
+    //Poon implement
+    
+    public int getCurrentGameturn(int playerid) {
+    		for(int i = 0; i< users.size(); i++) {
+    			if(i == playerid) {
+    				return i;
+    			}
+    		}
+    		return -1;
+    }
+    
+    int playerid;
+    
+    public void setGameid() {
+    		//playerid = ;
+    }
+    
+    public void gameturn(int playerid, int round) {
+    		if (round == 0) {
+    			//default starting setting
+    		}
+    		if (round > 0) {
+    			//
+    		}
+    		if (playerid < users.size()) {
+    			
+    		} else {
+    			//reset playerid
+    		}
+    }
 
 }
