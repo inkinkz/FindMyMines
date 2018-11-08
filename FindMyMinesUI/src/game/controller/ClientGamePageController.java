@@ -847,7 +847,7 @@ public class ClientGamePageController implements Initializable {
     private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
 
     // Poon
-    // sort score
+    // sort Map according to highest to lowest score
     public static Map<Integer, Integer> getSorted() {
         sorted = sort(scoreOfPlayer);
         System.out.print(sorted);
@@ -1295,16 +1295,24 @@ public class ClientGamePageController implements Initializable {
     private void setScoreboardPane() {
         numOfPlayer = users.size();
 
-        player11.setText(playerNames[0]);
-        player21.setText(playerNames[1]);
-        player31.setText(playerNames[2]);
-        player41.setText(playerNames[3]);
-        player51.setText(playerNames[4]);
-        player61.setText(playerNames[5]);
-        player71.setText(playerNames[6]);
-        player81.setText(playerNames[7]);
-        player91.setText(playerNames[8]);
-        player101.setText(playerNames[9]);
+        //set player nickname in order of pressing ready
+        for (int i = 0; i<numOfPlayer; i++) { // this loop could be
+        		setOfNameBoard[i].setText(playerNames[i]); //playerNames[] collect player nickname in order of pressing ready
+        }
+        // please use setOfScoreBoard[i], it is the set of score Label on UI
+        
+        //suggestion to replace above
+        /* sorted = getSorted();
+        int i = 0;
+		for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) {
+		    if(i<numOfPlayer) {
+		    		int v = entry.getKey();
+		    		v++;
+		    		setOfNameBoard[i].setText(playerNames[v]);
+		    		setOfScoreBoard[i].setText(entry.getValue() +"");
+		    		i++;
+		    }   
+		}*/
 
         // display user names
         Pane[] setOfScoreboardPane = new Pane[10];
@@ -1340,12 +1348,6 @@ public class ClientGamePageController implements Initializable {
         for (int i = 0; i < numOfPlayer; i++) {
             setOfScoreboardScore[i].setText(sorted.get(i) + "");
         }
-
-        // setText for score board
-        /*
-         * int i = 0; for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) { if
-         * (i < numOfPlayer) { setOfScore[i].setText(entry.getValue() + ""); i++; } }
-         */
 
     }
 
