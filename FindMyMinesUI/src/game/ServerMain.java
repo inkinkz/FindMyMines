@@ -18,12 +18,12 @@ public class ServerMain extends Application {
 			Font.loadFont(getClass().getResourceAsStream("/ISOCTEUR.TTF"), 14);
 			
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("view/GamePage.fxml"));
-			Scene scene = new Scene(root, 1000, 650);
+			Scene scene = new Scene(root, 460, 650);
 			scene.getStylesheets().add(getClass().getResource("view/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.sizeToScene();
 			primaryStage.show();
-			primaryStage.setMinWidth(1000);
+			primaryStage.setMinWidth(460);
 	        primaryStage.setMinHeight(650);
 			primaryStage.setResizable(false);
 			
