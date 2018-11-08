@@ -1240,7 +1240,7 @@ public class ClientGamePageController implements Initializable {
                 leftPane.setDisable(true);
                 stopTimer();
                 resetTimer();
-                //setScoreboardPane(); // set panes in scoreboard
+                setScoreboardPane(); // set panes in scoreboard
                 showScoreSummary();
                 break;
             default:
@@ -1296,10 +1296,6 @@ public class ClientGamePageController implements Initializable {
     private void setScoreboardPane() {
         numOfPlayer = users.size();
 
-        for (int i = 0; i < numOfPlayer; i++) {
-            playerNames[i] = users.get(i).substring(0, users.get(i).indexOf("("));
-        }
-
         player11.setText(playerNames[0]);
         player21.setText(playerNames[1]);
         player31.setText(playerNames[2]);
@@ -1323,6 +1319,7 @@ public class ClientGamePageController implements Initializable {
         setOfScoreboardPane[7] = player8Pane1;
         setOfScoreboardPane[8] = player9Pane1;
         setOfScoreboardPane[9] = player10Pane1;
+        
         for (int i = 0; i < numOfPlayer; i++) {
             setOfScoreboardPane[i].setVisible(true);
         }
