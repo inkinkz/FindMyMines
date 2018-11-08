@@ -32,7 +32,7 @@ public class FindMyMinesServer {
     //ArrayList<String> allUserName = ServerGamePageController.allUserName;
     //int numberOfPlayer=3; //test
     
-    Map<String, Integer> matchNameandTurn = ServerGamePageController.fullmatchNameandTurn;
+    Map<String, Integer> matchNameandTurn = ServerGamePageController.fullmatchNameandTurn;//tram
     
     int[][] bombplacementMultiPoints = ServerGamePageController.valueOfSpaceMultiPoints;
     static int[][] bombAroundMultiPoints = ServerGamePageController.bombAroundMultiPoints;
@@ -317,13 +317,13 @@ public class FindMyMinesServer {
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sOutput.writeObject(myid);
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
-                sOutput.writeObject(matchNameandTurn);
+                sOutput.writeObject(matchNameandTurn);//tram
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sOutput.writeObject(testnum);
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
-                sOutput.writeObject(matchName);
+                sOutput.writeObject(matchName);//tram - not important
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
-                sOutput.writeObject(matchTurn);
+                sOutput.writeObject(matchTurn);//tram - not important
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 
 

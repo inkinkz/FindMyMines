@@ -1,5 +1,7 @@
 package game.controller;
 
+//
+
 import static java.util.stream.Collectors.toMap;
 
 import java.awt.Font;
@@ -449,6 +451,8 @@ public class ServerGamePageController implements Initializable {
         }
     }
 
+    
+    //tram
     static int totalPlayer;//tram
    ObservableList<String> allUserName;
    // ArrayList<String> allUserName = new ArrayList<>();
@@ -457,13 +461,13 @@ public class ServerGamePageController implements Initializable {
     static Map<String, Integer> matchNameandTurn = new HashMap<>();
     static Map<String, Integer> fullmatchNameandTurn = new HashMap<>();
     
-    public void setRemainingTurn() {
+    public void setRemainingTurn() {//create array containing turn number
     	for (int i = 1; i <= totalPlayer; i++) { // assign turn1,2,3,... to arraylist remainingTurn
 			remainingTurn.add(i);
 		}
     }
  
-    public int randomTurn() {//return remaining turn
+    public int randomTurn() {//get each client turn
     	int randomTurn = (int) Math.ceil(Math.random() * totalPlayer);
     	if (remainingTurn.contains(randomTurn)) {
     		remainingTurn.remove(Integer.valueOf(randomTurn));
@@ -477,15 +481,16 @@ public class ServerGamePageController implements Initializable {
 		}
     }
     
-    
+    //method2 - not important
     static ArrayList<String> matchName = new ArrayList<>();
     static ArrayList<Integer> matchTurn = new ArrayList<>();
-    
+    //tram
     private void setupPane() {
         numOfPlayer = users.size(); // get from how many client
         totalPlayer = numOfPlayer; //set tolal player -- used by findmymineserver
         allUserName = users;
-        setRemainingTurn();
+        setRemainingTurn();//create array containing turn number
+        
        // allUserName = new ArrayList<>(((ListView<String>) users).getItems()); //set all user name
        /* for (int i=0;i<totalPlayer;i++) {
         	int turn = randomTurn();
@@ -540,16 +545,16 @@ public class ServerGamePageController implements Initializable {
         for (int i = 0; i < numOfPlayer; i++) {
         	int turn = randomTurn();
             playerNames[i] = users.get(i).substring(0,users.get(i).indexOf("("));
-            matchNameandTurn.put(playerNames[i], turn);
+            matchNameandTurn.put(playerNames[i], turn);//create table that match username with it's turn
            /* System.out.println(playerNames[i]);
             System.out.println(turn);
             */
             
-            //method2
+            //method2 - not nessasary
             matchName.add(playerNames[i]);
             matchTurn.add(turn);
             
-            
+            //test
             System.out.println(Arrays.asList(matchNameandTurn)); 
         }
         
