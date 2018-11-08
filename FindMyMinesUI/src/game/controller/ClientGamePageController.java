@@ -384,6 +384,11 @@ public class ClientGamePageController implements Initializable {
     Label[] setOfScoreSummary_scoreLabel = new Label[10];
     int numBombLeft = 11;
     int score = 0; //score per 1 click
+    private int playerplaying;
+
+    //First player randomization
+    String firstPlayerName;
+    String nameToCompare;
 
     private String[] playerNames = new String[10];
 
@@ -412,6 +417,7 @@ public class ClientGamePageController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        System.out.println("initialize()");
 
         new ListenFromServer().start();
 
@@ -427,12 +433,14 @@ public class ClientGamePageController implements Initializable {
         welcomeLabel.setText("Welcome " + username.toUpperCase() + " !");
 
         txtArea.setEditable(false);
-        leftPane.setDisable(true);
+        buttonPane.setDisable(true);
+        System.out.println("    buttonPane disabled");
         bombLeft.setVisible(false);
         bombLeftLabel.setVisible(false);
         showTime.setVisible(false);
         showTimeLabel.setVisible(false);
 
+        System.out.println("Hello, "+username+".\n");
         display("Hello, " + username + ".\n");
         display("When you are ready to play, press Ready button\n");
         // trigger this when server press start
@@ -447,6 +455,7 @@ public class ClientGamePageController implements Initializable {
     // Poon
     // method to reset all score to 0
     private void resetScore() {
+        System.out.println("resetScore()");
         for (int i = 0; i < 10; i++) {
             scoreOfPlayer.put(i, 0);
             setOfPlayerPane_scoreLabel[i].setText("0");
@@ -455,6 +464,7 @@ public class ClientGamePageController implements Initializable {
 
     // Tram and Poon
     private void setUpLeftPane() {
+        System.out.println("setUpLeftPane()");
 
         setOfPlayerPane_playerPane[0] = playerPane_player1Pane;
         setOfPlayerPane_playerPane[1] = playerPane_player2Pane;
@@ -511,9 +521,6 @@ public class ClientGamePageController implements Initializable {
 
     }
 
-    //private int player = 0;
-    private int playerplaying = 1;
-
     // Poon
     // call to change color to inform the next player that it's their turn
     // Inkz
@@ -521,10 +528,9 @@ public class ClientGamePageController implements Initializable {
     void colorChange(int score) {
 
         int prev, newScore, next;
-        String nameToCompare;
 
         if (playerplaying < numOfPlayer) {
-            System.out.println(">>>colorChange(" + score + ") case 1 playerplaying < numOfPlayer");
+            System.out.println(">>>colorChange(" + score + ") case 1 playerplaying("+playerplaying+") < numOfPlayer("+numOfPlayer+")");
             System.out.println("playerplaying=" + playerplaying);
             System.out.println("numOfPlayer=" + numOfPlayer);
             //if the player playing is not the last one
@@ -551,21 +557,25 @@ public class ClientGamePageController implements Initializable {
             //get the current player and update their color
             next = ++playerplaying;
             setOfPlayerPane_playerPane[next].setStyle("-fx-background-color: #484c4a");
+            System.out.println("*"+playerNames[next]+"'s TURN*");
+            display("*"+playerNames[next]+"'s TURN*");
 
             nameToCompare = playerNames[next];
 
             // Enable leftPane if username = nameToCompare
             if (nameToCompare.trim().equals(ClientStartPageController.userName)) {
                 buttonPane.setDisable(false);
+                System.out.println("    buttonPane enabled");
             } else {
                 buttonPane.setDisable(true);
+                System.out.println("    buttonPane disabled");
             }
 
             //move on to the next player
             playerplaying++;
 
         } else if (playerplaying == numOfPlayer) {
-            System.out.println(">>>colorChange(" + score + ") case 2 playerplaying == numOfPlayer");
+            System.out.println(">>>colorChange(" + score + ") case 2 playerplaying("+playerplaying+") == numOfPlayer("+numOfPlayer+")");
             System.out.println("playerplaying=" + playerplaying);
             System.out.println("numOfPlayer=" + numOfPlayer);
             //if the player playing is the last one or the only one
@@ -588,14 +598,18 @@ public class ClientGamePageController implements Initializable {
 
             //since the next player wraps around back to the 1st one, update their color
             setOfPlayerPane_playerPane[0].setStyle("-fx-background-color: #484c4a");
+            System.out.println("*"+playerNames[0]+"'s TURN*");
+            display("*"+playerNames[0]+"'s TURN*");
 
             nameToCompare = playerNames[0];
 
             // Enable leftPane if username = nameToCompare
             if (nameToCompare.trim().equals(ClientStartPageController.userName)) {
                 buttonPane.setDisable(false);
+                System.out.println("    buttonPane enabled");
             } else {
                 buttonPane.setDisable(true);
+                System.out.println("    buttonPane disabled");
             }
 
             //next player is wrapped around back to 1st player
@@ -613,6 +627,7 @@ public class ClientGamePageController implements Initializable {
     // playing (Button Clicked)
     @FXML
     void play(MouseEvent event) {
+        System.out.println("play()");
 
         // send button position to server
         sendButtonPosition(event.toString().substring(32, 34).trim());
@@ -689,7 +704,7 @@ public class ClientGamePageController implements Initializable {
 
     // receive button position clicked from other clients
     void playFromOthers(String cl) {
-
+        System.out.println("playFromOthers()");
         // Inkz
         String s = cl.trim();
         int j = 0;
@@ -763,6 +778,7 @@ public class ClientGamePageController implements Initializable {
 
     // (Poon) fix bugs to run timer, please call resetTimer() before this method or declare maxTime = getTimerMode(); time = getTimerMode();
     void startTimer() {
+        System.out.println("startTimer()");
         showTime.setStyle("-fx-text-fill: #edf2f4");
 
         timer = new Timer();
@@ -788,6 +804,7 @@ public class ClientGamePageController implements Initializable {
                     time--;
                     maxTime--;
                 } else {
+                    System.out.println("Time's up");
                     resetTimer();
                     colorChange(0);
                     startTimer();
@@ -802,6 +819,7 @@ public class ClientGamePageController implements Initializable {
 
     // (Poon) pause timer at the current time
     private void stopTimer() {
+        System.out.println("stopTimer()");
 //        maxTime = 0;
 //        showTime.setText(time + "");
         task.cancel();
@@ -811,6 +829,7 @@ public class ClientGamePageController implements Initializable {
 
     // (Poon) reset values to prepare for startTimer()
     private void resetTimer() {
+        System.out.println("resetTimer()");
         maxTime = getTimerMode();
         time = getTimerMode();
         stopTimer();
@@ -824,6 +843,7 @@ public class ClientGamePageController implements Initializable {
 
     // get the maxTime for startTimer method ( 5 or 10 )
     private int getTimerMode() {
+        System.out.println("getTimerMode()");
         if (currentMode.equals("Quick Game")) {
             return 6;
         } else {
@@ -833,6 +853,7 @@ public class ClientGamePageController implements Initializable {
 
     // Poon
     private void setGameMode(String mode) {
+        System.out.println("setGameMode("+mode+")");
         currentMode = mode;
     }
 
@@ -860,6 +881,7 @@ public class ClientGamePageController implements Initializable {
     // Poon
     @FXML
     void goBack(ActionEvent event) throws IOException {
+        System.out.println("goBack()");
         scoreSummaryPane.setVisible(false);
     }
 
@@ -867,6 +889,7 @@ public class ClientGamePageController implements Initializable {
 
     @FXML
     void ready(ActionEvent event) throws IOException {
+        System.out.println("ready()");
 
         if (!alreadyReady) {
             sendReady();
@@ -1099,6 +1122,7 @@ public class ClientGamePageController implements Initializable {
     }
 
     private void receiveMessages(boolean run) {
+        System.out.println("receiveMessages()");
         String msgt;
 
         while (run) {
@@ -1128,8 +1152,14 @@ public class ClientGamePageController implements Initializable {
                             users.add(split[0]);
                         });
 
-                    } else if (split[1].equals("GAMESTART")) {
-                        switch (split[0]) {
+                    } else if (split[1].equals("GAMESTART")) { //split = username!gamemode:GAMESTART
+                        //split[0] = username!gamemode
+                        //split2[0] = username
+                        //split2[1] = gamemode
+                        String [] split2 = split[0].split("!");
+                        firstPlayerName = split2[0];
+                        System.out.println("(Split2) firstPlayerName = "+firstPlayerName);
+                        switch (split2[1]) {
                             case "DEFAULT":
                                 Platform.runLater(() -> {
                                     // Game started
@@ -1173,7 +1203,7 @@ public class ClientGamePageController implements Initializable {
                             display("Server has reset the game" + "\n");
                             triggerClientScreen("WAITING", null);
                         });
-                        reassignBombs();
+                        //reassignBombs();
                         break;
 
                     }
@@ -1197,7 +1227,7 @@ public class ClientGamePageController implements Initializable {
             }
         }
     }
-
+    //Inkz
     private void reassignBombs() {
         System.out.println(LocalTime.now()+" reassignBombs()");
         receiveMessages(false);
@@ -1328,8 +1358,9 @@ public class ClientGamePageController implements Initializable {
             }
         }
     }
-
+    //(Queenie) Method to trigger the server to end the game
     private void sendTriggerEnd() {
+        System.out.println("sendTriggerEnd()");
         ButtonClick msg;
         if (connected) {
             msg = new ButtonClick(ButtonClick.TRIGGER_END);
@@ -1379,7 +1410,8 @@ public class ClientGamePageController implements Initializable {
                 //resetScoreSummary();
                 resetAllBombButtons();
                 resetTimer();
-                leftPane.setDisable(true);
+                buttonPane.setDisable(true);
+                System.out.println("    buttonPane disabled");
                 readyButton.setDisable(false);
                 // hiding bomb and time information until game starts
                 bombLeft.setVisible(false);
@@ -1396,7 +1428,6 @@ public class ClientGamePageController implements Initializable {
                 resetReadyButton();
                 setUpPlayerPane();
                 setUpScoreSummaryPane();
-                leftPane.setDisable(false);
                 // game starts, time and bombs remaining become visible
                 bombLeft.setVisible(true);
                 bombLeftLabel.setVisible(true);
@@ -1411,11 +1442,13 @@ public class ClientGamePageController implements Initializable {
             case "ENDED":
                 // Server pressed "Stop", changing game state from "ONGOING" -> "ENDED"
                 System.out.println("(triggerClientScreen()) Server has stopped the game");
-                leftPane.setDisable(true);
+                buttonPane.setDisable(true);
+                System.out.println("    buttonPane disabled");
                 stopTimer();
                 resetTimer();
                 sortScoreSummary();
                 showScoreSummary();
+                reassignBombs(); //(Q)probably should be somewhere else but right now I'll put it here
                 //Clearing color from every player pane
                 for (Pane pane :
                         setOfPlayerPane_playerPane) {
@@ -1425,7 +1458,8 @@ public class ClientGamePageController implements Initializable {
 
             default:
                 // for when server shuts down
-                leftPane.setDisable(true);
+                buttonPane.setDisable(true);
+                System.out.println("    buttonPane disabled");
                 readyButton.setDisable(true);
                 bombLeft.setVisible(false);
                 bombLeftLabel.setVisible(false);
@@ -1434,13 +1468,14 @@ public class ClientGamePageController implements Initializable {
                 break;
 
         }
-        return;
     }
 
     // (Queenie) method to control client screen for game_state = ONGOING with
     // specified game_mode
     private void startWithGameMode(String game_mode) {
         System.out.println("startWithGameMode(" + game_mode + ")");
+        display(">>>"+firstPlayerName+" plays first<<<");
+        System.out.println(">>>"+firstPlayerName+" plays first<<<");
         switch (game_mode) {
             case "DEFAULT":
                 setGameMode("Default");
@@ -1462,10 +1497,16 @@ public class ClientGamePageController implements Initializable {
                 break;
         }
 
+        makeFirstPlayer(firstPlayerName);
+        setOfPlayerPane_playerPane[playerplaying-1].setStyle("-fx-background-color: #484c4a");
+        System.out.println("*"+playerNames[playerplaying-1]+"'s TURN*");
+        display("*"+playerNames[playerplaying-1]+"'s TURN*");
+        if (firstPlayerName.equals(ClientStartPageController.userName.trim()))
+            buttonPane.setDisable(false);
+        System.out.println("    buttonPane enabled");
         maxTime = getTimerMode();
         time = getTimerMode();
         startTimer();
-        setOfPlayerPane_playerPane[0].setStyle("-fx-background-color: #484c4a");
 
         return;
     }
@@ -1602,6 +1643,7 @@ public class ClientGamePageController implements Initializable {
 
     // (Queenie) Method to reset all ready status from players, reset ready button and disable it
     private void resetReadyButton() {
+        System.out.println("resetReadyButton()");
         readyButton.setText("READY");
         alreadyReady = false;
         sendNotReady();
@@ -1610,6 +1652,7 @@ public class ClientGamePageController implements Initializable {
 
     //(Queenie) Method to reset all bomb buttons to default for next game
     private void resetAllBombButtons() {
+        System.out.println("resetAllBombButtons()");
         //Set all bomb buttons back default (enabled and visible)
         //Set number of bombs back to default
         numBombLeft = 11;
@@ -1627,8 +1670,10 @@ public class ClientGamePageController implements Initializable {
     //before call this method should set buttonPane default as Disable(true)
     //prepare for tram's gameturn system
     private void setPlayable(int myturn) {
+        System.out.println("setPlayabel()");
         if (myturn == playerplaying) {
             buttonPane.setDisable(false);
+            System.out.println("    buttonPane enabled");
         }
     }
 
@@ -1638,6 +1683,7 @@ public class ClientGamePageController implements Initializable {
     //if it a bomb, is it the last bomb??
     //if it is the last bomb (numbombleft==0), we change the game state to ended
     boolean isThereBombLeft() {
+        System.out.println("isThereBombLeft()");
         if (numBombLeft == 0) {
             return false;
         }
@@ -1645,14 +1691,26 @@ public class ClientGamePageController implements Initializable {
 
     }
 
-
-    //Method to print out contents within a label array
+    //(Queenie) Method to print out contents within a label array
     private String toString(Label[] setOfLabels) {
         String s = "";
         for (Label label : setOfLabels) {
             s += label.getText() + ", ";
         }
         return s;
+    }
+    //(Queenie) Method to make the given username the first player of the game
+    private void makeFirstPlayer(String name){
+        System.out.println("makeFirstPlayer("+name+")");
+        nameToCompare = name;
+        for (int i=0; i<users.size();i++) {
+            System.out.println("i="+i+" playerNames[i]="+playerNames[i]);
+            if(name.equals(playerNames[i].trim())){
+                playerplaying = i+1;
+                System.out.println(name+" is playerplaying= "+playerplaying);
+                break;
+            }
+        }
     }
 
 }

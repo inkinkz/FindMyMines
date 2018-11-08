@@ -284,6 +284,8 @@ public class ServerGamePageController implements Initializable {
     Label[] setOfScoreBoard = new Label[10];
     private String gameMode = "DEFAULT";
 
+    //First player randomization
+    String firstPlayerName;
     // SERVER
 
     public FindMyMinesServer server;
@@ -1013,6 +1015,7 @@ public class ServerGamePageController implements Initializable {
             } else {
                 //All players are ready, proceed to game
                 //UI display
+                firstPlayerName = randomFirstPlayer();
                 warnText.setVisible(false);
                 modebox.setDisable(true);
                 //I don't want the server to see these anymore
@@ -1030,17 +1033,17 @@ public class ServerGamePageController implements Initializable {
                     case "DEFAULT":
 //                        assignBombDefault();
                         setUpBomb();
-                        FindMyMinesServer.broadcast("DEFAULT:GAMESTART");
+                        FindMyMinesServer.broadcast(firstPlayerName+"!DEFAULT:GAMESTART");
                         break;
                     case "QUICK_GAME":
 //                        assignBombDefault();
                         setUpBomb();
-                        FindMyMinesServer.broadcast("QUICK_GAME:GAMESTART");
+                        FindMyMinesServer.broadcast(firstPlayerName+"!QUICK_GAME:GAMESTART");
                         break;
                     case "MULTIPOINTS_BOMB":
 //                        assignBombMultiPoints();
                         setUpBombMultiPoints();
-                        FindMyMinesServer.broadcast("MULTIPOINTS_BOMB:GAMESTART");
+                        FindMyMinesServer.broadcast(firstPlayerName+"!MULTIPOINTS_BOMB:GAMESTART");
                         break;
                 }
                 try {
@@ -1284,5 +1287,20 @@ public class ServerGamePageController implements Initializable {
     		} else {
     			//reset playerid
     		}
+    }
+    //(Queenie) Method to random a number from player amount, then use the number to identify which player will be the first to play
+    private String randomFirstPlayer(){
+        numOfPlayer = users.size();
+        System.out.println("randomFirstPlayer() numOfPlayer = "+numOfPlayer);
+        
+        int randomResult = (int)( Math.random() * numOfPlayer);
+        System.out.println("randomFirstPlayer() randomResult = "+randomResult);
+        String[] name = users.get(randomResult).split(" ");
+        //users.get(randomResult) = username (READY)
+        //name[0] = username
+        //name[1] = (READY)
+        System.out.println("randomFirstPlayer() name = "+name[0].trim());
+        return name[0].trim();
+
     }
 }
