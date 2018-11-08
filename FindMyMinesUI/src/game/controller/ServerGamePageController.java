@@ -552,7 +552,7 @@ public class ServerGamePageController implements Initializable {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
 
-                int result = (int) Math.ceil(Math.random() * 2); //
+                int result = (int) Math.ceil(Math.random() * 3); //
                 if (numBomb >= 11) {
                     result = 1;
                 }
@@ -562,6 +562,9 @@ public class ServerGamePageController implements Initializable {
                 if (result == 2) {
                     valueOfSpace[i][j] = 1;// bomb
                     numBomb++;
+                }
+                if (result == 3) {
+                    valueOfSpace[i][j] =0;//free space
                 }
 
             }
