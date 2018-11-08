@@ -1438,5 +1438,18 @@ public class ClientGamePageController implements Initializable {
     			buttonPane.setDisable(false);
     		}
     }
-
+    
+    //tram
+    //if there is no bomb left - return false
+    //we should call this method in some while loop ,to check every clicking button that is it a bomb?
+    //if it a bomb, is it the last bomb??
+    //if it is the last bomb (numbombleft==0), we change the game state to ended
+    boolean isThereBombLeft() {
+    	if (numBombLeft ==0) {
+    		return false;
+    	}
+		return true;
+    	
+    }
+    
 }
