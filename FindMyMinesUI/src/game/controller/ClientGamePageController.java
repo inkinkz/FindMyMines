@@ -595,7 +595,7 @@ public class ClientGamePageController implements Initializable {
         // Tram
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb (2 points)
             ((Button) event.getTarget())
-                    .setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+                    .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
             ((Button) event.getTarget()).setText("BOMB \n x2");
             numBombLeft--;
@@ -605,7 +605,7 @@ public class ClientGamePageController implements Initializable {
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb (3 points)
             ((Button) event.getTarget())
-                    .setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+                    .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
             ((Button) event.getTarget()).setText("BOMB \n x3");
             numBombLeft--;
@@ -615,7 +615,7 @@ public class ClientGamePageController implements Initializable {
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb (4 points)
             ((Button) event.getTarget())
-                    .setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+                    .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
             ((Button) event.getTarget()).setText("BOMB \n x4");
             numBombLeft--;
@@ -671,7 +671,7 @@ public class ClientGamePageController implements Initializable {
         }
 
         if (y.getStyle() == "-fx-font-size: 0.2") {// bomb
-            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             y.setDisable(true);
             y.setText("BOMB \n x2");
             numBombLeft--;
@@ -680,7 +680,7 @@ public class ClientGamePageController implements Initializable {
         }
 
         if (y.getStyle() == "-fx-font-size: 0.3") {// bomb
-            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             y.setDisable(true);
             y.setText("BOMB \n x3");
             numBombLeft--;
@@ -689,7 +689,7 @@ public class ClientGamePageController implements Initializable {
         }
 
         if (y.getStyle() == "-fx-font-size: 0.4") {// bomb
-            y.setStyle("-fx-font-size: 5;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
+            y.setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             y.setDisable(true);
             y.setText("BOMB \n x4");
             numBombLeft--;
