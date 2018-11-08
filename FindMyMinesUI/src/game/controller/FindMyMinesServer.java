@@ -340,6 +340,10 @@ public class FindMyMinesServer {
                         broadcast(username + ":NOTREADY");
                         broadcastServerOnly(username + ":NOTREADY");
                         break;
+                    case ButtonClick.TRIGGER_END:
+                        //broadcast(msg);
+                        broadcast("GAMESTOPPED:GAMESTOP");
+                        break;
                 }
 
                 // remove myself from the arrayList containing the list of the

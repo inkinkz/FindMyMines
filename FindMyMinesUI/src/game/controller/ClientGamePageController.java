@@ -633,7 +633,7 @@ public class ClientGamePageController implements Initializable {
             colorChange(0);
         }
 
-        if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+        else if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
             // might need to getStyle().removeAll() before do this to prevent bugs
             ((Button) event.getTarget())
                     .setStyle("-fx-background-color: #D90429; -fx-text-fill: #ffffff ; -fx-font-size: 10;");
@@ -651,7 +651,7 @@ public class ClientGamePageController implements Initializable {
         }
 
         // Tram
-        if (y.getStyle() == "-fx-font-size: 0.2") {// bomb (2 points)
+        else if (y.getStyle() == "-fx-font-size: 0.2") {// bomb (2 points)
             ((Button) event.getTarget())
                     .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
@@ -661,7 +661,7 @@ public class ClientGamePageController implements Initializable {
             colorChange(2);
         }
 
-        if (y.getStyle() == "-fx-font-size: 0.3") {// bomb (3 points)
+        else if (y.getStyle() == "-fx-font-size: 0.3") {// bomb (3 points)
             ((Button) event.getTarget())
                     .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
@@ -671,7 +671,7 @@ public class ClientGamePageController implements Initializable {
             colorChange(3);
         }
 
-        if (y.getStyle() == "-fx-font-size: 0.4") {// bomb (4 points)
+        else if (y.getStyle() == "-fx-font-size: 0.4") {// bomb (4 points)
             ((Button) event.getTarget())
                     .setStyle("-fx-font-size: 10;-fx-background-color:#D90429;-fx-text-fill: #edf2f4");
             ((Button) event.getTarget()).setDisable(true);
@@ -681,12 +681,17 @@ public class ClientGamePageController implements Initializable {
             colorChange(4);
         }
 
+        /*// send button position to server
+        sendButtonPosition(event.toString().substring(32, 34).trim());*/
+
          // currently using colorChange() to move to next player
 //        player++;
 //		if (player == numOfPlayer) {
 //			player = 0;
 //		}
 
+        if(numBombLeft==0)
+            sendTriggerEnd();
 
         // timer of next player
         resetTimer();
@@ -1257,10 +1262,27 @@ public class ClientGamePageController implements Initializable {
     }
 
     private void sendButtonPosition(String pos) {
+        ButtonClick msg;
         if (connected) {
-            ButtonClick msg = new ButtonClick(ButtonClick.CLICK, pos);
+            msg = new ButtonClick(ButtonClick.CLICK, pos);
+            /*if(numBombLeft>0)
+                msg = new ButtonClick(ButtonClick.CLICK, pos);
+            else
+                msg = new ButtonClick(ButtonClick.TRIGGER_END, pos);*/
             try {
                 System.out.println("sendButtonPosition("+pos+")");
+                sOutput.writeObject(msg);
+            } catch (IOException e) {
+                display("Exception writing to server: " + e);
+            }
+        }
+    }
+
+    private void sendTriggerEnd(){
+        ButtonClick msg;
+        if (connected) {
+                msg = new ButtonClick(ButtonClick.TRIGGER_END);
+            try {
                 sOutput.writeObject(msg);
             } catch (IOException e) {
                 display("Exception writing to server: " + e);
