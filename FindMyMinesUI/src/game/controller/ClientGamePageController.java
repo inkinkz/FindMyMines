@@ -1204,8 +1204,10 @@ public class ClientGamePageController implements Initializable {
             case "WAITING":
                 // Server pressed "Reset", changing game state from "ENDED" -> "WAITING"
                 // reset everything on client screen
+                System.out.println("(triggerClientScreen()) Server has reset the game");
                 resetScore();
                 setUpLeftPane();
+                resetAllBombButtons();
                 resetTimer();
                 leftPane.setDisable(true);
                 readyButton.setDisable(false);
@@ -1219,6 +1221,7 @@ public class ClientGamePageController implements Initializable {
                 break;
             case "ONGOING":
                 // Server pressed "Start", changing game state from "WAITING" -> "ONGOING"
+                System.out.println("(triggerClientScreen()) Server has started the game");
                 resetReadyButton();
                 setPlayerPane();
                 leftPane.setDisable(false);
@@ -1232,7 +1235,11 @@ public class ClientGamePageController implements Initializable {
                 break;
             case "ENDED":
                 // Server pressed "Stop", changing game state from "ONGOING" -> "ENDED"
-                setScoreboardPane(); // set panes in scoreboard
+                System.out.println("(triggerClientScreen()) Server has stopped the game");
+                leftPane.setDisable(true);
+                stopTimer();
+                resetTimer();
+                //setScoreboardPane(); // set panes in scoreboard
                 showScoreSummary();
                 break;
             default:
@@ -1280,6 +1287,7 @@ public class ClientGamePageController implements Initializable {
     }
 
     private void showScoreSummary() {
+        System.out.println("showScoreSummary() is called");
         scoreboardPane.setVisible(true);
     }
 
@@ -1381,13 +1389,27 @@ public class ClientGamePageController implements Initializable {
 
     }
 
-    // Method to reset all ready status from players, reset ready button and disable
-    // it
+    // (Queenie) Method to reset all ready status from players, reset ready button and disable it
     private void resetReadyButton() {
         readyButton.setText("READY");
         alreadyReady = false;
         sendNotReady();
         readyButton.setDisable(true);
+    }
+    //(Queenie) Method to reset all bomb buttons to default for next game
+    private void resetAllBombButtons(){
+        //Set all bomb buttons back default (enabled and visible)
+        //Set number of bombs back to default
+        numBombLeft=11;
+        bombLeft.setText("11");
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                int result = bombplacementMultiPoints[i][j];
+                Button y = setOfButton[i][j];
+                y.setDisable(false);
+                y.setStyle(null);
+            }
+        }
     }
 
 }
