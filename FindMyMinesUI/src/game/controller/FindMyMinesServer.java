@@ -22,10 +22,10 @@ public class FindMyMinesServer {
     private boolean keepGoing;
     protected static String GAME_STATE;
 
-    int[][] bombplacement = ServerGamePageController.valueOfSpace;
+    static int[][] bombplacement = ServerGamePageController.valueOfSpace;
     static int[][] bombaround = ServerGamePageController.bombAround;
 
-    int[][] bombplacementMultiPoints = ServerGamePageController.valueOfSpaceMultiPoints;
+    static int[][] bombplacementMultiPoints = ServerGamePageController.valueOfSpaceMultiPoints;
     static int[][] bombAroundMultiPoints = ServerGamePageController.bombAroundMultiPoints;
 
     /*
@@ -164,6 +164,26 @@ public class FindMyMinesServer {
         }
     }
 
+    static synchronized void broadcastBomb() {
+
+        bombplacement = ServerGamePageController.valueOfSpace;
+        bombaround = ServerGamePageController.bombAround;
+        bombplacementMultiPoints = ServerGamePageController.valueOfSpaceMultiPoints;
+        bombplacementMultiPoints = ServerGamePageController.bombAroundMultiPoints;
+
+//		 we loop in reverse order in case we would have to remove a Client
+//		 because it has disconnected
+        for (int i = clientsConnected.size(); --i >= 0; ) {
+            ClientThread ct = clientsConnected.get(i);
+            // try to write to the Client if it fails remove it from the list
+            if (!ct.writeBomb()) {
+//                clientsConnected.remove(i);
+//                serverController.remove(ct.username);
+//                display("Disconnected Client " + ct.username + " removed from list.");
+            }
+        }
+    }
+
     private synchronized void broadcastServerOnly(String message) {
 //		 we loop in reverse order in case we would have to remove a Client
 //		 because it has disconnected
@@ -180,6 +200,8 @@ public class FindMyMinesServer {
             }
         }
     }
+
+
 
     // for a client who logoff
     synchronized void remove(int id) {
@@ -237,6 +259,9 @@ public class FindMyMinesServer {
             //Messages for debugging
             System.out.println("GAME_STATE set to:" +getGameState()+" and button should be Start");
             System.out.println();
+
+
+
             return;
         }
     }
@@ -410,6 +435,33 @@ public class FindMyMinesServer {
             // if an error occurs, do not abort just inform the user
             catch (IOException e) {
                 System.out.println("Error sending message to " + username);
+                System.out.println(e.toString());
+            }
+            return true;
+        }
+
+        private boolean writeBomb() {
+            // if Client is still connected send the message to it
+            if (!socket.isConnected()) {
+                close();
+                return false;
+            }
+            // write the message to the stream
+            try {
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                sOutput.writeObject(ServerGamePageController.valueOfSpace);
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                sOutput.writeObject(ServerGamePageController.bombAround);
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                sOutput.writeObject(ServerGamePageController.valueOfSpaceMultiPoints);
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                sOutput.writeObject(ServerGamePageController.bombAroundMultiPoints);
+//                sOutput.writeObject(bombAroundMultiPoints);
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+             }
+            // if an error occurs, do not abort just inform the user
+            catch (IOException e) {
+                System.out.println("Error sending bomb to " + username);
                 System.out.println(e.toString());
             }
             return true;

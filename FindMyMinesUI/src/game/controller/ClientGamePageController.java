@@ -366,10 +366,10 @@ public class ClientGamePageController implements Initializable {
     private Label welcomeLabel;
 
     /*READ ME
-    * left pane - whole left side of the page
-    * player pane - middle box on the client game page
-    * score summary - popup displayed only when game ends
-    * */
+     * left pane - whole left side of the page
+     * player pane - middle box on the client game page
+     * score summary - popup displayed only when game ends
+     * */
 
     // game
     static int numOfPlayer; // how many player
@@ -510,7 +510,7 @@ public class ClientGamePageController implements Initializable {
 
     }
 
- //    private int player = 0;
+    //private int player = 0;
     private int playerplaying = 1;
 
     // Poon
@@ -681,9 +681,6 @@ public class ClientGamePageController implements Initializable {
             colorChange(4);
         }
 
-        /*// send button position to server
-        sendButtonPosition(event.toString().substring(32, 34).trim());*/
-
          // currently using colorChange() to move to next player
 //        player++;
 //		if (player == numOfPlayer) {
@@ -788,10 +785,10 @@ public class ClientGamePageController implements Initializable {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            if(time == 11)
+                            if (time == 11)
                                 showTime.setText("10");
                             else
-                            showTime.setText(time + "");
+                                showTime.setText(time + "");
                             if (time < 4) {
                                 showTime.setStyle("-fx-text-fill: #EF233C");
                             }
@@ -810,7 +807,7 @@ public class ClientGamePageController implements Initializable {
 
         };
 
-        timer.schedule(task, 0,1000);
+        timer.schedule(task, 0, 1000);
     }
 
     // (Poon) pause timer at the current time
@@ -903,7 +900,8 @@ public class ClientGamePageController implements Initializable {
     // Poon
 //    Integer[] nameOfPlayer = new Integer[10];
     private static Map<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
-//
+
+    //
 //    // Poon
 //    // sort score
     public static Map<Integer, Integer> getSorted() {
@@ -1019,7 +1017,6 @@ public class ClientGamePageController implements Initializable {
     class ListenFromServer extends Thread {
 
         public void run() {
-            String msgt;
             // game initialize
             scoreOfPlayer = FXCollections.observableHashMap();
             playerReady = new SimpleIntegerProperty(0).asObject();
@@ -1086,6 +1083,7 @@ public class ClientGamePageController implements Initializable {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
                 System.out.println("    renewing ObjectInputStream");
@@ -1093,32 +1091,53 @@ public class ClientGamePageController implements Initializable {
                 e1.printStackTrace();
             }
 
-            while (true) {
-                try {
-                    msgt = (String) sInput.readObject();
-                    String msg = msgt.trim();
-                    if (msg.contains("WHOISIN") || msg.contains("REMOVE") || msg.contains("READDY")
-                            || msg.contains("NOTREADY") || msg.contains("GAMESTART") || msg.contains("GAMESTOP")
-                            || msg.contains("GAMERESET")) {
-                        String[] split = msg.split(":");
-                        if (split[1].equals("WHOISIN")) {
-                            Platform.runLater(() -> {
-                                users.add(split[0]);
-                            });
-                        } else if (split[1].equals("REMOVE")) {
-                            Platform.runLater(() -> {
-                                users.remove(split[0]);
-                            });
-                        } else if (split[1].equals("READDY")) {
-                            Platform.runLater(() -> {
-                                users.remove(split[0]);
-                                users.add(split[0] + " (READY)");
-                            });
-                        } else if (split[1].equals("NOTREADY")) {
-                            Platform.runLater(() -> {
-                                users.remove(split[0] + " (READY)");
-                                users.add(split[0]);
-                            });
+            // for checking values
+//            display(bombplacement[0][0] + " = bombplacement [0][0]");
+//            display(bombplacement[1][4] + " = bombplacement [1][4]");
+//            display(bombplacement[2][4] + " = bombplacement [2][4]");
+//            display(bombplacement[3][4] + " = bombplacement [3][4]");
+//            display(bombplacement[2][4] + " = bombplacement [2][4]");
+//            display(bombplacement[2][3] + " = bombplacement [2][3]");
+//            display(bombplacement[2][2] + " = bombplacement [2][2]");
+//            display(bombplacement[3][2] + " = bombplacement [3][2]");
+//            display(bombplacement[3][1] + " = bombplacement [3][1]");
+//            display(bombplacement[3][3] + " = bombplacement [3][3]");
+//            display(bombplacement[3][0] + " = bombplacement [3][0]");
+
+            receiveMessages(true);
+
+        }
+    }
+
+    private void receiveMessages(boolean run) {
+        String msgt;
+
+        while (run) {
+            try {
+                msgt = (String) sInput.readObject();
+                String msg = msgt.trim();
+                if (msg.contains("WHOISIN") || msg.contains("REMOVE") || msg.contains("READDY")
+                        || msg.contains("NOTREADY") || msg.contains("GAMESTART") || msg.contains("GAMESTOP")
+                        || msg.contains("GAMERESET")) {
+                    String[] split = msg.split(":");
+                    if (split[1].equals("WHOISIN")) {
+                        Platform.runLater(() -> {
+                            users.add(split[0]);
+                        });
+                    } else if (split[1].equals("REMOVE")) {
+                        Platform.runLater(() -> {
+                            users.remove(split[0]);
+                        });
+                    } else if (split[1].equals("READDY")) {
+                        Platform.runLater(() -> {
+                            users.remove(split[0]);
+                            users.add(split[0] + " (READY)");
+                        });
+                    } else if (split[1].equals("NOTREADY")) {
+                        Platform.runLater(() -> {
+                            users.remove(split[0] + " (READY)");
+                            users.add(split[0]);
+                        });
 
                         } else if (split[1].equals("GAMESTART")) {
                             switch (split[0]) {
@@ -1158,35 +1177,83 @@ public class ClientGamePageController implements Initializable {
                                 display("Server has stopped the game" + "\n");
                                 triggerClientScreen("ENDED", null);
 
-                            });
-                        } else if (split[1].equals("GAMERESET")) {
-                            Platform.runLater(() -> {
-                                // Game reset
-                                // Revert things back to start
-                                display("Server has reset the game" + "\n");
-                                triggerClientScreen("WAITING", null);
-                            });
-                        }
-                    } // Button Clicked
-                    else if (msg.length() == 2) {
-                        Platform.runLater(() -> {
-                            playFromOthers(msg);
                         });
+                    } else if (split[1].equals("GAMERESET")) {
+                        Platform.runLater(() -> {
+                            // Game reset
+                            // Revert things back to start
+                            display("Server has reset the game" + "\n");
+                            triggerClientScreen("WAITING", null);
+                        });
+                        reassignBombs();
+                        break;
+
                     }
-                } catch (IOException e) {
-                    display("Server has closed the connection");
-                    connectionFailed();
+                } // Button Clicked
+                else if (msg.length() == 2) {
                     Platform.runLater(() -> {
-                        listUsersConnected.setItems(null);
+                        playFromOthers(msg);
                     });
-                    break;
                 }
-                // can't happen with a String object but need the catch anyhow
-                catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+            } catch (IOException e) {
+                display("Server has closed the connection");
+                connectionFailed();
+                Platform.runLater(() -> {
+                    listUsersConnected.setItems(null);
+                });
+                break;
+            }
+            // can't happen with a String object but need the catch anyhow
+            catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+    private void reassignBombs() {
+        receiveMessages(false);
+        this.bombaround = new int[6][6];
+        this.bombaroundMultiPoints = new int[6][6];
+        this.bombplacementMultiPoints = new int[6][6];
+        this.bombplacement = new int[6][6];
+        try {
+            sInput = new ObjectInputStream(socket.getInputStream());
+
+            this.bombplacement = (int[][]) sInput.readObject();
+            sInput = new ObjectInputStream(socket.getInputStream());
+
+            this.bombaround = (int[][]) sInput.readObject();
+            sInput = new ObjectInputStream(socket.getInputStream());
+
+            this.bombplacementMultiPoints = (int[][]) sInput.readObject();
+            sInput = new ObjectInputStream(socket.getInputStream());
+
+            this.bombaroundMultiPoints = (int[][]) sInput.readObject();
+            sInput = new ObjectInputStream(socket.getInputStream());
+
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+
+        // for checking values
+//        display(bombplacement[0][0] + " = NEW bombplacement [0][0]");
+//        display(bombplacement[1][4] + " = NEW bombplacement [1][4]");
+//        display(bombplacement[2][4] + " = NEW bombplacement [2][4]");
+//        display(bombplacement[3][4] + " = NEW bombplacement [3][4]");
+//        display(bombplacement[2][4] + " = NEW bombplacement [2][4]");
+//        display(bombplacement[2][3] + " = NEW bombplacement [2][3]");
+//        display(bombplacement[2][2] + " = NEW bombplacement [2][2]");
+//        display(bombplacement[3][2] + " = NEW bombplacement [3][2]");
+//        display(bombplacement[3][1] + " = NEW bombplacement [3][1]");
+//        display(bombplacement[3][3] + " = NEW bombplacement [3][3]");
+//        display(bombplacement[3][0] + " = NEW bombplacement [3][0]");
+//        display(bombaroundMultiPoints[3][0] + " = NEW bombaroundMultiPoints [3][0]");
+//        display(bombaroundMultiPoints[3][1] + " = NEW bombaroundMultiPoints [3][1]");
+//        display(bombaroundMultiPoints[3][2] + " = NEW bombaroundMultiPoints [3][2]");
+
+        receiveMessages(true);
     }
 
     private void setUpBomb() {
@@ -1262,13 +1329,8 @@ public class ClientGamePageController implements Initializable {
     }
 
     private void sendButtonPosition(String pos) {
-        ButtonClick msg;
         if (connected) {
-            msg = new ButtonClick(ButtonClick.CLICK, pos);
-            /*if(numBombLeft>0)
-                msg = new ButtonClick(ButtonClick.CLICK, pos);
-            else
-                msg = new ButtonClick(ButtonClick.TRIGGER_END, pos);*/
+            ButtonClick msg = new ButtonClick(ButtonClick.CLICK, pos);
             try {
                 System.out.println("sendButtonPosition("+pos+")");
                 sOutput.writeObject(msg);
@@ -1552,11 +1614,12 @@ public class ClientGamePageController implements Initializable {
         sendNotReady();
         readyButton.setDisable(true);
     }
+
     //(Queenie) Method to reset all bomb buttons to default for next game
-    private void resetAllBombButtons(){
+    private void resetAllBombButtons() {
         //Set all bomb buttons back default (enabled and visible)
         //Set number of bombs back to default
-        numBombLeft=11;
+        numBombLeft = 11;
         bombLeft.setText("11");
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
