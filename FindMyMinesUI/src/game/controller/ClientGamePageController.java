@@ -372,7 +372,7 @@ public class ClientGamePageController implements Initializable {
     Label[] setOfScoreSummary_playerNameLabel = new Label[10];
     Label[] setOfScoreSummary_scoreLabel = new Label[10];
     int numBombLeft = 11;
-    int score = 0;
+    int score = 0; //score per 1 click
 
     private String[] playerNames = new String[10];
 
@@ -380,7 +380,7 @@ public class ClientGamePageController implements Initializable {
     private TextArea txtArea;
 
     @FXML
-    private ListView<String> listUsersConnected;
+    private ListView<String> listUsersConnected; //list on the right of the client game page
 
     private ObservableList<String> users;
 
@@ -404,9 +404,12 @@ public class ClientGamePageController implements Initializable {
 
         new ListenFromServer().start();
 
+        //fill a space as all players' names
         Arrays.fill(playerNames, " ");
+        System.out.println("array playerNames size = "+playerNames.length);
 
         // Poon
+
         // set podium image in scoreSummary
         Image image = new Image(getClass().getResourceAsStream("/podium.png"));
         winnerImage.setImage(image);
@@ -422,7 +425,8 @@ public class ClientGamePageController implements Initializable {
         display("When you are ready to play, press Ready button\n");
         // trigger this when server press start
         setUpLeftPane();
-        setUpScoreSummaryPane();
+        //setUpPlayerPane();
+        //setUpScoreSummaryPane();
         // setScore();
         // color change for the starting player
         // setOfPlayerPane_playerPane[player].setStyle("-fx-background-color: grey");
@@ -493,6 +497,28 @@ public class ClientGamePageController implements Initializable {
         setOfButton[4][5] = b55;
         setOfButton[5][5] = b65;
 
+        /*setOfScoreSummary_playerNameLabel[0] = scoreSummary_playerNameLabel1;
+        setOfScoreSummary_playerNameLabel[1] = scoreSummary_playerNameLabel2;
+        setOfScoreSummary_playerNameLabel[2] = scoreSummary_playerNameLabel3;
+        setOfScoreSummary_playerNameLabel[3] = scoreSummary_playerNameLabel4;
+        setOfScoreSummary_playerNameLabel[4] = scoreSummary_playerNameLabel5;
+        setOfScoreSummary_playerNameLabel[5] = scoreSummary_playerNameLabel6;
+        setOfScoreSummary_playerNameLabel[6] = scoreSummary_playerNameLabel7;
+        setOfScoreSummary_playerNameLabel[7] = scoreSummary_playerNameLabel8;
+        setOfScoreSummary_playerNameLabel[8] = scoreSummary_playerNameLabel9;
+        setOfScoreSummary_playerNameLabel[9] = scoreSummary_playerNameLabel10;
+
+        setOfScoreSummary_scoreLabel[0] = scoreSummary_scoreLabel1;
+        setOfScoreSummary_scoreLabel[1] = scoreSummary_scoreLabel2;
+        setOfScoreSummary_scoreLabel[2] = scoreSummary_scoreLabel3;
+        setOfScoreSummary_scoreLabel[3] = scoreSummary_scoreLabel4;
+        setOfScoreSummary_scoreLabel[4] = scoreSummary_scoreLabel5;
+        setOfScoreSummary_scoreLabel[5] = scoreSummary_scoreLabel6;
+        setOfScoreSummary_scoreLabel[6] = scoreSummary_scoreLabel7;
+        setOfScoreSummary_scoreLabel[7] = scoreSummary_scoreLabel8;
+        setOfScoreSummary_scoreLabel[8] = scoreSummary_scoreLabel9;
+        setOfScoreSummary_scoreLabel[9] = scoreSummary_scoreLabel10;*/
+
     }
 
  //    private int player = 0;
@@ -508,10 +534,31 @@ public class ClientGamePageController implements Initializable {
         String nameToCompare;
 
         if (playerplaying < numOfPlayer) {
+            System.out.println(">>>colorChange("+score+") case 1 playerplaying < numOfPlayer");
+            System.out.println("playerplaying="+playerplaying);
+            System.out.println("numOfPlayer="+numOfPlayer);
+            //if the player playing is not the last one
+            //update the score and color of the player who played previously
+            //then update the color of current player
+
+            //get the previous player
             prev = --playerplaying;
+            System.out.println("prev="+prev);
+
+            //original score + new score
             newScore = Integer.parseInt(setOfPlayerPane_scoreLabel[prev].getText()) + score;
+            System.out.println("newScore="+newScore);
+
+            //remove the color of previous player and update their score both in the playerPane and scoreSummary
             setOfPlayerPane_playerPane[prev].setStyle("-fx-background-color: transparent");
             setOfPlayerPane_scoreLabel[prev].setText(newScore + "");
+            
+                //System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
+            setOfScoreSummary_scoreLabel[prev].setText(newScore + "");
+                //System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
+            System.out.println(">score setting finished");
+
+            //get the current player and update their color
             next = ++playerplaying;
             setOfPlayerPane_playerPane[next].setStyle("-fx-background-color: #484c4a");
 //			nameToCompare = setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().substring(setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
@@ -520,20 +567,40 @@ public class ClientGamePageController implements Initializable {
             //TODO --- get name that is currently have background color to nameToCompare plz
             nameToCompare = "";
 
-
             // Enable leftPane if username = nameToCompare
 //			if(nameToCompare.equals(username))
 //				leftPane.setDisable(false);
 //			else
 //				leftPane.setDisable(true);
 
+            //move on to the next player
             playerplaying++;
+
         } else if (playerplaying == numOfPlayer) {
+            System.out.println(">>>colorChange("+score+") case 2 playerplaying == numOfPlayer");
+            System.out.println("playerplaying="+playerplaying);
+            System.out.println("numOfPlayer="+numOfPlayer);
+            //if the player playing is the last one or the only one
+
+            //previous player is the one before last or this current player (if there is only 1 player)
             prev = numOfPlayer - 1;
+            System.out.println("prev="+prev);
+
+            //original score + new score
             newScore = Integer.parseInt(setOfPlayerPane_scoreLabel[prev].getText()) + score;
+            System.out.println("newScore="+newScore);
+
+            //remove the color of previous player and update their score both in the playerPane and scoreSummary
             setOfPlayerPane_playerPane[prev].setStyle("-fx-background-color: transparent");
             setOfPlayerPane_scoreLabel[prev].setText(newScore + "");
+                System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
+            setOfScoreSummary_scoreLabel[prev].setText(newScore + "");
+                System.out.println("setOfScoreSummary_scoreLabel[prev].getText()="+setOfScoreSummary_scoreLabel[prev].getText());
+            System.out.println(">score setting finished");
+
+            //since the next player wraps around back to the 1st one, update their color
             setOfPlayerPane_playerPane[0].setStyle("-fx-background-color: #484c4a");
+
 //			nameToCompare = setOfPlayerPane_playerPane[0].getChildren().get(0).toString().substring(setOfPlayerPane_playerPane[0].getChildren().get(0).toString().indexOf("'")+1, setOfPlayerPane_playerPane[prev].getChildren().get(0).toString().lastIndexOf("'"));
 
             //TODO --- get name that is currently have background color to nameToCompare plz
@@ -545,8 +612,11 @@ public class ClientGamePageController implements Initializable {
 //			else
 //				leftPane.setDisable(true);
 
+            //next player is wrapped around back to 1st player
             playerplaying = 1;
         } else {
+            System.out.println("colorChange("+score+") case 3 playerplaying > numOfPlayer");
+            //if player playing exceeds number of player then we wrap around back to 1st player
             playerplaying = 1;
         }
 
@@ -564,6 +634,7 @@ public class ClientGamePageController implements Initializable {
         //Update client game page
         //Reveal if free slot or bomb
         Button y = (Button) event.getTarget();
+        System.out.println(">>>"+username+" clicked "+y.getId());
 
         if (y.getStyle() == "-fx-font-size: 0.0") {// free slot
             // ((Button) event.getTarget()).setStyle("-fx-font-size: 10");
@@ -753,6 +824,7 @@ public class ClientGamePageController implements Initializable {
 //        showTime.setText(time + "");
         task.cancel();
         this.timer.cancel();
+        System.out.println("Timer is stopped");
     }
 
     // (Poon) reset values to prepare for startTimer()
@@ -760,6 +832,7 @@ public class ClientGamePageController implements Initializable {
         maxTime = getTimerMode();
         time = getTimerMode();
         stopTimer();
+        System.out.println("Timer is reset");
     }
 
     // Poon
@@ -843,6 +916,35 @@ public class ClientGamePageController implements Initializable {
         System.out.print(sorted);
         return sorted;
     }
+
+    //(Queenie) sort scores in the scoreSummary
+    private void sortScoreSummary(){
+        //using selection sort
+        System.out.println("sortScoreSummary()");
+        System.out.println("setOfScoreSummary_scoreLabel.length="+setOfScoreSummary_scoreLabel.length);
+        numOfPlayer = users.size();
+        System.out.println("numOfPlayer="+numOfPlayer);
+        for (int i = 0; i < numOfPlayer - 1; i++)
+        {
+            System.out.println("i="+i);
+            int index = i;
+            for (int j = i + 1; j < numOfPlayer; j++){
+                System.out.println("j="+j);
+                if (Integer.parseInt(setOfScoreSummary_scoreLabel[j].getText()) < Integer.parseInt(setOfScoreSummary_scoreLabel[index].getText())){
+                    index = j;//searching for lowest index
+                    System.out.println("index = j ("+index+" = "+j+")");
+                }
+            }
+            int smallerNumber = Integer.parseInt(setOfScoreSummary_scoreLabel[index].getText());
+            System.out.println("smallerNumber="+smallerNumber);
+            setOfScoreSummary_scoreLabel[index].setText(setOfScoreSummary_scoreLabel[i].getText());
+            System.out.println("    setOfScoreSummary_scoreLabel[index].getText() = "+setOfScoreSummary_scoreLabel[index].getText());
+            System.out.println("    setOfScoreSummary_scoreLabel[i].getText() = "+setOfScoreSummary_scoreLabel[i].getText());
+            setOfScoreSummary_scoreLabel[i].setText(smallerNumber+"");
+
+        }
+    }
+
 //
 //    // Poon
 //    // remove non-playing players from sorted arraylist
@@ -930,6 +1032,7 @@ public class ClientGamePageController implements Initializable {
 
             try {
                 bombplacement = (int[][]) sInput.readObject();
+                System.out.println("Received bombplacement");
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
             } catch (IOException e1) {
@@ -938,11 +1041,13 @@ public class ClientGamePageController implements Initializable {
 
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
+                System.out.println("    renewing ObjectInputStream");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
             try {
                 bombaround = (int[][]) sInput.readObject();
+                System.out.println("received bombaround");
 
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
@@ -951,6 +1056,7 @@ public class ClientGamePageController implements Initializable {
             }
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
+                System.out.println("    renewing ObjectInputStream");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -959,6 +1065,7 @@ public class ClientGamePageController implements Initializable {
 
             try {
                 bombplacementMultiPoints = (int[][]) sInput.readObject();
+                System.out.println("Received bombplacementMultiPoints");
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
             } catch (IOException e1) {
@@ -967,11 +1074,13 @@ public class ClientGamePageController implements Initializable {
 
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
+                System.out.println("    renewing ObjectInputStream");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
             try {
                 bombaroundMultiPoints = (int[][]) sInput.readObject();
+                System.out.println("Received bombaroundMultiPoints");
 
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
@@ -980,6 +1089,7 @@ public class ClientGamePageController implements Initializable {
             }
             try {
                 sInput = new ObjectInputStream(socket.getInputStream());
+                System.out.println("    renewing ObjectInputStream");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -1081,8 +1191,7 @@ public class ClientGamePageController implements Initializable {
     }
 
     private void setUpBomb() {
-        // numOfPlayer = users.size(); // how many clients are there
-
+        System.out.println("setUpBomb()");
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 int result = bombplacement[i][j];
@@ -1118,8 +1227,7 @@ public class ClientGamePageController implements Initializable {
     }
 
     private void setUpBombMultiPoints() {
-        // numOfPlayer = users.size(); // how many clients are there
-
+        System.out.println("setUpBombMultiPoints()");
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 int result = bombplacementMultiPoints[i][j];
@@ -1158,6 +1266,7 @@ public class ClientGamePageController implements Initializable {
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.CLICK, pos);
             try {
+                System.out.println("sendButtonPosition("+pos+")");
                 sOutput.writeObject(msg);
             } catch (IOException e) {
                 display("Exception writing to server: " + e);
@@ -1169,6 +1278,7 @@ public class ClientGamePageController implements Initializable {
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.READDY, username);
             try {
+                System.out.println("sendReady()");
                 sOutput.writeObject(msg);
             } catch (IOException e) {
                 display("Exception writing to server: " + e);
@@ -1180,6 +1290,7 @@ public class ClientGamePageController implements Initializable {
         if (connected) {
             ButtonClick msg = new ButtonClick(ButtonClick.NOTREADY, username);
             try {
+                System.out.println("sendNotReady()");
                 sOutput.writeObject(msg);
             } catch (IOException e) {
                 display("Exception writing to server: " + e);
@@ -1197,7 +1308,7 @@ public class ClientGamePageController implements Initializable {
                 System.out.println("(triggerClientScreen()) Server has reset the game");
                 resetScore();
                 setUpLeftPane();
-                setUpScoreSummaryPane();
+                //resetScoreSummary();
                 resetAllBombButtons();
                 resetTimer();
                 leftPane.setDisable(true);
@@ -1230,7 +1341,8 @@ public class ClientGamePageController implements Initializable {
                 leftPane.setDisable(true);
                 stopTimer();
                 resetTimer();
-                setUpScoreSummaryPane(); // set panes in scoreSummary
+                setUpScoreSummaryPane();
+                sortScoreSummary();
                 showScoreSummary();
                 break;
             default:
@@ -1250,6 +1362,7 @@ public class ClientGamePageController implements Initializable {
     // (Queenie) method to control client screen for game_state = ONGOING with
     // specified game_mode
     private void startWithGameMode(String game_mode) {
+        System.out.println("startWithGameMode("+game_mode+")");
         switch (game_mode) {
             case "DEFAULT":
                 // need receive bomb information from server first before setting up bombs on
@@ -1285,6 +1398,7 @@ public class ClientGamePageController implements Initializable {
     // (Poon) setup scores and player names on scoreSummary
     private void setUpScoreSummaryPane() {
         numOfPlayer = users.size();
+        System.out.println("setUpScoreSummaryPane(), numOfPlayer= "+numOfPlayer);
 
         //set player nickname in order of pressing ready
         for (int i = 0; i<numOfPlayer; i++) { // this loop could be
@@ -1320,6 +1434,7 @@ public class ClientGamePageController implements Initializable {
         setOfScoreSummary_PlayerPane[9] = scoreSummary_player10Pane;
 
         //(Queenie) moved these down from setUpPlayerPane() since these codes belong here
+        setOfScoreSummary_playerNameLabel = new Label[10];
         setOfScoreSummary_playerNameLabel[0] = scoreSummary_playerNameLabel1;
         setOfScoreSummary_playerNameLabel[1] = scoreSummary_playerNameLabel2;
         setOfScoreSummary_playerNameLabel[2] = scoreSummary_playerNameLabel3;
@@ -1360,7 +1475,7 @@ public class ClientGamePageController implements Initializable {
     private void setUpPlayerPane() {
 
         numOfPlayer = users.size();
-
+        System.out.println("setUpPlayerPane(), numOfPlayer= "+numOfPlayer);
         for (int i = 0; i < numOfPlayer; i++) {
             playerNames[i] = users.get(i).substring(0, users.get(i).indexOf("("));
         }
@@ -1393,6 +1508,11 @@ public class ClientGamePageController implements Initializable {
         setOfPlayerPane_scoreLabel[8] = playerPane_scoreLabel9;
         setOfPlayerPane_scoreLabel[9] = playerPane_scoreLabel10;
 
+        for (Label scoreLabel: setOfScoreSummary_scoreLabel
+             ) {
+            scoreLabel.setText("0");
+        }
+
     }
 
     // (Queenie) Method to reset all ready status from players, reset ready button and disable it
@@ -1415,6 +1535,15 @@ public class ClientGamePageController implements Initializable {
                 y.setStyle(null);
             }
         }
+    }
+
+    //Method to print out contents within a label array
+    private String toString(Label[] setOfLabels){
+        String s="";
+        for (Label label: setOfLabels) {
+            s+=label.getText()+", ";
+        }
+        return s;
     }
 
 }
