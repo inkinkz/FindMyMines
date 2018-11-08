@@ -365,10 +365,11 @@ public class ClientGamePageController implements Initializable {
     // game
     static int numOfPlayer; // how many player
     Button[][] setOfButton = new Button[6][6];
-    Pane[] setOfPlayerPane_playerPane = new Pane[10]; // limit player :10
     private static ObservableMap<Integer, Integer> scoreOfPlayer;
     private ObservableValue<Integer> playerReady; // number of player ready
+    Pane[] setOfPlayerPane_playerPane = new Pane[10]; // limit player :10
     Label[] setOfPlayerPane_scoreLabel = new Label[10]; //contains Label playerPane_scoreLabel1, ... ,playerPane_scoreLabel10
+    Pane[] setOfScoreSummary_playerPane = new Pane[10];
     Label[] setOfScoreSummary_playerNameLabel = new Label[10];
     Label[] setOfScoreSummary_scoreLabel = new Label[10];
     int numBombLeft = 11;
@@ -443,7 +444,7 @@ public class ClientGamePageController implements Initializable {
 
     // Tram and Poon
     private void setUpLeftPane() {
-
+        //Pane[] setOfPlayerPane_playerPane = new Pane[10];
         setOfPlayerPane_playerPane[0] = playerPane_player1Pane;
         setOfPlayerPane_playerPane[1] = playerPane_player2Pane;
         setOfPlayerPane_playerPane[2] = playerPane_player3Pane;
@@ -1306,6 +1307,7 @@ public class ClientGamePageController implements Initializable {
                 // Server pressed "Reset", changing game state from "ENDED" -> "WAITING"
                 // reset everything on client screen
                 System.out.println("(triggerClientScreen()) Server has reset the game");
+
                 resetScore();
                 setUpLeftPane();
                 //resetScoreSummary();
@@ -1326,6 +1328,7 @@ public class ClientGamePageController implements Initializable {
                 System.out.println("(triggerClientScreen()) Server has started the game");
                 resetReadyButton();
                 setUpPlayerPane();
+                setUpScoreSummaryPane();
                 leftPane.setDisable(false);
                 // game starts, time and bombs remaining become visible
                 bombLeft.setVisible(true);
@@ -1341,7 +1344,6 @@ public class ClientGamePageController implements Initializable {
                 leftPane.setDisable(true);
                 stopTimer();
                 resetTimer();
-                setUpScoreSummaryPane();
                 sortScoreSummary();
                 showScoreSummary();
                 break;
@@ -1400,12 +1402,6 @@ public class ClientGamePageController implements Initializable {
         numOfPlayer = users.size();
         System.out.println("setUpScoreSummaryPane(), numOfPlayer= "+numOfPlayer);
 
-        //set player nickname in order of pressing ready
-        for (int i = 0; i<numOfPlayer; i++) { // this loop could be
-        		setOfScoreSummary_playerNameLabel[i].setText(playerNames[i]); //playerNames[] collect player nickname in order of pressing ready
-        }
-        // please use setOfScoreSummary_scoreLabel[i], it is the set of score Label on UI
-
         //suggestion to replace above
         /* sorted = getSorted();
         int i = 0;
@@ -1420,21 +1416,18 @@ public class ClientGamePageController implements Initializable {
 		}*/
 
 
-        // display user names
-        Pane[] setOfScoreSummary_PlayerPane = new Pane[10];
-        setOfScoreSummary_PlayerPane[0] = scoreSummary_player1Pane;
-        setOfScoreSummary_PlayerPane[1] = scoreSummary_player2Pane;
-        setOfScoreSummary_PlayerPane[2] = scoreSummary_player3Pane;
-        setOfScoreSummary_PlayerPane[3] = scoreSummary_player4Pane;
-        setOfScoreSummary_PlayerPane[4] = scoreSummary_player5Pane;
-        setOfScoreSummary_PlayerPane[5] = scoreSummary_player6Pane;
-        setOfScoreSummary_PlayerPane[6] = scoreSummary_player7Pane;
-        setOfScoreSummary_PlayerPane[7] = scoreSummary_player8Pane;
-        setOfScoreSummary_PlayerPane[8] = scoreSummary_player9Pane;
-        setOfScoreSummary_PlayerPane[9] = scoreSummary_player10Pane;
+        scoreSummary_playerNameLabel1.setText(playerNames[0]);
+        scoreSummary_playerNameLabel2.setText(playerNames[1]);
+        scoreSummary_playerNameLabel3.setText(playerNames[2]);
+        scoreSummary_playerNameLabel4.setText(playerNames[3]);
+        scoreSummary_playerNameLabel5.setText(playerNames[4]);
+        scoreSummary_playerNameLabel6.setText(playerNames[5]);
+        scoreSummary_playerNameLabel7.setText(playerNames[6]);
+        scoreSummary_playerNameLabel8.setText(playerNames[7]);
+        scoreSummary_playerNameLabel9.setText(playerNames[8]);
+        scoreSummary_playerNameLabel10.setText(playerNames[9]);
 
         //(Queenie) moved these down from setUpPlayerPane() since these codes belong here
-        setOfScoreSummary_playerNameLabel = new Label[10];
         setOfScoreSummary_playerNameLabel[0] = scoreSummary_playerNameLabel1;
         setOfScoreSummary_playerNameLabel[1] = scoreSummary_playerNameLabel2;
         setOfScoreSummary_playerNameLabel[2] = scoreSummary_playerNameLabel3;
@@ -1447,7 +1440,6 @@ public class ClientGamePageController implements Initializable {
         setOfScoreSummary_playerNameLabel[9] = scoreSummary_playerNameLabel10;
 
 
-        setOfScoreSummary_scoreLabel = new Label[10];
         setOfScoreSummary_scoreLabel[0] = scoreSummary_scoreLabel1;
         setOfScoreSummary_scoreLabel[1] = scoreSummary_scoreLabel2;
         setOfScoreSummary_scoreLabel[2] = scoreSummary_scoreLabel3;
@@ -1459,8 +1451,26 @@ public class ClientGamePageController implements Initializable {
         setOfScoreSummary_scoreLabel[8] = scoreSummary_scoreLabel9;
         setOfScoreSummary_scoreLabel[9] = scoreSummary_scoreLabel10;
 
+        // display user names
+        setOfScoreSummary_playerPane[0] = scoreSummary_player1Pane;
+        setOfScoreSummary_playerPane[1] = scoreSummary_player2Pane;
+        setOfScoreSummary_playerPane[2] = scoreSummary_player3Pane;
+        setOfScoreSummary_playerPane[3] = scoreSummary_player4Pane;
+        setOfScoreSummary_playerPane[4] = scoreSummary_player5Pane;
+        setOfScoreSummary_playerPane[5] = scoreSummary_player6Pane;
+        setOfScoreSummary_playerPane[6] = scoreSummary_player7Pane;
+        setOfScoreSummary_playerPane[7] = scoreSummary_player8Pane;
+        setOfScoreSummary_playerPane[8] = scoreSummary_player9Pane;
+        setOfScoreSummary_playerPane[9] = scoreSummary_player10Pane;
+
+        //set player nickname in order of pressing ready
+        for (int i = 0; i<numOfPlayer; i++) { // this loop could be
+            setOfScoreSummary_playerNameLabel[i].setText(playerNames[i]); //playerNames[] collect player nickname in order of pressing ready
+        }
+        // please use setOfScoreSummary_scoreLabel[i], it is the set of score Label on UI
+
         for (int i = 0; i < numOfPlayer; i++) {
-            setOfScoreSummary_PlayerPane[i].setVisible(true);
+            setOfScoreSummary_playerPane[i].setVisible(true);
         }
         // Setup scores on scoreSummary
         // currently not working
@@ -1507,11 +1517,6 @@ public class ClientGamePageController implements Initializable {
         setOfPlayerPane_scoreLabel[7] = playerPane_scoreLabel8;
         setOfPlayerPane_scoreLabel[8] = playerPane_scoreLabel9;
         setOfPlayerPane_scoreLabel[9] = playerPane_scoreLabel10;
-
-        for (Label scoreLabel: setOfScoreSummary_scoreLabel
-             ) {
-            scoreLabel.setText("0");
-        }
 
     }
 
