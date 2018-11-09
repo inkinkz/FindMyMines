@@ -250,7 +250,7 @@ public class ServerGamePageController implements Initializable {
     private Label bombLeft;
 
     @FXML
-    public  Button startButton;
+    public Button startButton;
 
     @FXML
     private Button stopButton;
@@ -466,7 +466,7 @@ public class ServerGamePageController implements Initializable {
         numOfPlayer = users.size();
 
         for (int i = 0; i < numOfPlayer; i++) {
-            playerNames[i] = users.get(i).substring(0,users.get(i).indexOf("("));
+            playerNames[i] = users.get(i).substring(0, users.get(i).indexOf("("));
         }
 
         player1.setText(playerNames[0]);
@@ -549,7 +549,7 @@ public class ServerGamePageController implements Initializable {
     static int numBomb = 0;
     static int numBombMultiPoints = 0;
 
-     static void assignBombDefault() {
+    static void assignBombDefault() {
         // assign bomb to the slot
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
@@ -566,7 +566,7 @@ public class ServerGamePageController implements Initializable {
                     numBomb++;
                 }
                 if (result == 3) {
-                    valueOfSpace[i][j] =0;//free space
+                    valueOfSpace[i][j] = 0;//free space
                 }
 
             }
@@ -646,7 +646,7 @@ public class ServerGamePageController implements Initializable {
         }
     }
 
-     static void assignBombMultiPoints() {
+    static void assignBombMultiPoints() {
         // assign bomb to the slot
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
@@ -692,7 +692,7 @@ public class ServerGamePageController implements Initializable {
 
             }
         }
- 
+
         // fix number of bomb to 11
         while (numBombMultiPoints != 11) {
             for (int i = 0; i < 6; i++) {
@@ -955,6 +955,7 @@ public class ServerGamePageController implements Initializable {
     }
 
     int time = 10;
+
     //to display count down from 10 to 0
     void startTimer() {
         Task<Void> task = new Task<Void>() {
@@ -1004,12 +1005,11 @@ public class ServerGamePageController implements Initializable {
 
         if (GAME_STATE.equals("WAITING")) {
             //GAME_STATE = WAITING -> ONGOING
-        		warnText.setText("Not all players are ready");
-        		if(FindMyMinesServer.clientsConnected.isEmpty()) {
-        			warnText.setText("No player is connected");
-        			warnText.setVisible(true);
-        		}
-        		else if (!readyAll()) {
+            warnText.setText("Not all players are ready");
+            if (FindMyMinesServer.clientsConnected.isEmpty()) {
+                warnText.setText("No player is connected");
+                warnText.setVisible(true);
+            } else if (!readyAll()) {
                 warnText.setVisible(true);
                 return;
             } else {
@@ -1033,17 +1033,17 @@ public class ServerGamePageController implements Initializable {
                     case "DEFAULT":
 //                        assignBombDefault();
                         setUpBomb();
-                        FindMyMinesServer.broadcast(firstPlayerName+"!DEFAULT:GAMESTART");
+                        FindMyMinesServer.broadcast(firstPlayerName + "!DEFAULT:GAMESTART");
                         break;
                     case "QUICK_GAME":
 //                        assignBombDefault();
                         setUpBomb();
-                        FindMyMinesServer.broadcast(firstPlayerName+"!QUICK_GAME:GAMESTART");
+                        FindMyMinesServer.broadcast(firstPlayerName + "!QUICK_GAME:GAMESTART");
                         break;
                     case "MULTIPOINTS_BOMB":
 //                        assignBombMultiPoints();
                         setUpBombMultiPoints();
-                        FindMyMinesServer.broadcast(firstPlayerName+"!MULTIPOINTS_BOMB:GAMESTART");
+                        FindMyMinesServer.broadcast(firstPlayerName + "!MULTIPOINTS_BOMB:GAMESTART");
                         break;
                 }
                 try {
@@ -1090,7 +1090,7 @@ public class ServerGamePageController implements Initializable {
             server.changeGameState();
             FindMyMinesServer.broadcast("GAMERESET:GAMERESET");
             FindMyMinesServer.broadcastBomb();
-            setPlayerPaneVisible(users.size(),false);
+            setPlayerPaneVisible(users.size(), false);
             return;
         }
 
@@ -1248,55 +1248,56 @@ public class ServerGamePageController implements Initializable {
         this.gameMode = gameMode;
     }
 
-    private void setPlayerPaneVisible(int size, boolean value){
-        for (int i=0; i<size;i++){
+    private void setPlayerPaneVisible(int size, boolean value) {
+        for (int i = 0; i < size; i++) {
             setOfPlayerPane[i].setVisible(value);
         }
 
     }
-    
+
     //Poon implement
-    
+
     public int getCurrentGameturn(int playerid) {
-    		for(int i = 0; i< users.size(); i++) {
-    			if(i == playerid) {
-    				return i;
-    			}
-    		}
-    		return -1;
+        for (int i = 0; i < users.size(); i++) {
+            if (i == playerid) {
+                return i;
+            }
+        }
+        return -1;
     }
-    
+
     int playerid;
-    
+
     public void setGameid() {
-    		//playerid = ;
+        //playerid = ;
     }
-    
+
     public void gameturn(int playerid, int round) {
-    		if (round == 0) {
-    			//default starting setting
-    		}
-    		if (round > 0) {
-    			//
-    		}
-    		if (playerid < users.size()) {
-    			
-    		} else {
-    			//reset playerid
-    		}
+        if (round == 0) {
+            //default starting setting
+        }
+        if (round > 0) {
+            //
+        }
+        if (playerid < users.size()) {
+
+        } else {
+            //reset playerid
+        }
     }
+
     //(Queenie) Method to random a number from player amount, then use the number to identify which player will be the first to play
-    private String randomFirstPlayer(){
+    private String randomFirstPlayer() {
         numOfPlayer = users.size();
-        System.out.println("randomFirstPlayer() numOfPlayer = "+numOfPlayer);
-        
-        int randomResult = (int)( Math.random() * numOfPlayer);
-        System.out.println("randomFirstPlayer() randomResult = "+randomResult);
+        System.out.println("randomFirstPlayer() numOfPlayer = " + numOfPlayer);
+
+        int randomResult = (int) (Math.random() * numOfPlayer);
+        System.out.println("randomFirstPlayer() randomResult = " + randomResult);
         String[] name = users.get(randomResult).split(" ");
         //users.get(randomResult) = username (READY)
         //name[0] = username
         //name[1] = (READY)
-        System.out.println("randomFirstPlayer() name = "+name[0].trim());
+        System.out.println("randomFirstPlayer() name = " + name[0].trim());
         return name[0].trim();
 
     }

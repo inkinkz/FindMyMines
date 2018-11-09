@@ -10,7 +10,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import game.model.ButtonClick;
-import javafx.application.Platform;
 
 public class FindMyMinesServer {
     // a unique ID for each connection
@@ -368,9 +367,9 @@ public class FindMyMinesServer {
                         break;
                     case ButtonClick.TRIGGER_END:
                         System.out.println("ButtonClick.TRIGGER_END");
+                        broadcast("GAMESTOPPED:GAMESTOP");
                         ServerGamePageController.assignBombMultiPoints();
                         ServerGamePageController.assignBombDefault();
-                        broadcast("GAMESTOPPED:GAMESTOP");
                         break;
                 }
                 // remove myself from the arrayList containing the list of the
