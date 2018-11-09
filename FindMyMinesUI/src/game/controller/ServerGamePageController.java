@@ -546,10 +546,10 @@ public class ServerGamePageController implements Initializable {
     public static int[][] bombAround = new int[6][6];
     public static int[][] bombAroundMultiPoints = new int[6][6];
 
-    int numBomb = 0;
-    int numBombMultiPoints = 0;
+    static int numBomb = 0;
+    static int numBombMultiPoints = 0;
 
-    private void assignBombDefault() {
+     static void assignBombDefault() {
         // assign bomb to the slot
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
@@ -646,7 +646,7 @@ public class ServerGamePageController implements Initializable {
         }
     }
 
-    private void assignBombMultiPoints() {
+     static void assignBombMultiPoints() {
         // assign bomb to the slot
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
@@ -1056,6 +1056,7 @@ public class ServerGamePageController implements Initializable {
                 server.changeGameState();
                 //startButton.setText("STOP");
                 startButton.setText("RESET");
+
                 return;
             }
         } else if (GAME_STATE.equals("ONGOING")) {

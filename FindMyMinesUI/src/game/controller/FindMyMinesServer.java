@@ -368,12 +368,9 @@ public class FindMyMinesServer {
                         break;
                     case ButtonClick.TRIGGER_END:
                         System.out.println("ButtonClick.TRIGGER_END");
+                        ServerGamePageController.assignBombMultiPoints();
+                        ServerGamePageController.assignBombDefault();
                         broadcast("GAMESTOPPED:GAMESTOP");
-                        Platform.runLater(
-                                () -> {
-                                    changeGameState();
-                                });
-//                        serverController.startButton.setText("Reset");
                         break;
                 }
                 // remove myself from the arrayList containing the list of the
@@ -461,7 +458,6 @@ public class FindMyMinesServer {
                 sOutput.writeObject(ServerGamePageController.valueOfSpaceMultiPoints);
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sOutput.writeObject(ServerGamePageController.bombAroundMultiPoints);
-//                sOutput.writeObject(bombAroundMultiPoints);
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
             }
             // if an error occurs, do not abort just inform the user
