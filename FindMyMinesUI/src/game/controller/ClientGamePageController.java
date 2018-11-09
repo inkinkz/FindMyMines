@@ -1194,7 +1194,6 @@ public class ClientGamePageController implements Initializable {
                             // Do things when game ends
                             display("Game Over!");
                             triggerClientScreen("ENDED", null);
-
                         });
                     } else if (split[1].equals("GAMERESET")) {
                         Platform.runLater(() -> {
@@ -1203,9 +1202,8 @@ public class ClientGamePageController implements Initializable {
                             display("Server has reset the game" + "\n");
                             triggerClientScreen("WAITING", null);
                         });
-                        //reassignBombs();
+                        reassignBombs();
                         break;
-
                     }
                 } // Button Clicked
                 else if (msg.length() == 2) {
@@ -1448,7 +1446,7 @@ public class ClientGamePageController implements Initializable {
                 resetTimer();
                 sortScoreSummary();
                 showScoreSummary();
-                reassignBombs(); //(Q)probably should be somewhere else but right now I'll put it here
+//                reassignBombs(); //(Q)probably should be somewhere else but right now I'll put it here
                 //Clearing color from every player pane
                 for (Pane pane :
                         setOfPlayerPane_playerPane) {

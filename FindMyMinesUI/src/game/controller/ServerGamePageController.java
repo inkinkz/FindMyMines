@@ -1084,10 +1084,6 @@ public class ServerGamePageController implements Initializable {
             //UI display
             modebox.setDisable(false);
 
-//            //reassign bombs
-//            assignBombDefault();
-//            assignBombMultiPoints();
-
             System.out.println("Reset button clicked");
             startButton.setText("START");
             server.changeGameState();
