@@ -434,7 +434,7 @@ public class ClientGamePageController implements Initializable {
 
         txtArea.setEditable(false);
         buttonPane.setDisable(true);
-        System.out.println("    buttonPane disabled");
+        System.out.println("    (1)buttonPane disabled");
         bombLeft.setVisible(false);
         bombLeftLabel.setVisible(false);
         showTime.setVisible(false);
@@ -565,10 +565,10 @@ public class ClientGamePageController implements Initializable {
             // Enable leftPane if username = nameToCompare
             if (nameToCompare.trim().equals(ClientStartPageController.userName)) {
                 buttonPane.setDisable(false);
-                System.out.println("    buttonPane enabled");
+                System.out.println("    (1)buttonPane enabled");
             } else {
                 buttonPane.setDisable(true);
-                System.out.println("    buttonPane disabled");
+                System.out.println("    (2)buttonPane disabled");
             }
 
             //move on to the next player
@@ -606,10 +606,10 @@ public class ClientGamePageController implements Initializable {
             // Enable leftPane if username = nameToCompare
             if (nameToCompare.trim().equals(ClientStartPageController.userName)) {
                 buttonPane.setDisable(false);
-                System.out.println("    buttonPane enabled");
+                System.out.println("    (2)buttonPane enabled");
             } else {
                 buttonPane.setDisable(true);
-                System.out.println("    buttonPane disabled");
+                System.out.println("    (3)buttonPane disabled");
             }
 
             //next player is wrapped around back to 1st player
@@ -1157,7 +1157,7 @@ public class ClientGamePageController implements Initializable {
                         //split2[0] = username
                         //split2[1] = gamemode
                         String [] split2 = split[0].split("!");
-                        firstPlayerName = split2[0];
+                        firstPlayerName = split2[0].trim();
                         System.out.println("(Split2) firstPlayerName = "+firstPlayerName);
                         switch (split2[1]) {
                             case "DEFAULT":
@@ -1194,6 +1194,7 @@ public class ClientGamePageController implements Initializable {
                             // Do things when game ends
                             display("Game Over!");
                             triggerClientScreen("ENDED", null);
+
                         });
                     } else if (split[1].equals("GAMERESET")) {
                         Platform.runLater(() -> {
@@ -1204,6 +1205,7 @@ public class ClientGamePageController implements Initializable {
                         });
                         reassignBombs();
                         break;
+
                     }
                 } // Button Clicked
                 else if (msg.length() == 2) {
@@ -1346,8 +1348,10 @@ public class ClientGamePageController implements Initializable {
     }
 
     private void sendButtonPosition(String pos) {
+        String winner = setOfScoreSummary_playerNameLabel[0].getText();
+        System.out.println(winner+" is leading in the game.");
         if (connected) {
-            ButtonClick msg = new ButtonClick(ButtonClick.CLICK, pos);
+            ButtonClick msg = new ButtonClick(ButtonClick.CLICK, pos, winner);
             try {
                 System.out.println("sendButtonPosition(" + pos + ")");
                 sOutput.writeObject(msg);
@@ -1360,8 +1364,10 @@ public class ClientGamePageController implements Initializable {
     private void sendTriggerEnd() {
         System.out.println("sendTriggerEnd()");
         ButtonClick msg;
+        sortScoreSummary();
+        String winner = setOfScoreSummary_playerNameLabel[0].getText();
         if (connected) {
-            msg = new ButtonClick(ButtonClick.TRIGGER_END);
+            msg = new ButtonClick(ButtonClick.TRIGGER_END, winner);
             try {
                 sOutput.writeObject(msg);
             } catch (IOException e) {
@@ -1409,7 +1415,7 @@ public class ClientGamePageController implements Initializable {
                 resetAllBombButtons();
                 resetTimer();
                 buttonPane.setDisable(true);
-                System.out.println("    buttonPane disabled");
+                System.out.println("    (4)buttonPane disabled");
                 readyButton.setDisable(false);
                 // hiding bomb and time information until game starts
                 bombLeft.setVisible(false);
@@ -1441,12 +1447,12 @@ public class ClientGamePageController implements Initializable {
                 // Server pressed "Stop", changing game state from "ONGOING" -> "ENDED"
                 System.out.println("(triggerClientScreen()) Server has stopped the game");
                 buttonPane.setDisable(true);
-                System.out.println("    buttonPane disabled");
+                System.out.println("    (5)buttonPane disabled");
                 stopTimer();
                 resetTimer();
                 sortScoreSummary();
                 showScoreSummary();
-//                reassignBombs(); //(Q)probably should be somewhere else but right now I'll put it here
+                //reassignBombs(); //(Q)probably should be somewhere else but right now I'll put it here
                 //Clearing color from every player pane
                 for (Pane pane :
                         setOfPlayerPane_playerPane) {
@@ -1457,7 +1463,7 @@ public class ClientGamePageController implements Initializable {
             default:
                 // for when server shuts down
                 buttonPane.setDisable(true);
-                System.out.println("    buttonPane disabled");
+                System.out.println("    (6)buttonPane disabled");
                 readyButton.setDisable(true);
                 bombLeft.setVisible(false);
                 bombLeftLabel.setVisible(false);
@@ -1495,13 +1501,13 @@ public class ClientGamePageController implements Initializable {
                 break;
         }
 
-        makeFirstPlayer(firstPlayerName);
+        makeFirstPlayer(firstPlayerName.trim());
         setOfPlayerPane_playerPane[playerplaying-1].setStyle("-fx-background-color: #484c4a");
         System.out.println("*"+playerNames[playerplaying-1]+"'s TURN*");
         display("*"+playerNames[playerplaying-1]+"'s TURN*");
         if (firstPlayerName.equals(ClientStartPageController.userName.trim()))
             buttonPane.setDisable(false);
-        System.out.println("    buttonPane enabled");
+        System.out.println("    (3)buttonPane enabled");
         maxTime = getTimerMode();
         time = getTimerMode();
         startTimer();
@@ -1671,7 +1677,7 @@ public class ClientGamePageController implements Initializable {
         System.out.println("setPlayabel()");
         if (myturn == playerplaying) {
             buttonPane.setDisable(false);
-            System.out.println("    buttonPane enabled");
+            System.out.println("    (4)buttonPane enabled");
         }
     }
 

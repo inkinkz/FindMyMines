@@ -30,6 +30,8 @@ public class FindMyMinesServer {
     static int[][] bombplacementMultiPoints = ServerGamePageController.valueOfSpaceMultiPoints;
     static int[][] bombAroundMultiPoints = ServerGamePageController.bombAroundMultiPoints;
 
+    public String previousWinnerName;
+
     /*
      * server constructor that receive the port to listen to for connection as
      * parameter
@@ -266,12 +268,6 @@ public class FindMyMinesServer {
         }
     }
 
-    public void noticeClient() {
-        //for Ink to implement
-        return;
-    }
-
-
     /**
      * One instance of this thread will run for each client
      */
@@ -344,6 +340,7 @@ public class FindMyMinesServer {
                 }
                 // the message part of the ButtonClick
                 String msg = cm.getMessage();
+                String currentLeadingPlayer = cm.getCurrentLeadingPlayer();
 
                 // Switch on the type of message receive
                 switch (cm.getType()) {
@@ -354,6 +351,7 @@ public class FindMyMinesServer {
                         break;
                     case ButtonClick.CLICK:
                         broadcast(msg);
+                        serverController.setFirstPlayerName(currentLeadingPlayer);
                         break;
                     case ButtonClick.READDY:
                         broadcastServerOnly(username + ":READDY");
@@ -370,6 +368,7 @@ public class FindMyMinesServer {
                         broadcast("GAMESTOPPED:GAMESTOP");
                         ServerGamePageController.assignBombMultiPoints();
                         ServerGamePageController.assignBombDefault();
+                        serverController.setFirstPlayerName(msg);
                         break;
                 }
                 // remove myself from the arrayList containing the list of the

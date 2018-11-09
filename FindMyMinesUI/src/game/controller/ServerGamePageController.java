@@ -284,8 +284,20 @@ public class ServerGamePageController implements Initializable {
     Label[] setOfScoreBoard = new Label[10];
     private String gameMode = "DEFAULT";
 
-    //First player randomization
-    String firstPlayerName;
+
+    //First player setting
+    public String firstPlayerName;
+    private int playCount=1;
+
+    public String getFirstPlayerName() {
+        return firstPlayerName;
+    }
+
+    public void setFirstPlayerName(String firstPlayerName) {
+        this.firstPlayerName = firstPlayerName;
+        System.out.println("firstPlayerName is set to "+firstPlayerName);
+    }
+
     // SERVER
 
     public FindMyMinesServer server;
@@ -1015,7 +1027,15 @@ public class ServerGamePageController implements Initializable {
             } else {
                 //All players are ready, proceed to game
                 //UI display
-                firstPlayerName = randomFirstPlayer();
+                if(playCount==1) {
+                    System.out.println("Round 1. First player is randomized");
+                    setFirstPlayerName(randomFirstPlayer());
+                    System.out.println(getFirstPlayerName()+" plays first");
+                }
+                else {
+                    System.out.println("Round 2. First player is the winner from last time");
+                    System.out.println(getFirstPlayerName()+" plays first"); //previous winner name is set by server
+                }
                 warnText.setVisible(false);
                 modebox.setDisable(true);
                 //I don't want the server to see these anymore
@@ -1062,6 +1082,7 @@ public class ServerGamePageController implements Initializable {
         } else if (GAME_STATE.equals("ONGOING")) {
             //GAME_STATE = ONGOING -> ENDED
             //UI display
+            System.out.println("Round: "+(playCount++)+"ended.");
             modebox.setDisable(true);
 
             valueOfSpace = new int[6][6];
@@ -1289,10 +1310,10 @@ public class ServerGamePageController implements Initializable {
     //(Queenie) Method to random a number from player amount, then use the number to identify which player will be the first to play
     private String randomFirstPlayer() {
         numOfPlayer = users.size();
-        System.out.println("randomFirstPlayer() numOfPlayer = " + numOfPlayer);
+        System.out.println("randomFirstPlayer() numOfPlayer = "+numOfPlayer);
 
-        int randomResult = (int) (Math.random() * numOfPlayer);
-        System.out.println("randomFirstPlayer() randomResult = " + randomResult);
+        int randomResult = (int)( Math.random() * numOfPlayer);
+        System.out.println("randomFirstPlayer() randomResult = "+randomResult);
         String[] name = users.get(randomResult).split(" ");
         //users.get(randomResult) = username (READY)
         //name[0] = username
@@ -1301,4 +1322,5 @@ public class ServerGamePageController implements Initializable {
         return name[0].trim();
 
     }
+
 }

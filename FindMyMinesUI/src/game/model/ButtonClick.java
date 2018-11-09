@@ -10,6 +10,9 @@ public class ButtonClick implements Serializable {
     private int type;
     private String message;
 
+
+    private String currentLeadingPlayer;
+
     public ButtonClick(int type) {
         this.type = type;
     }
@@ -17,6 +20,12 @@ public class ButtonClick implements Serializable {
     public ButtonClick(int type, String message) {
         this.type = type;
         this.message = message;
+    }
+
+    public ButtonClick(int type, String message, String currentLeadingPlayer) {
+        this.type = type;
+        this.message = message;
+        this.currentLeadingPlayer = currentLeadingPlayer;
     }
 
     public String getMessage() {
@@ -27,4 +36,11 @@ public class ButtonClick implements Serializable {
         return type;
     }
 
+    public String getCurrentLeadingPlayer() {
+        return currentLeadingPlayer;
+    }
+
+    public void setCurrentLeadingPlayer(String currentLeadingPlayer) {
+        this.currentLeadingPlayer = currentLeadingPlayer;
+    }
 }
